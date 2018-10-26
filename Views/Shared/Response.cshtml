@@ -1,0 +1,15 @@
+@{
+    ViewBag.Title = "Response";
+    Layout = "_Layout";
+}
+<div id="content">
+    <p class="heading1">Exception</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>Response Code : @Model.code</li>
+            <li>Response Message : @Model.message</li>
+        </ul>
+    </fieldset>
+</div>
