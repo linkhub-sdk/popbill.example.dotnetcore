@@ -1,0 +1,34 @@
+@{
+  ViewBag.Title = "ListContact (담당자 목록 확인)";
+  Layout = "_Layout";
+}
+
+<div id="content">
+  <p class="heading1">Response</p>
+  <br/>
+  <fieldset class="fieldset1">
+    <legend>@ViewData["Title"]</legend>
+    @{
+      int i = 0;
+      foreach (var info in Model)
+      {
+        i++;
+        <fieldset class="fieldset2">
+          <legend>담당자 목록 확인 [ @i / @Model.Count ]</legend>
+          <ul>
+            <li>담당자 아이디(id) : @info.id</li>
+            <li>담당자 성명(personName) : @info.personName</li>
+            <li>담당자 이메일(email) : @info.email</li>
+            <li>담당자 휴대폰번호(hp) : @info.hp</li>
+            <li>담당자 팩스번호(fax) : @info.fax</li>
+            <li>담당자 연락처(tel) :@info.tel</li>
+            <li>등록일시(regDT) : @info.regDT</li>
+            <li>담당자 회사조회 권한(searchAllAllowYN) : @info.searchAllAllowYN</li>
+            <li>관리자여부(mgrYN) : @info.mgrYN</li>
+            <li>상태(state) : @info.state</li>
+          </ul>
+        </fieldset>
+      }
+    }
+  </fieldset>
+</div>
