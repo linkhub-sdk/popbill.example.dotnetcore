@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ControllerDI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
 using Popbill.Taxinvoice;
@@ -10,7 +11,7 @@ namespace TaxinvoiceExample.Controllers
     {
         private readonly TaxinvoiceService _taxinvoiceService;
 
-        public TaxinvoiceController(Startup.TaxinvoiceInstance TIinstance)
+        public TaxinvoiceController(TaxinvoiceInstance TIinstance)
         {
             _taxinvoiceService = TIinstance.taxinvoiceService;
         }
