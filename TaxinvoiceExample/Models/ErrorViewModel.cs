@@ -1,6 +1,6 @@
 using System;
 
-namespace PopbillExample.Models
+namespace TaxinvoiceExample.Models
 {
     public class ErrorViewModel
     {

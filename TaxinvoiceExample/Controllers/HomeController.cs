@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using PopbillExample.Models;
+using TaxinvoiceExample.Models;
 
-namespace PopbillExample.Controllers
+namespace TaxinvoiceExample.Controllers
 {
     public class HomeController : Controller
     {

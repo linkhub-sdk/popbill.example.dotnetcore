@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxinvoiceExample", "TaxinvoiceExample\TaxinvoiceExample.csproj", "{0B6E9F62-EF9B-4C06-AAC0-DEDDEE463663}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashbillExample", "CashbillExample\CashbillExample.csproj", "{10047057-0115-43C2-A781-DA080D22D430}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +13,5 @@ Global
 		{0B6E9F62-EF9B-4C06-AAC0-DEDDEE463663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B6E9F62-EF9B-4C06-AAC0-DEDDEE463663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B6E9F62-EF9B-4C06-AAC0-DEDDEE463663}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10047057-0115-43C2-A781-DA080D22D430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10047057-0115-43C2-A781-DA080D22D430}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10047057-0115-43C2-A781-DA080D22D430}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10047057-0115-43C2-A781-DA080D22D430}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

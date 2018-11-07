@@ -4,20 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 using Popbill;
 using Popbill.Taxinvoice;
 
-namespace PopbillExample.Controllers
+namespace TaxinvoiceExample.Controllers
 {
     public class TaxinvoiceController : Controller
     {
-        //링크허브에서 발급받은 고객사 고객사 인증정보로 링크아이디(LinkID)와 비밀키(SecretKey) 값을 변경하시기 바랍니다.
-        static string linkID = "TESTER";
-        static string secretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
+        private readonly TaxinvoiceService _taxinvoiceService;
 
-        private readonly TaxinvoiceService taxinvoiceService;
-
-        public TaxinvoiceController()
+        public TaxinvoiceController(Startup.TaxinvoiceInstance TIinstance)
         {
-            taxinvoiceService = new TaxinvoiceService(linkID, secretKey);
-            taxinvoiceService.IsTest = true;
+            _taxinvoiceService = TIinstance.taxinvoiceService;
         }
 
         //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
@@ -50,7 +45,7 @@ namespace PopbillExample.Controllers
                 // 발행유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
                 TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
 
-                bool result = taxinvoiceService.CheckMgtKeyInUse(corpNum, mgtKeyType, mgtKey);
+                bool result = _taxinvoiceService.CheckMgtKeyInUse(corpNum, mgtKeyType, mgtKey);
 
                 return View("result", result ? "사용중" : "미사용중");
             }
@@ -327,7 +322,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.RegistIssue(corpNum, taxinvoice, writeSpecification, forceIssue,
+                var response = _taxinvoiceService.RegistIssue(corpNum, taxinvoice, writeSpecification, forceIssue,
                     dealInvoiceMgtKey, memo, emailSubject);
                 return View("Response", response);
             }
@@ -597,7 +592,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.Register(corpNum, taxinvoice, writeSpecification, dealInvoiceMgtKey);
+                var response = _taxinvoiceService.Register(corpNum, taxinvoice, writeSpecification, dealInvoiceMgtKey);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -863,7 +858,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.Update(corpNum, mgtKeyType, mgtKey, taxinvoice);
+                var response = _taxinvoiceService.Update(corpNum, mgtKeyType, mgtKey, taxinvoice);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -900,7 +895,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.Issue(corpNum, mgtKeyType, mgtKey, forceIssue, memo, emailSubject);
+                var response = _taxinvoiceService.Issue(corpNum, mgtKeyType, mgtKey, forceIssue, memo, emailSubject);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -929,7 +924,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.CancelIssue(corpNum, mgtKeyType, mgtKey, memo);
+                var response = _taxinvoiceService.CancelIssue(corpNum, mgtKeyType, mgtKey, memo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -961,7 +956,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.Send(corpNum, mgtKeyType, mgtKey, memo, emailSubject);
+                var response = _taxinvoiceService.Send(corpNum, mgtKeyType, mgtKey, memo, emailSubject);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -987,7 +982,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.CancelSend(corpNum, mgtKeyType, mgtKey, memo);
+                var response = _taxinvoiceService.CancelSend(corpNum, mgtKeyType, mgtKey, memo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1012,7 +1007,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.Accept(corpNum, mgtKeyType, mgtKey, memo);
+                var response = _taxinvoiceService.Accept(corpNum, mgtKeyType, mgtKey, memo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1038,7 +1033,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.Deny(corpNum, mgtKeyType, mgtKey, memo);
+                var response = _taxinvoiceService.Deny(corpNum, mgtKeyType, mgtKey, memo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1062,7 +1057,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.Delete(corpNum, mgtKeyType, mgtKey);
+                var response = _taxinvoiceService.Delete(corpNum, mgtKeyType, mgtKey);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1092,7 +1087,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.Request(corpNum, mgtKeyType, mgtKey, memo);
+                var response = _taxinvoiceService.Request(corpNum, mgtKeyType, mgtKey, memo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1119,7 +1114,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.CancelRequest(corpNum, mgtKeyType, mgtKey, memo);
+                var response = _taxinvoiceService.CancelRequest(corpNum, mgtKeyType, mgtKey, memo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1146,7 +1141,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.Refuse(corpNum, mgtKeyType, mgtKey, memo);
+                var response = _taxinvoiceService.Refuse(corpNum, mgtKeyType, mgtKey, memo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1173,7 +1168,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.SendToNTS(corpNum, mgtKeyType, mgtKey);
+                var response = _taxinvoiceService.SendToNTS(corpNum, mgtKeyType, mgtKey);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1201,7 +1196,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.GetInfo(corpNum, mgtKeyType, mgtKey);
+                var response = _taxinvoiceService.GetInfo(corpNum, mgtKeyType, mgtKey);
                 return View("GetInfo", response);
             }
             catch (PopbillException pe)
@@ -1228,7 +1223,7 @@ namespace PopbillExample.Controllers
             MgtKeyList.Add("20161221-01");
             try
             {
-                var response = taxinvoiceService.GetInfos(corpNum, mgtKeyType, MgtKeyList);
+                var response = _taxinvoiceService.GetInfos(corpNum, mgtKeyType, MgtKeyList);
                 return View("GetInfos", response);
             }
             catch (PopbillException pe)
@@ -1251,7 +1246,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.GetDetailInfo(corpNum, mgtKeyType, mgtKey);
+                var response = _taxinvoiceService.GetDetailInfo(corpNum, mgtKeyType, mgtKey);
                 return View("GetDetailInfo", response);
             }
             catch (PopbillException pe)
@@ -1331,7 +1326,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.Search(corpNum, mgtKeyType, DType, SDate, EDate, State, Type, TaxType,
+                var response = _taxinvoiceService.Search(corpNum, mgtKeyType, DType, SDate, EDate, State, Type, TaxType,
                     IssueType, LateOnly, TaxRegIDYN, TaxRegIDType, TaxRegID, Page, PerPage, Order, Qstring, InterOPYN);
                 return View("Search", response);
             }
@@ -1357,7 +1352,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.GetLogs(corpNum, mgtKeyType, mgtKey);
+                var response = _taxinvoiceService.GetLogs(corpNum, mgtKeyType, mgtKey);
                 return View("GetLogs", response);
             }
             catch (PopbillException pe)
@@ -1381,7 +1376,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var result = taxinvoiceService.GetURL(corpNum, TOGO);
+                var result = _taxinvoiceService.GetURL(corpNum, TOGO);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1408,7 +1403,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var result = taxinvoiceService.GetPopUpURL(corpNum, mgtKeyType, mgtKey);
+                var result = _taxinvoiceService.GetPopUpURL(corpNum, mgtKeyType, mgtKey);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1431,7 +1426,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var result = taxinvoiceService.GetPrintURL(corpNum, mgtKeyType, mgtKey);
+                var result = _taxinvoiceService.GetPrintURL(corpNum, mgtKeyType, mgtKey);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1454,7 +1449,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var result = taxinvoiceService.GetEPrintURL(corpNum, mgtKeyType, mgtKey);
+                var result = _taxinvoiceService.GetEPrintURL(corpNum, mgtKeyType, mgtKey);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1484,7 +1479,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var result = taxinvoiceService.GetMassPrintURL(corpNum, mgtKeyType, MgtKeyList);
+                var result = _taxinvoiceService.GetMassPrintURL(corpNum, mgtKeyType, MgtKeyList);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1507,7 +1502,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var result = taxinvoiceService.GetMailURL(corpNum, mgtKeyType, mgtKey);
+                var result = _taxinvoiceService.GetMailURL(corpNum, mgtKeyType, mgtKey);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1534,7 +1529,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var result = taxinvoiceService.GetPopbillURL(corpNum, TOGO);
+                var result = _taxinvoiceService.GetPopbillURL(corpNum, TOGO);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1557,7 +1552,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var result = taxinvoiceService.GetPopbillURL(corpNum, TOGO);
+                var result = _taxinvoiceService.GetPopbillURL(corpNum, TOGO);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1581,11 +1576,11 @@ namespace PopbillExample.Controllers
 
             // 첨부파일 경로
             String filePath =
-                "/Users/kimhyunjin/SDK/popbill.example.dotnetcore/PopbillExample/wwwroot/images/banner1.svg";
+                "/Users/kimhyunjin/SDK/popbill.example.dotnetcore/TaxinvoiceExample/wwwroot/images/banner1.svg";
 
             try
             {
-                var response = taxinvoiceService.AttachFile(corpNum, mgtKeyType, mgtKey, filePath);
+                var response = _taxinvoiceService.AttachFile(corpNum, mgtKeyType, mgtKey, filePath);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1612,7 +1607,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.DeleteFile(corpNum, mgtKeyType, mgtKey, fileID);
+                var response = _taxinvoiceService.DeleteFile(corpNum, mgtKeyType, mgtKey, fileID);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1636,7 +1631,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.GetFiles(corpNum, mgtKeyType, mgtKey);
+                var response = _taxinvoiceService.GetFiles(corpNum, mgtKeyType, mgtKey);
                 return View("GetFiles", response);
             }
             catch (PopbillException pe)
@@ -1661,7 +1656,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.SendEmail(corpNum, mgtKeyType, mgtKey, email);
+                var response = _taxinvoiceService.SendEmail(corpNum, mgtKeyType, mgtKey, email);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1695,7 +1690,8 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.SendSMS(corpNum, mgtKeyType, mgtKey, senderNum, receiverNum, contents);
+                var response =
+                    _taxinvoiceService.SendSMS(corpNum, mgtKeyType, mgtKey, senderNum, receiverNum, contents);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1726,7 +1722,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.SendFAX(corpNum, mgtKeyType, mgtKey, senderNum, receiverNum);
+                var response = _taxinvoiceService.SendFAX(corpNum, mgtKeyType, mgtKey, senderNum, receiverNum);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1754,7 +1750,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.AttachStatement(corpNum, mgtKeyType, mgtKey, docItemCode, docMgtKey);
+                var response = _taxinvoiceService.AttachStatement(corpNum, mgtKeyType, mgtKey, docItemCode, docMgtKey);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1782,7 +1778,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.DetachStatement(corpNum, mgtKeyType, mgtKey, docItemCode, docMgtKey);
+                var response = _taxinvoiceService.DetachStatement(corpNum, mgtKeyType, mgtKey, docItemCode, docMgtKey);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1798,7 +1794,7 @@ namespace PopbillExample.Controllers
         {
             try
             {
-                var response = taxinvoiceService.GetEmailPublicKeys(corpNum);
+                var response = _taxinvoiceService.GetEmailPublicKeys(corpNum);
                 return View("GetEmailPublicKeys", response);
             }
             catch (PopbillException pe)
@@ -1823,7 +1819,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.AssignMgtKey(corpNum, mgtKeyType, itemKey, mgtKey);
+                var response = _taxinvoiceService.AssignMgtKey(corpNum, mgtKeyType, itemKey, mgtKey);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1839,7 +1835,7 @@ namespace PopbillExample.Controllers
         {
             try
             {
-                var response = taxinvoiceService.ListEmailConfig(corpNum);
+                var response = _taxinvoiceService.ListEmailConfig(corpNum);
                 return View("ListEmailConfig", response);
             }
             catch (PopbillException pe)
@@ -1902,7 +1898,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.UpdateEmailConfig(corpNum, emailType, sendYN);
+                var response = _taxinvoiceService.UpdateEmailConfig(corpNum, emailType, sendYN);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1929,7 +1925,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var result = taxinvoiceService.GetPopbillURL(corpNum, TOGO);
+                var result = _taxinvoiceService.GetPopbillURL(corpNum, TOGO);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1947,7 +1943,7 @@ namespace PopbillExample.Controllers
         {
             try
             {
-                var result = taxinvoiceService.GetCertificateExpireDate(corpNum);
+                var result = _taxinvoiceService.GetCertificateExpireDate(corpNum);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1963,7 +1959,7 @@ namespace PopbillExample.Controllers
         {
             try
             {
-                var response = taxinvoiceService.CheckCertValidation(corpNum);
+                var response = _taxinvoiceService.CheckCertValidation(corpNum);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1983,7 +1979,7 @@ namespace PopbillExample.Controllers
         {
             try
             {
-                var result = taxinvoiceService.GetBalance(corpNum);
+                var result = _taxinvoiceService.GetBalance(corpNum);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -2007,7 +2003,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var result = taxinvoiceService.GetPopbillURL(corpNum, TOGO);
+                var result = _taxinvoiceService.GetPopbillURL(corpNum, TOGO);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -2025,7 +2021,7 @@ namespace PopbillExample.Controllers
         {
             try
             {
-                var result = taxinvoiceService.GetPartnerBalance(corpNum);
+                var result = _taxinvoiceService.GetPartnerBalance(corpNum);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -2045,7 +2041,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var result = taxinvoiceService.GetPartnerURL(corpNum, TOGO);
+                var result = _taxinvoiceService.GetPartnerURL(corpNum, TOGO);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -2061,7 +2057,7 @@ namespace PopbillExample.Controllers
         {
             try
             {
-                var result = taxinvoiceService.GetUnitCost(corpNum);
+                var result = _taxinvoiceService.GetUnitCost(corpNum);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -2077,7 +2073,7 @@ namespace PopbillExample.Controllers
         {
             try
             {
-                var response = taxinvoiceService.GetChargeInfo(corpNum);
+                var response = _taxinvoiceService.GetChargeInfo(corpNum);
                 return View("GetChargeInfo", response);
             }
             catch (PopbillException pe)
@@ -2097,7 +2093,10 @@ namespace PopbillExample.Controllers
         {
             try
             {
-                var response = taxinvoiceService.CheckIsMember(corpNum, linkID);
+                //링크아이디
+                string linkID = "TESTER";
+
+                var response = _taxinvoiceService.CheckIsMember(corpNum, linkID);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -2111,13 +2110,12 @@ namespace PopbillExample.Controllers
         */
         public IActionResult CheckID()
         {
-
             //중복여부 확인할 팝빌 회원 아이디
             string checkID = "testkorea";
-            
+
             try
             {
-                var response = taxinvoiceService.CheckID(checkID);
+                var response = _taxinvoiceService.CheckID(checkID);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -2134,14 +2132,14 @@ namespace PopbillExample.Controllers
             JoinForm joinInfo = new JoinForm();
 
             // 링크아이디
-            joinInfo.LinkID = linkID;
+            joinInfo.LinkID = "TESTET";
 
             // 아이디, 6자이상 50자 미만
             joinInfo.ID = "u3sf32erid";
 
             // 비밀번호, 6자이상 20자 미만
             joinInfo.PWD = "123123";
-            
+
             // 사업자번호 "-" 제외
             joinInfo.CorpNum = "0000000321";
 
@@ -2165,7 +2163,7 @@ namespace PopbillExample.Controllers
 
             // 담당자 이메일주소
             joinInfo.ContactEmail = "test@test.com";
-            
+
             // 담당자 연락처
             joinInfo.ContactTEL = "070-4304-2992";
 
@@ -2177,7 +2175,7 @@ namespace PopbillExample.Controllers
 
             try
             {
-                var response = taxinvoiceService.JoinMember(joinInfo);
+                var response = _taxinvoiceService.JoinMember(joinInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -2193,7 +2191,7 @@ namespace PopbillExample.Controllers
         {
             try
             {
-                var response = taxinvoiceService.GetCorpInfo(corpNum, userID);
+                var response = _taxinvoiceService.GetCorpInfo(corpNum, userID);
                 return View("GetCorpInfo", response);
             }
             catch (PopbillException pe)
@@ -2207,7 +2205,6 @@ namespace PopbillExample.Controllers
         */
         public IActionResult UpdateCorpInfo()
         {
-            
             CorpInfo corpInfo = new CorpInfo();
 
             // 대표자 성명
@@ -2224,10 +2221,10 @@ namespace PopbillExample.Controllers
 
             // 종목
             corpInfo.bizClass = "종목 수정";
-            
+
             try
             {
-                var response = taxinvoiceService.UpdateCorpInfo(corpNum, corpInfo, userID);
+                var response = _taxinvoiceService.UpdateCorpInfo(corpNum, corpInfo, userID);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -2269,10 +2266,10 @@ namespace PopbillExample.Controllers
 
             // 관리자 권한여부 
             contactInfo.mgrYN = false;
-            
+
             try
             {
-                var response = taxinvoiceService.RegistContact(corpNum, contactInfo, userID);
+                var response = _taxinvoiceService.RegistContact(corpNum, contactInfo, userID);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -2288,7 +2285,7 @@ namespace PopbillExample.Controllers
         {
             try
             {
-                var response = taxinvoiceService.ListContact(corpNum, userID);
+                var response = _taxinvoiceService.ListContact(corpNum, userID);
                 return View("ListContact", response);
             }
             catch (PopbillException pe)
@@ -2327,10 +2324,10 @@ namespace PopbillExample.Controllers
 
             // 관리자 권한여부 
             contactInfo.mgrYN = false;
-            
+
             try
             {
-                var response = taxinvoiceService.UpdateContact(corpNum, contactInfo, userID);
+                var response = _taxinvoiceService.UpdateContact(corpNum, contactInfo, userID);
                 return View("Response", response);
             }
             catch (PopbillException pe)
