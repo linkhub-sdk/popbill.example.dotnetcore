@@ -26,7 +26,7 @@ namespace TaxinvoiceExample.Controllers
          * 세금계산서 Index Page
          */
         public IActionResult Index()
-        {
+        {    
             return View();
         }
 
@@ -102,7 +102,7 @@ namespace TaxinvoiceExample.Controllers
 
             // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
-            taxinvoice.invoicerMgtKey = "20181030-001";
+            taxinvoice.invoicerMgtKey = "20181108-002";
 
             // [필수] 공급자 대표자 성명 
             taxinvoice.invoicerCEOName = "공급자 대표자 성명";
@@ -2242,13 +2242,13 @@ namespace TaxinvoiceExample.Controllers
             Contact contactInfo = new Contact();
 
             // 담당자 아이디, 6자 이상 20자 미만
-            contactInfo.id = "testkorea_20181030";
+            contactInfo.id = "testkorea_20181108";
 
             // 비밀번호, 6자 이상 20자 미만
             contactInfo.pwd = "user_password";
 
             // 담당자명 
-            contactInfo.personName = "ASP.NET Core";
+            contactInfo.personName = "코어담당자";
 
             // 담당자연락처
             contactInfo.tel = "070-4304-2992";
