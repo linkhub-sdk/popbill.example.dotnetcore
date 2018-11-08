@@ -2133,7 +2133,7 @@ namespace TaxinvoiceExample.Controllers
             JoinForm joinInfo = new JoinForm();
 
             // 링크아이디
-            joinInfo.LinkID = "TESTET";
+            joinInfo.LinkID = "TESTER";
 
             // 아이디, 6자이상 50자 미만
             joinInfo.ID = "u3sf32erid";
