@@ -1,12 +1,11 @@
 # popbill.example.netcore
 
-================================
-팝빌 API Example for ASP.NET Core
-================================
 
-* install .NET CLI by
-::
-    $ dotnet add package Popbill --version 1.0.4
+### 팝빌 API Example for ASP.NET Core
+
+
+#### install .NET CLI
+    > $ dotnet add package Popbill --version 1.0.3
 
 
 연동 API 목차
@@ -23,6 +22,7 @@
 
 사이트
 -------------------------------
-`링크허브(Linkhub) <https://www.linkhub.co.kr/>`_,
-`팝빌(Popbill) <https://www.popbill.com/>`_,
-`ASP.NET Core SDK 적용방법 <http://>`_
+* 링크허브 <https://www.linkhub.co.kr/>
+* 팝빌 상업용 <https://www.popbill.com/>
+* 팝빌 테스트베드 <https://www.test.popbill.com/>
+* ASP.NET Core SDK 적용방법 <http://>
