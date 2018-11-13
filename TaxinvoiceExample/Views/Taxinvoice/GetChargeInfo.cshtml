@@ -1,0 +1,17 @@
+@{
+    ViewBag.Title = "GetChargeInfo (과금정보 확인)";
+    Layout = "_Layout";
+}
+
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>unitCost : @Model.unitCost</li>
+            <li>chargeMethod(과금유형) : @Model.chargeMethod</li>
+            <li>rateSystem(과금제도) : @Model.rateSystem</li>
+        </ul>
+    </fieldset>
+</div>

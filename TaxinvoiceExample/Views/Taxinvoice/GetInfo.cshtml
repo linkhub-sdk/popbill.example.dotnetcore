@@ -1,0 +1,53 @@
+@{
+  ViewBag.Title = "GetInfo (상태확인)";
+  Layout = "_Layout";
+}
+<div id="content">
+  <p class="heading1">Response</p>
+  <br/>
+  <fieldset class="fieldset1">
+    <legend>@ViewData["Title"]</legend>
+    <ul>
+      <li>itemKey (팝빌 관리번호) : @Model.itemKey</li>
+      <li>taxType (과세형태) : @Model.taxType</li>
+      <li>writeDate (작성일자) : @Model.writeDate</li>
+      <li>regDT (임시저장 일자) : @Model.regDT</li>
+      <li>issueType (발행형태) : @Model.issueType</li>
+      <li>supplyCostTotal (공급가액 합계) : @Model.supplyCostTotal</li>
+      <li>taxTotal (세액 합계) : @Model.taxTotal</li>
+      <li>purposeType (영수/청구) : @Model.purposeType</li>
+      <li>issueDT (발행일시) : @Model.issueDT</li>
+      <li>lateIssueYN (지연발행 여부) : @Model.lateIssueYN</li>
+      <li>preIssueDT (발행예정일시) : @Model.preIssueDT</li>
+      <li>openYN (개봉 여부) : @Model.openYN</li>
+      <li>openDT (개봉 일시) : @Model.openDT</li>
+      <li>stateMemo (상태메모) : @Model.stateMemo</li>
+      <li>stateCode (상태코드) : @Model.stateCode</li>
+      <li>nstconfirmNum (국세청승인번호) : @Model.ntsconfirmNum</li>
+      <li>ntsresult (국세청 전송결과) : @Model.ntsresult</li>
+      <li>ntssendDT (국세청 전송일시) : @Model.ntssendDT</li>
+      <li>ntsresultDT (국세청 결과 수신일시) : @Model.ntsresultDT</li>
+      <li>ntssendErrCode (전송실패 사유코드) : @Model.ntssendErrCode</li>
+      <li>modifyCode (수정 사유코드) : @Model.modifyCode</li>
+      <li>interOPYN (연동문서 여부) : @Model.interOPYN</li>
+
+      <li>invoicerCorpName (공급자 상호) : @Model.invoicerCorpName</li>
+      <li>invoicerCorpNum (공급자 사업자번호) : @Model.invoicerCorpNum</li>
+      <li>invoicerMgtKey (공급자 문서관리번호) : @Model.invoicerMgtKey</li>
+      <li>invoicerPrintYN (공급자 인쇄여부) : @Model.invoicerPrintYN</li>
+
+      <li>invoiceeCorpName (공급받는자 상호) : @Model.invoiceeCorpName</li>
+      <li>invoiceeCorpNum (공급받는자 사업자번호) : @Model.invoiceeCorpNum</li>
+      <li>invoiceePrintYN (공급받는자 문서관리번호) : @Model.invoiceePrintYN</li>
+      <li>closeDownState (공급받는자 휴패업상태코드) : @Model.closeDownState</li>
+      <li>closeDownStateDate (공급받는자 휴폐업일자) : @Model.closeDownStateDate</li>
+
+      <li>trusteeCorpName (수탁자 상호) : @Model.trusteeCorpName</li>
+      <li>trusteeCorpNum (수탁자 사업자번호) : @Model.trusteeCorpNum</li>
+      <li>trusteeMgtKey (수탁자 문서관리번호) : @Model.trusteeMgtKey</li>
+      <li>trusteePrintYN (수탁자 인쇄여부) : @Model.trusteePrintYN</li>
+    </ul>
+  </fieldset>
+</div>
+
+
