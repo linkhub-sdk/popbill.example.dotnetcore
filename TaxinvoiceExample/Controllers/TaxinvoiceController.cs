@@ -114,7 +114,7 @@ namespace TaxinvoiceExample.Controllers
             taxinvoice.invoicerBizClass = "공급자 종목";
 
             // 공급자 업태 
-            taxinvoice.invoicerBizType = "공급자 업태,업태2";
+            taxinvoice.invoicerBizType = "공급자 업태";
 
             // 공급자 담당자 성명 
             taxinvoice.invoicerContactName = "공급자 담당자명";
