@@ -44,7 +44,7 @@ namespace TaxinvoiceExample.Controllers
                 string mgtKey = "20181030";
 
                 // 발행유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-                TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+                MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
                 bool result = _taxinvoiceService.CheckMgtKeyInUse(corpNum, mgtKeyType, mgtKey);
 
@@ -855,7 +855,7 @@ namespace TaxinvoiceExample.Controllers
             taxinvoice.addContactList.Add(addContact2);
 
             // 발행유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             try
             {
@@ -878,7 +878,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult Issue()
         {
             // 발행유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-002";
@@ -915,7 +915,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult CancelIssue()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-002";
@@ -944,7 +944,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult Send()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181025-100";
@@ -973,7 +973,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult CancelSend()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181025-100";
@@ -998,7 +998,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult Accept()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181025-100";
@@ -1024,7 +1024,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult Deny()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181025-100";
@@ -1051,7 +1051,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult Delete()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181025-100";
@@ -1078,7 +1078,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult Request()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.BUY;
+            MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-r002";
@@ -1105,7 +1105,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult CancelRequest()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.BUY;
+            MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-r002";
@@ -1132,7 +1132,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult Refuse()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.BUY;
+            MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-r002";
@@ -1162,7 +1162,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult SendToNTS()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.BUY;
+            MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1190,7 +1190,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetInfo()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1214,7 +1214,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetInfos()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             List<string> MgtKeyList = new List<string>();
 
@@ -1240,7 +1240,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetDetailInfo()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1264,7 +1264,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult Search()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // [필수] 일자유형, R-등록일자, I-발행일자, W-작성일자 중 1개기입
             string DType = "W";
@@ -1346,7 +1346,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetLogs()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1397,7 +1397,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetPopUpURL()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1420,7 +1420,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetPrintURL()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1443,7 +1443,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetEPrintURL()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1466,7 +1466,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetMassPrintURL()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1496,7 +1496,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetMailURL()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1570,7 +1570,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult AttachFile()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             String mgtKey = "MP1540877740-333273";
@@ -1598,7 +1598,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult DeleteFile()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             String mgtKey = "MP1540877740-333273";
@@ -1625,7 +1625,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetFiles()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "MP1540877740-333273";
@@ -1647,7 +1647,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult SendEmail()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1675,7 +1675,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult SendSMS()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1710,7 +1710,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult SendFAX()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1738,7 +1738,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult AttachStatement()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1766,7 +1766,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult DetachStatement()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
@@ -1810,7 +1810,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult AssignMgtKey()
         {
             // 세금계산서유형, SELL-매출, BUY-매입, TRUSTEE-위수탁
-            TaxinvoiceService.MgtKeyType mgtKeyType = TaxinvoiceService.MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-itemkey";
