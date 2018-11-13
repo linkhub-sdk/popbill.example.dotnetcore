@@ -11,9 +11,17 @@ namespace TaxinvoiceExample.Controllers
     {
         private readonly TaxinvoiceService _taxinvoiceService;
 
+        //링크허브에서 발급받은 고객사 고객사 인증정보로 링크아이디(LinkID)와 비밀키(SecretKey) 값을 변경하시기 바랍니다.
+        private string linkID = "TESTER";
+        private string secretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
+
         public TaxinvoiceController(TaxinvoiceInstance TIinstance)
         {
-            _taxinvoiceService = TIinstance.taxinvoiceService;
+            //세금계산서 서비스 객체 생성
+            _taxinvoiceService = TIinstance.getInstance(linkID, secretKey);
+            
+            //연동환경 설정값, 개발용(true), 상업용(false)
+            _taxinvoiceService.IsTest = true;
         }
 
         //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
@@ -57,250 +65,257 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 1건의 세금계산서를 [즉시발행] 처리합니다.
+         * 1건의 세금계산서를 [즉시발행]합니다.
          * - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서구성"을 참조하시기 바랍니다.
          */
         public IActionResult RegistIssue()
         {
             // 세금계산서 정보 객체 
-            Taxinvoice taxinvoice = new Taxinvoice
-            {
-                // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-                writeDate = "20181113",
+            Taxinvoice taxinvoice = new Taxinvoice();
 
-                // [필수] 과금방향, {정과금, 역과금}중 선택
-                // - 정과금(공급자과금), 역과금(공급받는자과금)
-                // - 역과금은 역발행 세금계산서를 발행하는 경우만 가능
-                chargeDirection = "정과금",
+            // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
+            taxinvoice.writeDate = "20181113";
 
-                // [필수] 발행형태, {정발행, 역발행, 위수탁} 중 기재 
-                issueType = "정발행",
+            // [필수] 과금방향, {정과금, 역과금}중 선택
+            // - 정과금(공급자과금), 역과금(공급받는자과금)
+            // - 역과금은 역발행 세금계산서를 발행하는 경우만 가능
+            taxinvoice.chargeDirection = "정과금";
 
-                // [필수] {영수, 청구} 중 기재
-                purposeType = "영수",
+            // [필수] 발행형태, {정발행, 역발행, 위수탁} 중 기재 
+            taxinvoice.issueType = "정발행";
 
-                // [필수] 발행시점, {직접발행, 승인시자동발행} 중 기재 
-                // - {승인시자동발행}은 발행예정 프로세스에서만 이용가능
-                issueTiming = "직접발행",
+            // [필수] {영수, 청구} 중 기재
+            taxinvoice.purposeType = "영수";
 
-                // [필수] 과세형태, {과세, 영세, 면세} 중 기재
-                taxType = "과세",
+            // [필수] 발행시점, {직접발행, 승인시자동발행} 중 기재 
+            // - {승인시자동발행}은 발행예정 프로세스에서만 이용가능
+            taxinvoice.issueTiming = "직접발행";
 
-                /*****************************************************************
-                 *                         공급자 정보                           *
-                 *****************************************************************/
-                
-                // [필수] 공급자 사업자번호, '-' 제외 10자리
-                invoicerCorpNum = "1234567890",
+            // [필수] 과세형태, {과세, 영세, 면세} 중 기재
+            taxinvoice.taxType = "과세";
 
-                // 공급자 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
-                invoicerTaxRegID = "",
+            
+            /*****************************************************************
+             *                         공급자 정보                           *
+             *****************************************************************/
 
-                // [필수] 공급자 상호
-                invoicerCorpName = "공급자 상호",
+            // [필수] 공급자 사업자번호, '-' 제외 10자리
+            taxinvoice.invoicerCorpNum = corpNum;
 
-                // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
-                //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
-                invoicerMgtKey = "20181113122042",
+            // 공급자 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
+            taxinvoice.invoicerTaxRegID = "";
 
-                // [필수] 공급자 대표자 성명 
-                invoicerCEOName = "공급자 대표자 성명",
+            // [필수] 공급자 상호
+            taxinvoice.invoicerCorpName = "공급자 상호";
 
-                // 공급자 주소 
-                invoicerAddr = "공급자 주소",
+            // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
+            //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
+            taxinvoice.invoicerMgtKey = "20181113122042";
 
-                // 공급자 종목
-                invoicerBizClass = "공급자 종목",
+            // [필수] 공급자 대표자 성명 
+            taxinvoice.invoicerCEOName = "공급자 대표자 성명";
 
-                // 공급자 업태 
-                invoicerBizType = "공급자 업태",
+            // 공급자 주소 
+            taxinvoice.invoicerAddr = "공급자 주소";
 
-                // 공급자 담당자 성명 
-                invoicerContactName = "공급자 담당자명",
+            // 공급자 종목
+            taxinvoice.invoicerBizClass = "공급자 종목";
 
-                // 공급자 담당자 메일주소 
-                invoicerEmail = "test@invoicer.com",
+            // 공급자 업태 
+            taxinvoice.invoicerBizType = "공급자 업태";
 
-                // 공급자 담당자 연락처
-                invoicerTEL = "070-4304-2992",
+            // 공급자 담당자 성명 
+            taxinvoice.invoicerContactName = "공급자 담당자명";
 
-                // 공급자 담당자 휴대폰번호 
-                invoicerHP = "010-1234-5678",
+            // 공급자 담당자 메일주소 
+            taxinvoice.invoicerEmail = "test@invoicer.com";
 
-                // 발행시 알림문자 전송여부
-                // - 공급받는자 담당자 휴대폰번호(invoiceeHP1)로 전송
-                // - 전송시 포인트가 차감되며 전송실패하는 경우 포인트 환불처리
-                invoicerSMSSendYN = false,
+            // 공급자 담당자 연락처
+            taxinvoice.invoicerTEL = "070-4304-2992";
 
-                /*********************************************************************
-                 *                         공급받는자 정보                           *
-                 *********************************************************************/
+            // 공급자 담당자 휴대폰번호 
+            taxinvoice.invoicerHP = "010-1234-5678";
 
-                // [필수] 공급받는자 구분, {사업자, 개인, 외국인} 중 기재 
-                invoiceeType = "사업자",
+            // 발행시 알림문자 전송여부
+            // - 공급받는자 담당자 휴대폰번호(invoiceeHP1)로 전송
+            // - 전송시 포인트가 차감되며 전송실패하는 경우 포인트 환불처리
+            taxinvoice.invoicerSMSSendYN = false;
 
-                // [필수] 공급받는자 사업자번호, '-'제외 10자리
-                invoiceeCorpNum = "8888888888",
+            
+            /*********************************************************************
+             *                         공급받는자 정보                           *
+             *********************************************************************/
 
-                // [필수] 공급받는자 상호
-                invoiceeCorpName = "공급받는자 상호",
+            // [필수] 공급받는자 구분, {사업자, 개인, 외국인} 중 기재 
+            taxinvoice.invoiceeType = "사업자";
 
-                // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
-                // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
-                invoiceeMgtKey = "",
+            // [필수] 공급받는자 사업자번호, '-'제외 10자리
+            taxinvoice.invoiceeCorpNum = "8888888888";
 
-                // [필수] 공급받는자 대표자 성명 
-                invoiceeCEOName = "공급받는자 대표자 성명",
+            // [필수] 공급받는자 상호
+            taxinvoice.invoiceeCorpName = "공급받는자 상호";
 
-                // 공급받는자 주소 
-                invoiceeAddr = "공급받는자 주소",
+            // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
+            // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
+            taxinvoice.invoiceeMgtKey = "";
 
-                // 공급받는자 종목
-                invoiceeBizClass = "공급받는자 종목",
+            // [필수] 공급받는자 대표자 성명 
+            taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명";
 
-                // 공급받는자 업태 
-                invoiceeBizType = "공급받는자 업태",
+            // 공급받는자 주소 
+            taxinvoice.invoiceeAddr = "공급받는자 주소";
 
-                // 공급받는자 담당자 연락처
-                invoiceeTEL1 = "070-1234-1234",
+            // 공급받는자 종목
+            taxinvoice.invoiceeBizClass = "공급받는자 종목";
 
-                // 공급받는자 담당자명 
-                invoiceeContactName1 = "공급받는자 담당자명",
+            // 공급받는자 업태 
+            taxinvoice.invoiceeBizType = "공급받는자 업태";
 
-                // 공급받는자 담당자 메일주소 
-                invoiceeEmail1 = "test@invoicee.com",
+            // 공급받는자 담당자 연락처
+            taxinvoice.invoiceeTEL1 = "070-1234-1234";
 
-                // 공급받는자 담당자 휴대폰번호 
-                invoiceeHP1 = "010-5678-1234",
+            // 공급받는자 담당자명 
+            taxinvoice.invoiceeContactName1 = "공급받는자 담당자명";
 
-                // 역발행시 알림문자 전송여부 
-                invoiceeSMSSendYN = false,
+            // 공급받는자 담당자 메일주소 
+            taxinvoice.invoiceeEmail1 = "test@invoicee.com";
 
-                /*********************************************************************
-                 *                          세금계산서 정보                          *
-                 *********************************************************************/
+            // 공급받는자 담당자 휴대폰번호 
+            taxinvoice.invoiceeHP1 = "010-5678-1234";
 
-                // [필수] 공급가액 합계
-                supplyCostTotal = "100000",
+            // 역발행시 알림문자 전송여부 
+            taxinvoice.invoiceeSMSSendYN = false;
 
-                // [필수] 세액 합계
-                taxTotal = "10000",
 
-                // [필수] 합계금액,  공급가액 합계 + 세액 합계
-                totalAmount = "110000",
+            /*********************************************************************
+             *                          세금계산서 정보                          *
+             *********************************************************************/
 
-                // 기재상 일련번호 항목 
-                serialNum = "",
+            // [필수] 공급가액 합계
+            taxinvoice.supplyCostTotal = "100000";
 
-                // 기재상 현금 항목 
-                cash = "",
+            // [필수] 세액 합계
+            taxinvoice.taxTotal = "10000";
 
-                // 기재상 수표 항목
-                chkBill = "",
+            // [필수] 합계금액,  공급가액 합계 + 세액 합계
+            taxinvoice.totalAmount = "110000";
 
-                // 기재상 어음 항목
-                note = "",
+            // 기재상 일련번호 항목 
+            taxinvoice.serialNum = "";
 
-                // 기재상 외상미수금 항목
-                credit = "",
+            // 기재상 현금 항목 
+            taxinvoice.cash = "";
 
-                // 기재상 비고 항목
-                remark1 = "비고1",
-                remark2 = "비고2",
-                remark3 = "비고3",
+            // 기재상 수표 항목
+            taxinvoice.chkBill = "";
 
-                // 기재상 권 항목, 최대값 32767
-                kwon = 1,
+            // 기재상 어음 항목
+            taxinvoice.note = "";
 
-                // 기재상 호 항목, 최대값 32767
-                ho = 1,
+            // 기재상 외상미수금 항목
+            taxinvoice.credit = "";
 
-                // 사업자등록증 이미지 첨부여부
-                businessLicenseYN = false,
+            // 기재상 비고 항목
+            taxinvoice.remark1 = "비고1";
+            taxinvoice.remark2 = "비고2";
+            taxinvoice.remark3 = "비고3";
 
-                // 통장사본 이미지 첨부여부 
-                bankBookYN = false,
+            // 기재상 권 항목, 최대값 32767
+            taxinvoice.kwon = 1;
 
-                /******************************************************************************
-                 *        수정세금계산서 정보 (수정세금계산서 작성시에만 기재                 *
-                 * - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조          *
-                 * - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650      *
-                 ******************************************************************************/
+            // 기재상 호 항목, 최대값 32767
+            taxinvoice.ho = 1;
 
-                // 수정사유코드, 1~6까지 선택기재.
-                modifyCode = null,
+            // 사업자등록증 이미지 첨부여부
+            taxinvoice.businessLicenseYN = false;
 
-                // 수정세금계산서 작성시 원본세금계산서의 ItemKey기재
-                // - 원본세금계산서의 ItemKey는 문서정보 (GetInfo API) 응답항목으로 확인할 수 있습니다.
-                originalTaxinvoiceKey = "",
-            };
+            // 통장사본 이미지 첨부여부 
+            taxinvoice.bankBookYN = false;
 
-            /*********************************************************************************************************
-             *                         상세항목(품목) 정보                                                           *
+
+            /**************************************************************************
+             *        수정세금계산서 정보 (수정세금계산서 작성시에만 기재             *
+             * - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조      *
+             * - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650  *
+             *************************************************************************/
+
+            // 수정사유코드, 1~6까지 선택기재.
+            taxinvoice.modifyCode = null;
+
+            // 수정세금계산서 작성시 원본세금계산서의 ItemKey기재
+            // - 원본세금계산서의 ItemKey는 문서정보 (GetInfo API) 응답항목으로 확인할 수 있습니다.
+            taxinvoice.originalTaxinvoiceKey = "";
+
+
+            /********************************************************************************
+             *                         상세항목(품목) 정보                                      *
              * - 상세항목 정보는 세금계산서 필수기재사항이 아니므로 작성하지 않더라도 세금계산서 발행이 가능합니다.  *
-             * - 최대 99건까지 작성가능                                                                              *
-             *********************************************************************************************************/
+             * - 최대 99건까지 작성가능                                                          *
+             ********************************************************************************/
+
             taxinvoice.detailList = new List<TaxinvoiceDetail>();
 
             TaxinvoiceDetail detail = new TaxinvoiceDetail
             {
-                serialNum = 1,               // 일련번호, 1부터 순차기재 
-                purchaseDT = "20161013",     // 거래일자 (작성형식 yyyMMdd '-' 제외)
-                itemName = "품목명",         // 품목명 
-                spec = "규격",               // 규격
-                qty = "1",                   // 수량
-                unitCost = "50000",          // 단가
-                supplyCost = "50000",        // 공급가액
-                tax = "5000",                // 세액
-                remark = "품목비고"          // 비고
+                serialNum = 1, // 일련번호, 1부터 순차기재 
+                purchaseDT = "20181113", // 거래일자
+                itemName = "품목명", // 품목명 
+                spec = "규격", // 규격
+                qty = "1", // 수량
+                unitCost = "50000", // 단가
+                supplyCost = "50000", // 공급가액
+                tax = "5000", // 세액
+                remark = "품목비고" //비고
             };
             taxinvoice.detailList.Add(detail);
 
             detail = new TaxinvoiceDetail
             {
-                serialNum = 2,               // 일련번호, 1부터 순차기재 
-                purchaseDT = "20161013",     // 거래일자 (작성형식 yyyMMdd '-' 제외)
-                itemName = "품목명",         // 품목명 
-                spec = "규격",               // 규격
-                qty = "1",                   // 수량
-                unitCost = "50000",          // 단가
-                supplyCost = "50000",        // 공급가액
-                tax = "5000",                // 세액
-                remark = "품목비고"          // 비고
+                serialNum = 2, // 일련번호, 1부터 순차기재 
+                purchaseDT = "20181113", // 거래일자
+                itemName = "품목명", // 품목명 
+                spec = "규격", // 규격
+                qty = "1", // 수량
+                unitCost = "50000", // 단가
+                supplyCost = "50000", // 공급가액
+                tax = "5000", // 세액
+                remark = "품목비고" //비고
             };
             taxinvoice.detailList.Add(detail);
 
-            /*********************************************************************************
-             *                           추가담당자 정보                                     *  
-             * - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 담당자  *
-             *   정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.                 *
-             * - 최대 5개까지 기재가능                                                       *
-             *********************************************************************************/
+
+            /**************************************************************
+            *                           추가담당자 정보                       *  
+            * - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 담당자   *
+            *   정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.              *
+            * - 최대 5개까지 기재가능                                          *
+            ***************************************************************/
+
             taxinvoice.addContactList = new List<TaxinvoiceAddContact>();
 
             TaxinvoiceAddContact addContact = new TaxinvoiceAddContact
             {
-                serialNum = 1,                 // 일련번호, 1부터 순차기재
-                email = "test1@invoicee.com",  // 추가담당자 메일주소 
-                contactName = "추가담당자명1"  // 추가담당자 성명 
+                serialNum = 1, // 일련번호, 1부터 순차기재
+                email = "test1@invoicee.com", // 추가담당자 메일주소 
+                contactName = "추가담당자명1" // 추가담당자 성명 
             };
             taxinvoice.addContactList.Add(addContact);
 
             addContact = new TaxinvoiceAddContact
             {
-                serialNum = 2,                 // 일련번호, 1부터 순차기재
-                email = "test1@invoicee.com",  // 추가담당자 메일주소 
-                contactName = "추가담당자명1"  // 추가담당자 성명 
+                serialNum = 2, // 일련번호, 1부터 순차기재
+                email = "test2@invoicee.com", // 추가담당자 메일주소 
+                contactName = "추가담당자명2" // 추가담당자 성명 
             };
             taxinvoice.addContactList.Add(addContact);
 
+            
             // 거래명세서 동시작성여부
             bool writeSpecification = false;
 
             // 지연발행 강제여부
             // - 발행마감일이 지난 세금계산서를 발행하는 경우, 가산세가 부과될 수 있습니다.
-            // - 가산세가 부과되더라도 발행을 해야하는 경우에는 forceIssue의 값을
-            // - true로 선언하여 발행(Issue API)를 호출하시면 됩니다.
+            // - 가산세가 부과되더라도 발행을 해야하는 경우에는 forceIssue의 값을 true로 선언하여 호출하시면 됩니다.
             bool forceIssue = false;
 
             // 거래명세서 동시작성시 거래명세서 관리번호, 미기재시 세금계산서 관리번호로 자동작성
@@ -325,7 +340,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 1건의 세금계산서를 [임시저장] 합니다.
+         * 1건의 세금계산서를 [임시저장]합니다.
          * - 세금계산서 임시저장(Register API) 호출후에는 발행(Issue API)을 호출해야만 국세청으로 전송됩니다.
          * - 임시저장과 발행을 한번의 호출로 처리하는 즉시발행(RegistIssue API) 프로세스 연동을 권장합니다.
          * - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서구성"을 참조하시기 바랍니다.
@@ -333,237 +348,243 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult Register()
         {
             // 세금계산서 정보 객체 
-            Taxinvoice taxinvoice = new Taxinvoice
-            {
-                // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-                writeDate = "20181113",
+            Taxinvoice taxinvoice = new Taxinvoice();
 
-                // [필수] 과금방향, {정과금, 역과금}중 선택
-                // - 정과금(공급자과금), 역과금(공급받는자과금)
-                // - 역과금은 역발행 세금계산서를 발행하는 경우만 가능
-                chargeDirection = "정과금",
+            // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
+            taxinvoice.writeDate = "20181113";
 
-                // [필수] 발행형태, {정발행, 역발행, 위수탁} 중 기재 
-                issueType = "정발행",
+            // [필수] 과금방향, {정과금, 역과금}중 선택
+            // - 정과금(공급자과금), 역과금(공급받는자과금)
+            // - 역과금은 역발행 세금계산서를 발행하는 경우만 가능
+            taxinvoice.chargeDirection = "정과금";
 
-                // [필수] {영수, 청구} 중 기재
-                purposeType = "영수",
+            // [필수] 발행형태, {정발행, 역발행, 위수탁} 중 기재 
+            taxinvoice.issueType = "정발행";
 
-                // [필수] 발행시점, {직접발행, 승인시자동발행} 중 기재 
-                // - {승인시자동발행}은 발행예정 프로세스에서만 이용가능
-                issueTiming = "직접발행",
+            // [필수] {영수, 청구} 중 기재
+            taxinvoice.purposeType = "영수";
 
-                // [필수] 과세형태, {과세, 영세, 면세} 중 기재
-                taxType = "과세",
+            // [필수] 발행시점, {직접발행, 승인시자동발행} 중 기재 
+            // - {승인시자동발행}은 발행예정 프로세스에서만 이용가능
+            taxinvoice.issueTiming = "직접발행";
 
-                /*****************************************************************
-                 *                         공급자 정보                           *
-                 *****************************************************************/
+            // [필수] 과세형태, {과세, 영세, 면세} 중 기재
+            taxinvoice.taxType = "과세";
 
-                // [필수] 공급자 사업자번호, '-' 제외 10자리
-                invoicerCorpNum = "1234567890",
 
-                // 공급자 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
-                invoicerTaxRegID = "",
+            /*****************************************************************
+             *                         공급자 정보                           *
+             *****************************************************************/
 
-                // [필수] 공급자 상호
-                invoicerCorpName = "공급자 상호",
+            // [필수] 공급자 사업자번호, '-' 제외 10자리
+            taxinvoice.invoicerCorpNum = corpNum;
 
-                // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
-                //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
-                invoicerMgtKey = "20181113135345",
+            // 공급자 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
+            taxinvoice.invoicerTaxRegID = "";
 
-                // [필수] 공급자 대표자 성명 
-                invoicerCEOName = "공급자 대표자 성명",
+            // [필수] 공급자 상호
+            taxinvoice.invoicerCorpName = "공급자 상호";
 
-                // 공급자 주소 
-                invoicerAddr = "공급자 주소",
+            // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
+            //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
+            taxinvoice.invoicerMgtKey = "20181113122042";
 
-                // 공급자 종목
-                invoicerBizClass = "공급자 종목",
+            // [필수] 공급자 대표자 성명 
+            taxinvoice.invoicerCEOName = "공급자 대표자 성명";
 
-                // 공급자 업태 
-                invoicerBizType = "공급자 업태",
+            // 공급자 주소 
+            taxinvoice.invoicerAddr = "공급자 주소";
 
-                // 공급자 담당자 성명 
-                invoicerContactName = "공급자 담당자명",
+            // 공급자 종목
+            taxinvoice.invoicerBizClass = "공급자 종목";
 
-                // 공급자 담당자 메일주소 
-                invoicerEmail = "test@invoicer.com",
+            // 공급자 업태 
+            taxinvoice.invoicerBizType = "공급자 업태";
 
-                // 공급자 담당자 연락처
-                invoicerTEL = "070-4304-2992",
+            // 공급자 담당자 성명 
+            taxinvoice.invoicerContactName = "공급자 담당자명";
 
-                // 공급자 담당자 휴대폰번호 
-                invoicerHP = "010-1234-5678",
+            // 공급자 담당자 메일주소 
+            taxinvoice.invoicerEmail = "test@invoicer.com";
 
-                // 발행시 알림문자 전송여부
-                // - 공급받는자 담당자 휴대폰번호(invoiceeHP1)로 전송
-                // - 전송시 포인트가 차감되며 전송실패하는 경우 포인트 환불처리
-                invoicerSMSSendYN = false,
+            // 공급자 담당자 연락처
+            taxinvoice.invoicerTEL = "070-4304-2992";
 
-                /*********************************************************************
-                 *                         공급받는자 정보                           *
-                 *********************************************************************/
+            // 공급자 담당자 휴대폰번호 
+            taxinvoice.invoicerHP = "010-1234-5678";
 
-                // [필수] 공급받는자 구분, {사업자, 개인, 외국인} 중 기재 
-                invoiceeType = "사업자",
+            // 발행시 알림문자 전송여부
+            // - 공급받는자 담당자 휴대폰번호(invoiceeHP1)로 전송
+            // - 전송시 포인트가 차감되며 전송실패하는 경우 포인트 환불처리
+            taxinvoice.invoicerSMSSendYN = false;
 
-                // [필수] 공급받는자 사업자번호, '-'제외 10자리
-                invoiceeCorpNum = "8888888888",
 
-                // [필수] 공급받는자 상호
-                invoiceeCorpName = "공급받는자 상호",
+            /*********************************************************************
+             *                         공급받는자 정보                           *
+             *********************************************************************/
 
-                // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
-                // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
-                invoiceeMgtKey = "",
+            // [필수] 공급받는자 구분, {사업자, 개인, 외국인} 중 기재 
+            taxinvoice.invoiceeType = "사업자";
 
-                // [필수] 공급받는자 대표자 성명 
-                invoiceeCEOName = "공급받는자 대표자 성명",
+            // [필수] 공급받는자 사업자번호, '-'제외 10자리
+            taxinvoice.invoiceeCorpNum = "8888888888";
 
-                // 공급받는자 주소 
-                invoiceeAddr = "공급받는자 주소",
+            // [필수] 공급받는자 상호
+            taxinvoice.invoiceeCorpName = "공급받는자 상호";
 
-                // 공급받는자 종목
-                invoiceeBizClass = "공급받는자 종목",
+            // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
+            // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
+            taxinvoice.invoiceeMgtKey = "";
 
-                // 공급받는자 업태 
-                invoiceeBizType = "공급받는자 업태",
+            // [필수] 공급받는자 대표자 성명 
+            taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명";
 
-                // 공급받는자 담당자 연락처
-                invoiceeTEL1 = "070-1234-1234",
+            // 공급받는자 주소 
+            taxinvoice.invoiceeAddr = "공급받는자 주소";
 
-                // 공급받는자 담당자명 
-                invoiceeContactName1 = "공급받는자 담당자명",
+            // 공급받는자 종목
+            taxinvoice.invoiceeBizClass = "공급받는자 종목";
 
-                // 공급받는자 담당자 메일주소 
-                invoiceeEmail1 = "test@invoicee.com",
+            // 공급받는자 업태 
+            taxinvoice.invoiceeBizType = "공급받는자 업태";
 
-                // 공급받는자 담당자 휴대폰번호 
-                invoiceeHP1 = "010-5678-1234",
+            // 공급받는자 담당자 연락처
+            taxinvoice.invoiceeTEL1 = "070-1234-1234";
 
-                // 역발행시 알림문자 전송여부 
-                invoiceeSMSSendYN = false,
+            // 공급받는자 담당자명 
+            taxinvoice.invoiceeContactName1 = "공급받는자 담당자명";
 
-                /*********************************************************************
-                 *                          세금계산서 정보                          *
-                 *********************************************************************/
+            // 공급받는자 담당자 메일주소 
+            taxinvoice.invoiceeEmail1 = "test@invoicee.com";
 
-                // [필수] 공급가액 합계
-                supplyCostTotal = "100000",
+            // 공급받는자 담당자 휴대폰번호 
+            taxinvoice.invoiceeHP1 = "010-5678-1234";
 
-                // [필수] 세액 합계
-                taxTotal = "10000",
+            // 역발행시 알림문자 전송여부 
+            taxinvoice.invoiceeSMSSendYN = false;
 
-                // [필수] 합계금액,  공급가액 합계 + 세액 합계
-                totalAmount = "110000",
 
-                // 기재상 일련번호 항목 
-                serialNum = "",
+            /*********************************************************************
+             *                          세금계산서 정보                          *
+             *********************************************************************/
 
-                // 기재상 현금 항목 
-                cash = "",
+            // [필수] 공급가액 합계
+            taxinvoice.supplyCostTotal = "100000";
 
-                // 기재상 수표 항목
-                chkBill = "",
+            // [필수] 세액 합계
+            taxinvoice.taxTotal = "10000";
 
-                // 기재상 어음 항목
-                note = "",
+            // [필수] 합계금액,  공급가액 합계 + 세액 합계
+            taxinvoice.totalAmount = "110000";
 
-                // 기재상 외상미수금 항목
-                credit = "",
+            // 기재상 일련번호 항목 
+            taxinvoice.serialNum = "";
 
-                // 기재상 비고 항목
-                remark1 = "비고1",
-                remark2 = "비고2",
-                remark3 = "비고3",
+            // 기재상 현금 항목 
+            taxinvoice.cash = "";
 
-                // 기재상 권 항목, 최대값 32767
-                kwon = 1,
+            // 기재상 수표 항목
+            taxinvoice.chkBill = "";
 
-                // 기재상 호 항목, 최대값 32767
-                ho = 1,
+            // 기재상 어음 항목
+            taxinvoice.note = "";
 
-                // 사업자등록증 이미지 첨부여부
-                businessLicenseYN = false,
+            // 기재상 외상미수금 항목
+            taxinvoice.credit = "";
 
-                // 통장사본 이미지 첨부여부 
-                bankBookYN = false,
+            // 기재상 비고 항목
+            taxinvoice.remark1 = "비고1";
+            taxinvoice.remark2 = "비고2";
+            taxinvoice.remark3 = "비고3";
 
-                /******************************************************************************
-                 *        수정세금계산서 정보 (수정세금계산서 작성시에만 기재                 *
-                 * - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조          *
-                 * - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650      *
-                 ******************************************************************************/
+            // 기재상 권 항목, 최대값 32767
+            taxinvoice.kwon = 1;
 
-                // 수정사유코드, 1~6까지 선택기재.
-                // modifyCode = 1,
+            // 기재상 호 항목, 최대값 32767
+            taxinvoice.ho = 1;
+            // 사업자등록증 이미지 첨부여부
+            taxinvoice.businessLicenseYN = false;
 
-                // 수정세금계산서 작성시 원본세금계산서의 ItemKey기재
-                // - 원본세금계산서의 ItemKey는 문서정보 (GetInfo API) 응답항목으로 확인할 수 있습니다.
-                // originalTaxinvoiceKey = "018110914510200001",
-            };
+            // 통장사본 이미지 첨부여부 
+            taxinvoice.bankBookYN = false;
 
-            /*********************************************************************************************************
-             *                         상세항목(품목) 정보                                                           *
+            /**************************************************************************
+             *        수정세금계산서 정보 (수정세금계산서 작성시에만 기재             *
+             * - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조      *
+             * - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650  *
+             *************************************************************************/
+
+            // 수정사유코드, 1~6까지 선택기재.
+            taxinvoice.modifyCode = null;
+
+            // 수정세금계산서 작성시 원본세금계산서의 ItemKey기재
+            // - 원본세금계산서의 ItemKey는 문서정보 (GetInfo API) 응답항목으로 확인할 수 있습니다.
+            taxinvoice.originalTaxinvoiceKey = "";
+
+
+            /********************************************************************************
+             *                         상세항목(품목) 정보                                      *
              * - 상세항목 정보는 세금계산서 필수기재사항이 아니므로 작성하지 않더라도 세금계산서 발행이 가능합니다.  *
-             * - 최대 99건까지 작성가능                                                                              *
-             *********************************************************************************************************/
+             * - 최대 99건까지 작성가능                                                          *
+             ********************************************************************************/
+
             taxinvoice.detailList = new List<TaxinvoiceDetail>();
 
             TaxinvoiceDetail detail = new TaxinvoiceDetail
             {
-                serialNum = 1,               // 일련번호, 1부터 순차기재 
-                purchaseDT = "20161013",     // 거래일자 (작성형식 yyyMMdd '-' 제외)
-                itemName = "품목명",         // 품목명 
-                spec = "규격",               // 규격
-                qty = "1",                   // 수량
-                unitCost = "50000",          // 단가
-                supplyCost = "50000",        // 공급가액
-                tax = "5000",                // 세액
-                remark = "품목비고"          // 비고
+                serialNum = 1, // 일련번호, 1부터 순차기재 
+                purchaseDT = "20181113", // 거래일자
+                itemName = "품목명", // 품목명 
+                spec = "규격", // 규격
+                qty = "1", // 수량
+                unitCost = "50000", // 단가
+                supplyCost = "50000", // 공급가액
+                tax = "5000", // 세액
+                remark = "품목비고" //비고
             };
             taxinvoice.detailList.Add(detail);
 
             detail = new TaxinvoiceDetail
             {
-                serialNum = 2,               // 일련번호, 1부터 순차기재 
-                purchaseDT = "20161013",     // 거래일자 (작성형식 yyyMMdd '-' 제외)
-                itemName = "품목명",         // 품목명 
-                spec = "규격",               // 규격
-                qty = "1",                   // 수량
-                unitCost = "50000",          // 단가
-                supplyCost = "50000",        // 공급가액
-                tax = "5000",                // 세액
-                remark = "품목비고"          // 비고
+                serialNum = 2, // 일련번호, 1부터 순차기재 
+                purchaseDT = "20181113", // 거래일자
+                itemName = "품목명", // 품목명 
+                spec = "규격", // 규격
+                qty = "1", // 수량
+                unitCost = "50000", // 단가
+                supplyCost = "50000", // 공급가액
+                tax = "5000", // 세액
+                remark = "품목비고" //비고
             };
             taxinvoice.detailList.Add(detail);
 
-            /*********************************************************************************
-             *                           추가담당자 정보                                     *  
-             * - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 담당자  *
-             *   정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.                 *
-             * - 최대 5개까지 기재가능                                                       *
-             *********************************************************************************/
+
+            /**************************************************************
+            *                           추가담당자 정보                       *  
+            * - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 담당자   *
+            *   정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.              *
+            * - 최대 5개까지 기재가능                                          *
+            ***************************************************************/
+
             taxinvoice.addContactList = new List<TaxinvoiceAddContact>();
 
             TaxinvoiceAddContact addContact = new TaxinvoiceAddContact
             {
-                serialNum = 1,                 // 일련번호, 1부터 순차기재
-                email = "test1@invoicee.com",  // 추가담당자 메일주소 
-                contactName = "추가담당자명1"  // 추가담당자 성명 
+                serialNum = 1, // 일련번호, 1부터 순차기재
+                email = "test1@invoicee.com", // 추가담당자 메일주소 
+                contactName = "추가담당자명1" // 추가담당자 성명 
             };
             taxinvoice.addContactList.Add(addContact);
 
             addContact = new TaxinvoiceAddContact
             {
-                serialNum = 2,                 // 일련번호, 1부터 순차기재
-                email = "test1@invoicee.com",  // 추가담당자 메일주소 
-                contactName = "추가담당자명1"  // 추가담당자 성명 
+                serialNum = 2, // 일련번호, 1부터 순차기재
+                email = "test2@invoicee.com", // 추가담당자 메일주소 
+                contactName = "추가담당자명2" // 추가담당자 성명 
             };
             taxinvoice.addContactList.Add(addContact);
-            
+
+
             // 거래명세서 동시작성여부
             bool writeSpecification = false;
 
@@ -582,7 +603,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [임시저장] 상태의 세금계산서의 항목을 [수정] 합니다.
+         * [임시저장] 상태의 세금계산서의 항목을 [수정]합니다.
          * - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서구성"을 참조하시기 바랍니다.
          */
         public IActionResult Update()
@@ -592,236 +613,244 @@ namespace TaxinvoiceExample.Controllers
 
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
+
             
             // 세금계산서 정보 객체 
-            Taxinvoice taxinvoice = new Taxinvoice
-            {
-                // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-                writeDate = "20181113",
+            Taxinvoice taxinvoice = new Taxinvoice();
 
-                // [필수] 과금방향, {정과금, 역과금}중 선택
-                // - 정과금(공급자과금), 역과금(공급받는자과금)
-                // - 역과금은 역발행 세금계산서를 발행하는 경우만 가능
-                chargeDirection = "정과금",
+            // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
+            taxinvoice.writeDate = "20181113";
 
-                // [필수] 발행형태, {정발행, 역발행, 위수탁} 중 기재 
-                issueType = "정발행",
+            // [필수] 과금방향, {정과금, 역과금}중 선택
+            // - 정과금(공급자과금), 역과금(공급받는자과금)
+            // - 역과금은 역발행 세금계산서를 발행하는 경우만 가능
+            taxinvoice.chargeDirection = "정과금";
 
-                // [필수] {영수, 청구} 중 기재
-                purposeType = "영수",
+            // [필수] 발행형태, {정발행, 역발행, 위수탁} 중 기재 
+            taxinvoice.issueType = "정발행";
 
-                // [필수] 발행시점, {직접발행, 승인시자동발행} 중 기재 
-                // - {승인시자동발행}은 발행예정 프로세스에서만 이용가능
-                issueTiming = "직접발행",
+            // [필수] {영수, 청구} 중 기재
+            taxinvoice.purposeType = "영수";
 
-                // [필수] 과세형태, {과세, 영세, 면세} 중 기재
-                taxType = "과세",
+            // [필수] 발행시점, {직접발행, 승인시자동발행} 중 기재 
+            // - {승인시자동발행}은 발행예정 프로세스에서만 이용가능
+            taxinvoice.issueTiming = "직접발행";
 
-                /*****************************************************************
-                 *                         공급자 정보                           *
-                 *****************************************************************/
+            // [필수] 과세형태, {과세, 영세, 면세} 중 기재
+            taxinvoice.taxType = "과세";
 
-                // [필수] 공급자 사업자번호, '-' 제외 10자리
-                invoicerCorpNum = "1234567890",
+            
+            /*****************************************************************
+             *                         공급자 정보                           *
+             *****************************************************************/
 
-                // 공급자 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
-                invoicerTaxRegID = "",
+            // [필수] 공급자 사업자번호, '-' 제외 10자리
+            taxinvoice.invoicerCorpNum = corpNum;
 
-                // [필수] 공급자 상호
-                invoicerCorpName = "공급자 상호",
+            // 공급자 종사업자 식별번호. 필요시 기재. 형식은 숫자 4자리.
+            taxinvoice.invoicerTaxRegID = "";
 
-                // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
-                //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
-                invoicerMgtKey = "20181113122042",
+            // [필수] 공급자 상호
+            taxinvoice.invoicerCorpName = "공급자 상호";
 
-                // [필수] 공급자 대표자 성명 
-                invoicerCEOName = "공급자 대표자 성명",
+            // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
+            //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
+            taxinvoice.invoicerMgtKey = "20181113122042";
 
-                // 공급자 주소 
-                invoicerAddr = "공급자 주소",
+            // [필수] 공급자 대표자 성명 
+            taxinvoice.invoicerCEOName = "공급자 대표자 성명";
 
-                // 공급자 종목
-                invoicerBizClass = "공급자 종목",
+            // 공급자 주소 
+            taxinvoice.invoicerAddr = "공급자 주소";
 
-                // 공급자 업태 
-                invoicerBizType = "공급자 업태",
+            // 공급자 종목
+            taxinvoice.invoicerBizClass = "공급자 종목";
 
-                // 공급자 담당자 성명 
-                invoicerContactName = "공급자 담당자명",
+            // 공급자 업태 
+            taxinvoice.invoicerBizType = "공급자 업태";
 
-                // 공급자 담당자 메일주소 
-                invoicerEmail = "test@invoicer.com",
+            // 공급자 담당자 성명 
+            taxinvoice.invoicerContactName = "공급자 담당자명";
 
-                // 공급자 담당자 연락처
-                invoicerTEL = "070-4304-2992",
+            // 공급자 담당자 메일주소 
+            taxinvoice.invoicerEmail = "test@invoicer.com";
 
-                // 공급자 담당자 휴대폰번호 
-                invoicerHP = "010-1234-5678",
+            // 공급자 담당자 연락처
+            taxinvoice.invoicerTEL = "070-4304-2992";
 
-                // 발행시 알림문자 전송여부
-                // - 공급받는자 담당자 휴대폰번호(invoiceeHP1)로 전송
-                // - 전송시 포인트가 차감되며 전송실패하는 경우 포인트 환불처리
-                invoicerSMSSendYN = false,
+            // 공급자 담당자 휴대폰번호 
+            taxinvoice.invoicerHP = "010-1234-5678";
 
-                /*********************************************************************
-                 *                         공급받는자 정보                           *
-                 *********************************************************************/
+            // 발행시 알림문자 전송여부
+            // - 공급받는자 담당자 휴대폰번호(invoiceeHP1)로 전송
+            // - 전송시 포인트가 차감되며 전송실패하는 경우 포인트 환불처리
+            taxinvoice.invoicerSMSSendYN = false;
 
-                // [필수] 공급받는자 구분, {사업자, 개인, 외국인} 중 기재 
-                invoiceeType = "사업자",
 
-                // [필수] 공급받는자 사업자번호, '-'제외 10자리
-                invoiceeCorpNum = "8888888888",
+            /*********************************************************************
+             *                         공급받는자 정보                           *
+             *********************************************************************/
 
-                // [필수] 공급받는자 상호
-                invoiceeCorpName = "공급받는자 상호",
+            // [필수] 공급받는자 구분, {사업자, 개인, 외국인} 중 기재 
+            taxinvoice.invoiceeType = "사업자";
 
-                // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
-                // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
-                invoiceeMgtKey = "",
+            // [필수] 공급받는자 사업자번호, '-'제외 10자리
+            taxinvoice.invoiceeCorpNum = "8888888888";
 
-                // [필수] 공급받는자 대표자 성명 
-                invoiceeCEOName = "공급받는자 대표자 성명",
+            // [필수] 공급받는자 상호
+            taxinvoice.invoiceeCorpName = "공급받는자 상호";
 
-                // 공급받는자 주소 
-                invoiceeAddr = "공급받는자 주소",
+            // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
+            // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
+            taxinvoice.invoiceeMgtKey = "";
 
-                // 공급받는자 종목
-                invoiceeBizClass = "공급받는자 종목",
+            // [필수] 공급받는자 대표자 성명 
+            taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명";
 
-                // 공급받는자 업태 
-                invoiceeBizType = "공급받는자 업태",
+            // 공급받는자 주소 
+            taxinvoice.invoiceeAddr = "공급받는자 주소";
 
-                // 공급받는자 담당자 연락처
-                invoiceeTEL1 = "070-1234-1234",
+            // 공급받는자 종목
+            taxinvoice.invoiceeBizClass = "공급받는자 종목";
 
-                // 공급받는자 담당자명 
-                invoiceeContactName1 = "공급받는자 담당자명",
+            // 공급받는자 업태 
+            taxinvoice.invoiceeBizType = "공급받는자 업태";
 
-                // 공급받는자 담당자 메일주소 
-                invoiceeEmail1 = "test@invoicee.com",
+            // 공급받는자 담당자 연락처
+            taxinvoice.invoiceeTEL1 = "070-1234-1234";
 
-                // 공급받는자 담당자 휴대폰번호 
-                invoiceeHP1 = "010-5678-1234",
+            // 공급받는자 담당자명 
+            taxinvoice.invoiceeContactName1 = "공급받는자 담당자명";
 
-                // 역발행시 알림문자 전송여부 
-                invoiceeSMSSendYN = false,
+            // 공급받는자 담당자 메일주소 
+            taxinvoice.invoiceeEmail1 = "test@invoicee.com";
 
-                /*********************************************************************
-                 *                          세금계산서 정보                          *
-                 *********************************************************************/
+            // 공급받는자 담당자 휴대폰번호 
+            taxinvoice.invoiceeHP1 = "010-5678-1234";
 
-                // [필수] 공급가액 합계
-                supplyCostTotal = "100000",
+            // 역발행시 알림문자 전송여부 
+            taxinvoice.invoiceeSMSSendYN = false;
 
-                // [필수] 세액 합계
-                taxTotal = "10000",
 
-                // [필수] 합계금액,  공급가액 합계 + 세액 합계
-                totalAmount = "110000",
+            /*********************************************************************
+             *                          세금계산서 정보                          *
+             *********************************************************************/
 
-                // 기재상 일련번호 항목 
-                serialNum = "",
+            // [필수] 공급가액 합계
+            taxinvoice.supplyCostTotal = "100000";
 
-                // 기재상 현금 항목 
-                cash = "",
+            // [필수] 세액 합계
+            taxinvoice.taxTotal = "10000";
 
-                // 기재상 수표 항목
-                chkBill = "",
+            // [필수] 합계금액,  공급가액 합계 + 세액 합계
+            taxinvoice.totalAmount = "110000";
 
-                // 기재상 어음 항목
-                note = "",
+            // 기재상 일련번호 항목 
+            taxinvoice.serialNum = "";
 
-                // 기재상 외상미수금 항목
-                credit = "",
+            // 기재상 현금 항목 
+            taxinvoice.cash = "";
 
-                // 기재상 비고 항목
-                remark1 = "비고1",
-                remark2 = "비고2",
-                remark3 = "비고3",
+            // 기재상 수표 항목
+            taxinvoice.chkBill = "";
 
-                // 기재상 권 항목, 최대값 32767
-                kwon = 1,
+            // 기재상 어음 항목
+            taxinvoice.note = "";
 
-                // 기재상 호 항목, 최대값 32767
-                ho = 1,
+            // 기재상 외상미수금 항목
+            taxinvoice.credit = "";
 
-                // 사업자등록증 이미지 첨부여부
-                businessLicenseYN = false,
+            // 기재상 비고 항목
+            taxinvoice.remark1 = "비고1";
+            taxinvoice.remark2 = "비고2";
+            taxinvoice.remark3 = "비고3";
 
-                // 통장사본 이미지 첨부여부 
-                bankBookYN = false,
+            // 기재상 권 항목, 최대값 32767
+            taxinvoice.kwon = 1;
 
-                /******************************************************************************
-                 *        수정세금계산서 정보 (수정세금계산서 작성시에만 기재                 *
-                 * - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조          *
-                 * - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650      *
-                 ******************************************************************************/
+            // 기재상 호 항목, 최대값 32767
+            taxinvoice.ho = 1;
 
-                // 수정사유코드, 1~6까지 선택기재.
-                modifyCode = null,
+            // 사업자등록증 이미지 첨부여부
+            taxinvoice.businessLicenseYN = false;
 
-                // 수정세금계산서 작성시 원본세금계산서의 ItemKey기재
-                // - 원본세금계산서의 ItemKey는 문서정보 (GetInfo API) 응답항목으로 확인할 수 있습니다.
-                originalTaxinvoiceKey = "",
-            };
+            // 통장사본 이미지 첨부여부 
+            taxinvoice.bankBookYN = false;
 
-            /*********************************************************************************************************
-             *                         상세항목(품목) 정보                                                           *
+
+            /**************************************************************************
+             *        수정세금계산서 정보 (수정세금계산서 작성시에만 기재             *
+             * - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조      *
+             * - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650  *
+             *************************************************************************/
+
+            // 수정사유코드, 1~6까지 선택기재.
+            taxinvoice.modifyCode = null;
+
+            // 수정세금계산서 작성시 원본세금계산서의 ItemKey기재
+            // - 원본세금계산서의 ItemKey는 문서정보 (GetInfo API) 응답항목으로 확인할 수 있습니다.
+            taxinvoice.originalTaxinvoiceKey = "";
+
+
+            /********************************************************************************
+             *                         상세항목(품목) 정보                                      *
              * - 상세항목 정보는 세금계산서 필수기재사항이 아니므로 작성하지 않더라도 세금계산서 발행이 가능합니다.  *
-             * - 최대 99건까지 작성가능                                                                              *
-             *********************************************************************************************************/
+             * - 최대 99건까지 작성가능                                                          *
+             ********************************************************************************/
+            
             taxinvoice.detailList = new List<TaxinvoiceDetail>();
 
             TaxinvoiceDetail detail = new TaxinvoiceDetail
             {
-                serialNum = 1,               // 일련번호, 1부터 순차기재 
-                purchaseDT = "20161013",     // 거래일자 (작성형식 yyyMMdd '-' 제외)
-                itemName = "품목명",         // 품목명 
-                spec = "규격",               // 규격
-                qty = "1",                   // 수량
-                unitCost = "50000",          // 단가
-                supplyCost = "50000",        // 공급가액
-                tax = "5000",                // 세액
-                remark = "품목비고"          // 비고
+                serialNum = 1,// 일련번호, 1부터 순차기재 
+                purchaseDT = "20181113", // 거래일자
+                itemName = "품목명",// 품목명 
+                spec = "규격", // 규격
+                qty = "1", // 수량
+                unitCost = "50000",// 단가
+                supplyCost = "50000", // 공급가액
+                tax = "5000",// 세액
+                remark = "품목비고" //비고
             };
             taxinvoice.detailList.Add(detail);
 
             detail = new TaxinvoiceDetail
             {
-                serialNum = 2,               // 일련번호, 1부터 순차기재 
-                purchaseDT = "20161013",     // 거래일자 (작성형식 yyyMMdd '-' 제외)
-                itemName = "품목명",         // 품목명 
-                spec = "규격",               // 규격
-                qty = "1",                   // 수량
-                unitCost = "50000",          // 단가
-                supplyCost = "50000",        // 공급가액
-                tax = "5000",                // 세액
-                remark = "품목비고"          // 비고
+                serialNum = 2,// 일련번호, 1부터 순차기재 
+                purchaseDT = "20181113", // 거래일자
+                itemName = "품목명",// 품목명 
+                spec = "규격", // 규격
+                qty = "1", // 수량
+                unitCost = "50000",// 단가
+                supplyCost = "50000", // 공급가액
+                tax = "5000",// 세액
+                remark = "품목비고" //비고
             };
             taxinvoice.detailList.Add(detail);
 
-            /*********************************************************************************
-             *                           추가담당자 정보                                     *  
-             * - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 담당자  *
-             *   정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.                 *
-             * - 최대 5개까지 기재가능                                                       *
-             *********************************************************************************/
+
+            /**************************************************************
+            *                           추가담당자 정보                       *  
+            * - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 담당자   *
+            *   정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.              *
+            * - 최대 5개까지 기재가능                                          *
+            ***************************************************************/
+
             taxinvoice.addContactList = new List<TaxinvoiceAddContact>();
 
             TaxinvoiceAddContact addContact = new TaxinvoiceAddContact
             {
-                serialNum = 1,                 // 일련번호, 1부터 순차기재
-                email = "test1@invoicee.com",  // 추가담당자 메일주소 
-                contactName = "추가담당자명1"  // 추가담당자 성명 
+                serialNum = 1, // 일련번호, 1부터 순차기재
+                email = "test1@invoicee.com", // 추가담당자 메일주소 
+                contactName = "추가담당자명1"// 추가담당자 성명 
             };
             taxinvoice.addContactList.Add(addContact);
 
             addContact = new TaxinvoiceAddContact
             {
-                serialNum = 2,                 // 일련번호, 1부터 순차기재
-                email = "test1@invoicee.com",  // 추가담당자 메일주소 
-                contactName = "추가담당자명1"  // 추가담당자 성명 
+                serialNum = 2, // 일련번호, 1부터 순차기재
+                email = "test2@invoicee.com", // 추가담당자 메일주소 
+                contactName = "추가담당자명2"// 추가담당자 성명 
             };
             taxinvoice.addContactList.Add(addContact);
 
@@ -837,7 +866,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [임시저장] 또는 [발행대기] 상태의 세금계산서를 [발행] 처리합니다.
+         * [임시저장] 또는 [발행대기] 상태의 세금계산서를 [공급자]가 [발행]합니다.
          * - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서구성"을 참조하시기 바랍니다.
          */
         public IActionResult Issue()
@@ -871,7 +900,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [발행완료] 상태의 세금계산서를 [발행취소] 처리합니다.
+         * [발행완료] 상태의 세금계산서를 [공급자]가 [발행취소]합니다.
          * - [발행취소]는 국세청 전송전에만 가능합니다.
          * - 발행취소된 세금계산서는 국세청에 전송되지 않습니다.
          * - 발행취소 세금계산서에 사용된 문서관리번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
@@ -899,7 +928,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*    
-         * [임시저장] 상태의 세금계산서를 [발행예정] 처리합니다.
+         * [임시저장] 상태의 세금계산서를 [공급자]가 [발행예정]합니다.
          * - 발행예정이란 공급자와 공급받는자 사이에 세금계산서 확인 후 발행하는 방법입니다.
          * - "[전자세금계산서 API 연동매뉴얼] > 1.3.1. 정발행 프로세스 흐름도 > 다. 임시저장 발행예정" 의 프로세스를 참조하시기 바랍니다.
          */
@@ -929,7 +958,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [발행예정] 세금계산서를 [취소] 처리합니다.
+         * [발행예정] 세금계산서를 [공급자]가 [취소]합니다.
          * - [취소]된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
          */
         public IActionResult CancelSend()
@@ -955,12 +984,12 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [발행예정] 세금계산서를 [승인] 처리합니다.
+         * [발행예정] 세금계산서를 [공급받는자]가 [승인]합니다.
          */
         public IActionResult Accept()
         {
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
-            MgtKeyType mgtKeyType = MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181025-abc";
@@ -980,13 +1009,13 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 발행예정 세금계산서를 [거부]처리 합니다.
+         * [발행예정] 세금계산서를 [공급받는자]가 [거부]합니다.
          * - [거부]처리된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
          */
         public IActionResult Deny()
         {
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
-            MgtKeyType mgtKeyType = MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
             // 세금계산서 문서관리번호
             string mgtKey = "20181016_001";
@@ -1006,7 +1035,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 1건의 전자세금계산서를 [삭제] 합니다.
+         * 1건의 전자세금계산서를 [삭제]합니다.
          * - 세금계산서를 삭제해야만 문서관리번호(mgtKey)를 재사용할 수 있습니다.
          * - 삭제가능한 문서 상태 : [임시저장], [발행취소], [발행예정 취소], [발행예정 거부]
          */
@@ -1030,7 +1059,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 공급받는자가 공급자에게 1건의 역발행 세금계산서를 [요청] 합니다.
+         * [공급받는자]가 공급자에게 1건의 역발행 세금계산서를 [요청]합니다.
          * - 역발행 세금계산서 프로세스를 구현하기 위해서는 공급자/공급받는자가 모두 팝빌에 회원이여야 합니다.
          * - 역발행 요청후 공급자가 [발행] 처리시 포인트가 차감되며 역발행 세금계산서 항목중 과금방향(ChargeDirection)에 기재한 값에 따라
          *   정과금(공급자과금) 또는 역과금(공급받는자과금) 처리됩니다.
@@ -1038,7 +1067,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult Request()
         {
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
-            MgtKeyType mgtKeyType = MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
             // 세금계산서 문서관리번호
             string mgtKey = "nsmbr37hwy";
@@ -1058,13 +1087,13 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 역발행 세금계산서를 [취소] 처리합니다.
+         * 역발행 세금계산서를 [공급받는자]가 [취소]합니다.
          * - [취소]한 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
          */
         public IActionResult CancelRequest()
         {
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
-            MgtKeyType mgtKeyType = MgtKeyType.SELL;
+            MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
             // 세금계산서 문서관리번호
             string mgtKey = "nsmbr37hwy";
@@ -1084,7 +1113,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 공급받는자에게 요청받은 역발행 세금계산서를 [거부] 처리합니다.
+         * 공급받는자에게 요청받은 역발행 세금계산서를 [공급자]가 [거부]합니다.
          * - 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
          */
         public IActionResult Refuse()
@@ -1110,7 +1139,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [발행완료] 상태의 세금계산서를 국세청으로 [즉시전송] 합니다.
+         * [발행완료] 상태의 세금계산서를 국세청으로 [즉시전송]합니다.
          * - 국세청 즉시전송을 호출하지 않은 세금계산서는 발행일 기준 익일 오후 3시에 팝빌 시스템에서 일괄적으로 국세청으로 전송합니다.
          * - 익일전송시 전송일이 법정공휴일인 경우 다음 영업일에 전송됩니다.
          * - 국세청 전송에 관한 사항은 "[전자세금계산서 API 연동매뉴얼] > 1.4 국세청 전송 정책" 을 참조하시기 바랍니다.
@@ -1172,13 +1201,9 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-
             // 조회할 세금계산서 문서관리번호 배열, (최대 1000건)
-            List<string> MgtKeyList = new List<string>();
+            List<string> MgtKeyList = new List<string> {"20161221-03", "20161221-02", "20161221-01"};
 
-            MgtKeyList.Add("20161221-03");
-            MgtKeyList.Add("20161221-02");
-            MgtKeyList.Add("20161221-01");
             try
             {
                 var response = _taxinvoiceService.GetInfos(corpNum, mgtKeyType, MgtKeyList);
@@ -1420,11 +1445,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 조회할 세금계산서 문서관리번호 배열, (최대 100건)
-            List<string> MgtKeyList = new List<string>();
-
-            MgtKeyList.Add("20161221-03");
-            MgtKeyList.Add("20161221-02");
-            MgtKeyList.Add("20161221-01");
+            List<string> MgtKeyList = new List<string> {"20161221-03", "20161221-02", "20161221-01"};
 
             try
             {
@@ -1465,20 +1486,14 @@ namespace TaxinvoiceExample.Controllers
         #region 부가기능
 
         /*
-         * 팝빌 관련 URL을 반환합니다.
-         * 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
+         * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
          */
-        public IActionResult GetPopbillURL_LOGIN()
+        public IActionResult GetAccessURL()
         {
-            // LOGIN 팝빌 메인 URL
-            // SEAL 인감, 사업자 등록증, 통장사본 등록 팝업 URL
-            // CERT 공인인증서 등록 팝업 URL
-            // CHRG 연동회원 포인트충전 팝업 URL
-            string TOGO = "LOGIN";
-
             try
             {
-                var result = _taxinvoiceService.GetPopbillURL(corpNum, TOGO);
+                var result = _taxinvoiceService.GetAccessURL(corpNum, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1488,20 +1503,14 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 팝빌 관련 URL을 반환합니다.
-         * 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 인감 및 첨부문서 등록 URL을 반환합니다.
+         * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
          */
-        public IActionResult GetPopbillURL_SEAL()
+        public IActionResult GetSealURL()
         {
-            // LOGIN 팝빌 메인 URL
-            // SEAL 인감, 사업자 등록증, 통장사본 등록 팝업 URL
-            // CERT 공인인증서 등록 팝업 URL
-            // CHRG 연동회원 포인트충전 팝업 URL
-            string TOGO = "SEAL";
-
             try
             {
-                var result = _taxinvoiceService.GetPopbillURL(corpNum, TOGO);
+                var result = _taxinvoiceService.GetSealURL(corpNum, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1525,7 +1534,7 @@ namespace TaxinvoiceExample.Controllers
 
             // 첨부파일 경로
             string filePath =
-                "/Users/kimhyunjin/SDK/popbill.example.dotnetcore/TaxinvoiceExample/wwwroot/images/banner1.svg";
+                "/Users/kimhyunjin/SDK/popbill.example.dotnetcore/TaxinvoiceExample/wwwroot/images/tax_image.png";
 
             try
             {
@@ -1625,7 +1634,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
 
-            // 발신번호, [참고] 발신번호 세칙안내 - http://blog.linkhub.co.kr/3064
+            // 발신번호
             string senderNum = "070-4304-2992";
 
             // 수신번호
@@ -1659,7 +1668,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
 
-            // 발신번호, [참고] 발신번호 세칙안내 - http://blog.linkhub.co.kr/3064
+            // 발신번호
             string senderNum = "070-4304-2992";
 
             // 수신팩스번호
@@ -1756,11 +1765,11 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
-            string mgtKey = "20181030-itemkey";
-
             // 세금계산서 아이템키, 목록조회(Search) API의 반환항목중 ItemKey 참조
             string itemKey = "018103016112000001";
+            
+            // 세금계산서에 할당할 문서관리번호
+            string mgtKey = "20181030-itemkey";
 
             try
             {
@@ -1857,20 +1866,16 @@ namespace TaxinvoiceExample.Controllers
         #region 공인인증서 관리
 
         /*
-         * 팝빌 관련 URL을 반환합니다.
-         * 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
-         */
-        public IActionResult GetPopbillURL_CERT()
+        * 팝빌 회원의 공인인증서를 등록하는 팝업 URL을 반환합니다.
+        * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+        * - 팝빌에 등록된 공인인증서가 유효하지 않은 경우 (비밀번호 변경, 인증서 재발급/갱신, 만료일 경과)
+        *   인증서를 재등록해야 정상적으로 전자세금계산서 발행이 가능합니다.
+        */
+        public IActionResult GetTaxCertURL()
         {
-            // LOGIN 팝빌 메인 URL
-            // SEAL 인감, 사업자 등록증, 통장사본 등록 팝업 URL
-            // CERT 공인인증서 등록 팝업 URL
-            // CHRG 연동회원 포인트충전 팝업 URL
-            string TOGO = "CERT";
-
             try
             {
-                var result = _taxinvoiceService.GetPopbillURL(corpNum, TOGO);
+                var result = _taxinvoiceService.GetTaxCertURL(corpNum, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1918,7 +1923,7 @@ namespace TaxinvoiceExample.Controllers
         #region 포인트 관리
 
         /*
-         * 팝빌에 등록된 공인인증서의 유효성을 확인합니다.
+         * 연동회원 잔여포인트를 확인합니다.
          */
         public IActionResult GetBalance()
         {
@@ -1934,20 +1939,14 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 팝빌 관련 URL을 반환합니다.
-         * 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
+         * 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
          */
-        public IActionResult GetPopbillURL_CHRG()
+        public IActionResult GetChargeURL()
         {
-            // LOGIN 팝빌 메인 URL
-            // SEAL 인감, 사업자 등록증, 통장사본 등록 팝업 URL
-            // CERT 공인인증서 등록 팝업 URL
-            // CHRG 연동회원 포인트충전 팝업 URL
-            string TOGO = "CHRG";
-
             try
             {
-                var result = _taxinvoiceService.GetPopbillURL(corpNum, TOGO);
+                var result = _taxinvoiceService.GetChargeURL(corpNum, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -2075,20 +2074,20 @@ namespace TaxinvoiceExample.Controllers
         {
             JoinForm joinInfo = new JoinForm
             {
-                LinkID = "TESTER",               // 링크아이디
-                ID = "userid",                   // 아이디, 6자이상 50자 미만
-                PWD = "12341234",                // 비밀번호, 6자이상 20자 미만
-                CorpNum = "0000000001",          // 사업자번호 "-" 제외
-                CEOName = "대표자 성명",         // 대표자 성명 
-                CorpName = "상호",               // 상호
-                Addr = "주소",                   // 주소
-                BizType = "업태",                // 업태
-                BizClass = "종목",               // 종목
-                ContactName = "담당자명",        // 담당자 성명 
-                ContactEmail = "test@test.com",  // 담당자 이메일주소         
-                ContactTEL = "070-4304-2992",    // 담당자 연락처   
-                ContactHP = "010-111-222",       // 담당자 휴대폰번호 
-                ContactFAX = "02-111-222"        // 담당자 팩스번호
+                LinkID = "TESTER", // 링크아이디
+                ID = "userid", // 아이디, 6자이상 50자 미만
+                PWD = "12341234", // 비밀번호, 6자이상 20자 미만
+                CorpNum = "0000000001", // 사업자번호 "-" 제외
+                CEOName = "대표자 성명", // 대표자 성명 
+                CorpName = "상호", // 상호
+                Addr = "주소", // 주소
+                BizType = "업태", // 업태
+                BizClass = "종목", // 종목
+                ContactName = "담당자명", // 담당자 성명 
+                ContactEmail = "test@test.com", // 담당자 이메일주소         
+                ContactTEL = "070-4304-2992", // 담당자 연락처   
+                ContactHP = "010-111-222", // 담당자 휴대폰번호 
+                ContactFAX = "02-111-222" // 담당자 팩스번호
             };
 
             try
@@ -2125,11 +2124,11 @@ namespace TaxinvoiceExample.Controllers
         {
             CorpInfo corpInfo = new CorpInfo
             {
-                ceoname = "대표자 성명 수정",  // 대표자 성명
-                corpName = "상호 수정",        // 상호
-                addr = "주소 수정",            // 주소
-                bizType = "업태 수정",         // 업태 
-                bizClass = "종목 수정"         // 종목
+                ceoname = "대표자 성명 수정", // 대표자 성명
+                corpName = "상호 수정", // 상호
+                addr = "주소 수정", // 주소
+                bizType = "업태 수정", // 업태 
+                bizClass = "종목 수정" // 종목
             };
 
             try
@@ -2150,15 +2149,15 @@ namespace TaxinvoiceExample.Controllers
         {
             Contact contactInfo = new Contact
             {
-                id = "testkorea_20181108",        // 담당자 아이디, 6자 이상 50자 미만
-                pwd = "user_password",            // 비밀번호, 6자 이상 20자 미만
-                personName = "코어담당자",        // 담당자명
-                tel = "070-4304-2992",            // 담당자연락처
-                hp = "010-111-222",               // 담당자 휴대폰번호
-                fax = "02-111-222",               // 담당자 팩스번호 
-                email = "netcore@linkhub.co.kr",  // 담당자 메일주소
-                searchAllAllowYN = true,          // 회사조회 권한여부, true(회사조회), false(개인조회)
-                mgrYN = false                     // 관리자 권한여부 
+                id = "testkorea_20181108", // 담당자 아이디, 6자 이상 50자 미만
+                pwd = "user_password", // 비밀번호, 6자 이상 20자 미만
+                personName = "코어담당자", // 담당자명
+                tel = "070-4304-2992", // 담당자연락처
+                hp = "010-111-222", // 담당자 휴대폰번호
+                fax = "02-111-222", // 담당자 팩스번호 
+                email = "netcore@linkhub.co.kr", // 담당자 메일주소
+                searchAllAllowYN = true, // 회사조회 권한여부, true(회사조회), false(개인조회)
+                mgrYN = false // 관리자 권한여부 
             };
 
             try
@@ -2195,14 +2194,14 @@ namespace TaxinvoiceExample.Controllers
         {
             Contact contactInfo = new Contact
             {
-                id = "testkorea",                      // 아이디
-                personName = "담당자명",               // 담당자명 
-                tel = "070-4304-2992",                 // 연락처
-                hp = "010-222-111",                    // 휴대폰번호
-                fax = "02-222-1110",                   // 팩스번호
-                email = "aspnetcore@popbill.co.kr",    // 이메일주소
-                searchAllAllowYN = true,               // 회사조회 권한여부, true(회사조회), false(개인조회)
-                mgrYN = false                          // 관리자 권한여부 
+                id = "testkorea", // 아이디
+                personName = "담당자명", // 담당자명 
+                tel = "070-4304-2992", // 연락처
+                hp = "010-222-111", // 휴대폰번호
+                fax = "02-222-1110", // 팩스번호
+                email = "aspnetcore@popbill.co.kr", // 이메일주소
+                searchAllAllowYN = true, // 회사조회 권한여부, true(회사조회), false(개인조회)
+                mgrYN = false // 관리자 권한여부 
             };
 
             try
