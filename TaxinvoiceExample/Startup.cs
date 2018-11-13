@@ -64,7 +64,7 @@ namespace TaxinvoiceExample
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Taxinvoice}/{action=Index}/{id?}");
+                    template: "{controller=Taxinvoice}/{action=Index}");
             });
         }
     }
