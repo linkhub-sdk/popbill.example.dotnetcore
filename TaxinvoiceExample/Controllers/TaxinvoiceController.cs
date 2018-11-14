@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ControllerDI.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
 using Popbill.Taxinvoice;
@@ -10,20 +11,24 @@ namespace TaxinvoiceExample.Controllers
     public class TaxinvoiceController : Controller
     {
         private readonly TaxinvoiceService _taxinvoiceService;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
         //링크허브에서 발급받은 고객사 고객사 인증정보로 링크아이디(LinkID)와 비밀키(SecretKey) 값을 변경하시기 바랍니다.
         private string linkID = "TESTER";
         private string secretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
 
-        public TaxinvoiceController(TaxinvoiceInstance TIinstance)
+        public TaxinvoiceController(TaxinvoiceInstance TIinstance, IHostingEnvironment hostingEnvironment)
         {
             //세금계산서 서비스 객체 생성
-            _taxinvoiceService = TIinstance.getInstance(linkID, secretKey);
+            _taxinvoiceService = TIinstance.taxinvoiceService;
             
             //연동환경 설정값, 개발용(true), 상업용(false)
             _taxinvoiceService.IsTest = true;
+            
+            _hostingEnvironment = hostingEnvironment;
         }
 
+        
         //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
         string corpNum = "1234567890";
 
@@ -1116,9 +1121,9 @@ namespace TaxinvoiceExample.Controllers
             // [필수] 공급자 상호
             taxinvoice.invoicerCorpName = "공급자 상호";
 
-            // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
+            // 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
-            taxinvoice.invoicerMgtKey = "20181114-ir3";
+            taxinvoice.invoicerMgtKey = "";
 
             // [필수] 공급자 대표자 성명 
             taxinvoice.invoicerCEOName = "공급자 대표자 성명";
@@ -1165,7 +1170,7 @@ namespace TaxinvoiceExample.Controllers
 
             // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
             // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
-            taxinvoice.invoiceeMgtKey = "20181114-ie3";
+            taxinvoice.invoiceeMgtKey = "20181114143728";
 
             // [필수] 공급받는자 대표자 성명 
             taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명";
@@ -1478,7 +1483,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 조회할 세금계산서 문서관리번호 배열, (최대 1000건)
-            List<string> MgtKeyList = new List<string> {"20161221-03", "20161221-02", "20161221-01"};
+            List<string> MgtKeyList = new List<string> {"20181112-a003", "20181108-002", "20181023_01"};
 
             try
             {
@@ -1527,10 +1532,10 @@ namespace TaxinvoiceExample.Controllers
             string DType = "W";
 
             // [필수] 시작일자, 날자형식(yyyyMMdd)
-            string SDate = "20181001";
+            string SDate = "20181101";
 
             // [필수] 종료일자, 날자형식(yyyyMMdd)
-            string EDate = "20181031";
+            string EDate = "20181110";
 
             // 상태코드 배열, 미기재시 전체 상태조회, 문서상태 값 3자리의 배열, 2,3번째 자리에 와일드카드 가능
             string[] state = new string[3];
@@ -1675,7 +1680,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-001";
+            string mgtKey = "20181112-b2";
 
             try
             {
@@ -1698,7 +1703,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-001";
+            string mgtKey = "20181112-b2";
 
             try
             {
@@ -1721,7 +1726,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 조회할 세금계산서 문서관리번호 배열, (최대 100건)
-            List<string> MgtKeyList = new List<string> {"20161221-03", "20161221-02", "20161221-01"};
+            List<string> MgtKeyList = new List<string> {"20181112-a003", "20181108-002", "20181023_01"};
 
             try
             {
@@ -1809,8 +1814,10 @@ namespace TaxinvoiceExample.Controllers
             string mgtKey = "MP1540877740-333273";
 
             // 첨부파일 경로
-            string filePath =
-                "/Users/kimhyunjin/SDK/popbill.example.dotnetcore/TaxinvoiceExample/wwwroot/images/tax_image.png";
+//            string filePath =
+//                "/Users/kimhyunjin/SDK/popbill.example.dotnetcore/TaxinvoiceExample/wwwroot/images/tax_image.png";
+            
+            string filePath = _hostingEnvironment.WebRootPath+"/images/tax_image.png";
 
             try
             {
