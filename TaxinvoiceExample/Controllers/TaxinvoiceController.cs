@@ -1806,9 +1806,9 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181112103859";
+            string mgtKey = "20181113135345";
 
-            string filePath = "C:\\popbill.example.dotnetcore\\TaxinvoiceExample\\wwwroot\\images";
+            string filePath = "C:/popbill.example.dotnetcore/TaxinvoiceExample/wwwroot/images/tax_image.png";
 
             try
             {
@@ -1831,7 +1831,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "MP1540877740-333273";
+            string mgtKey = "20181113135345";
 
             // 파일아이디, 첨부파일 목록(GetFileList API) 의 응답항목 중 파일아이디(AttachedFile) 값
             string fileID = "F2A701E3-053B-40D8-AF28-FE1CBBE7FB53.PBF";
@@ -1857,7 +1857,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "MP1540877740-333273";
+            string mgtKey = "20181113135345";
 
             try
             {
