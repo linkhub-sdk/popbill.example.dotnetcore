@@ -1353,7 +1353,7 @@ namespace TaxinvoiceExample.Controllers
 
             try
             {
-                var result = _taxinvoiceService.GetURL(corpNum, TOGO);
+                var result = _taxinvoiceService.GetURL(corpNum, TOGO, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1380,7 +1380,7 @@ namespace TaxinvoiceExample.Controllers
 
             try
             {
-                var result = _taxinvoiceService.GetPopUpURL(corpNum, mgtKeyType, mgtKey);
+                var result = _taxinvoiceService.GetPopUpURL(corpNum, mgtKeyType, mgtKey, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1403,7 +1403,7 @@ namespace TaxinvoiceExample.Controllers
 
             try
             {
-                var result = _taxinvoiceService.GetPrintURL(corpNum, mgtKeyType, mgtKey);
+                var result = _taxinvoiceService.GetPrintURL(corpNum, mgtKeyType, mgtKey, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1426,7 +1426,7 @@ namespace TaxinvoiceExample.Controllers
 
             try
             {
-                var result = _taxinvoiceService.GetEPrintURL(corpNum, mgtKeyType, mgtKey);
+                var result = _taxinvoiceService.GetEPrintURL(corpNum, mgtKeyType, mgtKey, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1449,7 +1449,7 @@ namespace TaxinvoiceExample.Controllers
 
             try
             {
-                var result = _taxinvoiceService.GetMassPrintURL(corpNum, mgtKeyType, MgtKeyList);
+                var result = _taxinvoiceService.GetMassPrintURL(corpNum, mgtKeyType, MgtKeyList, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1472,7 +1472,7 @@ namespace TaxinvoiceExample.Controllers
 
             try
             {
-                var result = _taxinvoiceService.GetMailURL(corpNum, mgtKeyType, mgtKey);
+                var result = _taxinvoiceService.GetMailURL(corpNum, mgtKeyType, mgtKey, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
