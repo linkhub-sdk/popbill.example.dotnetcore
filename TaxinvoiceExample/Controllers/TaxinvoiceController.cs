@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using ControllerDI.Services;
 using Microsoft.AspNetCore.Hosting;
@@ -11,24 +10,20 @@ namespace TaxinvoiceExample.Controllers
     public class TaxinvoiceController : Controller
     {
         private readonly TaxinvoiceService _taxinvoiceService;
-        private readonly IHostingEnvironment _hostingEnvironment;
 
         //링크허브에서 발급받은 고객사 고객사 인증정보로 링크아이디(LinkID)와 비밀키(SecretKey) 값을 변경하시기 바랍니다.
         private string linkID = "TESTER";
         private string secretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
 
-        public TaxinvoiceController(TaxinvoiceInstance TIinstance, IHostingEnvironment hostingEnvironment)
+        public TaxinvoiceController(TaxinvoiceInstance TIinstance)
         {
             //세금계산서 서비스 객체 생성
             _taxinvoiceService = TIinstance.taxinvoiceService;
-            
+
             //연동환경 설정값, 개발용(true), 상업용(false)
             _taxinvoiceService.IsTest = true;
-            
-            _hostingEnvironment = hostingEnvironment;
         }
 
-        
         //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
         string corpNum = "1234567890";
 
@@ -99,7 +94,7 @@ namespace TaxinvoiceExample.Controllers
             // [필수] 과세형태, {과세, 영세, 면세} 중 기재
             taxinvoice.taxType = "과세";
 
-            
+
             /*****************************************************************
              *                         공급자 정보                           *
              *****************************************************************/
@@ -137,7 +132,7 @@ namespace TaxinvoiceExample.Controllers
 
             // 공급자 담당자 휴대폰번호 
             taxinvoice.invoicerHP = "010-1234-5678";
-            
+
             // 공급자 담당자 메일주소 
             taxinvoice.invoicerEmail = "test@invoicer.com";
 
@@ -146,7 +141,7 @@ namespace TaxinvoiceExample.Controllers
             // - 전송시 포인트가 차감되며 전송실패하는 경우 포인트 환불처리
             taxinvoice.invoicerSMSSendYN = false;
 
-            
+
             /*********************************************************************
              *                         공급받는자 정보                           *
              *********************************************************************/
@@ -178,13 +173,13 @@ namespace TaxinvoiceExample.Controllers
 
             // 공급받는자 주)담당자 성명
             taxinvoice.invoiceeContactName1 = "공급받는자 담당자명";
-            
+
             // 공급받는자 주)담당자 연락처
             taxinvoice.invoiceeTEL1 = "070-1234-1234";
 
             // 공급받는자 주)담당자 휴대폰번호 
             taxinvoice.invoiceeHP1 = "010-5678-1234";
-            
+
             // 공급받는자 주)담당자 메일주소 
             taxinvoice.invoiceeEmail1 = "test@invoicee.com";
 
@@ -317,7 +312,7 @@ namespace TaxinvoiceExample.Controllers
             };
             taxinvoice.addContactList.Add(addContact);
 
-            
+
             // 거래명세서 동시작성여부
             bool writeSpecification = false;
 
@@ -418,7 +413,7 @@ namespace TaxinvoiceExample.Controllers
 
             // 공급자 담당자 휴대폰번호 
             taxinvoice.invoicerHP = "010-1234-5678";
-            
+
             // 공급자 담당자 메일주소 
             taxinvoice.invoicerEmail = "test@invoicer.com";
 
@@ -459,16 +454,16 @@ namespace TaxinvoiceExample.Controllers
 
             // 공급받는자 주)담당자 성명
             taxinvoice.invoiceeContactName1 = "공급받는자 담당자명";
-            
+
             // 공급받는자 주)담당자 연락처
             taxinvoice.invoiceeTEL1 = "070-1234-1234";
 
             // 공급받는자 주)담당자 휴대폰번호 
             taxinvoice.invoiceeHP1 = "010-5678-1234";
-            
+
             // 공급받는자 주)담당자 메일주소 
             taxinvoice.invoiceeEmail1 = "test@invoicee.com";
-            
+
             // 역발행 요청시 알림문자 전송여부 (역발행에서만 사용가능)
             // - 공급자 담당자 휴대폰번호(invoicerHP)로 전송
             // - 전송시 포인트가 차감되며 전송실패하는 경우 포인트 환불처리
@@ -513,7 +508,7 @@ namespace TaxinvoiceExample.Controllers
 
             // 기재상 호 항목, 최대값 32767
             taxinvoice.ho = 1;
-            
+
             // 사업자등록증 이미지 첨부여부
             taxinvoice.businessLicenseYN = false;
 
@@ -627,7 +622,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            
+
             // 세금계산서 정보 객체 
             Taxinvoice taxinvoice = new Taxinvoice();
 
@@ -652,7 +647,7 @@ namespace TaxinvoiceExample.Controllers
             // [필수] 과세형태, {과세, 영세, 면세} 중 기재
             taxinvoice.taxType = "과세";
 
-            
+
             /*****************************************************************
              *                         공급자 정보                           *
              *****************************************************************/
@@ -690,7 +685,7 @@ namespace TaxinvoiceExample.Controllers
 
             // 공급자 담당자 휴대폰번호 
             taxinvoice.invoicerHP = "010-1234-5678";
-            
+
             // 공급자 담당자 메일주소 
             taxinvoice.invoicerEmail = "test@invoicer.com";
 
@@ -731,13 +726,13 @@ namespace TaxinvoiceExample.Controllers
 
             // 공급받는자 주)담당자 성명
             taxinvoice.invoiceeContactName1 = "공급받는자 담당자명";
-            
+
             // 공급받는자 주)담당자 연락처
             taxinvoice.invoiceeTEL1 = "070-1234-1234";
 
             // 공급받는자 주)담당자 휴대폰번호 
             taxinvoice.invoiceeHP1 = "010-5678-1234";
-            
+
             // 공급받는자 주)담당자 메일주소 
             taxinvoice.invoiceeEmail1 = "test@invoicee.com";
 
@@ -818,28 +813,28 @@ namespace TaxinvoiceExample.Controllers
 
             TaxinvoiceDetail detail = new TaxinvoiceDetail
             {
-                serialNum = 1,// 일련번호, 1부터 순차기재 
+                serialNum = 1, // 일련번호, 1부터 순차기재 
                 purchaseDT = "20181113", // 거래일자
-                itemName = "품목명",// 품목명 
+                itemName = "품목명", // 품목명 
                 spec = "규격", // 규격
                 qty = "1", // 수량
-                unitCost = "50000",// 단가
+                unitCost = "50000", // 단가
                 supplyCost = "50000", // 공급가액
-                tax = "5000",// 세액
+                tax = "5000", // 세액
                 remark = "품목비고" //비고
             };
             taxinvoice.detailList.Add(detail);
 
             detail = new TaxinvoiceDetail
             {
-                serialNum = 2,// 일련번호, 1부터 순차기재 
+                serialNum = 2, // 일련번호, 1부터 순차기재 
                 purchaseDT = "20181113", // 거래일자
-                itemName = "품목명",// 품목명 
+                itemName = "품목명", // 품목명 
                 spec = "규격", // 규격
                 qty = "1", // 수량
-                unitCost = "50000",// 단가
+                unitCost = "50000", // 단가
                 supplyCost = "50000", // 공급가액
-                tax = "5000",// 세액
+                tax = "5000", // 세액
                 remark = "품목비고" //비고
             };
             taxinvoice.detailList.Add(detail);
@@ -858,7 +853,7 @@ namespace TaxinvoiceExample.Controllers
             {
                 serialNum = 1, // 일련번호, 1부터 순차기재
                 email = "test1@invoicee.com", // 추가담당자 메일주소 
-                contactName = "추가담당자명1"// 추가담당자 성명 
+                contactName = "추가담당자명1" // 추가담당자 성명 
             };
             taxinvoice.addContactList.Add(addContact);
 
@@ -866,7 +861,7 @@ namespace TaxinvoiceExample.Controllers
             {
                 serialNum = 2, // 일련번호, 1부터 순차기재
                 email = "test2@invoicee.com", // 추가담당자 메일주소 
-                contactName = "추가담당자명2"// 추가담당자 성명 
+                contactName = "추가담당자명2" // 추가담당자 성명 
             };
             taxinvoice.addContactList.Add(addContact);
 
@@ -1107,7 +1102,7 @@ namespace TaxinvoiceExample.Controllers
             // [필수] 과세형태, {과세, 영세, 면세} 중 기재
             taxinvoice.taxType = "과세";
 
-            
+
             /*****************************************************************
              *                         공급자 정보                           *
              *****************************************************************/
@@ -1145,7 +1140,7 @@ namespace TaxinvoiceExample.Controllers
 
             // 공급자 담당자 휴대폰번호 
             taxinvoice.invoicerHP = "010-8349-0706";
-            
+
             // 공급자 담당자 메일주소 
             taxinvoice.invoicerEmail = "test@invoicer.com";
 
@@ -1154,7 +1149,7 @@ namespace TaxinvoiceExample.Controllers
             // - 전송시 포인트가 차감되며 전송실패하는 경우 포인트 환불처리
             taxinvoice.invoicerSMSSendYN = false;
 
-            
+
             /*********************************************************************
              *                         공급받는자 정보                           *
              *********************************************************************/
@@ -1186,16 +1181,16 @@ namespace TaxinvoiceExample.Controllers
 
             // 공급받는자 주)담당자 성명
             taxinvoice.invoiceeContactName1 = "공급받는자 담당자명";
-            
+
             // 공급받는자 주)담당자 연락처
             taxinvoice.invoiceeTEL1 = "070-1234-1234";
 
             // 공급받는자 주)담당자 휴대폰번호 
             taxinvoice.invoiceeHP1 = "010-5678-1234";
-            
+
             // 공급받는자 주)담당자 메일주소 
             taxinvoice.invoiceeEmail1 = "test@invoicee.com";
-            
+
             // 역발행 요청시 알림문자 전송여부 (역발행에서만 사용가능)
             // - 공급자 담당자 휴대폰번호(invoicerHP)로 전송
             // - 전송시 포인트가 차감되며 전송실패하는 경우 포인트 환불처리
@@ -1338,7 +1333,7 @@ namespace TaxinvoiceExample.Controllers
                 return View("Exception", pe);
             }
         }
-        
+
         /*
          * [공급받는자]가 공급자에게 1건의 역발행 세금계산서를 [요청]합니다.
          * - 역발행 세금계산서 프로세스를 구현하기 위해서는 공급자/공급받는자가 모두 팝빌에 회원이여야 합니다.
@@ -1811,13 +1806,9 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "MP1540877740-333273";
+            string mgtKey = "20181112103859";
 
-            // 첨부파일 경로
-//            string filePath =
-//                "/Users/kimhyunjin/SDK/popbill.example.dotnetcore/TaxinvoiceExample/wwwroot/images/tax_image.png";
-            
-            string filePath = _hostingEnvironment.WebRootPath+"/images/tax_image.png";
+            string filePath = "C:\\popbill.example.dotnetcore\\TaxinvoiceExample\\wwwroot\\images";
 
             try
             {
@@ -2050,7 +2041,7 @@ namespace TaxinvoiceExample.Controllers
 
             // 세금계산서 아이템키, 목록조회(Search) API의 반환항목중 ItemKey 참조
             string itemKey = "018103016112000001";
-            
+
             // 세금계산서에 할당할 문서관리번호
             string mgtKey = "20181030-itemkey";
 
