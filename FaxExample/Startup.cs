@@ -1,11 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Popbill.Fax;
+using ControllerDI.Services;
+
+
+namespace ControllerDI.Services
+{
+    public class FaxInstance
+    {
+        //링크허브에서 발급받은 고객사 고객사 인증정보로 링크아이디(LinkID)와 비밀키(SecretKey) 값을 변경하시기 바랍니다.
+        private string linkID = "TESTER";
+        private string secretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
+
+        public FaxService faxService;
+
+        public FaxInstance()
+        {
+            //팩스 서비스 객체 초기화
+            faxService = new FaxService(linkID, secretKey);
+
+            //연동환경 설정값, 개발용(true), 상업용(false)
+            faxService.IsTest = true;
+        }
+    }
+}
 
 namespace FaxExample
 {
@@ -22,6 +42,9 @@ namespace FaxExample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            
+            //팩스 서비스 객체 의존성 주입
+            services.AddSingleton<FaxInstance>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +65,7 @@ namespace FaxExample
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Fax}/{action=Index}");
             });
         }
     }

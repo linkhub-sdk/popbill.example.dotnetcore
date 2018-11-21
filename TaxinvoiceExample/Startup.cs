@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,7 +43,7 @@ namespace TaxinvoiceExample
         {
             services.AddMvc();
 
-            //세금계산서 서비스 객체 종속성 주입
+            //세금계산서 서비스 객체 의존성 주입
             services.AddSingleton<TaxinvoiceInstance>();
         }
 
