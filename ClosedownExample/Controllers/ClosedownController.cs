@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using ControllerDI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
@@ -36,6 +37,155 @@ namespace ClosedownExample.Controllers
             return View();
         }
 
+
+        #region 휴폐업조회
+
+        /*
+         * 1건의 사업자에 대한 휴폐업여부를 조회합니다.
+         */
+        public IActionResult CheckCorpNum()
+        {
+            try
+            {
+                //조회할 사업자번호
+                string targetCorpNum = "6798700433";
+
+                var response = _closedownService.checkCorpNum(corpNum, targetCorpNum, userID);
+                return View("CheckCorpNum", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 다수의 사업자에 대한 휴폐업여부를 조회합니다. (최대 1000건)
+         */
+        public IActionResult CheckCorpNums()
+        {
+            try
+            {
+                //조회할 사업자번호 배열, 최대 1000건
+                List<string> targetCorpNums = new List<string> {"1234567890", "6798700433", "401-03-94930"};
+
+                var response = _closedownService.checkCorpNums(corpNum, targetCorpNums, userID);
+                return View("CheckCorpNums", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        #endregion
+
+        #region 포인트관리 
+
+        /*
+         * 연동회원 잔여포인트를 확인합니다.
+         */
+        public IActionResult GetBalance()
+        {
+            try
+            {
+                var result = _closedownService.GetBalance(corpNum);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
+         * 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         */
+        public IActionResult GetChargeURL()
+        {
+            try
+            {
+                var result = _closedownService.GetChargeURL(corpNum, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 파트너의 잔여포인트를 확인합니다.
+         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를
+         *   이용하시기 바랍니다.
+         */
+        public IActionResult GetPartnerBalance()
+        {
+            try
+            {
+                var result = _closedownService.GetPartnerBalance(corpNum);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 파트너 포인트 충전 팝업 URL을 반환합니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         */
+        public IActionResult GetPartnerURL()
+        {
+            // CHRG 포인트충전 URL
+            string TOGO = "CHRG";
+
+            try
+            {
+                var result = _closedownService.GetPartnerURL(corpNum, TOGO);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 휴폐업조회 발행단가를 확인합니다.
+         */
+        public IActionResult GetUnitCost()
+        {
+            try
+            {
+                var result = _closedownService.GetUnitCost(corpNum);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 휴폐업조회 API 서비스 과금정보를 확인합니다.
+         */
+        public IActionResult GetChargeInfo()
+        {
+            try
+            {
+                var response = _closedownService.GetChargeInfo(corpNum);
+                return View("GetChargeInfo", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        #endregion
 
         #region 회원정보
 
@@ -218,6 +368,23 @@ namespace ClosedownExample.Controllers
             {
                 var response = _closedownService.UpdateContact(corpNum, contactInfo, userID);
                 return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
+         * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         */
+        public IActionResult GetAccessURL()
+        {
+            try
+            {
+                var result = _closedownService.GetAccessURL(corpNum, userID);
+                return View("Result", result);
             }
             catch (PopbillException pe)
             {

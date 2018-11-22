@@ -1,0 +1,32 @@
+@{
+    ViewBag.Title = "CheckCorpNums (휴폐업 대량 조회)";
+}
+
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <br/>
+        <p class="info"> state (휴폐업상태) : null-알수없음, 0-등록되지 않은 사업자번호, 1-사업중, 2-폐업, 3-휴업</p>
+        <p class="info"> type (사업 유형) : null-알수없음, 1-일반과세자, 2-면세과세자, 3-간이과세자, 4-비영리법인, 국가기관</p>
+        @{
+            int i = 0;
+            foreach (var info in Model)
+            {
+                i++;
+                <fieldset class="fieldset2">
+                    <legend>휴폐업 대량 조회 [ @i / @Model.Count ]</legend>
+                    <ul>
+                        <li>사업자번호(corpNum) : @info.corpNum</li>
+                        <li>사업자유형(type) : @info.type</li>
+                        <li>휴폐업상태(state) : @info.state</li>
+                        <li>휴폐업일자(stateDate) : @info.stateDate</li>
+                        <li>과세유형 전환일자(typeDate) : @info.typeDate</li>
+                        <li>국세청 확일일자(checkDate) : @info.checkDate</li>
+                    </ul>
+                </fieldset>
+            }
+        }
+    </fieldset>
+</div>
