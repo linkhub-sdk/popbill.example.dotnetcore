@@ -1,0 +1,87 @@
+@{
+    ViewBag.Title = "GetDetailInfo (상세정보 확인)";
+}
+
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li> itemCode(문서종류코드) : @Model.itemCode</li>
+            <li> mgtKey(관리번호) : @Model.mgtKey</li>
+            <li> invoiceNum(문서고유번호) : @Model.invoiceNum</li>
+            <li> formCode(맞춤양식 코드) : @Model.formCode</li>
+            <li> writeDate(작성일자) : @Model.writeDate</li>
+            <li> taxType(세금형태) : @Model.taxType</li>
+            <li> purposeType(영수/청구) : @Model.purposeType</li>
+            <li> serialNum(일련번호) : @Model.serialNum</li>
+            <li> taxTotal(세액 합계) : @Model.taxTotal</li>
+            <li> supplyCostTotal(공급가액 합계) : @Model.supplyCostTotal</li>
+            <li> totalAmount(합계금액) : @Model.totalAmount</li>
+            <li> remark1(비고1) : @Model.remark1</li>
+            <li> remark2(비고2) : @Model.remark2</li>
+            <li> remark3(비고3) : @Model.remark3</li>
+
+            <li> senderCorpNum(발신자 사업자번호) : @Model.senderCorpNum</li>
+            <li> senderTaxRegID(발신자 종사업장번호) : @Model.senderTaxRegID</li>
+            <li> senderCorpName(발신자 상호) : @Model.senderCorpName</li>
+            <li> senderCEOName(발신자 대표자 성명) : @Model.senderCEOName</li>
+            <li> senderAddr(발신자 주소) : @Model.senderAddr</li>
+            <li> senderBizType(발신자 업태) : @Model.senderBizType</li>
+            <li> senderBizClass(발신자 종목) : @Model.senderBizClass</li>
+            <li> senderContactName(발신자 성명) : @Model.senderContactName</li>
+            <li> senderDeptName(발신자 부서명) : @Model.senderDeptName</li>
+            <li> senderTEL(발신자 연락처) : @Model.senderTEL</li>
+            <li> senderHP(발신자 휴대전화) : @Model.senderHP</li>
+            <li> senderEmail(발신자 이메일주소) : @Model.senderEmail</li>
+            <li> senderFAX(발신자 팩스번호) : @Model.senderFAX</li>
+
+            <li> receiverCorpNum(수신자 사업자번호) : @Model.receiverCorpNum</li>
+            <li> receiverTaxRegID(수신자 종사업장번호) : @Model.receiverTaxRegID</li>
+            <li> receiverCorpName(수신자 상호) : @Model.receiverCorpName</li>
+            <li> receiverCEOName(수신자 대표자 성명) : @Model.receiverCEOName</li>
+            <li> receiverAddr(수신자 주소) : @Model.receiverAddr</li>
+            <li> receiverBizType(수신자 업태) : @Model.receiverBizType</li>
+            <li> receiverBizClass(수신자 종목) : @Model.receiverBizClass</li>
+            <li> receiverContactName(수신자 성명) : @Model.receiverContactName</li>
+            <li> receiverDeptName(수신자 부서명) : @Model.receiverDeptName</li>
+            <li> receiverTEL(수신자 연락처) : @Model.receiverTEL</li>
+            <li> receiverHP(수신자 휴대전화) : @Model.receiverHP</li>
+            <li> receiverEmail(수신자 이메일주소) : @Model.receiverEmail</li>
+            <li> receiverFAX(수신자 팩스번호) : @Model.receiverFAX</li>
+
+            @{
+                int i = 0;
+                foreach (var detailList in Model.detailList)
+                {
+                    i++;
+                    <fieldset class="fieldset2">
+                        <legend>전자명세서 상세항목 [ @i / @Model.detailList.Count ]</legend>
+                        <ul>
+                            <li>serialNum (일련번호) : @detailList.serialNum</li>
+                            <li>purchaseDT (거래일자) : @detailList.purchaseDT</li>
+                            <li>itemName (품목명) : @detailList.itemName</li>
+                            <li>spec (규격) : @detailList.spec</li>
+                            <li>qty (수량) : @detailList.qty</li>
+                            <li>unitCost (단가) : @detailList.unitCost</li>
+                            <li>supplyCost (공급가액) : @detailList.supplyCost</li>
+                            <li>tax (세액) : @detailList.tax</li>
+                            <li>remark (비고) : @detailList.remark</li>
+                            <li>spare1 (비고) : @detailList.spare1</li>
+                            <li>spare2 (비고) : @detailList.spare2</li>
+                            <li>spare3 (비고) : @detailList.spare3</li>
+                            <li>spare4 (비고) : @detailList.spare4</li>
+                            <li>spare5 (비고) : @detailList.spare5</li>
+                        </ul>
+                    </fieldset>
+                }
+            }
+            
+            <li> businessLicenseYN (사업자등록증 첨부) : @Model.businessLicenseYN</li>
+            <li> bankBookYN (통장사본 첨부) : @Model.bankBookYN</li>
+            <li> smssendYN (문자 자동전송 여부) : @Model.smssendYN</li>
+            @* <li> autoAcceptYN (발행시 자동승인 여부) : @Model.autoAcceptYN</li> *@
+        </ul>
+    </fieldset>
+</div>

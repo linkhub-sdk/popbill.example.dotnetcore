@@ -1,0 +1,55 @@
+@{
+    ViewBag.Title = "Search (목록조회)";
+}
+
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>code (응답코드) : @Model.code</li>
+            <li>message (응답메시지) : @Model.message</li>
+            <li>total (총 검색결과 건수) : @Model.total</li>
+            <li>perPage (페이지당 검색개수) : @Model.perPage</li>
+            <li>pageNum (페이지당 번호) : @Model.pageNum</li>
+            <li>pageCount (페이지 개수) : @Model.pageCount</li>
+        </ul>
+
+        @{
+            int i = 0;
+            foreach (var list in Model.list)
+            {
+                i++;
+                <fieldset class="fieldset2">
+                    <legend>전자명세서 상태정보 확인 [ @i ]</legend>
+                    <ul>
+                        <li> itemCode (문서종류코드) : @list.itemCode</li>
+                        <li> itemKey (문서관리번호) : @list.itemKey</li>
+                        <li> invoiceNum (문서고유번호) : @list.invoiceNum</li>
+                        <li> mgtKey (문서관리번호) : @list.mgtKey</li>
+                        <li> taxType (세금형태) : @list.taxType</li>
+                        <li> writeDate (작성일자) : @list.writeDate</li>
+                        <li> regDT (임시저장일시) : @list.regDT</li>
+                        <li> senderCorpName (발신자 상호) : @list.senderCorpName</li>
+                        <li> senderCorpNum (발신자 사업자등록번호) : @list.senderCorpNum</li>
+                        <li> senderPrintYN (발신자 인쇄여부) : @list.senderPrintYN</li>
+                        <li> receiverCorpName (수신자 상호): @list.receiverCorpName</li>
+                        <li> receiverCorpNum (수신자 사업자등록번호) : @list.receiverCorpNum</li>
+                        <li> receiverPrintYN (수신자 인쇄여부) : @list.receiverPrintYN</li>
+                        <li> supplyCostTotal (공급가액 합계) : @list.supplyCostTotal</li>
+                        <li> taxTotal (세액 합계) : @list.taxTotal</li>
+                        <li> purposeType (영수/청구) : @list.purposeType</li>
+                        <li> issueDT (발행일시) : @list.issueDT</li>
+                        <li> stateCode (상태코드) : @list.stateCode</li>
+                        <li> stateDT (상태 변경일시) : @list.stateDT</li>
+                        <li> stateMemo (상태메모) : @list.stateMemo</li>
+                        <li> openYN (개봉 여부) : @list.openYN</li>
+                        <li> openDT (개봉 일시) : @list.openDT</li>
+                    </ul>
+                </fieldset>
+            }
+        }
+    </fieldset>
+</div>
+

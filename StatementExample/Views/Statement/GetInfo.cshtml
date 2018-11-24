@@ -1,0 +1,35 @@
+@{
+    ViewBag.Title = "GetInfo (상태확인)";
+}
+
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li> itemCode (문서종류코드) : @Model.itemCode</li>
+            <li> itemKey (문서관리번호) : @Model.itemKey</li>
+            <li> invoiceNum (문서고유번호) : @Model.invoiceNum</li>
+            <li> mgtKey (문서관리번호) : @Model.mgtKey</li>
+            <li> taxType (세금형태) : @Model.taxType</li>
+            <li> writeDate (작성일자) : @Model.writeDate</li>
+            <li> regDT (임시저장일시) : @Model.regDT</li>
+            <li> senderCorpName (발신자 상호) : @Model.senderCorpName</li>
+            <li> senderCorpNum (발신자 사업자등록번호) : @Model.senderCorpNum</li>
+            <li> senderPrintYN (발신자 인쇄여부) : @Model.senderPrintYN</li>
+            <li> receiverCorpName (수신자 상호): @Model.receiverCorpName</li>
+            <li> receiverCorpNum (수신자 사업자등록번호) : @Model.receiverCorpNum</li>
+            <li> receiverPrintYN (수신자 인쇄여부) : @Model.receiverPrintYN</li>
+            <li> supplyCostTotal (공급가액 합계) : @Model.supplyCostTotal</li>
+            <li> taxTotal (세액 합계) : @Model.taxTotal</li>
+            <li> purposeType (영수/청구) : @Model.purposeType</li>
+            <li> issueDT (발행일시) : @Model.issueDT</li>
+            <li> stateCode (상태코드) : @Model.stateCode</li>
+            <li> stateDT (상태 변경일시) : @Model.stateDT</li>
+            <li> stateMemo (상태메모) : @Model.stateMemo</li>
+            <li> openYN (개봉 여부) : @Model.openYN</li>
+            <li> openDT (개봉 일시) : @Model.openDT</li>
+        </ul>
+    </fieldset>
+</div>

@@ -1,0 +1,45 @@
+@{
+    ViewBag.Title = "ListEmailCOnfig (알림메일 전송목록 조회)";
+}
+
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            @{
+                int i = 0;
+                foreach (var info in Model)
+                {
+                    i++;
+
+                    if (info.emailType == "SMT_ISSUE")
+                    {
+                        <li>SMT_ISSUE(공급받는자에게 전자명세서가 발행 되었음을 알려주는 메일 전송 여부) : @info.sendYN</li>
+                    }
+
+                    if (info.emailType == "SMT_ACCEPT")
+                    {
+                        <li>SMT_ACCEPT(공급자에게 전자명세서가 승인 되었음을 알려주는 메일 전송 여부) : @info.sendYN</li>
+                    }
+                    
+                    if (info.emailType == "SMT_DENY")
+                    {
+                        <li>SMT_DENY(공급자에게 전자명세서가 거부 되었음을 알려주는 메일 전송 여부) : @info.sendYN</li>
+                    }
+                    
+                    if (info.emailType == "SMT_CANCEL")
+                    {
+                        <li>SMT_CANCEL(공급받는자에게 전자명세서가 취소 되었음을 알려주는 메일 전송 여부) : @info.sendYN</li>
+                    }
+                    
+                    if (info.emailType == "SMT_CANCEL_ISSUE")
+                    {
+                        <li>SMT_CANCEL_ISSUE(공급받는자에게 전자명세서가 발행취소 되었음을 알려주는 메일 전송 여부) : @info.sendYN</li>
+                    }
+                }
+            }
+        </ul>
+    </fieldset>
+</div>
