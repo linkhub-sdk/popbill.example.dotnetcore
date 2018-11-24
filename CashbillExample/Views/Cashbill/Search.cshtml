@@ -1,0 +1,56 @@
+@{
+    ViewBag.Title = "Search (목록조회)";
+}
+
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>code (응답코드) : @Model.code</li>
+            <li>message (응답메시지) : @Model.message</li>
+            <li>total (총 검색결과 건수) : @Model.total</li>
+            <li>perPage (페이지당 검색개수) : @Model.perPage</li>
+            <li>pageNum (페이지당 번호) : @Model.pageNum</li>
+            <li>pageCount (페이지 개수) : @Model.pageCount</li>
+        </ul>
+        @{
+            int i = 0;
+            foreach (var list in Model.list)
+            {
+                i++;
+                <fieldset class="fieldset2">
+                    <legend>현금영수증 상태/요약정보 확인 [ @i ]</legend>
+                    <ul>
+                        <li> itemKey (현금영수증 아이템키) : @list.itemKey</li>
+                        <li> mgtKey (문서관리번호) : @list.mgtKey</li>
+                        <li> tradeDate (거래일자) : @list.tradeDate</li>
+                        <li> tradeType (문서형태) : @list.tradeType</li>
+                        <li> tradeUsage (거래구분) : @list.tradeUsage</li>
+                        <li> tradeOpt (거래유형) : @list.tradeOpt</li>
+                        <li> taxationType (과세형태) : @list.taxationType</li>
+                        <li> totalAmount (거래금액) : @list.totalAmount</li>
+                        <li> issueDT (발행일시) : @list.issueDT</li>
+                        <li> regDT (등록일시) : @list.regDT</li>
+                        <li> stateMemo (상태메모) : @list.stateMemo</li>
+                        <li> stateCode (상태코드) : @list.stateCode</li>
+                        <li> stateDT (상태변경일시) : @list.stateDT</li>
+                        <li> identityNum (식별번호) : @list.identityNum</li>
+                        <li> itemName (주문상품명) : @list.itemName</li>
+                        <li> customerName (주문자명) : @list.customerName</li>
+                        <li> confirmNum (국세청승인번호) : @list.confirmNum</li>
+                        <li> orgConfirmNum (원본 현금영수증 국세청승인번호) : @list.orgConfirmNum</li>
+                        <li> orgTradeDate (원본 현금영수증 거래일자) : @list.orgTradeDate</li>
+                        <li> ntssendDT (국세청 전송일시) : @list.ntssendDT</li>
+                        <li> ntsresultDT (국세청 처리결과 수신일시) : @list.ntsresultDT</li>
+                        <li> ntsresultCode (국세청 처리결과 상태코드) : @list.ntsresultCode</li>
+                        <li> ntsresultMessage (국세청 처리결과 메시지) : @list.ntsresultMessage</li>
+                        <li> printYN (인쇄여부) : @list.printYN</li>
+                    </ul>
+                </fieldset>
+            }
+        }
+    </fieldset>
+</div>
+

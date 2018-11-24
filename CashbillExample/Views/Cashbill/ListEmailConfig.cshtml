@@ -1,0 +1,30 @@
+@{
+    ViewBag.Title = "ListEmailCOnfig (알림메일 전송목록 조회)";
+}
+
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            @{
+                int i = 0;
+                foreach (var info in Model)
+                {
+                    i++;
+
+                    if (info.emailType == "CSH_ISSUE")
+                    {
+                        <li>CSH_ISSUE (고객에게 현금영수증이 발행 되었음을 알려주는 메일) : @info.sendYN</li>
+                    }
+
+                    if (info.emailType == "CSH_CANCEL")
+                    {
+                        <li>CSH_CANCEL (고객에게 현금영수증이 발행취소 되었음을 알려주는 메일) : @info.sendYN</li>
+                    }
+                }
+            }
+        </ul>
+    </fieldset>
+</div>
