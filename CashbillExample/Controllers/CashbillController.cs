@@ -266,10 +266,11 @@ namespace CashbillExample.Controllers
          */
         public IActionResult Update()
         {
-            // 수정할 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 수정할 현금영수증 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20181122-002";
 
+            
             // 현금영수증 정보 객체 
             Cashbill cashbill = new Cashbill();
 
@@ -619,11 +620,11 @@ namespace CashbillExample.Controllers
         public IActionResult GetInfos()
         {
             // 조회할 현금영수증 문서관리번호 배열, (최대 1000건)
-            List<string> MgtKeyList = new List<string> {"20181003-100", "WLJ181108-00000002", "NLJ81029-80592698"};
+            List<string> mgtKeyList = new List<string> {"20181003-100", "WLJ181108-00000002", "NLJ81029-80592698"};
 
             try
             {
-                var response = _cashbillService.GetInfos(corpNum, MgtKeyList, userID);
+                var response = _cashbillService.GetInfos(corpNum, mgtKeyList, userID);
                 return View("GetInfos", response);
             }
             catch (PopbillException pe)
@@ -923,10 +924,10 @@ namespace CashbillExample.Controllers
          */
         public IActionResult SendFAX()
         {
-            // 발신자 번호
+            // 발신번호
             string sender = "070-4304-2991";
 
-            // 수신자 번호
+            // 수신번호
             string receiver = "010-111-222";
 
             try

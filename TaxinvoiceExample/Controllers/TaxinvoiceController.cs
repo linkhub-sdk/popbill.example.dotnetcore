@@ -622,7 +622,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-
+            
             // 세금계산서 정보 객체 
             Taxinvoice taxinvoice = new Taxinvoice();
 
@@ -1478,11 +1478,11 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 조회할 세금계산서 문서관리번호 배열, (최대 1000건)
-            List<string> MgtKeyList = new List<string> {"20181112-a003", "20181108-002", "20181023_01"};
+            List<string> mgtKeyList = new List<string> {"20181112-a003", "20181108-002", "20181023_01"};
 
             try
             {
-                var response = _taxinvoiceService.GetInfos(corpNum, mgtKeyType, MgtKeyList);
+                var response = _taxinvoiceService.GetInfos(corpNum, mgtKeyType, mgtKeyList);
                 return View("GetInfos", response);
             }
             catch (PopbillException pe)
@@ -1808,6 +1808,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서 문서관리번호
             string mgtKey = "20181113135345";
 
+            // 파일경로
             string filePath = "C:/popbill.example.dotnetcore/TaxinvoiceExample/wwwroot/images/tax_image.png";
 
             try
@@ -1881,12 +1882,12 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
 
-            // 수신메일주소
-            string email = "test@test.com";
+            // 수신자 이메일주소
+            string receiver = "test@test.com";
 
             try
             {
-                var response = _taxinvoiceService.SendEmail(corpNum, mgtKeyType, mgtKey, email);
+                var response = _taxinvoiceService.SendEmail(corpNum, mgtKeyType, mgtKey, receiver);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1909,10 +1910,10 @@ namespace TaxinvoiceExample.Controllers
             string mgtKey = "20181030-001";
 
             // 발신번호
-            string senderNum = "070-4304-2992";
+            string sender = "070-4304-2992";
 
             // 수신번호
-            string receiverNum = "010-111-222";
+            string receiver = "010-111-222";
 
             // 문자메시지 내용, 90byte 초과시 길이가 조정되어 전송됨
             string contents = "알림문자 전송내용, 90byte 초과된 내용은 삭제되어 전송됨";
@@ -1920,7 +1921,7 @@ namespace TaxinvoiceExample.Controllers
             try
             {
                 var response =
-                    _taxinvoiceService.SendSMS(corpNum, mgtKeyType, mgtKey, senderNum, receiverNum, contents);
+                    _taxinvoiceService.SendSMS(corpNum, mgtKeyType, mgtKey, sender, receiver, contents);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1943,14 +1944,14 @@ namespace TaxinvoiceExample.Controllers
             string mgtKey = "20181030-001";
 
             // 발신번호
-            string senderNum = "070-4304-2992";
+            string sender = "070-4304-2992";
 
-            // 수신팩스번호
-            string receiverNum = "070-111-222";
+            // 수신번호
+            string receiver = "070-111-222";
 
             try
             {
-                var response = _taxinvoiceService.SendFAX(corpNum, mgtKeyType, mgtKey, senderNum, receiverNum);
+                var response = _taxinvoiceService.SendFAX(corpNum, mgtKeyType, mgtKey, sender, receiver);
                 return View("Response", response);
             }
             catch (PopbillException pe)
