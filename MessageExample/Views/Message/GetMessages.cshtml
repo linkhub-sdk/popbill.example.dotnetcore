@@ -1,0 +1,29 @@
+@{
+    ViewBag.Title = "GetMessages(RN) (전송내역 학인)";
+}
+
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li> subject (메시지 제목) : @Model.subject</li>
+            <li> content (메시지 내용) : @Model.content</li>
+            <li> sendNum (발신번호) : @Model.sendNum</li>
+            <li> senderName (발신자명) : @Model.senderName</li>
+            <li> receiveNum (수신번호) : @Model.receiveNum</li>
+            <li> receiveName (수신자명) : @Model.receiveName</li>
+            <li> receiptDT (접수일시) : @Model.receiptDT</li>
+            <li> sendDT (전송일시) : @Model.sendDT</li>
+            <li> resultDT (전송결과 수신일시) : @Model.resultDT</li>
+            <li> reserveDT (예약일시) : @Model.reserveDT</li>
+            <li> state (전송상태 코드) : @Model.state</li>
+            <li> result (전송결과 코드) : @Model.result</li>
+            <li> type (메시지 타입) : @Model.type</li>
+            <li> tranNet (전송처리 이동통신사명) : @Model.tranNet</li>
+            <li> receiptNum (접수번호) : @Model.receiptNum</li>
+            <li> requestNum (요청번호) : @Model.requestNum</li>
+        </ul>
+    </fieldset>
+</div>
