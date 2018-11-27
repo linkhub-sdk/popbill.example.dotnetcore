@@ -768,7 +768,7 @@ namespace KakaoExample.Controllers
 
             // 조회 검색어, 카카오톡 전송시 기재한 수신자명 입력
             string QString = "";
-            
+
             try
             {
                 var response = _kakaoService.Search(corpNum, SDate, EDate, State, Item, ReserveYN, SenderYN, Page,
@@ -804,7 +804,7 @@ namespace KakaoExample.Controllers
         public IActionResult GetMessages()
         {
             // 알림톡/친구톡 전송요청시 발급받은 접수번호
-            string receiptNum = "";
+            string receiptNum = "018112717221800001";
 
             try
             {
@@ -824,7 +824,7 @@ namespace KakaoExample.Controllers
         public IActionResult CancelReserve()
         {
             // 알림톡/친구톡 전송요청시 발급받은 접수번호
-            string receiptNum = "";
+            string receiptNum = "018112715514300001";
 
             try
             {
@@ -843,7 +843,7 @@ namespace KakaoExample.Controllers
         public IActionResult GetMessagesRN()
         {
             // 알림톡/친구톡 전송요청시 할당한 요청번호
-            string requestNum = "";
+            string requestNum = "20181127155110";
 
             try
             {
@@ -863,7 +863,7 @@ namespace KakaoExample.Controllers
         public IActionResult CancelReserveRN()
         {
             // 알림톡/친구톡 전송요청시 할당한 요청번호
-            string requestNum = "";
+            string requestNum = "20181127155110";
 
             try
             {
@@ -1012,7 +1012,7 @@ namespace KakaoExample.Controllers
         }
 
         /*
-         * 팝빌 회원아이디 중복여부를 확인합니다.
+         * 파트너의 연동회원으로 신규가입 처리합니다.
          */
         public IActionResult CheckID()
         {
@@ -1057,6 +1057,23 @@ namespace KakaoExample.Controllers
             {
                 var response = _kakaoService.JoinMember(joinInfo);
                 return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         */
+        public IActionResult GetAccessURL()
+        {
+            try
+            {
+                var result = _kakaoService.GetAccessURL(corpNum, userID);
+                return View("Result", result);
             }
             catch (PopbillException pe)
             {
