@@ -1,0 +1,26 @@
+@{
+    ViewBag.Title = "GetSenderNumberList (발신번호 목록 확인)";
+}
+
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        @{
+            int i = 0;
+            foreach (var info in Model)
+            {
+                i++;
+                <fieldset class="fieldset2">
+                    <legend> 발신번호 목록 확인 [ @i / @Model.Count ]</legend>
+                    <ul>
+                        <li>number(발신번호) : @info.number</li>
+                        <li>state(등록상태) : @info.state</li>
+                        <li>representYN(대표번호 지정여부) : @info.representYN</li>
+                    </ul>
+                </fieldset>
+            }
+        }
+    </fieldset>
+</div>

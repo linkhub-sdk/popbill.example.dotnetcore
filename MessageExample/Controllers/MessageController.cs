@@ -99,7 +99,7 @@ namespace MessageExample.Controllers
             string contents = "단문 문자 메시지 내용. 90byte 초과시 삭제되어 전송";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -593,7 +593,7 @@ namespace MessageExample.Controllers
             string contents = "단문/장문 문자 메시지 내용. 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송됨";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime sndDT = new DateTime(20181227141909);
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -601,7 +601,7 @@ namespace MessageExample.Controllers
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
             // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
-            string requestNum = "";
+            string requestNum = "20181127141839";
 
             try
             {
@@ -854,11 +854,11 @@ namespace MessageExample.Controllers
         public IActionResult GetMessages()
         {
             // 문자 전송요청시 발급받은 접수번호
-            string receiptNum = "";
+            string receiptNum = "018112714000000020";
 
             try
             {
-                var Response = _messageService.GetMessages(corpNum, receiptNum, userID);
+                var Response = _messageService.GetMessage(corpNum, receiptNum, userID);
                 return View("GetMessages", Response);
             }
             catch (PopbillException pe)
@@ -874,8 +874,8 @@ namespace MessageExample.Controllers
         public IActionResult CancelReserve()
         {
             // 문자 전송요청시 발급받은 접수번호
-            string receiptNum = "";
-            
+            string receiptNum = "018112714000000020";
+
             try
             {
                 var Response = _messageService.CancelReserve(corpNum, receiptNum, userID);
@@ -898,11 +898,11 @@ namespace MessageExample.Controllers
         public IActionResult GetMessagesRN()
         {
             // 문자 전송요청시 할당한 요청번호
-            string requestNum = "";
+            string requestNum = "20181127141839";
 
             try
             {
-                var Response = _messageService.GetMessagesRN(corpNum, requestNum, userID);
+                var Response = _messageService.GetMessageRN(corpNum, requestNum, userID);
                 return View("GetMessages", Response);
             }
             catch (PopbillException pe)
@@ -918,8 +918,8 @@ namespace MessageExample.Controllers
         public IActionResult CancelReserveRN()
         {
             // 문자 전송요청시 할당한 요청번호
-            string requestNum = "";
-            
+            string requestNum = "20181127141839";
+
             try
             {
                 var Response = _messageService.CancelReserveRN(corpNum, requestNum, userID);
@@ -1086,7 +1086,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 파트너의 연동회원으로 회원가입을 요청합니다.
+         * 파트너의 연동회원으로 신규가입 처리합니다.
          */
         public IActionResult JoinMember()
         {
@@ -1112,6 +1112,23 @@ namespace MessageExample.Controllers
             {
                 var response = _messageService.JoinMember(joinInfo);
                 return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         */
+        public IActionResult GetAccessURL()
+        {
+            try
+            {
+                var result = _messageService.GetAccessURL(corpNum, userID);
+                return View("Result", result);
             }
             catch (PopbillException pe)
             {
