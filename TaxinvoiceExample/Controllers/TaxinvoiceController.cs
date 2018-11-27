@@ -1567,11 +1567,11 @@ namespace TaxinvoiceExample.Controllers
             // 종사업장번호, 콤마(",")로 구분하여 구성 ex) "0001,1234"
             string TaxRegID = "";
 
-            // 페이지번호
+            // 페이지 번호, 기본값 '1'
             int Page = 1;
 
-            // 페이지당 검색개수, 최대 1000건
-            int PerPage = 10;
+            // 페이지당 검색개수, 기본값 '500', 최대 '1000' 
+            int PerPage = 30;
 
             // 정렬방향, A-오름차순, D-내림차순
             string Order = "D";
@@ -1620,7 +1620,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 팝빌 전자세금계산서 문서함 팝업 URL을 반환합니다.
-         * 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetURL()
         {
@@ -1690,7 +1690,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 세금계산서 인쇄(공급받는자) 팝업 URL을 반환합니다.
-         * - URL 보안정책에 따라 반환된 URL은 30초의 유효시간을 갖습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetEPrintURL()
         {
@@ -1713,7 +1713,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 대량의 세금계산서 인쇄팝업 URL을 반환합니다. (최대 100건)
-         * - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetMassPrintURL()
         {
@@ -1763,7 +1763,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
-         * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetAccessURL()
         {
@@ -1780,7 +1780,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 인감 및 첨부문서 등록 URL을 반환합니다.
-         * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetSealURL()
         {
@@ -2142,7 +2142,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
         * 팝빌 회원의 공인인증서를 등록하는 팝업 URL을 반환합니다.
-        * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+        * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
         * - 팝빌에 등록된 공인인증서가 유효하지 않은 경우 (비밀번호 변경, 인증서 재발급/갱신, 만료일 경과)
         *   인증서를 재등록해야 정상적으로 전자세금계산서 발행이 가능합니다.
         */
@@ -2215,7 +2215,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
-         * 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetChargeURL()
         {
@@ -2232,8 +2232,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 파트너의 잔여포인트를 확인합니다.
-         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를
-         *   이용하시기 바랍니다.
+         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
          */
         public IActionResult GetPartnerBalance()
         {
@@ -2343,7 +2342,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 파트너의 연동회원으로 회원가입을 요청합니다.
+         * 파트너의 연동회원으로 신규가입 처리합니다.
          */
         public IActionResult JoinMember()
         {
