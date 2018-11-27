@@ -40,8 +40,8 @@ namespace StatementExample.Controllers
         #region 전자명세서 발행 
 
         /*
-         * 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
-         * - LinkID는 인증정보로 설정되어 있는 링크아이디 값입니다.
+         * 전자명세서 관리번호 중복여부를 확인합니다.
+         * - 관리번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
          */
         public IActionResult CheckMgtKeyInUse()
         {
@@ -64,7 +64,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 1건의 전자명세서를 즉시발행 처리합니다.
+         * 1건의 전자명세서를 [즉시발행]합니다.
          */
         public IActionResult RegistIssue()
         {
@@ -72,7 +72,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20181124";
+            statement.writeDate = "20181127";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -87,7 +87,7 @@ namespace StatementExample.Controllers
             statement.itemCode = 121;
 
             // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20181124223612";
+            statement.mgtKey = "20181127111613";
 
 
             /**************************************************************************
@@ -277,7 +277,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 1건의 전자명세서를 임시저장합니다.
+         * 1건의 전자명세서를 [임시저장]합니다.
          */
         public IActionResult Register()
         {
@@ -300,7 +300,7 @@ namespace StatementExample.Controllers
             statement.itemCode = 121;
 
             // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20181124225313";
+            statement.mgtKey = "20181124231612";
 
 
             /**************************************************************************
@@ -487,7 +487,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 1건의 전자명세서를 수정합니다.
+         * 1건의 전자명세서를 [수정]합니다.
          * - [임시저장] 상태의 전자명세서만 수정할 수 있습니다.
          */
         public IActionResult Update()
@@ -497,7 +497,7 @@ namespace StatementExample.Controllers
 
             // 수정할 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20181124231612";
 
 
             // 전자명세서 정보 객체
@@ -701,16 +701,16 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 1건의 [임시저장] 상태의 전자명세서를 발행처리합니다.
+         * 1건의 [임시저장] 상태의 전자명세서를 [발행]합니다.
          */
         public IActionResult Issue()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 임시저장할 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 발행처리할 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20181124231612";
 
             // 발행 메모
             string memo = "발행 메모";
@@ -727,7 +727,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 1건의 전자명세서를 [발행취소] 처리합니다.
+         * 1건의 전자명세서를 [발행취소]합니다.
          */
         public IActionResult Cancel()
         {
@@ -743,6 +743,7 @@ namespace StatementExample.Controllers
 
             try
             {
+                //Cancel
                 var response = _statementService.CancelIssue(corpNum, itemCode, mgtKey, memo, userID);
                 return View("Response", response);
             }
@@ -753,7 +754,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 1건의 전자명세서를 삭제합니다.
+         * 1건의 전자명세서를 [삭제]합니다.
          * - 전자명세서를 삭제하면 사용된 문서관리번호(mgtKey)를 재사용할 수 있습니다.
          * - 삭제가능한 문서 상태 : [임시저장], [발행취소]
          */
@@ -764,7 +765,7 @@ namespace StatementExample.Controllers
 
             // 삭제할 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20181124-02";
 
             // 발행 메모
             string memo = "발행 메모";
@@ -818,7 +819,7 @@ namespace StatementExample.Controllers
             int itemCode = 121;
 
             // 조회할 전자명세서 문서관리번호 배열, (최대 1000건)
-            List<string> mgtKeyList = new List<string> {"20181112-a003", "20181108-002", "20181023_01"};
+            List<string> mgtKeyList = new List<string> {"20181112-a003", "20181124224344", "20181112-a004"};
 
             try
             {
@@ -929,7 +930,7 @@ namespace StatementExample.Controllers
 
         /*
          * 팝빌 전자명세서 문서함 관련 팝업 URL을 반환합니다.
-         * 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetURL()
         {
@@ -953,7 +954,7 @@ namespace StatementExample.Controllers
 
         /*
          * 1건의 전자명세서 보기 팝업 URL을 반환합니다.
-         * - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetPopUpURL()
         {
@@ -977,7 +978,7 @@ namespace StatementExample.Controllers
 
         /*
          * 1건의 전자명세서 인쇄팝업 URL을 반환합니다.
-         * - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetPrintURL()
         {
@@ -1001,7 +1002,7 @@ namespace StatementExample.Controllers
 
         /*
          * 1건의 전자명세서 인쇄팝업 URL을 반환합니다.
-         * - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetEPrintURL()
         {
@@ -1025,7 +1026,7 @@ namespace StatementExample.Controllers
 
         /*
          * 다수건의 전자명세서 인쇄팝업 URL을 반환합니다. (최대 100건)
-         * - 보안정책으로 인해 반환된 URL의 유효시간은 30초입니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetMassPrintURL()
         {
@@ -1033,7 +1034,7 @@ namespace StatementExample.Controllers
             int itemCode = 121;
 
             // 조회할 전자명세서 문서관리번호 배열, (최대 1000건)
-            List<string> mgtKeyList = new List<string> {"20181112-a003", "20181108-002", "20181023_01"};
+            List<string> mgtKeyList = new List<string> {"20181112103859", "20181124224344", "20181105-004"};
 
             try
             {
@@ -1075,9 +1076,9 @@ namespace StatementExample.Controllers
         #region 부가기능 
 
         /*
-          * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
-          * 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
-          */
+         * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         */
         public IActionResult GetAccessURL()
         {
             try
@@ -1106,8 +1107,7 @@ namespace StatementExample.Controllers
             string mgtKey = "20181124225313";
 
             // 파일경로
-//            string filePath = "C:/popbill.example.dotnetcore/CashbillExample/wwwroot/images/tax_image.png";
-            string filePath = "/Users/kimhyunjin/SDK/popbill.example.dotnetcore/StatementExample/wwwroot/images/tax_image.png";
+            string filePath = "C:/popbill.example.dotnetcore/StatementExample/wwwroot/images/tax_image.png";
 
             try
             {
@@ -1269,8 +1269,10 @@ namespace StatementExample.Controllers
         /*
          * 팝빌에 전자명세서를 등록하지 않고 공급받는자에게 팩스전송합니다.
          * - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-         * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역]
-         *   메뉴에서 전송결과를 확인할 수 있습니다.
+         * - 팩스 발행 요청시 작성한 문서관리번호는 팩스전송 파일명으로 사용됩니다.
+         * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
+         * - 팩스 전송결과를 확인하기 위해서는 선팩스 전송 요청 시 반환받은 접수번호를 이용하여
+         *   팩스 API의 전송결과 확인 (GetFaxDetail) API를 이용하면 됩니다.
          */
         public IActionResult FAXSend()
         {
@@ -1293,7 +1295,7 @@ namespace StatementExample.Controllers
             statement.itemCode = 121;
 
             // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20181124";
+            statement.mgtKey = "20181127112719";
 
 
             /**************************************************************************
@@ -1476,8 +1478,8 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.FAXSend(corpNum, statement, sendNum, receiveNum, userID);
-                return View("Response", response);
+                var result = _statementService.FAXSend(corpNum, statement, sendNum, receiveNum, userID);
+                return View("Result", result);
             }
             catch (PopbillException pe)
             {
@@ -1612,7 +1614,7 @@ namespace StatementExample.Controllers
 
         /*
          * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
-         * 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetChargeURL()
         {
@@ -1746,7 +1748,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 파트너의 연동회원으로 회원가입을 요청합니다.
+         * 파트너의 연동회원으로 신규가입 처리합니다.
          */
         public IActionResult JoinMember()
         {
