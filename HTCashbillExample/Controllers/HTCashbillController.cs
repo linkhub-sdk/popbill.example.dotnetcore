@@ -459,7 +459,7 @@ namespace HTCashbillExample.Controllers
         }
 
         /*
-         * 파트너의 연동회원으로 회원가입을 요청합니다.
+         * 파트너의 연동회원으로 신규가입 처리합니다.
          */
         public IActionResult JoinMember()
         {
