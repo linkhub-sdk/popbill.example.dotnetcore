@@ -41,7 +41,7 @@ namespace ClosedownExample.Controllers
         #region 휴폐업조회
 
         /*
-         * 1건의 사업자에 대한 휴폐업여부를 조회합니다.
+         * 1건의 휴폐업 정보 조회합니다.
          */
         public IActionResult CheckCorpNum()
         {
@@ -100,7 +100,7 @@ namespace ClosedownExample.Controllers
 
         /*
          * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
-         * 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetChargeURL()
         {
@@ -117,8 +117,7 @@ namespace ClosedownExample.Controllers
 
         /*
          * 파트너의 잔여포인트를 확인합니다.
-         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를
-         *   이용하시기 바랍니다.
+         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
          */
         public IActionResult GetPartnerBalance()
         {
@@ -139,7 +138,7 @@ namespace ClosedownExample.Controllers
          */
         public IActionResult GetPartnerURL()
         {
-            // CHRG 포인트충전 URL
+            // CHRG - 포인트충전 URL
             string TOGO = "CHRG";
 
             try
@@ -228,7 +227,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 파트너의 연동회원으로 회원가입을 요청합니다.
+         * 파트너의 연동회원으로 신규가입 처리합니다.
          */
         public IActionResult JoinMember()
         {
@@ -377,7 +376,7 @@ namespace ClosedownExample.Controllers
 
         /*
          * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
-         * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetAccessURL()
         {
