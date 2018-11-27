@@ -154,7 +154,7 @@ namespace MessageExample.Controllers
             }
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -208,7 +208,7 @@ namespace MessageExample.Controllers
             }
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -256,7 +256,7 @@ namespace MessageExample.Controllers
             string contents = "장문 문자 메시지 내용. 최대 2000byte 초과된 내용은 삭제되어 전송.";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -314,7 +314,7 @@ namespace MessageExample.Controllers
             }
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -372,7 +372,7 @@ namespace MessageExample.Controllers
             }
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -424,7 +424,7 @@ namespace MessageExample.Controllers
             string filePath = "";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -485,7 +485,7 @@ namespace MessageExample.Controllers
             string filePath = "";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -546,7 +546,7 @@ namespace MessageExample.Controllers
             string filePath = "";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -593,7 +593,7 @@ namespace MessageExample.Controllers
             string contents = "단문/장문 문자 메시지 내용. 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송됨";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181227141909);
+            DateTime? sndDT = null;
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -651,7 +651,7 @@ namespace MessageExample.Controllers
             }
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -708,7 +708,7 @@ namespace MessageExample.Controllers
             }
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
@@ -858,7 +858,7 @@ namespace MessageExample.Controllers
 
             try
             {
-                var Response = _messageService.GetMessage(corpNum, receiptNum, userID);
+                var Response = _messageService.GetMessages(corpNum, receiptNum, userID);
                 return View("GetMessages", Response);
             }
             catch (PopbillException pe)
@@ -902,7 +902,7 @@ namespace MessageExample.Controllers
 
             try
             {
-                var Response = _messageService.GetMessageRN(corpNum, requestNum, userID);
+                var Response = _messageService.GetMessagesRN(corpNum, requestNum, userID);
                 return View("GetMessages", Response);
             }
             catch (PopbillException pe)
