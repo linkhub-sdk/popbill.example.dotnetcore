@@ -1,51 +1,51 @@
 @{
-  ViewBag.Title = "Search (수집 결과 조회)";
+    ViewBag.Title = "Search (수집 결과 조회)";
 }
 
 <div id="content">
-  <p class="heading1">Response</p>
-  <br/>
-  <fieldset class="fieldset1">
-    <legend>@ViewData["Title"]</legend>
-    <ul>
-      <li>code (응답코드) : @Model.code</li>
-      <li>message (응답메시지) : @Model.message</li>
-      <li>total (총 검색결과 건수) : @Model.total</li>
-      <li>perPage (페이지당 검색개수) : @Model.perPage</li>
-      <li>pageNum (페이지당 번호) : @Model.pageNum</li>
-      <li>pageCount (페이지 개수) : @Model.pageCount</li>
-    </ul>
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>code (응답코드) : @Model.code</li>
+            <li>message (응답메시지) : @Model.message</li>
+            <li>total (총 검색결과 건수) : @Model.total</li>
+            <li>perPage (페이지당 검색개수) : @Model.perPage</li>
+            <li>pageNum (페이지당 번호) : @Model.pageNum</li>
+            <li>pageCount (페이지 개수) : @Model.pageCount</li>
+        </ul>
 
-    @{
-      int i = 0;
-      foreach (var list in Model.list)
-      {
-        i++;
-        <fieldset class="fieldset2">
-          <legend>세금계산서 상태/요약정보 확인 [ @i / @Model.list.Count ]</legend>
-          <ul>
-            <li>ntsconfirmNum (국세청승인번호) : @list.ntsconfirmNum</li>
-            <li>tradeDate (거래일자) : @list.tradeDate</li>
-            <li>tradeDT (거래일시) : @list.tradeDT</li>
-            <li>tradeType (문서형태) : @list.tradeType</li>
-            <li>tradeUsage (거래구분) : @list.tradeUsage</li>
-            <li>totalAmount (거래금액) : @list.totalAmount</li>
-            <li>supplyCost (공급가액) : @list.supplyCost</li>
-            <li>tax (부가세) : @list.tax</li>
-            <li>serviceFee (봉사료) : @list.serviceFee</li>
-            <li>invoiceType (매입/매출) : @list.invoiceType</li>
-            <li>franchiseCorpNum (발행자 사업자번호) : @list.franchiseCorpNum</li>
-            <li>franchiseCorpName (발행자 상호) : @list.franchiseCorpName</li>
-            <li>franchiseCorpType (발행자 사업자유형) : @list.franchiseCorpType</li>
-            <li>identityNum (거래처 식별번호) : @list.identityNum</li>
-            <li>identityNumType (식별번호유형) : @list.identityNumType</li>
-            <li>customerName (고객명) : @list.customerName</li>
-            <li>cardOwnerName (카드소유자명) : @list.cardOwnerName</li>
-            <li>deductionType (공제유형) : @list.deductionType</li>
-          </ul>
-        </fieldset>
-      }
-    }
-  </fieldset>
+        @{
+            int i = 0;
+            foreach (var list in Model.list)
+            {
+                i++;
+                <fieldset class="fieldset2">
+                    <legend>세금계산서 상태/요약정보 확인 [ @i / @Model.list.Count ]</legend>
+                    <ul>
+                        <li>ntsconfirmNum (국세청승인번호) : @list.ntsconfirmNum</li>
+                        <li>tradeDate (거래일자) : @list.tradeDate</li>
+                        <li>tradeDT (거래일시) : @list.tradeDT</li>
+                        <li>tradeType (문서형태) : @list.tradeType</li>
+                        <li>tradeUsage (거래구분) : @list.tradeUsage</li>
+                        <li>totalAmount (거래금액) : @list.totalAmount</li>
+                        <li>supplyCost (공급가액) : @list.supplyCost</li>
+                        <li>tax (부가세) : @list.tax</li>
+                        <li>serviceFee (봉사료) : @list.serviceFee</li>
+                        <li>invoiceType (매입/매출) : @list.invoiceType</li>
+                        <li>franchiseCorpNum (발행자 사업자번호) : @list.franchiseCorpNum</li>
+                        <li>franchiseCorpName (발행자 상호) : @list.franchiseCorpName</li>
+                        <li>franchiseCorpType (발행자 사업자유형) : @list.franchiseCorpType</li>
+                        <li>identityNum (거래처 식별번호) : @list.identityNum</li>
+                        <li>identityNumType (식별번호유형) : @list.identityNumType</li>
+                        <li>customerName (고객명) : @list.customerName</li>
+                        <li>cardOwnerName (카드소유자명) : @list.cardOwnerName</li>
+                        <li>deductionType (공제유형) : @list.deductionType</li>
+                    </ul>
+                </fieldset>
+            }
+        }
+    </fieldset>
 </div>
 
