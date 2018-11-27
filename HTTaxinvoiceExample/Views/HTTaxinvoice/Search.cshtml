@@ -24,45 +24,51 @@
         <fieldset class="fieldset2">
           <legend>세금계산서 상태/요약정보 확인 [ @i / @Model.list.Count ]</legend>
           <ul>
-            @* @list[0].invoiceType *@
-            @* <li>itemKey (팝빌 관리번호) : @list.itemKey</li> *@
-            @* <li>taxType (과세형태) : @list.taxType</li> *@
-            @* <li>writeDate (작성g일자) : @list.writeDate</li> *@
-            @* <li>regDT (등록일자) : @list.regDT</li> *@
-            @* <li>issueType (발행형태) : @list.issueType</li> *@
-            @* <li>supplyCostTotal (공급가액 합계) : @list.supplyCostTotal</li> *@
-            @* <li>taxTotal (세액 합계) : @list.taxTotal</li> *@
-            @* <li>purposeType (영수/청구) : @list.purposeType</li> *@
-            @* <li>issueDT (발행일시) : @list.issueDT</li> *@
-            @* <li>lateIssueYN (지연발행 여부) : @list.lateIssueYN</li> *@
-            @* <li>interOPYN (연동문서 여부) : @list.interOPYN</li> *@
-            @* <li>preIssueDT (발행예정일시) : @list.preIssueDT</li> *@
-            @* <li>openYN (개봉 여부) : @list.openYN</li> *@
-            @* <li>openDT (개봉 일시) : @list.openDT</li> *@
-            @* <li>stateMemo (상태메모) : @list.stateMemo</li> *@
-            @* <li>stateCode (상태코드) : @list.stateCode</li> *@
-            @* <li>nstconfirmNum (국세청승인번호) : @list.ntsconfirmNum</li> *@
-            @* <li>ntsresult (국세청 전송결과) : @list.ntsresult</li> *@
-            @* <li>ntssendDT (국세청 전송일시) : @list.ntssendDT</li> *@
-            @* <li>ntsresultDT (국세청 결과 수신일시) : @list.ntsresultDT</li> *@
-            @* <li>ntssendErrCode (전송실패 사유코드) : @list.ntssendErrCode</li> *@
-            @* <li>modifyCode (수정 사유코드) : @list.modifyCode</li> *@
-            @* *@
-            @* <li>invoicerCorpName (공급자 상호) : @list.invoicerCorpName</li> *@
-            @* <li>invoicerCorpNum (공급자 사업자번호) : @list.invoicerCorpNum</li> *@
-            @* <li>invoicerMgtKey (공급자 문서관리번호) : @list.invoicerMgtKey</li> *@
-            @* <li>invoicerPrintYN (공급자 인쇄여부) : @list.invoicerPrintYN</li> *@
-            @* *@
-            @* <li>invoiceeCorpName (공급받는자 상호) : @list.invoiceeCorpName</li> *@
-            @* <li>invoiceeCorpNum (공급받는자 사업자번호) : @list.invoiceeCorpNum</li> *@
-            @* <li>invoiceePrintYN (공급받는자 관리번호) : @list.invoiceePrintYN</li> *@
-            @* <li>closeDownState (공급받는자 휴패업상태코드) : @list.closeDownState</li> *@
-            @* <li>closeDownStateDate (공급받는자 휴폐업일자) : @list.closeDownStateDate</li> *@
-            @* *@
-            @* <li>trusteeCorpName (수탁자 상호) : @list.trusteeCorpName</li> *@
-            @* <li>trusteeCorpNum (수탁자 사업자번호) : @list.trusteeCorpNum</li> *@
-            @* <li>trusteeMgtKey (수탁자 문서관리번호) : @list.trusteeMgtKey</li> *@
-            @* <li>trusteePrintYN (수탁자 인쇄여부) : @list.trusteePrintYN</li> *@
+            <li>ntsconfirmNum (국세청승인번호) : @list.ntsconfirmNum</li>
+            <li>writeDate (작성일자) : @list.writeDate</li>
+            <li>issueDate (발행일자) : @list.issueDate</li>
+            <li>sendDate (전송일자) : @list.sendDate</li>
+            <li>taxType (과세형태) : @list.taxType</li>
+            <li>purposeType (영수/청구) : @list.purposeType</li>
+            <li>supplyCostTotal (공급가액 합계) : @list.supplyCostTotal</li>
+            <li>taxTotal (세액 합계) : @list.taxTotal</li>
+            <li>totalAmount (합계금액) : @list.totalAmount</li>
+            <li>remark1 (비고) : @list.remark1</li>
+            <li>invoiceType (매입/매출) : @list.invoiceType</li>
+
+            <li>modifyYN (수정 전자세금계산서 여부) : @list.modifyYN</li>
+            <li>orgNTSConfirmNum (원본 전자세금계산서 국세청승인번호) : @list.orgNTSConfirmNum</li>
+
+            <li>purchaseDate (거래일자) : @list.purchaseDate</li>
+            <li>itemName (품명) : @list.itemName</li>
+            <li>spec (규격) : @list.spec</li>
+            <li>qty (수량) : @list.qty</li>
+            <li>unitCost (단가) : @list.unitCost</li>
+            <li>supplyCost (공급가액) : @list.supplyCost</li>
+            <li>tax (세액) : @list.tax</li>
+            <li>remark (비고) : @list.remark</li>
+
+            <li>invoicerCorpNum (공급자 사업자번호) : @list.invoicerCorpNum</li>
+            <li>invoicerTaxRegID (공급자 종사업장번호) : @list.invoicerTaxRegID</li>
+            <li>invoicerCorpName (공급자 상호) : @list.invoicerCorpName</li>
+            <li>invoicerCEOName (공급자 대표자성명) : @list.invoicerCEOName</li>
+            <li>invoicerEmail (공급자 담당자 이메일) : @list.invoicerEmail</li>
+
+            <li>invoiceeCorpNum (공급받는자 사업자번호) : @list.invoiceeCorpNum</li>
+            <li>invoiceeType (공급받는자 구분) : @list.invoiceeType</li>
+            <li>invoiceeTaxRegID (공급받는자 종사업장번호) : @list.invoiceeTaxRegID</li>
+            <li>invoiceeCorpName (공급받는자 상호) : @list.invoiceeCorpName</li>
+            <li>invoiceeCEOName (공급받는자 대표자 성명) : @list.invoiceeCEOName</li>
+            <li>invoiceeEmail1 (공급받는자 담당자 이메일) : @list.invoiceeEmail1</li>
+            <li>invoiceeEmail2 (공급받는자 ASP 연계사업자 이메일) : @list.invoiceeEmail2</li>
+
+            <li>trusteeCorpNum (수탁자 사업자번호) : @list.trusteeCorpNum</li>
+            <li>tursteeTaxRegID (수탁자 종사업장번호) : @list.trusteeTaxRegID</li>
+            <li>tursteeCorpName (수탁자 상호) : @list.trusteeCorpName</li>
+            <li>trusteeCEOName (수탁자 대표자 성명) : @list.trusteeCEOName</li>
+            <li>trusteeEmail (수탁자 담당자 이메일) : @list.trusteeEmail</li>
+
+
           </ul>
         </fieldset>
       }

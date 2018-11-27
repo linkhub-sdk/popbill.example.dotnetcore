@@ -29,27 +29,27 @@
             <li> modifyCode (수정사유코드) : @Model.modifyCode </li>
             <li> orgNTSConfirmNum (원본 전자세금계산서 국세청승인번호) : @Model.orgNTSConfirmNum </li>
 
-@*             @{ *@
-@*                 int i = 0; *@
-@*                 foreach (var detailList in Model.detailList) *@
-@*                 { *@
-@*                     i++; *@
-@*                     <fieldset class="fieldset2"> *@
-@*                         <legend>상세항목(품목) 정보 [ @i / @Model.detailList.Count ]</legend> *@
-@*                         <ul> *@
-@*                             <li> serialNum (일련번호) : @detailList.serialNum </li> *@
-@*                             <li> purchaseDT (거래일자) : @detailList.purchaseDT </li> *@
-@*                             <li> itemName (품명) : @detailList.itemName </li> *@
-@*                             <li> spec (규격) : @detailList.spec </li> *@
-@*                             <li> qty (수량) : @detailList.qty </li> *@
-@*                             <li> unitCost (단가) : @detailList.unitCost </li> *@
-@*                             <li> supplyCost (공급가액) : @detailList.supplyCost </li> *@
-@*                             <li> tax (세액) : @detailList.tax </li> *@
-@*                             <li> remark (비고) : @detailList.remark </li> *@
-@*                         </ul> *@
-@*                     </fieldset> *@
-@*                 } *@
-@*             } *@
+@*              @{ *@
+@*                  int i = 0; *@
+@*                  foreach (var detailList in Model.detailList) *@
+@*                  { *@
+@*                      i++; *@
+@*                      <fieldset class="fieldset2"> *@
+@*                          <legend>상세항목(품목) 정보 [ @i / @Model.detailList.Count ]</legend> *@
+@*                          <ul> *@
+@*                              <li> serialNum (일련번호) : @detailList.serialNum </li> *@
+@*                              <li> purchaseDT (거래일자) : @detailList.purchaseDT </li> *@
+@*                              <li> itemName (품명) : @detailList.itemName </li> *@
+@*                              <li> spec (규격) : @detailList.spec </li> *@
+@*                              <li> qty (수량) : @detailList.qty </li> *@
+@*                              <li> unitCost (단가) : @detailList.unitCost </li> *@
+@*                              <li> supplyCost (공급가액) : @detailList.supplyCost </li> *@
+@*                              <li> tax (세액) : @detailList.tax </li> *@
+@*                              <li> remark (비고) : @detailList.remark </li> *@
+@*                          </ul> *@
+@*                      </fieldset> *@
+@*                  } *@
+@*              } *@
 
             <li> invoicerCorpNum (공급자 사업자번호) : @Model.invoicerCorpNum </li>
             <li> invoicerMgtKey (공급자 문서관리번호) : @Model.invoicerMgtKey </li>
@@ -67,27 +67,27 @@
             <li> invoiceeType (공급받는자 구분) : @Model.invoiceeType </li>
             <li> invoiceeMgtKey (공급받는자 문서관리번호) : @Model.invoiceeMgtKey </li>
             <li> invoiceeTaxRegID (공급받는자 종사업장번호) : @Model.invoiceeTaxRegID </li>
-            <li> invoiceeCorpName (공급받는자 상호) : {{taxinvoice.invoiceeCorpName </li>
-            <li> invoiceeCEOName (공급받는자 대표자명) : {{taxinvoice.invoiceeCEOName </li>
-            <li> invoiceeAddr (공급받는자 주소) : {{taxinvoice.invoiceeAddr </li>
-            <li> invoiceeBizType (공급받는자 업태) : {{taxinvoice.invoiceeBizType </li>
-            <li> invoiceeBizClass (공급받는자 종목) : {{taxinvoice.invoiceeBizClass </li>
-            <li> invoiceeContactName1 (공급받는자 담당자명) : {{taxinvoice.invoiceeContactName1 </li>
-            <li> invoiceeDeptName1 (공급받는자 부서명) : {{taxinvoice.invoiceeDeptName1 </li>
-            <li> invoiceeTEL1 (공급받는자 담당자 연락처) : {{taxinvoice.invoiceeTEL1 </li>
-            <li> invoiceeEmail1 (공급받는자 담당자 이메일) : {{taxinvoice.invoiceeEmail1 </li>
-            <li> trusteeCorpNum (수탁자 사업자번호) : {{taxinvoice.trusteeCorpNum </li>
-            <li> trusteeMgtKey (수탁자 문서관리번호) : {{taxinvoice.trusteeMgtKey </li>
-            <li> trusteeTaxRegID (수탁자 종사업장번호) : {{taxinvoice.trusteeTaxRegID </li>
-            <li> trusteeCorpName (수탁자 상호) : {{taxinvoice.trusteeCorpName </li>
-            <li> trusteeCEOName (수탁자 대표자명) : {{taxinvoice.trusteeCEOName </li>
-            <li> trusteeAddr (수탁자 주소) : {{taxinvoice.trusteeAddr </li>
-            <li> trusteeBizType (수탁자 업태) : {{taxinvoice.trusteeBizType </li>
-            <li> trusteeBizClass (수탁자 종목) : {{taxinvoice.trusteeBizClass </li>
-            <li> trusteeContactName (수탁자 담당자명) : {{taxinvoice.trusteeContactName </li>
-            <li> trusteeTEL (수탁자 담당자 연락처) : {{taxinvoice.trusteeTEL </li>
-            <li> trusteeHP (수탁자 담당자 휴대폰) : {{taxinvoice.trusteeHP </li>
-            <li> trusteeEmail (수탁자 담당자 메일) : {{taxinvoice.trusteeEmail </li>
+            <li> invoiceeCorpName (공급받는자 상호) : @Model.invoiceeCorpName </li>
+            <li> invoiceeCEOName (공급받는자 대표자명) : @Model.invoiceeCEOName </li>
+            <li> invoiceeAddr (공급받는자 주소) : @Model.invoiceeAddr </li>
+            <li> invoiceeBizType (공급받는자 업태) : @Model.invoiceeBizType </li>
+            <li> invoiceeBizClass (공급받는자 종목) : @Model.invoiceeBizClass </li>
+            <li> invoiceeContactName1 (공급받는자 담당자명) : @Model.invoiceeContactName1 </li>
+            <li> invoiceeDeptName1 (공급받는자 부서명) : @Model.invoiceeDeptName1 </li>
+            <li> invoiceeTEL1 (공급받는자 담당자 연락처) : @Model.invoiceeTEL1 </li>
+            <li> invoiceeEmail1 (공급받는자 담당자 이메일) : @Model.invoiceeEmail1 </li>
+            <li> trusteeCorpNum (수탁자 사업자번호) : @Model.trusteeCorpNum </li>
+            <li> trusteeMgtKey (수탁자 문서관리번호) : @Model.trusteeMgtKey </li>
+            <li> trusteeTaxRegID (수탁자 종사업장번호) : @Model.trusteeTaxRegID </li>
+            <li> trusteeCorpName (수탁자 상호) : @Model.trusteeCorpName </li>
+            <li> trusteeCEOName (수탁자 대표자명) : @Model.trusteeCEOName </li>
+            <li> trusteeAddr (수탁자 주소) : @Model.trusteeAddr </li>
+            <li> trusteeBizType (수탁자 업태) : @Model.trusteeBizType </li>
+            <li> trusteeBizClass (수탁자 종목) : @Model.trusteeBizClass </li>
+            <li> trusteeContactName (수탁자 담당자명) : @Model.trusteeContactName </li>
+            <li> trusteeTEL (수탁자 담당자 연락처) : @Model.trusteeTEL </li>
+            <li> trusteeHP (수탁자 담당자 휴대폰) : @Model.trusteeHP </li>
+            <li> trusteeEmail (수탁자 담당자 메일) : @Model.trusteeEmail </li>
         </ul>
     </fieldset>
 </div>

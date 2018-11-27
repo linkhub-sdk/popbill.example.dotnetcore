@@ -199,7 +199,7 @@ namespace HTCashbillExample.Controllers
             try
             {
                 var result = _htCashbillService.GetCertificateExpireDate(corpNum, userID);
-                return View("Result", result);
+                return View("Result", result.ToString("yyyyMMddHHmmss"));
             }
             catch (PopbillException pe)
             {

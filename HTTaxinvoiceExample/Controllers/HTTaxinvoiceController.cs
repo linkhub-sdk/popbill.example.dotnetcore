@@ -47,9 +47,6 @@ namespace HTTaxinvoiceExample.Controllers
          */
         public IActionResult RequestJob()
         {
-            // 팝빌회원 사업자번호, '-' 제외 10자리
-            string testCorpNum = "1234567890";
-
             // 전자세금계산서 유형 SELL-매출, BUY-매입, TRUSTEE-위수탁
             KeyType tiKeyType = KeyType.SELL;
 
@@ -80,7 +77,7 @@ namespace HTTaxinvoiceExample.Controllers
         public IActionResult GetJobState()
         {
             // 수집 요청(requestJob API)시 반환반은 작업아이디(jobID)
-            string jobID = "018112618000000003";
+            string jobID = "018112711000000001";
 
             try
             {
@@ -122,7 +119,7 @@ namespace HTTaxinvoiceExample.Controllers
         public IActionResult Search()
         {
             // 수집 요청(requestJob API)시 반환반은 작업아이디(jobID)
-            string jobID = "018112618000000003";
+            string jobID = "018112711000000001";
 
             // 문서형태 배열, N-일반 전자세금계산서, M-수정 전자세금계산서
             string[] Type = {"N", "M"};
@@ -170,7 +167,7 @@ namespace HTTaxinvoiceExample.Controllers
         public IActionResult Summary()
         {
             // 수집 요청(requestJob API)시 반환반은 작업아이디(jobID)
-            string jobID = "018112618000000003";
+            string jobID = "018112711000000001";
 
             // 문서형태 배열, N-일반 전자세금계산서, M-수정 전자세금계산서
             string[] Type = {"N", "M"};
@@ -267,7 +264,7 @@ namespace HTTaxinvoiceExample.Controllers
         #region 홈택스연동 인증 관리
 
         /*
-         * 홈택스연동 공인인증서 등록 URL을 반환합니다.
+         * 홈택스연동에 이용할 공인인증서 등록 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetCertificatePopUpURL()
@@ -284,14 +281,15 @@ namespace HTTaxinvoiceExample.Controllers
         }
 
         /*
-         * 등록된 홈택스 공인인증서의 만료일자를 확인합니다.
+         * 홈택스연동에 이용하는 공인인증서의 만료일자를 반환합니다.
          */
         public IActionResult GetCertificateExpireDate()
         {
             try
             {
                 var result = _htTaxinvoiceService.GetCertificateExpireDate(corpNum, userID);
-                return View("Result", result);
+                
+                return View("Result", result.ToString("yyyyMMddHHmmss"));
             }
             catch (PopbillException pe)
             {
@@ -551,7 +549,7 @@ namespace HTTaxinvoiceExample.Controllers
         }
 
         /*
-         * 파트너의 연동회원으로 회원가입을 요청합니다.
+         * 파트너의 연동회원으로 신규가입 처리합니다.
          */
         public IActionResult JoinMember()
         {
@@ -584,6 +582,23 @@ namespace HTTaxinvoiceExample.Controllers
             }
         }
 
+        /*
+         * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         */
+        public IActionResult GetAccessURL()
+        {
+            try
+            {
+                var result = _htTaxinvoiceService.GetAccessURL(corpNum, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+        
         /*
          * 연동회원의 회사정보를 확인합니다.
          */

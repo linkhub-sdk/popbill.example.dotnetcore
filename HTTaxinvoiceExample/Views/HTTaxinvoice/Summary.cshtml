@@ -1,8 +1,17 @@
-@model Popbill.HomeTax.HTTaxinvoiceSummary
-
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+    ViewBag.Title = "Summary (수집 결과 요약정보 조회)";
 }
 
-<h2>title</h2>
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li> count (수집 결과 건수) : @Model.count</li>
+            <li> supplyCostTotal (공급가액 합계) : @Model.supplyCostTotal</li>
+            <li> taxTotal (세액 합계) : @Model.taxTotal</li>
+            <li> amountTotal (합계 금액) : @Model.amountTotal</li>
+        </ul>
+    </fieldset>
+</div>
