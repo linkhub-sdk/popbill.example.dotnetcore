@@ -97,14 +97,14 @@ namespace FaxExample.Controllers
 
             // 팩스전송 파일경로, 전송파일 최대 20개 
             List<string> filePath = new List<string>();
-            filePath.Add("");
-            filePath.Add("");
+            filePath.Add("/Users/kimhyunjin/SDK/popbill.example.dotnetcore/FaxExample/wwwroot/images/tax_image.png");
+            filePath.Add("/Users/kimhyunjin/SDK/popbill.example.dotnetcore/FaxExample/wwwroot/images/tax_image.png");
 
             // 팩스제목
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고여부 (기본값 false)
             bool adsYN = false;
@@ -154,14 +154,14 @@ namespace FaxExample.Controllers
 
             // 팩스전송 파일경로, 전송파일 최대 20개 
             List<string> filePath = new List<string>();
-            filePath.Add("");
-            filePath.Add("");
+            filePath.Add("/Users/kimhyunjin/SDK/popbill.example.dotnetcore/FaxExample/wwwroot/images/tax_image.png");
+            filePath.Add("/Users/kimhyunjin/SDK/popbill.example.dotnetcore/FaxExample/wwwroot/images/tax_image.png");
 
             // 팩스제목
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고여부 (기본값 false)
             bool adsYN = false;
@@ -193,7 +193,7 @@ namespace FaxExample.Controllers
         public IActionResult GetFaxDetail()
         {
             // 팩스전송 요청시 발급받은 접수번호
-            string receiptNum = "018092922570100001";
+            string receiptNum = "018112714511700001";
 
             try
             {
@@ -252,7 +252,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고여부 (기본값 false)
             bool adsYN = false;
@@ -311,7 +311,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고여부 (기본값 false)
             bool adsYN = false;
@@ -402,7 +402,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고여부 (기본값 false)
             bool adsYN = false;
@@ -461,7 +461,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 광고여부 (기본값 false)
             bool adsYN = false;
@@ -561,7 +561,7 @@ namespace FaxExample.Controllers
         {
             // 팩스전송 요청시 발급받은 접수번호
             string receiptNum = "018092922570100001";
-            
+
             try
             {
                 var result = _faxService.GetPreviewURL(corpNum, receiptNum, userID);
@@ -723,7 +723,7 @@ namespace FaxExample.Controllers
         }
 
         /*
-         * 파트너의 연동회원으로 회원가입을 요청합니다.
+         * 파트너의 연동회원으로 신규가입 처리합니다.
          */
         public IActionResult JoinMember()
         {
@@ -749,6 +749,23 @@ namespace FaxExample.Controllers
             {
                 var response = _faxService.JoinMember(joinInfo);
                 return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         */
+        public IActionResult GetAccessURL()
+        {
+            try
+            {
+                var result = _faxService.GetAccessURL(corpNum, userID);
+                return View("Result", result);
             }
             catch (PopbillException pe)
             {

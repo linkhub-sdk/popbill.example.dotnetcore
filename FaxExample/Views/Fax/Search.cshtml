@@ -22,7 +22,7 @@
             {
                 i++;
                 <fieldset class="fieldset2">
-                    <legend> 전송결과 정보 [ @i / @Model.Count ]</legend>
+                    <legend> 전송결과 정보 [ @i / @Model.list.Count ]</legend>
                     <ul>
                         <li> state (전송상태 코드) : @list.state</li>
                         <li> result (전송결과 코드) : @list.result</li>
@@ -40,7 +40,15 @@
                         <li> receiptDT (접수일시) : @list.receiptDT</li>
                         <li> sendDT (발송일시) : @list.sendDT</li>
                         <li> resultDT (전송결과 수신일시) : @list.resultDT</li>
-                        <li> fileNames (전송파일명 리스트) : </li>
+                        <li>
+                            fileNames (전송파일명 리스트) :
+                            @{
+                                foreach (var files in @list.fileNames)
+                                {
+                                    <span> @files </span>
+                                }
+                            }
+                        </li>
                         <li> receiptNum (접수번호) : @list.receiptNum</li>
                         <li> requestNum (요청번호) : @list.requestNum</li>
                         <li> chargePageCnt (과금 페이지수) : @list.chargePageCnt</li>
