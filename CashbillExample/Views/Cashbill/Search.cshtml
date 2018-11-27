@@ -21,9 +21,9 @@
             {
                 i++;
                 <fieldset class="fieldset2">
-                    <legend>현금영수증 상태/요약정보 확인 [ @i ]</legend>
+                    <legend>현금영수증 상태/요약정보 확인 [ @i / @Model.list.Count ]</legend>
                     <ul>
-                        <li> itemKey (현금영수증 아이템키) : @list.itemKey</li>
+                        <li> itemKey (팝빌 관리번호) : @list.itemKey</li>
                         <li> mgtKey (문서관리번호) : @list.mgtKey</li>
                         <li> tradeDate (거래일자) : @list.tradeDate</li>
                         <li> tradeType (문서형태) : @list.tradeType</li>

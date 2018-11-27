@@ -61,7 +61,7 @@ namespace CashbillExample.Controllers
         }
 
         /*
-         * 1건의 현금영수증을 [즉시발행] 합니다.
+         * 1건의 현금영수증을 [즉시발행]합니다.
          * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
          * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.4. 국세청 전송정책"을 참조하시기 바랍니다.
          * - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
@@ -73,7 +73,7 @@ namespace CashbillExample.Controllers
 
             // [필수] 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            cashbill.mgtKey = "20181122-001";
+            cashbill.mgtKey = "20181127-001";
 
             // [취소거래시 필수] 원본 현금영수증 국세청승인번호
             cashbill.orgConfirmNum = "";
@@ -161,7 +161,7 @@ namespace CashbillExample.Controllers
         }
 
         /*
-         * 1건의 현금영수증을 [임시저장] 합니다.
+         * 1건의 현금영수증을 [임시저장]합니다.
          * - [임시저장] 상태의 현금영수증은 발행(Issue API)을 호출해야만 국세청에 전송됩니다.
          * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
          * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.4. 국세청 전송정책"을 참조하시기 바랍니다.
@@ -174,7 +174,7 @@ namespace CashbillExample.Controllers
 
             // [필수] 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            cashbill.mgtKey = "20181122-002";
+            cashbill.mgtKey = "20181127-002";
 
             // [취소거래시 필수] 원본 현금영수증 국세청승인번호
             cashbill.orgConfirmNum = "";
@@ -259,7 +259,7 @@ namespace CashbillExample.Controllers
         }
 
         /*
-         * 1건의 현금영수증을 [수정] 합니다.
+         * 1건의 현금영수증을 [수정]합니다.
          * - [임시저장] 상태의 현금영수증만 수정할 수 있습니다.
          * - 국세청에 신고된 현금영수증은 수정할 수 없으며, 취소 현금영수증을 발행하여 취소처리 할 수 있습니다.
          * - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
@@ -268,7 +268,7 @@ namespace CashbillExample.Controllers
         {
             // 수정할 현금영수증 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181122-002";
+            string mgtKey = "20181127-002";
 
             
             // 현금영수증 정보 객체 
@@ -357,14 +357,14 @@ namespace CashbillExample.Controllers
         }
 
         /*
-         * 1건의 임시저장 현금영수증을 [발행] 합니다.
+         * 1건의 [임시저장] 현금영수증을 [발행]합니다.
          * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
          * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.4. 국세청 전송정책"을 참조하시기 바랍니다.
          */
         public IActionResult Issue()
         {
             // 현금영수증 문서관리번호
-            string mgtKey = "20181122-002";
+            string mgtKey = "20181127-002";
 
             // 메모
             string memo = "발행 메모";
@@ -381,7 +381,7 @@ namespace CashbillExample.Controllers
         }
 
         /*
-         * [발행완료] 상태의 현금영수증을 [발행취소] 합니다.
+         * [발행완료] 상태의 현금영수증을 [발행취소]합니다.
          * - 발행취소는 국세청 전송전에만 가능합니다.
          * - 발행취소된 형금영수증은 국세청에 전송되지 않습니다.
          */
@@ -426,7 +426,7 @@ namespace CashbillExample.Controllers
         }
 
         /*
-         * 1건의 취소현금영수증을 [즉시발행] 합니다.
+         * 1건의 취소현금영수증을 [즉시발행]합니다.
          * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
          * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.4. 국세청 전송정책"을 참조하시기 바랍니다.
          * - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
@@ -454,7 +454,7 @@ namespace CashbillExample.Controllers
         }
 
         /*
-         * 1건의 (부분)취소현금영수증을 [즉시발행] 합니다.
+         * 1건의 (부분)취소현금영수증을 [즉시발행]합니다.
          * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
          * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.4. 국세청 전송정책"을 참조하시기 바랍니다.
          * - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
@@ -507,7 +507,7 @@ namespace CashbillExample.Controllers
         }
 
         /*
-         * 1건의 취소현금영수증을 [임시저장] 합니다.
+         * 1건의 취소현금영수증을 [임시저장]합니다.
          * - [임시저장] 상태의 현금영수증은 발행(Issue API)을 호출해야만 국세청에 전송됩니다.
          * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
          * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.4. 국세청 전송정책"을 참조하시기 바랍니다.
@@ -536,7 +536,7 @@ namespace CashbillExample.Controllers
         }
 
         /*
-         * 1건의 (부분)취소현금영수증을 [임시저장] 합니다.
+         * 1건의 (부분)취소현금영수증을 [임시저장]합니다.
          * - [임시저장] 상태의 현금영수증은 발행(Issue API)을 호출해야만 국세청에 전송됩니다.
          * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
          * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.4. 국세청 전송정책"을 참조하시기 바랍니다.
@@ -579,6 +579,7 @@ namespace CashbillExample.Controllers
 
             try
             {
+                // supplyCost, totalAmount
                 var response = _cashbillService.RevokeRegister(corpNum, mgtKey, orgConfirmNum, orgTradeDate,
                     smssendYN, isPartCancel, cancelType, totalAmount, supplyCost, tax, serviceFee, userID);
                 return View("Response", response);
@@ -600,7 +601,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetInfo()
         {
             // 현금영수증 문서관리번호
-            string mgtKey = "20181003-100";
+            string mgtKey = "20181124185045";
 
             try
             {
@@ -620,7 +621,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetInfos()
         {
             // 조회할 현금영수증 문서관리번호 배열, (최대 1000건)
-            List<string> mgtKeyList = new List<string> {"20181003-100", "WLJ181108-00000002", "NLJ81029-80592698"};
+            List<string> mgtKeyList = new List<string> {"20181124185045", "20181127-002", "NLJ81029-80592698"};
 
             try
             {
@@ -640,7 +641,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetDetailInfo()
         {
             // 현금영수증 문서관리번호
-            string mgtKey = "20181003-100";
+            string mgtKey = "20181124185045";
 
             try
             {
@@ -723,8 +724,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 현금영수증 상태 변경이력을 확인합니다.
-         * - 상태 변경이력 확인(GetLogs API) 응답항목에 대한 자세한 정보는
-         *   "[현금영수증 API 연동매뉴얼] > 3.4.4 상태 변경이력 확인" 을 참조하시기 바랍니다.
+         * - 상태 변경이력 확인(GetLogs API) 응답항목에 대한 자세한 정보는 "[현금영수증 API 연동매뉴얼] > 3.4.4 상태 변경이력 확인" 을 참조하시기 바랍니다.
          */
         public IActionResult GetLogs()
         {
@@ -744,7 +744,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 팝빌 현금영수증 문서함 팝업 URL을 반환합니다.
-         * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetURL()
         {
@@ -771,7 +771,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 1건의 현금영수증 보기 팝업 URL을 반환합니다.
-         * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetPopUpURL()
         {
@@ -791,7 +791,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 1건의 현금영수증 인쇄팝업 URL을 반환합니다.
-         * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetPrintURL()
         {
@@ -810,12 +810,12 @@ namespace CashbillExample.Controllers
 
         /*
          * 대량의 현금영수증 인쇄팝업 URL을 반환합니다. (최대 100건)
-         * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetMassPrintURL()
         {
             // 조회할 현금영수증 문서관리번호 배열, (최대 1000건)
-            List<string> MgtKeyList = new List<string> {"20181124-001", "20181124-002", "20181124-003"};
+            List<string> MgtKeyList = new List<string> {"20181124185045", "20181127-002", "NLJ81029-80592698"};
 
             try
             {
@@ -853,7 +853,7 @@ namespace CashbillExample.Controllers
 
         /*
           * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
-          * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
           */
         public IActionResult GetAccessURL()
         {
@@ -881,8 +881,8 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var result = _cashbillService.SendEmail(corpNum, mgtKey, receiveEmail, userID);
-                return View("Result", result);
+                var response = _cashbillService.SendEmail(corpNum, mgtKey, receiveEmail, userID);
+                return View("Response", response);
             }
             catch (PopbillException pe)
             {
@@ -897,6 +897,9 @@ namespace CashbillExample.Controllers
          */
         public IActionResult SendSMS()
         {
+            // 현금영수증 문서관리번호
+            string mgtKey = "20181124185045";
+            
             // 발신자 번호
             string sender = "070-4304-2991";
 
@@ -908,8 +911,8 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var result = _cashbillService.SendSMS(corpNum, sender, receiver, contents, userID);
-                return View("Result", result);
+                var response = _cashbillService.SendSMS(corpNum, mgtKey, sender, receiver, contents, userID);
+                return View("Response", response);
             }
             catch (PopbillException pe)
             {
@@ -924,6 +927,9 @@ namespace CashbillExample.Controllers
          */
         public IActionResult SendFAX()
         {
+            // 현금영수증 문서관리번호
+            string mgtKey = "20181124185045";
+            
             // 발신번호
             string sender = "070-4304-2991";
 
@@ -932,8 +938,8 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var result = _cashbillService.SendFAX(corpNum, sender, receiver, userID);
-                return View("Result", result);
+                var response = _cashbillService.SendFAX(corpNum, mgtKey, sender, receiver, userID);
+                return View("Response", response);
             }
             catch (PopbillException pe)
             {
@@ -1005,7 +1011,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
-         * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetChargeURL()
         {
@@ -1022,8 +1028,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 파트너의 잔여포인트를 확인합니다.
-         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를
-         *   이용하시기 바랍니다.
+         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
          */
         public IActionResult GetPartnerBalance()
         {
@@ -1040,7 +1045,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 파트너 포인트 충전 팝업 URL을 반환합니다.
-         * - 반환된 URL의 유지시간은 30초이며, 제한된 시간 이후에는 정상적으로 처리되지 않습니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetPartnerURL()
         {
@@ -1133,7 +1138,7 @@ namespace CashbillExample.Controllers
         }
 
         /*
-         * 파트너의 연동회원으로 회원가입을 요청합니다.
+         * 파트너의 연동회원으로 신규가입 처리합니다.
          */
         public IActionResult JoinMember()
         {
