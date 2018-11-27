@@ -1,0 +1,35 @@
+@{
+    ViewBag.Title = "ListActiveJob (수집 상태 목록 확인)";
+}
+
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        @{
+            int i = 0;
+            foreach (var list in Model)
+            {
+                i++;
+                <fieldset class="fieldset2">
+                    <legend>수집 상태 목록 확인 [ @i / @Model.Count ]</legend>
+                    <ul>
+                        <li>jobID (작업아이디) : @list.jobID</li>
+                        <li>jobState (수집상태) : @list.jobState</li>
+                        <li>queryType (수집유형) : @list.queryType</li>
+                        <li>queryDateType (일자유형) : @list.queryDateType</li>
+                        <li>queryStDate (시작일자) : @list.queryStDate</li>
+                        <li>queryEnDate (종료일자) : @list.queryEnDate</li>
+                        <li>errorCode (오류코드) : @list.errorCode</li>
+                        <li>errorReason (오류메시지) : @list.errorReason</li>
+                        <li>jobStartDT (작업 시작일시) : @list.jobStartDT</li>
+                        <li>jobEndDT (작업 종료일시) : @list.jobEndDT</li>
+                        <li>collectCount (수집개수) : @list.collectCount</li>
+                        <li>regDT (수집 요청일시) : @list.regDT</li>
+                    </ul>
+                </fieldset>
+            }
+        }
+    </fieldset>
+</div>
