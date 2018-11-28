@@ -10,7 +10,7 @@ namespace ControllerDI.Services
 {
     public class FaxInstance
     {
-        //링크허브에서 발급받은 고객사 고객사 인증정보로 링크아이디(LinkID)와 비밀키(SecretKey) 값을 변경하시기 바랍니다.
+        //링크허브에서 발급받은 고객사 인증정보로 링크아이디(LinkID)와 비밀키(SecretKey) 값을 변경하시기 바랍니다.
         private string linkID = "TESTER";
         private string secretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
 
