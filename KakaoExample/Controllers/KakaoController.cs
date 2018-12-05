@@ -820,12 +820,12 @@ namespace KakaoExample.Controllers
         public IActionResult CancelReserve()
         {
             // 알림톡/친구톡 전송요청시 발급받은 접수번호
-            string receiptNum = "018112715514300001";
+            string receiptNum = "018120515512000001";
 
             try
             {
                 var Response = _kakaoService.CancelReserve(corpNum, receiptNum, userID);
-                return View("GetMessages", Response);
+                return View("Response", Response);
             }
             catch (PopbillException pe)
             {
@@ -859,12 +859,12 @@ namespace KakaoExample.Controllers
         public IActionResult CancelReserveRN()
         {
             // 알림톡/친구톡 전송요청시 할당한 요청번호
-            string requestNum = "20181127155110";
+            string requestNum = "20181205155125";
 
             try
             {
                 var Response = _kakaoService.CancelReserveRN(corpNum, requestNum, userID);
-                return View("GetMessages", Response);
+                return View("Response", Response);
             }
             catch (PopbillException pe)
             {
