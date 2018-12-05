@@ -478,6 +478,9 @@ namespace CashbillExample.Controllers
             // 취소사유, 1-거래취소, 2-오류발급취소, 3-기타
             int cancelType = 1;
 
+            // [취소] 거래금액 ( 공급가액 + 세액 + 봉사료 ) 
+            string totalAmount = "3300";
+            
             // [취소] 공급가액
             string supplyCost = "3000";
 
@@ -486,9 +489,6 @@ namespace CashbillExample.Controllers
 
             // [취소] 봉사료
             string serviceFee = "";
-
-            // [취소] 합계금액
-            string totalAmount = "3300";
 
             try
             {
@@ -552,15 +552,15 @@ namespace CashbillExample.Controllers
             // 발행 안내문자 전송여부           
             bool smssendYN = false;
 
-            // 메모
-            string memo = "부분 취소발행 메모";
-
             // 부분취소여부, true-부분취소, false-전체취소
             bool isPartCancel = true;
 
             // 취소사유, 1-거래취소, 2-오류발급취소, 3-기타
             int cancelType = 1;
 
+            // [취소] 거래금액 ( 공급가액 + 세액 + 봉사료 )
+            string totalAmount = "3300";
+            
             // [취소] 공급가액
             string supplyCost = "3000";
 
@@ -570,12 +570,8 @@ namespace CashbillExample.Controllers
             // [취소] 봉사료
             string serviceFee = "";
 
-            // [취소] 합계금액
-            string totalAmount = "3300";
-
             try
             {
-                // supplyCost, totalAmount
                 var response = _cashbillService.RevokeRegister(corpNum, mgtKey, orgConfirmNum, orgTradeDate,
                     smssendYN, isPartCancel, cancelType, totalAmount, supplyCost, tax, serviceFee, userID);
                 return View("Response", response);
