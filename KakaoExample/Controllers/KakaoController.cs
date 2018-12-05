@@ -485,7 +485,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var receiptNum = _kakaoService.SendFMS(corpNum, plusFriendID, senderNum, content, altContent, receivers,
+                var receiptNum = _kakaoService.SendFTS(corpNum, plusFriendID, senderNum, content, altContent, receivers,
                     buttons, altSendType, adsYN, sndDT, requestNum);
                 return View("ReceiptNum", receiptNum);
             }
@@ -552,7 +552,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var receiptNum = _kakaoService.SendFTS(corpNum, plusFriendID, senderNum, receiverNum, receiverName,
+                var receiptNum = _kakaoService.SendFMS(corpNum, plusFriendID, senderNum, receiverNum, receiverName,
                     content, altContent, buttons, altSendType, adsYN, sndDT, imageURL, filePath, requestNum);
                 return View("ReceiptNum", receiptNum);
             }
@@ -629,7 +629,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var receiptNum = _kakaoService.SendFTS(corpNum, plusFriendID, senderNum, receivers, buttons,
+                var receiptNum = _kakaoService.SendFMS(corpNum, plusFriendID, senderNum, receivers, buttons,
                     altSendType, adsYN, sndDT, imageURL, filePath, requestNum);
                 return View("ReceiptNum", receiptNum);
             }

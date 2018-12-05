@@ -49,7 +49,7 @@ namespace StatementExample.Controllers
                 // 전자명세서 문서관리번호
                 string mgtKey = "20181030";
 
-                bool result = _statementService.CheckMgtKeyInuse(corpNum, itemCode, mgtKey);
+                bool result = _statementService.CheckMgtKeyInUse(corpNum, itemCode, mgtKey);
 
                 return View("result", result ? "사용중" : "미사용중");
             }
@@ -208,7 +208,7 @@ namespace StatementExample.Controllers
             statement.smssendYN = false;
 
             // 발행시 자동승인 여부
-            statement.autoacceptYN = false;
+            statement.autoAcceptYN = false;
 
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
@@ -421,7 +421,7 @@ namespace StatementExample.Controllers
             statement.smssendYN = false;
 
             // 발행시 자동승인 여부
-            statement.autoacceptYN = false;
+            statement.autoAcceptYN = false;
 
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
@@ -636,7 +636,7 @@ namespace StatementExample.Controllers
             statement.smssendYN = false;
 
             // 발행시 자동승인 여부
-            statement.autoacceptYN = false;
+            statement.autoAcceptYN = false;
 
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
@@ -739,8 +739,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                //Cancel
-                var response = _statementService.CancelIssue(corpNum, itemCode, mgtKey, memo, userID);
+                var response = _statementService.Cancel(corpNum, itemCode, mgtKey, memo, userID);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1416,7 +1415,7 @@ namespace StatementExample.Controllers
             statement.smssendYN = false;
 
             // 발행시 자동승인 여부
-            statement.autoacceptYN = false;
+            statement.autoAcceptYN = false;
 
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
