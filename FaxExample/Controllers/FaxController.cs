@@ -209,7 +209,7 @@ namespace FaxExample.Controllers
         public IActionResult CancelReserve()
         {
             // 팩스전송 요청시 발급받은 접수번호
-            string receiptNum = "018092922570100001";
+            string receiptNum = "018120517184000001";
 
             try
             {
@@ -230,7 +230,7 @@ namespace FaxExample.Controllers
         public IActionResult ResendFAX()
         {
             // 팩스전송 요청시 발급받은 접수번호
-            string orgReceiptNum = "018092922570100001";
+            string orgReceiptNum = "018120517165400001";
 
             // 발신번호, 공백으로 처리시 기존전송정보로 전송
             string senderNum = "";
@@ -277,7 +277,7 @@ namespace FaxExample.Controllers
         public IActionResult ResendFAX_Multi()
         {
             // 팩스전송 요청시 발급받은 접수번호
-            string orgReceiptNum = "018092922570100001";
+            string orgReceiptNum = "018120517165400001";
 
             // 발신번호, 공백으로 처리시 기존전송정보로 전송
             string senderNum = "";
@@ -359,7 +359,7 @@ namespace FaxExample.Controllers
         public IActionResult CancelReserveRN()
         {
             // 팩스 전송요청시 할당한 전송요청번호
-            string requestNum = "20180929225651";
+            string requestNum = "20181205-002";
 
             try
             {
@@ -380,7 +380,7 @@ namespace FaxExample.Controllers
         public IActionResult ResendFAXRN()
         {
             // 팩스전송 요청시 할당한 요청번호
-            string preRequestNum = "20181126";
+            string preRequestNum = "20181205-001";
 
             // 발신번호, 공백으로 처리시 기존전송정보로 전송
             string senderNum = "";
@@ -427,7 +427,7 @@ namespace FaxExample.Controllers
         public IActionResult ResendFAXRN_multi()
         {
             // 팩스전송 요청시 할당한 요청번호
-            string preRequestNum = "20181126";
+            string preRequestNum = "20181205-001";
 
             // 발신번호, 공백으로 처리시 기존전송정보로 전송
             string senderNum = "";

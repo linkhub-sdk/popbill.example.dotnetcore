@@ -168,7 +168,7 @@ namespace KakaoExample.Controllers
             string altSendType = "A";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
             // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
@@ -211,10 +211,10 @@ namespace KakaoExample.Controllers
                 receiverInfo.rcvnm = "수신자명" + i;
 
                 // 알림톡 템플릿 내용 (최대 1000자)
-                receiverInfo.msg = "[테스트] 테스트 템플릿입니다.";
+                receiverInfo.msg = "[테스트] 테스트 템플릿입니다." + i;
 
                 // 대체문자 내용 (최대 2000byte)
-                receiverInfo.altmsg = "대체문자 내용입니다";
+                receiverInfo.altmsg = "대체문자 내용입니다" + i;
 
                 receivers.Add(receiverInfo);
             }
@@ -223,7 +223,7 @@ namespace KakaoExample.Controllers
             string altSendType = "A";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
             // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
@@ -278,7 +278,7 @@ namespace KakaoExample.Controllers
             string altSendType = "A";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
             // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
@@ -338,7 +338,7 @@ namespace KakaoExample.Controllers
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
             // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
@@ -382,10 +382,10 @@ namespace KakaoExample.Controllers
                 receiverInfo.rcvnm = "수신자명" + i;
 
                 // 친구톡 내용 (최대 1000자)
-                receiverInfo.msg = "친구톡 내용입니다.";
+                receiverInfo.msg = "친구톡 내용입니다." + i;
 
                 // 대체문자 내용 (최대 2000byte)
-                receiverInfo.altmsg = "대체문자 내용입니다";
+                receiverInfo.altmsg = "대체문자 내용입니다" + i;
 
                 receivers.Add(receiverInfo);
             }
@@ -408,7 +408,7 @@ namespace KakaoExample.Controllers
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
             // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
@@ -477,7 +477,7 @@ namespace KakaoExample.Controllers
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
             // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
@@ -538,7 +538,7 @@ namespace KakaoExample.Controllers
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 이미지 링크 URL
             string imageURL = "https://www.popbill.com";
@@ -589,10 +589,10 @@ namespace KakaoExample.Controllers
                 receiverInfo.rcvnm = "수신자명" + i;
 
                 // 친구톡 내용 (최대 1000자)
-                receiverInfo.msg = "친구톡 내용입니다.";
+                receiverInfo.msg = "친구톡 내용 입니다." + i;
 
                 // 대체문자 내용 (최대 2000byte)
-                receiverInfo.altmsg = "대체문자 내용입니다";
+                receiverInfo.altmsg = "대체문자 내용 입니다" + i;
 
                 receivers.Add(receiverInfo);
             }
@@ -615,7 +615,7 @@ namespace KakaoExample.Controllers
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 이미지 링크 URL
             string imageURL = "https://www.popbill.com";
@@ -691,7 +691,7 @@ namespace KakaoExample.Controllers
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
-            DateTime sndDT = new DateTime(20181126121925);
+            DateTime? sndDT = null;
 
             // 이미지 링크 URL
             string imageURL = "https://www.popbill.com";

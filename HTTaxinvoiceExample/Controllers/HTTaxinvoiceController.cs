@@ -73,7 +73,7 @@ namespace HTTaxinvoiceExample.Controllers
         public IActionResult GetJobState()
         {
             // 수집 요청(requestJob API)시 반환반은 작업아이디(jobID)
-            string jobID = "018112711000000001";
+            string jobID = "018120517000000006";
 
             try
             {
@@ -115,7 +115,7 @@ namespace HTTaxinvoiceExample.Controllers
         public IActionResult Search()
         {
             // 수집 요청(requestJob API)시 반환반은 작업아이디(jobID)
-            string jobID = "018112711000000001";
+            string jobID = "018120517000000006";
 
             // 문서형태 배열, N-일반 전자세금계산서, M-수정 전자세금계산서
             string[] Type = {"N", "M"};
@@ -163,7 +163,7 @@ namespace HTTaxinvoiceExample.Controllers
         public IActionResult Summary()
         {
             // 수집 요청(requestJob API)시 반환반은 작업아이디(jobID)
-            string jobID = "018112711000000001";
+            string jobID = "018120517000000006";
 
             // 문서형태 배열, N-일반 전자세금계산서, M-수정 전자세금계산서
             string[] Type = {"N", "M"};
@@ -202,7 +202,7 @@ namespace HTTaxinvoiceExample.Controllers
         public IActionResult GetTaxinvoice()
         {
             // 조회할 전자세금계산서 국세청 승인번호
-            string ntsConfirmNum = "20170317410002030000017f";
+            string ntsConfirmNum = "201812044100020300000c0a";
 
             try
             {
@@ -222,7 +222,7 @@ namespace HTTaxinvoiceExample.Controllers
         public IActionResult GetXML()
         {
             // 조회할 전자세금계산서 국세청 승인번호
-            string ntsConfirmNum = "20170317410002030000017f";
+            string ntsConfirmNum = "201812044100020300000c0a";
 
             try
             {
@@ -242,7 +242,7 @@ namespace HTTaxinvoiceExample.Controllers
         public IActionResult GetPopUpURL()
         {
             // 조회할 전자세금계산서 국세청 승인번호
-            string ntsConfirmNum = "20170317410002030000017f";
+            string ntsConfirmNum = "201812044100020300000c0a";
 
             try
             {
