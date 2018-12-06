@@ -138,7 +138,7 @@ namespace KakaoExample.Controllers
 
         #endregion
 
-        #region 친구톡/알림톡 전송
+        #region 알림톡/친구톡 전송
 
         /*
          * 알림톡 전송을 요청합니다.
@@ -720,7 +720,7 @@ namespace KakaoExample.Controllers
         #region 정보확인
 
         /*
-         * 검색조건을 사용하여 카카오톡전송 내역을 조회합니다.
+         * 검색조건을 사용하여 알림톡/친구톡 전송 내역을 조회합니다.
          * - 최대 검색기간 : 6개월 이내
          */
         public IActionResult Search()
@@ -778,7 +778,7 @@ namespace KakaoExample.Controllers
         }
 
         /*
-         * 카카오톡 전송내역 팝업 URL을 반환합니다.
+         * 알림톡/친구톡 전송내역 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetSentListURL()
@@ -795,7 +795,7 @@ namespace KakaoExample.Controllers
         }
 
         /*
-         * 카카오톡 전송요청시 발급받은 접수번호(receiptNum)로 전송결과를 확인합니다.
+         * 알림톡/친구톡 전송요청시 발급받은 접수번호(receiptNum)로 전송결과를 확인합니다.
          */
         public IActionResult GetMessages()
         {
@@ -814,7 +814,7 @@ namespace KakaoExample.Controllers
         }
 
         /*
-         * 카카오톡 전송요청시 발급받은 접수번호(receiptNum)로 예약전송건을 취소합니다.
+         * 알림톡/친구톡 전송요청시 발급받은 접수번호(receiptNum)로 예약전송건을 취소합니다.
          * - 예약취소는 예약전송시간 10분전까지만 가능합니다.
          */
         public IActionResult CancelReserve()
@@ -947,7 +947,7 @@ namespace KakaoExample.Controllers
         }
 
         /*
-         * 카카오서비스 발행단가를 확인합니다.
+         * 알림톡/친구톡 서비스 발행단가를 확인합니다.
          */
         public IActionResult GetUnitCost()
         {
@@ -966,7 +966,7 @@ namespace KakaoExample.Controllers
         }
 
         /*
-         * 카카오서비스 API 서비스 과금정보를 확인합니다.
+         * 알림톡/친구톡 서비스 API 서비스 과금정보를 확인합니다.
          */
         public IActionResult GetChargeInfo()
         {
