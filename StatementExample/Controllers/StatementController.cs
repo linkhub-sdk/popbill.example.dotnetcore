@@ -68,7 +68,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20181127";
+            statement.writeDate = "20181206";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -79,11 +79,11 @@ namespace StatementExample.Controllers
             // 맞춤양식코드, 기본값을 공백('')으로 처리하면 기본양식으로 처리.
             statement.formCode = "";
 
-            // [필수] 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            // [필수] 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             statement.itemCode = 121;
 
             // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20181127111613";
+            statement.mgtKey = "20181206-001";
 
 
             /**************************************************************************
@@ -216,7 +216,7 @@ namespace StatementExample.Controllers
             StatementDetail detail = new StatementDetail
             {
                 serialNum = 1, // 일련번호 1부터 순차기재
-                purchaseDT = "20181124", // 거래일자 작성형식 yyyyMMdd
+                purchaseDT = "20181206", // 거래일자 작성형식 yyyyMMdd
                 itemName = "품목명", // 품목명
                 spec = "규격", // 규격
                 qty = "1", // 수량
@@ -235,7 +235,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail
             {
                 serialNum = 2, // 일련번호 1부터 순차기재
-                purchaseDT = "20181124", // 거래일자 작성형식 yyyyMMdd
+                purchaseDT = "20181206", // 거래일자 작성형식 yyyyMMdd
                 itemName = "품목명", // 품목명
                 spec = "규격", // 규격
                 qty = "1", // 수량
@@ -281,7 +281,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20181124";
+            statement.writeDate = "20181206";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -292,11 +292,11 @@ namespace StatementExample.Controllers
             // 맞춤양식코드, 기본값을 공백('')으로 처리하면 기본양식으로 처리.
             statement.formCode = "";
 
-            // [필수] 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            // [필수] 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             statement.itemCode = 121;
 
             // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20181124231612";
+            statement.mgtKey = "20181206-123";
 
 
             /**************************************************************************
@@ -429,7 +429,7 @@ namespace StatementExample.Controllers
             StatementDetail detail = new StatementDetail
             {
                 serialNum = 1, // 일련번호 1부터 순차기재
-                purchaseDT = "20181124", // 거래일자 작성형식 yyyyMMdd
+                purchaseDT = "20181206", // 거래일자 작성형식 yyyyMMdd
                 itemName = "품목명", // 품목명
                 spec = "규격", // 규격
                 qty = "1", // 수량
@@ -448,7 +448,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail
             {
                 serialNum = 2, // 일련번호 1부터 순차기재
-                purchaseDT = "20181124", // 거래일자 작성형식 yyyyMMdd
+                purchaseDT = "20181206", // 거래일자 작성형식 yyyyMMdd
                 itemName = "품목명", // 품목명
                 spec = "규격", // 규격
                 qty = "1", // 수량
@@ -488,19 +488,19 @@ namespace StatementExample.Controllers
          */
         public IActionResult Update()
         {
-            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
             // 수정할 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124231612";
+            string mgtKey = "20181206-123";
 
 
             // 전자명세서 정보 객체
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20181124";
+            statement.writeDate = "20181206";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -511,8 +511,6 @@ namespace StatementExample.Controllers
             // 맞춤양식코드, 기본값을 공백('')으로 처리하면 기본양식으로 처리.
             statement.formCode = "";
 
-            // [필수] 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
-            statement.itemCode = 121;
 
             /**************************************************************************
              *                             발신자 정보                                   *
@@ -644,7 +642,7 @@ namespace StatementExample.Controllers
             StatementDetail detail = new StatementDetail
             {
                 serialNum = 1, // 일련번호 1부터 순차기재
-                purchaseDT = "20181124", // 거래일자 작성형식 yyyyMMdd
+                purchaseDT = "20181206", // 거래일자 작성형식 yyyyMMdd
                 itemName = "품목명", // 품목명
                 spec = "규격", // 규격
                 qty = "1", // 수량
@@ -663,7 +661,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail
             {
                 serialNum = 2, // 일련번호 1부터 순차기재
-                purchaseDT = "20181124", // 거래일자 작성형식 yyyyMMdd
+                purchaseDT = "20181206", // 거래일자 작성형식 yyyyMMdd
                 itemName = "품목명", // 품목명
                 spec = "규격", // 규격
                 qty = "1", // 수량
@@ -706,7 +704,7 @@ namespace StatementExample.Controllers
 
             // 발행처리할 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124231612";
+            string mgtKey = "20181206-123";
 
             // 발행 메모
             string memo = "발행 메모";
@@ -732,7 +730,7 @@ namespace StatementExample.Controllers
 
             // 발행취소할 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20181206-123";
 
             // 발행 메모
             string memo = "발행 메모";
@@ -760,7 +758,7 @@ namespace StatementExample.Controllers
 
             // 삭제할 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124-02";
+            string mgtKey = "20181206-123";
 
             // 발행 메모
             string memo = "발행 메모";
@@ -1130,7 +1128,7 @@ namespace StatementExample.Controllers
             string mgtKey = "20181124225313";
 
             // 파일아이디, 첨부파일 목록(GetFileList API) 의 응답항목 중 파일아이디(AttachedFile) 값
-            string fileID = "664FABA9-0226-4B7F-8F79-BC2D62F9EA9C.PBF";
+            string fileID = "4D3B7765-1623-4FD1-AA94-9AB624B92A66.PBF";
 
             try
             {
