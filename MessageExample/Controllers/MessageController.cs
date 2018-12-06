@@ -417,7 +417,7 @@ namespace MessageExample.Controllers
             string contents = "포토 문자 메시지 내용. 최대 2000byte 초과된 내용은 삭제되어 전송.";
 
             // 첨부파일 경로
-            string filePath = "";
+            string filePath = "C:\\popbill.example.dotnetcore\\MessageExample\\wwwroot\\images\\image.jpg";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
             DateTime? sndDT = null;
@@ -478,7 +478,7 @@ namespace MessageExample.Controllers
             }
 
             // 첨부파일 경로
-            string filePath = "";
+            string filePath = "C:\\popbill.example.dotnetcore\\MessageExample\\wwwroot\\images\\image.jpg";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
             DateTime? sndDT = null;
@@ -539,7 +539,7 @@ namespace MessageExample.Controllers
             }
 
             // 첨부파일 경로
-            string filePath = "";
+            string filePath = "C:\\popbill.example.dotnetcore\\MessageExample\\wwwroot\\images\\image.jpg";
 
             // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
             DateTime? sndDT = null;
@@ -597,7 +597,7 @@ namespace MessageExample.Controllers
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
             // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
-            string requestNum = "20181127141839";
+            string requestNum = "";
 
             try
             {

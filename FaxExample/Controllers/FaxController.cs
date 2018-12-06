@@ -93,8 +93,8 @@ namespace FaxExample.Controllers
 
             // 팩스전송 파일경로, 전송파일 최대 20개 
             List<string> filePath = new List<string>();
-            filePath.Add("/Users/kimhyunjin/SDK/popbill.example.dotnetcore/FaxExample/wwwroot/images/tax_image.png");
-            filePath.Add("/Users/kimhyunjin/SDK/popbill.example.dotnetcore/FaxExample/wwwroot/images/tax_image.png");
+            filePath.Add("C:\\popbill.example.dotnetcore\\FaxExample\\wwwroot\\images\\tax_image.png");
+            filePath.Add("C:\\popbill.example.dotnetcore\\FaxExample\\wwwroot\\images\\tax_image.png");
 
             // 팩스제목
             string title = "팩스 제목";
@@ -150,8 +150,8 @@ namespace FaxExample.Controllers
 
             // 팩스전송 파일경로, 전송파일 최대 20개 
             List<string> filePath = new List<string>();
-            filePath.Add("/Users/kimhyunjin/SDK/popbill.example.dotnetcore/FaxExample/wwwroot/images/tax_image.png");
-            filePath.Add("/Users/kimhyunjin/SDK/popbill.example.dotnetcore/FaxExample/wwwroot/images/tax_image.png");
+            filePath.Add("C:\\popbill.example.dotnetcore\\FaxExample\\wwwroot\\images\\tax_image.png");
+            filePath.Add("C:\\popbill.example.dotnetcore\\FaxExample\\wwwroot\\images\\tax_image.png");
 
             // 팩스제목
             string title = "팩스 제목";
