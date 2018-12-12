@@ -939,7 +939,7 @@ namespace TaxinvoiceExample.Controllers
         /*    
          * [임시저장] 상태의 세금계산서를 [공급자]가 [발행예정]합니다.
          * - 발행예정이란 공급자와 공급받는자 사이에 세금계산서 확인 후 발행하는 방법입니다.
-         * - "[전자세금계산서 API 연동매뉴얼] > 1.3.1. 정발행 프로세스 흐름도 > 다. 임시저장 발행예정" 의 프로세스를 참조하시기 바랍니다.
+         * - "[전자세금계산서 API 연동매뉴얼] > 1.4.2. 정발행 프로세스 흐름도 > 다. 임시저장 발행예정" 의 프로세스를 참조하시기 바랍니다.
          */
         public IActionResult Send()
         {
@@ -1416,7 +1416,7 @@ namespace TaxinvoiceExample.Controllers
          * [발행완료] 상태의 세금계산서를 국세청으로 [즉시전송]합니다.
          * - 국세청 즉시전송을 호출하지 않은 세금계산서는 발행일 기준 익일 오후 3시에 팝빌 시스템에서 일괄적으로 국세청으로 전송합니다.
          * - 익일전송시 전송일이 법정공휴일인 경우 다음 영업일에 전송됩니다.
-         * - 국세청 전송에 관한 사항은 "[전자세금계산서 API 연동매뉴얼] > 1.4 국세청 전송 정책" 을 참조하시기 바랍니다.
+         * - 국세청 전송에 관한 사항은 "[전자세금계산서 API 연동매뉴얼] > 1.3 국세청 전송 정책" 을 참조하시기 바랍니다.
          */
         public IActionResult SendToNTS()
         {
@@ -1595,7 +1595,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 세금계산서 상태 변경이력을 확인합니다.
          * - 상태 변경이력 확인(GetLogs API) 응답항목에 대한 자세한 정보는
-         *   "[전자세금계산서 API 연동매뉴얼] > 3.6.4 상태 변경이력 확인" 을 참조하시기 바랍니다.
+         *   "[전자세금계산서 API 연동매뉴얼] > 3.5.5 상태 변경이력 확인" 을 참조하시기 바랍니다.
          */
         public IActionResult GetLogs()
         {
@@ -1825,7 +1825,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 세금계산서에 첨부된 파일을 삭제합니다.
-         * - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFileList API) 의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
+         * - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
          */
         public IActionResult DeleteFile()
         {
@@ -1835,7 +1835,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서 문서관리번호
             string mgtKey = "20181113135345";
 
-            // 파일아이디, 첨부파일 목록(GetFileList API) 의 응답항목 중 파일아이디(AttachedFile) 값
+            // 파일아이디, 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값
             string fileID = "F2A701E3-053B-40D8-AF28-FE1CBBE7FB53.PBF";
 
             try

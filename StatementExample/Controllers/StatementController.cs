@@ -1120,7 +1120,7 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서에 첨부된 파일을 삭제합니다.
-         * - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFileList API) 의 응답항목
+         * - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목
          *   중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
          */
         public IActionResult DeleteFile()
@@ -1132,7 +1132,7 @@ namespace StatementExample.Controllers
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20181124225313";
 
-            // 파일아이디, 첨부파일 목록(GetFileList API) 의 응답항목 중 파일아이디(AttachedFile) 값
+            // 파일아이디, 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값
             string fileID = "4D3B7765-1623-4FD1-AA94-9AB624B92A66.PBF";
 
             try
