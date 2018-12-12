@@ -1724,14 +1724,14 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 조회할 세금계산서 문서관리번호 배열, (최대 100건)
-            List<string> MgtKeyList = new List<string>();
-            MgtKeyList.Add("20181112-a003");
-            MgtKeyList.Add("20181108-002");
-            MgtKeyList.Add("20181023_01");
+            List<string> mgtKeyList = new List<string>();
+            mgtKeyList.Add("20181112-a003");
+            mgtKeyList.Add("20181108-002");
+            mgtKeyList.Add("20181023_01");
 
             try
             {
-                var result = _taxinvoiceService.GetMassPrintURL(corpNum, mgtKeyType, MgtKeyList, userID);
+                var result = _taxinvoiceService.GetMassPrintURL(corpNum, mgtKeyType, mgtKeyList, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
