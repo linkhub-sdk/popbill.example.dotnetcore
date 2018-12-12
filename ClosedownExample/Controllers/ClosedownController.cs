@@ -37,7 +37,7 @@ namespace ClosedownExample.Controllers
         #region 휴폐업조회
 
         /*
-         * 1건의 휴폐업 정보 조회합니다.
+         * 1건의 휴폐업여부를 조회합니다.
          */
         public IActionResult CheckCorpNum()
         {
