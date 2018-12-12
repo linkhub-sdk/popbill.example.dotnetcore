@@ -126,7 +126,7 @@ namespace HTTaxinvoiceExample.Controllers
             // 영수/청구, R-영수, C-청구, N-없음
             string[] PurposeType = {"R", "C", "N"};
 
-            // 종사업장유무, 공백-전체조회 0-종사업장번호 없는 경우 조회, 1-종사업장번호 조건에 따라 조회
+            // 종사업장유무, 공백-전체조회, 0-종사업장번호 없는 경우 조회, 1-종사업장번호 조건에 따라 조회
             string TaxRegIDYN = "";
 
             // 종사업장번호 사업자 유형, S-공급자, B-공급받는자, T-수탁자

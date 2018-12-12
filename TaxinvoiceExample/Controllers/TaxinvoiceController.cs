@@ -939,7 +939,7 @@ namespace TaxinvoiceExample.Controllers
         /*    
          * [임시저장] 상태의 세금계산서를 [공급자]가 [발행예정]합니다.
          * - 발행예정이란 공급자와 공급받는자 사이에 세금계산서 확인 후 발행하는 방법입니다.
-         * - "[전자세금계산서 API 연동매뉴얼] > 1.4.2. 정발행 프로세스 흐름도 > 다. 임시저장 발행예정" 의 프로세스를 참조하시기 바랍니다.
+         * - "[전자세금계산서 API 연동매뉴얼] > 1.2.1. 정발행 > 다. 임시저장 발행예정" 의 프로세스를 참조하시기 바랍니다.
          */
         public IActionResult Send()
         {
@@ -1333,7 +1333,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [공급받는자]가 공급자에게 1건의 역발행 세금계산서를 [요청]합니다.
+         * [공급받는자]가 1건의 역발행 세금계산서를 공급자에게 [발행요청] 합니다. 
          * - 역발행 세금계산서 프로세스를 구현하기 위해서는 공급자/공급받는자가 모두 팝빌에 회원이여야 합니다.
          * - 역발행 요청후 공급자가 [발행] 처리시 포인트가 차감되며 역발행 세금계산서 항목중 과금방향(ChargeDirection)에 기재한 값에 따라
          *   정과금(공급자과금) 또는 역과금(공급받는자과금) 처리됩니다.
@@ -1361,7 +1361,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 역발행 세금계산서를 [공급받는자]가 [취소]합니다.
+         * [공급받는자]가 역발행 세금계산서의 발행요청을 [취소] 합니다. 
          * - [취소]한 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
          */
         public IActionResult CancelRequest()
@@ -1476,7 +1476,10 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 조회할 세금계산서 문서관리번호 배열, (최대 1000건)
-            List<string> mgtKeyList = new List<string> {"20181112-a003", "20181108-002", "20181023_01"};
+            List<string> mgtKeyList = new List<string>();
+            mgtKeyList.Add("20181112-a003");
+            mgtKeyList.Add("20181108-002");
+            mgtKeyList.Add("20181023_01");
 
             try
             {
@@ -1528,13 +1531,15 @@ namespace TaxinvoiceExample.Controllers
             string SDate = "20181101";
 
             // [필수] 종료일자, 날자형식(yyyyMMdd)
-            string EDate = "20181110";
+            string EDate = "20181212";
 
-            // 상태코드 배열, 미기재시 전체 상태조회, 문서상태 값 3자리의 배열, 2,3번째 자리에 와일드카드 가능
-            string[] state = new string[3];
-            state[0] = "3**";
-            state[1] = "4**";
-            state[2] = "6**";
+            // 상태코드 배열, 미기재시 전체 상태조회, 상태코드(stateCode)값 3자리의 배열, 2,3번째 자리에 와일드카드 가능
+            // - 상태코드에 대한 자세한 사항은 "[전자세금계산서 API 연동매뉴얼] > 5.1 세금계산서 상태코드" 를 참조하시기 바랍니다. 
+            string[] state = new string[4];
+            state[0] = "1**";
+            state[1] = "3**";
+            state[2] = "4**";
+            state[3] = "6**";
 
             // 문서유형 배열, N-일반세금계산서, M-수정세금계산서
             string[] Type = new string[2];
@@ -1553,7 +1558,7 @@ namespace TaxinvoiceExample.Controllers
             IssueType[1] = "R";
             IssueType[2] = "T";
 
-            // 지연발행 여부, 미기재시 전체, true-지연발행분 조회, false-정상발행분 조회
+            // 지연발행 여부, null-전체 조회, true-지연발행분 조회, false-정상발행분 조회
             bool? LateOnly = null;
 
             // 종사업장 유무, 공백-전체조회, 0-종사업장 없는 문서 조회, 1-종사업장번호 조건에 따라 조회
@@ -1574,7 +1579,7 @@ namespace TaxinvoiceExample.Controllers
             // 정렬방향, A-오름차순, D-내림차순
             string Order = "D";
 
-            // 거래처 조회, 거래처 사업자등록번호 또는 상호명 기재, 미기재시 전체조회 
+            // 거래처 조회, 거래처 사업자등록번호 또는 상호명 기재, 공백-전체조회 
             string Qstring = "";
 
             // 일반/연동 문서구분, 공백-전체조회, 0-일반문서 조회, 1-연동문서 조회
@@ -2000,10 +2005,10 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서 문서관리번호
             string mgtKey = "20181030-001";
 
-            // 첨부할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
+            // 첨부해제할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int docItemCode = 121;
 
-            // 첨부할 명세서 관리번호
+            // 첨부해제할 명세서 관리번호
             string docMgtKey = "20181025-002";
 
             try
