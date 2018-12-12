@@ -21,10 +21,10 @@ namespace HTTaxinvoiceExample.Controllers
         }
 
         //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
-        string corpNum = "6798700433";
+        string corpNum = "1234567890";
 
         //팝빌 연동회원 아이디
-        string userID = "testkorea_linkhub";
+        string userID = "testkorea";
 
         /*
          * 홈택스 Index page (HTTaxinvoice/Index.cshtml)
