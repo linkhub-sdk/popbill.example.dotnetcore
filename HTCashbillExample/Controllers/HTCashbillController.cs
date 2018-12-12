@@ -221,7 +221,7 @@ namespace HTCashbillExample.Controllers
         }
 
         /*
-         * 홈택스 전자세금계산서 부서사용자 계정을 팝빌에 등록합니다.
+         * 홈택스 현금영수증 부서사용자 계정을 팝빌에 등록합니다.
          */
         public IActionResult RegistDeptUser()
         {
@@ -243,7 +243,7 @@ namespace HTCashbillExample.Controllers
         }
 
         /*
-         * 팝빌에 등록된 전자세금계산서 부서사용자 아이디를 확인합니다.
+         * 팝빌에 등록된 현금영수증 부서사용자 아이디를 확인합니다.
          */
         public IActionResult CheckDeptUser()
         {
@@ -259,7 +259,7 @@ namespace HTCashbillExample.Controllers
         }
 
         /*
-         * 팝빌에 등록된 전자세금계산서 부서사용자 계정정보를 이용하여 홈택스 로그인을 테스트합니다.
+         * 팝빌에 등록된 현금영수증 부서사용자 계정정보를 이용하여 홈택스 로그인을 테스트합니다.
          */
         public IActionResult CheckLoginDeptUser()
         {
@@ -275,7 +275,7 @@ namespace HTCashbillExample.Controllers
         }
 
         /*
-         * 팝빌에 등록된 전자세금계산서 부서사용자 계정정보를 삭제합니다.
+         * 팝빌에 등록된 현금영수증 부서사용자 계정정보를 삭제합니다.
          */
         public IActionResult DeleteDeptUser()
         {
