@@ -152,7 +152,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 휴폐업조회 발행단가를 확인합니다.
+         * 휴폐업조회 조회단가를 확인합니다.
          */
         public IActionResult GetUnitCost()
         {
