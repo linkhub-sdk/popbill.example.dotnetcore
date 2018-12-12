@@ -158,7 +158,7 @@ namespace StatementExample.Controllers
             // 수신자 종목 
             statement.receiverBizClass = "수신자 종목";
 
-            // 수신자 성명
+            // [필수] 수신자 성명
             statement.receiverContactName = "수신자 담당자명";
 
             // 수신자 부서명
@@ -371,7 +371,7 @@ namespace StatementExample.Controllers
             // 수신자 종목 
             statement.receiverBizClass = "수신자 종목";
 
-            // 수신자 성명
+            // [필수] 수신자 성명
             statement.receiverContactName = "수신자 담당자명";
 
             // 수신자 부서명
@@ -584,7 +584,7 @@ namespace StatementExample.Controllers
             // 수신자 종목 
             statement.receiverBizClass = "수신자 종목";
 
-            // 수신자 성명
+            // [필수] 수신자 성명
             statement.receiverContactName = "수신자 담당자명";
 
             // 수신자 부서명
@@ -780,7 +780,7 @@ namespace StatementExample.Controllers
 
         /*
          * 1건의 전자명세서 상태/요약 정보를 확인합니다.
-         * - 응답항목에 대한 자세한 정보는 "[전자명세서 API 연동매뉴얼] > 3.3.1. GetInfo (상태 확인)"을 참조하시기 바랍니다.
+         * - 응답항목에 대한 자세한 정보는 "[전자명세서 API 연동매뉴얼] > 3.2.1. GetInfo (상태 확인)"을 참조하시기 바랍니다.
          */
         public IActionResult GetInfo()
         {
@@ -804,7 +804,7 @@ namespace StatementExample.Controllers
 
         /*
          * 다수건의 전자명세서 상태/요약 정보를 확인합니다.
-         * - 응답항목에 대한 자세한 정보는 "[전자명세서 API 연동매뉴얼] > 3.3.2. GetInfos (상태 대량 확인)"을 참조하시기 바랍니다.
+         * - 응답항목에 대한 자세한 정보는 "[전자명세서 API 연동매뉴얼] > 3.2.2. GetInfos (상태 대량 확인)"을 참조하시기 바랍니다.
          */
         public IActionResult GetInfos()
         {
@@ -850,7 +850,7 @@ namespace StatementExample.Controllers
 
         /*
          * 검색조건을 사용하여 전자명세서 목록을 조회합니다.
-         * - 응답항목에 대한 자세한 사항은 "[전자명세서 API 연동매뉴얼] > 3.3.3. Search (목록 조회)" 를 참조하시기 바랍니다.
+         * - 응답항목에 대한 자세한 사항은 "[전자명세서 API 연동매뉴얼] > 3.2.4. Search (목록 조회)" 를 참조하시기 바랍니다.
          */
         public IActionResult Search()
         {
@@ -900,7 +900,7 @@ namespace StatementExample.Controllers
         /*
          * 전자명세서 상태 변경이력을 확인합니다.
          * - 상태 변경이력 확인(GetLogs API) 응답항목에 대한 자세한 정보는
-         *  "[전자명세서 API 연동매뉴얼] > 3.3.4 GetLogs (상태 변경이력 확인)" 을 참조하시기 바랍니다.
+         *  "[전자명세서 API 연동매뉴얼] > 3.2.5 GetLogs (상태 변경이력 확인)" 을 참조하시기 바랍니다.
          */
         public IActionResult GetLogs()
         {
@@ -970,7 +970,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 1건의 전자명세서 인쇄팝업 URL을 반환합니다.
+         * 1건의 전자명세서 인쇄팝업 URL을 반환합니다. (공급자/공급받는자용)
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetPrintURL()
@@ -994,7 +994,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 1건의 전자명세서 인쇄팝업 URL을 반환합니다.
+         * 1건의 전자명세서 인쇄팝업 URL을 반환합니다. (공급받는자용)
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetEPrintURL()
@@ -1120,7 +1120,7 @@ namespace StatementExample.Controllers
          */
         public IActionResult DeleteFile()
         {
-            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
@@ -1148,7 +1148,7 @@ namespace StatementExample.Controllers
          */
         public IActionResult GetFiles()
         {
-            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
@@ -1171,7 +1171,7 @@ namespace StatementExample.Controllers
          */
         public IActionResult SendEmail()
         {
-            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
@@ -1195,12 +1195,11 @@ namespace StatementExample.Controllers
         /*
          * 알림문자를 전송합니다. (단문/SMS- 한글 최대 45자)
          * - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
-         * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [전송내역] 탭에서
-         *   전송결과를 확인할 수 있습니다.
+         * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [전송내역] 탭에서 전송결과를 확인할 수 있습니다.
          */
         public IActionResult SendSMS()
         {
-            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
@@ -1230,12 +1229,11 @@ namespace StatementExample.Controllers
         /*
          * 전자명세서를 팩스전송합니다.
          * - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-         * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역]
-         *   메뉴에서 전송결과를 확인할 수 있습니다.
+         * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
          */
         public IActionResult SendFAX()
         {
-            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
@@ -1363,7 +1361,7 @@ namespace StatementExample.Controllers
             // 수신자 종목 
             statement.receiverBizClass = "수신자 종목";
 
-            // 수신자 성명
+            // [필수] 수신자 성명
             statement.receiverContactName = "수신자 담당자명";
 
             // 수신자 부서명
@@ -1485,14 +1483,14 @@ namespace StatementExample.Controllers
          */
         public IActionResult AttachStatement()
         {
-            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20181124225313";
 
-            // 첨부할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            // 첨부할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int subItemCode = 121;
 
             // 첨부할 명세서 문서관리번호
@@ -1515,14 +1513,14 @@ namespace StatementExample.Controllers
          */
         public IActionResult DetachStatement()
         {
-            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20181124225313";
 
-            // 첨부해제할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            // 첨부해제할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int subItemCode = 121;
 
             // 첨부해제할 명세서 문서관리번호
@@ -1624,8 +1622,7 @@ namespace StatementExample.Controllers
 
         /*
          * 파트너의 잔여포인트를 확인합니다.
-         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를
-         *   이용하시기 바랍니다.
+         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
          */
         public IActionResult GetPartnerBalance()
         {
@@ -1667,7 +1664,7 @@ namespace StatementExample.Controllers
         {
             try
             {
-                // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+                // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
                 int itemCode = 121;
 
                 var result = _statementService.GetUnitCost(corpNum, itemCode);
@@ -1686,7 +1683,7 @@ namespace StatementExample.Controllers
         {
             try
             {
-                // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+                // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
                 int itemCode = 121;
 
                 var response = _statementService.GetChargeInfo(corpNum, itemCode);

@@ -728,7 +728,7 @@ namespace MessageExample.Controllers
 
         #endregion
 
-        #region 전송내력조회/요약정보확인
+        #region 전송내역조회/요약정보확인
 
         /*
          * 문자 전송내역 요약정보를 확인합니다.
