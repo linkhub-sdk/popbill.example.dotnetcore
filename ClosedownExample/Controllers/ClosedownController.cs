@@ -63,7 +63,10 @@ namespace ClosedownExample.Controllers
             try
             {
                 //조회할 사업자번호 배열, 최대 1000건
-                List<string> targetCorpNums = new List<string> {"1234567890", "6798700433", "401-03-94930"};
+                List<string> targetCorpNums = new List<string>();
+                targetCorpNums.Add("1234567890");
+                targetCorpNums.Add("6798700433");
+                targetCorpNums.Add("401-03-94930");
 
                 var response = _closedownService.checkCorpNums(corpNum, targetCorpNums, userID);
                 return View("CheckCorpNums", response);
@@ -229,20 +232,47 @@ namespace ClosedownExample.Controllers
         {
             JoinForm joinInfo = new JoinForm();
 
-            joinInfo.LinkID = "TESTER"; // 링크아이디
-            joinInfo.ID = "userid"; // 아이디 6자이상 50자 미만
-            joinInfo.PWD = "12341234"; // 비밀번호 6자이상 20자 미만
-            joinInfo.CorpNum = "0000000001"; // 사업자번호 "-" 제외
-            joinInfo.CEOName = "대표자 성명"; // 대표자 성명 
-            joinInfo.CorpName = "상호"; // 상호
-            joinInfo.Addr = "주소"; // 주소
-            joinInfo.BizType = "업태"; // 업태
-            joinInfo.BizClass = "종목"; // 종목
-            joinInfo.ContactName = "담당자명"; // 담당자 성명 
-            joinInfo.ContactEmail = "test@test.com"; // 담당자 이메일주소         
-            joinInfo.ContactTEL = "070-4304-2992"; // 담당자 연락처   
-            joinInfo.ContactHP = "010-111-222"; // 담당자 휴대폰번호 
-            joinInfo.ContactFAX = "02-111-222"; // 담당자 팩스번호
+            // 링크아이디
+            joinInfo.LinkID = "TESTER"; 
+            
+            // 아이디 6자이상 50자 미만
+            joinInfo.ID = "userid_20181212"; 
+            
+            // 비밀번호 6자이상 20자 미만
+            joinInfo.PWD = "12341234"; 
+            
+            // 사업자번호 "-" 제외
+            joinInfo.CorpNum = "0000000001"; 
+            
+            // 대표자 성명
+            joinInfo.CEOName = "대표자 성명";  
+            
+            // 상호
+            joinInfo.CorpName = "상호"; 
+            
+            // 주소
+            joinInfo.Addr = "주소"; 
+            
+            // 업태
+            joinInfo.BizType = "업태"; 
+            
+            // 종목
+            joinInfo.BizClass = "종목"; 
+            
+            // 담당자 성명
+            joinInfo.ContactName = "담당자명";  
+            
+            // 담당자 이메일주소
+            joinInfo.ContactEmail = "test@test.com";          
+            
+            // 담당자 연락처
+            joinInfo.ContactTEL = "070-4304-2992";    
+            
+            // 담당자 휴대폰번호
+            joinInfo.ContactHP = "010-111-222";  
+            
+            // 담당자 팩스번호
+            joinInfo.ContactFAX = "02-111-222"; 
 
             try
             {
@@ -278,11 +308,20 @@ namespace ClosedownExample.Controllers
         {
             CorpInfo corpInfo = new CorpInfo();
 
-            corpInfo.ceoname = "대표자 성명 수정"; // 대표자 성명
-            corpInfo.corpName = "상호 수정"; // 상호
-            corpInfo.addr = "주소 수정"; // 주소
-            corpInfo.bizType = "업태 수정"; // 업태 
-            corpInfo.bizClass = "종목 수정"; // 종목
+            // 대표자 성명
+            corpInfo.ceoname = "대표자 성명 수정"; 
+            
+            // 상호
+            corpInfo.corpName = "상호 수정"; 
+            
+            // 주소
+            corpInfo.addr = "주소 수정"; 
+            
+            // 업태
+            corpInfo.bizType = "업태 수정";  
+            
+            // 종목
+            corpInfo.bizClass = "종목 수정"; 
 
             try
             {
@@ -302,15 +341,32 @@ namespace ClosedownExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            contactInfo.id = "testkorea_20181108"; // 담당자 아이디; 6자 이상 50자 미만
-            contactInfo.pwd = "user_password"; // 비밀번호, 6자 이상 20자 미만
-            contactInfo.personName = "코어담당자"; // 담당자명
-            contactInfo.tel = "070-4304-2992"; // 담당자연락처
-            contactInfo.hp = "010-111-222"; // 담당자 휴대폰번호
-            contactInfo.fax = "02-111-222"; // 담당자 팩스번호 
-            contactInfo.email = "netcore@linkhub.co.kr"; // 담당자 메일주소
-            contactInfo.searchAllAllowYN = true; // 회사조회 권한여부, true(회사조회), false(개인조회)
-            contactInfo.mgrYN = false; // 관리자 권한여부 
+            // 담당자 아이디, 6자 이상 50자 미만
+            contactInfo.id = "testkorea_20181212";
+            
+            // 비밀번호, 6자 이상 20자 미만
+            contactInfo.pwd = "user_password";
+            
+            // 담당자명
+            contactInfo.personName = "코어담당자";
+            
+            // 담당자연락처
+            contactInfo.tel = "070-4304-2992";
+            
+            // 담당자 휴대폰번호
+            contactInfo.hp = "010-111-222";
+            
+            // 담당자 팩스번호
+            contactInfo.fax = "02-111-222";
+            
+            // 담당자 메일주소
+            contactInfo.email = "netcore@linkhub.co.kr";
+            
+            // 회사조회 권한여부, true(회사조회), false(개인조회)
+            contactInfo.searchAllAllowYN = true;
+            
+            // 관리자 권한여부
+            contactInfo.mgrYN = false;
 
             try
             {
@@ -346,14 +402,29 @@ namespace ClosedownExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            contactInfo.id = "testkorea"; // 아이디
-            contactInfo.personName = "담당자명"; // 담당자명 
-            contactInfo.tel = "070-4304-2992"; // 연락처
-            contactInfo.hp = "010-222-111"; // 휴대폰번호
-            contactInfo.fax = "02-222-1110"; // 팩스번호
-            contactInfo.email = "aspnetcore@popbill.co.kr"; // 이메일주소
-            contactInfo.searchAllAllowYN = true; // 회사조회 권한여부, true(회사조회), false(개인조회)
-            contactInfo.mgrYN = false; // 관리자 권한여부 
+            // 아이디
+            contactInfo.id = "testkorea";
+            
+            // 담당자명
+            contactInfo.personName = "담당자명";
+            
+            // 연락처
+            contactInfo.tel = "070-4304-2992";
+            
+            // 휴대폰번호
+            contactInfo.hp = "010-222-111";
+            
+            // 팩스번호
+            contactInfo.fax = "02-222-1110";
+            
+            // 이메일주소
+            contactInfo.email = "aspnetcore@popbill.co.kr";
+            
+            // 회사조회 권한여부, true(회사조회), false(개인조회)
+            contactInfo.searchAllAllowYN = true;
+            
+            // 관리자 권한여부
+            contactInfo.mgrYN = false;
 
             try
             {
