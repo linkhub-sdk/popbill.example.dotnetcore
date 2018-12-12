@@ -18,7 +18,7 @@ namespace ControllerDI.Services
 
         public HTTaxinvoiceInstance()
         {
-            //홈택스 서비스 객체 초기화
+            //홈택스연동(세금계산서) 서비스 객체 초기화
             htTaxinvoiceService = new HTTaxinvoiceService(linkID, secretKey);
 
             //연동환경 설정값, 개발용(true), 상업용(false)

@@ -13,7 +13,7 @@ namespace HTTaxinvoiceExample.Controllers
 
         public HTTaxinvoiceController(HTTaxinvoiceInstance HTTaxinvoice)
         {
-            //홈택스 서비스 객체 생성
+            //홈택스연동(전자세금계산서) 서비스 객체 생성
             _htTaxinvoiceService = HTTaxinvoice.htTaxinvoiceService;
 
             //연동환경 설정값, 개발용(true), 상업용(false)
@@ -27,7 +27,7 @@ namespace HTTaxinvoiceExample.Controllers
         string userID = "testkorea";
 
         /*
-         * 홈택스 Index page (HTTaxinvoice/Index.cshtml)
+         * 홈택스연동(전자세금계산서) Index page (HTTaxinvoice/Index.cshtml)
          */
         public IActionResult Index()
         {
@@ -38,7 +38,7 @@ namespace HTTaxinvoiceExample.Controllers
 
         /*
          * 전자(세금)계산서 매출/매입 내역 수집을 요청합니다
-         * - 홈택스연동 프로세스는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼]> 1.1. 프로세스 흐름도" 를 참고하시기 바랍니다.
+         * - 홈택스연동 프로세스는 "[홈택스연동(전자세금계산서계산서) API 연동매뉴얼]> 1.1. 홈택스연동(전자세금계산서) API 구성" 를 참고하시기 바랍니다.
          * - 수집 요청후 반환받은 작업아이디(JobID)의 유효시간은 1시간 입니다.
          */
         public IActionResult RequestJob()
@@ -260,7 +260,8 @@ namespace HTTaxinvoiceExample.Controllers
         #region 홈택스연동 인증 관리
 
         /*
-         * 홈택스연동에 이용할 공인인증서 등록 URL을 반환합니다.
+         * 홈택스연동 인증관리를 위한 URL을 반환합니다.
+         * 인증방식에는 부서사용자/공인인증서 인증 방식이 있습니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetCertificatePopUpURL()
@@ -277,7 +278,7 @@ namespace HTTaxinvoiceExample.Controllers
         }
 
         /*
-         * 홈택스연동에 이용하는 공인인증서의 만료일자를 반환합니다.
+         * 팝빌에 등록된 홈택스 공인인증서의 만료일자를 반환합니다.
          */
         public IActionResult GetCertificateExpireDate()
         {
@@ -310,7 +311,7 @@ namespace HTTaxinvoiceExample.Controllers
         }
 
         /*
-         * 홈택스 전자세금계산서 부서사용자 계정을 등록합니다.
+         * 홈택스 전자세금계산서 부서사용자 계정을 팝빌에 등록합니다.
          */
         public IActionResult RegistDeptUser()
         {

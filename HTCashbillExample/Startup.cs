@@ -18,7 +18,7 @@ namespace ControllerDI.Services
 
         public HTCashbillInstance()
         {
-            //홈택스 서비스 객체 초기화
+            //홈택스연동(현금영수증) 서비스 객체 초기화
             htCashbillService = new HTCashbillService(linkID, secretKey);
 
             //연동환경 설정값, 개발용(true), 상업용(false)
