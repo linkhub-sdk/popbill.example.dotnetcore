@@ -84,7 +84,7 @@ namespace CashbillExample.Controllers
             cashbill.tradeUsage = "소득공제용";
 
             // 거래유형, { 일반, 도서공연, 대중교통 } 중 기재
-            cashbill.tradeOpt = "일";
+            cashbill.tradeOpt = "일반";
 
             // [필수] 과세형태, { 과세, 비과세 } 중 기재
             cashbill.taxationType = "과세";
