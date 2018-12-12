@@ -168,7 +168,7 @@ namespace KakaoExample.Controllers
             string altSendType = "A";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
@@ -224,7 +224,7 @@ namespace KakaoExample.Controllers
             string altSendType = "A";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
@@ -280,7 +280,7 @@ namespace KakaoExample.Controllers
             string altSendType = "A";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
@@ -341,7 +341,7 @@ namespace KakaoExample.Controllers
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
@@ -412,7 +412,7 @@ namespace KakaoExample.Controllers
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
@@ -482,7 +482,7 @@ namespace KakaoExample.Controllers
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
@@ -544,7 +544,7 @@ namespace KakaoExample.Controllers
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 이미지 링크 URL
@@ -622,7 +622,7 @@ namespace KakaoExample.Controllers
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 이미지 링크 URL
@@ -699,7 +699,7 @@ namespace KakaoExample.Controllers
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
             
             // 이미지 링크 URL

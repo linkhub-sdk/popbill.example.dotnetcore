@@ -100,7 +100,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 광고여부 (기본값 false)
@@ -158,7 +158,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 광고여부 (기본값 false)
@@ -250,7 +250,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 광고여부 (기본값 false)
@@ -310,7 +310,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 광고여부 (기본값 false)
@@ -401,7 +401,8 @@ namespace FaxExample.Controllers
             // 팩스제목
             string title = "팩스 제목";
 
-            // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
+            // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 광고여부 (기본값 false)
@@ -460,7 +461,8 @@ namespace FaxExample.Controllers
             // 팩스제목
             string title = "팩스 제목";
 
-            // 예약전송일시(yyyyMMddHHmmss) ex) 20181126121206, null인 경우 즉시전송
+            // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
+            // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
             // 광고여부 (기본값 false)
