@@ -34,7 +34,7 @@ namespace TaxinvoiceExample.Controllers
             return View();
         }
 
-        #region 정방행/역발행/위수탁발행
+        #region 정발행/역발행/위수탁발행
 
         /*
          * 세금계산서 관리번호 중복여부를 확인합니다.
