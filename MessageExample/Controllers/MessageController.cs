@@ -1016,7 +1016,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 문자서비스 발행단가를 확인합니다.
+         * 문자서비스 전송단가를 확인합니다.
          */
         public IActionResult GetUnitCost()
         {

@@ -956,7 +956,7 @@ namespace KakaoExample.Controllers
         }
 
         /*
-         * 알림톡/친구톡 서비스 발행단가를 확인합니다.
+         * 알림톡/친구톡 서비스 전송단가를 확인합니다.
          */
         public IActionResult GetUnitCost()
         {

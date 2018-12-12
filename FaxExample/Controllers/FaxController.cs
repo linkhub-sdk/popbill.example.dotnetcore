@@ -650,7 +650,7 @@ namespace FaxExample.Controllers
         }
 
         /*
-         * 팩스 발행단가를 확인합니다.
+         * 팩스 전송단가를 확인합니다.
          */
         public IActionResult GetUnitCost()
         {
