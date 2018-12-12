@@ -70,7 +70,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20181113";
+            taxinvoice.writeDate = "20181212";
 
             // [필수] 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -106,7 +106,7 @@ namespace TaxinvoiceExample.Controllers
 
             // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
-            taxinvoice.invoicerMgtKey = "20181113122042";
+            taxinvoice.invoicerMgtKey = "20181212120149";
 
             // [필수] 공급자 대표자 성명 
             taxinvoice.invoicerCEOName = "공급자 대표자 성명";
@@ -254,32 +254,32 @@ namespace TaxinvoiceExample.Controllers
 
             taxinvoice.detailList = new List<TaxinvoiceDetail>();
 
-            TaxinvoiceDetail detail = new TaxinvoiceDetail
-            {
-                serialNum = 1, // 일련번호, 1부터 순차기재 
-                purchaseDT = "20181113", // 거래일자
-                itemName = "품목명", // 품목명 
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "50000", // 단가
-                supplyCost = "50000", // 공급가액
-                tax = "5000", // 세액
-                remark = "품목비고" //비고
-            };
+            TaxinvoiceDetail detail = new TaxinvoiceDetail();
+
+            detail.serialNum = 1; // 일련번호; 1부터 순차기재 
+            detail.purchaseDT = "20181212"; // 거래일자
+            detail.itemName = "품목명"; // 품목명 
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "50000"; // 단가
+            detail.supplyCost = "50000"; // 공급가액
+            detail.tax = "5000"; // 세액
+            detail.remark = "품목비고"; //비고
+
             taxinvoice.detailList.Add(detail);
 
-            detail = new TaxinvoiceDetail
-            {
-                serialNum = 2, // 일련번호, 1부터 순차기재 
-                purchaseDT = "20181113", // 거래일자
-                itemName = "품목명", // 품목명 
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "50000", // 단가
-                supplyCost = "50000", // 공급가액
-                tax = "5000", // 세액
-                remark = "품목비고" //비고
-            };
+            detail = new TaxinvoiceDetail();
+
+            detail.serialNum = 2; // 일련번호; 1부터 순차기재 
+            detail.purchaseDT = "20181212"; // 거래일자
+            detail.itemName = "품목명"; // 품목명 
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "50000"; // 단가
+            detail.supplyCost = "50000"; // 공급가액
+            detail.tax = "5000"; // 세액
+            detail.remark = "품목비고"; //비고
+
             taxinvoice.detailList.Add(detail);
 
 
@@ -292,20 +292,20 @@ namespace TaxinvoiceExample.Controllers
 
             taxinvoice.addContactList = new List<TaxinvoiceAddContact>();
 
-            TaxinvoiceAddContact addContact = new TaxinvoiceAddContact
-            {
-                serialNum = 1, // 일련번호, 1부터 순차기재
-                email = "test1@invoicee.com", // 추가담당자 메일주소 
-                contactName = "추가담당자명1" // 추가담당자 성명 
-            };
+            TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+
+            addContact.serialNum = 1; // 일련번호, 1부터 순차기재
+            addContact.email = "test2@invoicee.com"; // 추가담당자 메일주소 
+            addContact.contactName = "추가담당자명"; // 추가담당자 성명 
+
             taxinvoice.addContactList.Add(addContact);
 
-            addContact = new TaxinvoiceAddContact
-            {
-                serialNum = 2, // 일련번호, 1부터 순차기재
-                email = "test2@invoicee.com", // 추가담당자 메일주소 
-                contactName = "추가담당자명2" // 추가담당자 성명 
-            };
+            addContact = new TaxinvoiceAddContact();
+
+            addContact.serialNum = 2; // 일련번호, 1부터 순차기재 
+            addContact.email = "test2@invoicee.com"; // 추가담당자 메일주소
+            addContact.contactName = "추가담당자명"; // 추가담당자 성명
+
             taxinvoice.addContactList.Add(addContact);
 
 
@@ -351,7 +351,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20181113";
+            taxinvoice.writeDate = "20181212";
 
             // [필수] 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -387,7 +387,7 @@ namespace TaxinvoiceExample.Controllers
 
             // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
-            taxinvoice.invoicerMgtKey = "20181114140100";
+            taxinvoice.invoicerMgtKey = "20181212115313";
 
             // [필수] 공급자 대표자 성명 
             taxinvoice.invoicerCEOName = "공급자 대표자 성명";
@@ -534,32 +534,32 @@ namespace TaxinvoiceExample.Controllers
 
             taxinvoice.detailList = new List<TaxinvoiceDetail>();
 
-            TaxinvoiceDetail detail = new TaxinvoiceDetail
-            {
-                serialNum = 1, // 일련번호, 1부터 순차기재 
-                purchaseDT = "20181113", // 거래일자
-                itemName = "품목명", // 품목명 
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "50000", // 단가
-                supplyCost = "50000", // 공급가액
-                tax = "5000", // 세액
-                remark = "품목비고" //비고
-            };
+            TaxinvoiceDetail detail = new TaxinvoiceDetail();
+
+            detail.serialNum = 1; // 일련번호; 1부터 순차기재 
+            detail.purchaseDT = "20181212"; // 거래일자
+            detail.itemName = "품목명"; // 품목명 
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "50000"; // 단가
+            detail.supplyCost = "50000"; // 공급가액
+            detail.tax = "5000"; // 세액
+            detail.remark = "품목비고"; //비고
+
             taxinvoice.detailList.Add(detail);
 
-            detail = new TaxinvoiceDetail
-            {
-                serialNum = 2, // 일련번호, 1부터 순차기재 
-                purchaseDT = "20181113", // 거래일자
-                itemName = "품목명", // 품목명 
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "50000", // 단가
-                supplyCost = "50000", // 공급가액
-                tax = "5000", // 세액
-                remark = "품목비고" //비고
-            };
+            detail = new TaxinvoiceDetail();
+
+            detail.serialNum = 2; // 일련번호; 1부터 순차기재 
+            detail.purchaseDT = "20181212"; // 거래일자
+            detail.itemName = "품목명"; // 품목명 
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "50000"; // 단가
+            detail.supplyCost = "50000"; // 공급가액
+            detail.tax = "5000"; // 세액
+            detail.remark = "품목비고"; //비고
+
             taxinvoice.detailList.Add(detail);
 
 
@@ -572,20 +572,20 @@ namespace TaxinvoiceExample.Controllers
 
             taxinvoice.addContactList = new List<TaxinvoiceAddContact>();
 
-            TaxinvoiceAddContact addContact = new TaxinvoiceAddContact
-            {
-                serialNum = 1, // 일련번호, 1부터 순차기재
-                email = "test1@invoicee.com", // 추가담당자 메일주소 
-                contactName = "추가담당자명1" // 추가담당자 성명 
-            };
+            TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+
+            addContact.serialNum = 1; // 일련번호, 1부터 순차기재
+            addContact.email = "test2@invoicee.com"; // 추가담당자 메일주소 
+            addContact.contactName = "추가담당자명"; // 추가담당자 성명 
+
             taxinvoice.addContactList.Add(addContact);
 
-            addContact = new TaxinvoiceAddContact
-            {
-                serialNum = 2, // 일련번호, 1부터 순차기재
-                email = "test2@invoicee.com", // 추가담당자 메일주소 
-                contactName = "추가담당자명2" // 추가담당자 성명 
-            };
+            addContact = new TaxinvoiceAddContact();
+
+            addContact.serialNum = 2; // 일련번호, 1부터 순차기재 
+            addContact.email = "test2@invoicee.com"; // 추가담당자 메일주소
+            addContact.contactName = "추가담당자명"; // 추가담당자 성명
+
             taxinvoice.addContactList.Add(addContact);
 
 
@@ -613,17 +613,17 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult Update()
         {
             // 수정할 세금계산서 문서관리번호
-            string mgtKey = "20181030-002";
+            string mgtKey = "20181212115313";
 
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            
+
             // 세금계산서 정보 객체 
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20181113";
+            taxinvoice.writeDate = "20181212";
 
             // [필수] 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -659,7 +659,7 @@ namespace TaxinvoiceExample.Controllers
 
             // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
-            taxinvoice.invoicerMgtKey = "20181113122042";
+            taxinvoice.invoicerMgtKey = "";
 
             // [필수] 공급자 대표자 성명 
             taxinvoice.invoicerCEOName = "공급자 대표자 성명";
@@ -807,32 +807,34 @@ namespace TaxinvoiceExample.Controllers
 
             taxinvoice.detailList = new List<TaxinvoiceDetail>();
 
-            TaxinvoiceDetail detail = new TaxinvoiceDetail
-            {
-                serialNum = 1, // 일련번호, 1부터 순차기재 
-                purchaseDT = "20181113", // 거래일자
-                itemName = "품목명", // 품목명 
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "50000", // 단가
-                supplyCost = "50000", // 공급가액
-                tax = "5000", // 세액
-                remark = "품목비고" //비고
-            };
+            taxinvoice.detailList = new List<TaxinvoiceDetail>();
+
+            TaxinvoiceDetail detail = new TaxinvoiceDetail();
+
+            detail.serialNum = 1; // 일련번호; 1부터 순차기재 
+            detail.purchaseDT = "20181212"; // 거래일자
+            detail.itemName = "품목명(수정)"; // 품목명 
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "50000"; // 단가
+            detail.supplyCost = "50000"; // 공급가액
+            detail.tax = "5000"; // 세액
+            detail.remark = "품목비고"; //비고
+
             taxinvoice.detailList.Add(detail);
 
-            detail = new TaxinvoiceDetail
-            {
-                serialNum = 2, // 일련번호, 1부터 순차기재 
-                purchaseDT = "20181113", // 거래일자
-                itemName = "품목명", // 품목명 
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "50000", // 단가
-                supplyCost = "50000", // 공급가액
-                tax = "5000", // 세액
-                remark = "품목비고" //비고
-            };
+            detail = new TaxinvoiceDetail();
+
+            detail.serialNum = 2; // 일련번호; 1부터 순차기재 
+            detail.purchaseDT = "20181212"; // 거래일자
+            detail.itemName = "품목명"; // 품목명 
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "50000"; // 단가
+            detail.supplyCost = "50000"; // 공급가액
+            detail.tax = "5000"; // 세액
+            detail.remark = "품목비고"; //비고
+
             taxinvoice.detailList.Add(detail);
 
 
@@ -845,20 +847,20 @@ namespace TaxinvoiceExample.Controllers
 
             taxinvoice.addContactList = new List<TaxinvoiceAddContact>();
 
-            TaxinvoiceAddContact addContact = new TaxinvoiceAddContact
-            {
-                serialNum = 1, // 일련번호, 1부터 순차기재
-                email = "test1@invoicee.com", // 추가담당자 메일주소 
-                contactName = "추가담당자명1" // 추가담당자 성명 
-            };
+            TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+
+            addContact.serialNum = 1; // 일련번호, 1부터 순차기재
+            addContact.email = "test2@invoicee.com"; // 추가담당자 메일주소 
+            addContact.contactName = "추가담당자명(수정)"; // 추가담당자 성명 
+
             taxinvoice.addContactList.Add(addContact);
 
-            addContact = new TaxinvoiceAddContact
-            {
-                serialNum = 2, // 일련번호, 1부터 순차기재
-                email = "test2@invoicee.com", // 추가담당자 메일주소 
-                contactName = "추가담당자명2" // 추가담당자 성명 
-            };
+            addContact = new TaxinvoiceAddContact();
+
+            addContact.serialNum = 2; // 일련번호, 1부터 순차기재 
+            addContact.email = "test2@invoicee.com"; // 추가담당자 메일주소
+            addContact.contactName = "추가담당자명"; // 추가담당자 성명
+
             taxinvoice.addContactList.Add(addContact);
 
             try
@@ -1078,7 +1080,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20181114";
+            taxinvoice.writeDate = "20181212";
 
             // [필수] 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -1161,7 +1163,7 @@ namespace TaxinvoiceExample.Controllers
 
             // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
             // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
-            taxinvoice.invoiceeMgtKey = "20181114143728";
+            taxinvoice.invoiceeMgtKey = "20181212115430";
 
             // [필수] 공급받는자 대표자 성명 
             taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명";
@@ -1262,32 +1264,32 @@ namespace TaxinvoiceExample.Controllers
 
             taxinvoice.detailList = new List<TaxinvoiceDetail>();
 
-            TaxinvoiceDetail detail = new TaxinvoiceDetail
-            {
-                serialNum = 1, // 일련번호, 1부터 순차기재 
-                purchaseDT = "20181114", // 거래일자
-                itemName = "품목명", // 품목명 
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "50000", // 단가
-                supplyCost = "50000", // 공급가액
-                tax = "5000", // 세액
-                remark = "품목비고" //비고
-            };
+            TaxinvoiceDetail detail = new TaxinvoiceDetail();
+
+            detail.serialNum = 1; // 일련번호; 1부터 순차기재 
+            detail.purchaseDT = "20181212"; // 거래일자
+            detail.itemName = "품목명"; // 품목명 
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "50000"; // 단가
+            detail.supplyCost = "50000"; // 공급가액
+            detail.tax = "5000"; // 세액
+            detail.remark = "품목비고"; //비고
+
             taxinvoice.detailList.Add(detail);
 
-            detail = new TaxinvoiceDetail
-            {
-                serialNum = 2, // 일련번호, 1부터 순차기재 
-                purchaseDT = "20181114", // 거래일자
-                itemName = "품목명", // 품목명 
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "50000", // 단가
-                supplyCost = "50000", // 공급가액
-                tax = "5000", // 세액
-                remark = "품목비고" //비고
-            };
+            detail = new TaxinvoiceDetail();
+
+            detail.serialNum = 2; // 일련번호; 1부터 순차기재 
+            detail.purchaseDT = "20181212"; // 거래일자
+            detail.itemName = "품목명"; // 품목명 
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "50000"; // 단가
+            detail.supplyCost = "50000"; // 공급가액
+            detail.tax = "5000"; // 세액
+            detail.remark = "품목비고"; //비고
+
             taxinvoice.detailList.Add(detail);
 
 
@@ -1300,20 +1302,20 @@ namespace TaxinvoiceExample.Controllers
 
             taxinvoice.addContactList = new List<TaxinvoiceAddContact>();
 
-            TaxinvoiceAddContact addContact = new TaxinvoiceAddContact
-            {
-                serialNum = 1, // 일련번호, 1부터 순차기재
-                email = "test1@invoicee.com", // 추가담당자 메일주소 
-                contactName = "추가담당자명1" // 추가담당자 성명 
-            };
+            TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
+
+            addContact.serialNum = 1; // 일련번호, 1부터 순차기재
+            addContact.email = "test2@invoicee.com"; // 추가담당자 메일주소 
+            addContact.contactName = "추가담당자명"; // 추가담당자 성명 
+
             taxinvoice.addContactList.Add(addContact);
 
-            addContact = new TaxinvoiceAddContact
-            {
-                serialNum = 2, // 일련번호, 1부터 순차기재
-                email = "test2@invoicee.com", // 추가담당자 메일주소 
-                contactName = "추가담당자명2" // 추가담당자 성명 
-            };
+            addContact = new TaxinvoiceAddContact();
+
+            addContact.serialNum = 2; // 일련번호, 1부터 순차기재 
+            addContact.email = "test2@invoicee.com"; // 추가담당자 메일주소
+            addContact.contactName = "추가담당자명"; // 추가담당자 성명
+
             taxinvoice.addContactList.Add(addContact);
 
             // 메모
@@ -2342,23 +2344,22 @@ namespace TaxinvoiceExample.Controllers
          */
         public IActionResult JoinMember()
         {
-            JoinForm joinInfo = new JoinForm
-            {
-                LinkID = "TESTER", // 링크아이디
-                ID = "userid", // 아이디, 6자이상 50자 미만
-                PWD = "12341234", // 비밀번호, 6자이상 20자 미만
-                CorpNum = "0000000001", // 사업자번호 "-" 제외
-                CEOName = "대표자 성명", // 대표자 성명 
-                CorpName = "상호", // 상호
-                Addr = "주소", // 주소
-                BizType = "업태", // 업태
-                BizClass = "종목", // 종목
-                ContactName = "담당자명", // 담당자 성명 
-                ContactEmail = "test@test.com", // 담당자 이메일주소         
-                ContactTEL = "070-4304-2992", // 담당자 연락처   
-                ContactHP = "010-111-222", // 담당자 휴대폰번호 
-                ContactFAX = "02-111-222" // 담당자 팩스번호
-            };
+            JoinForm joinInfo = new JoinForm();
+
+            joinInfo.LinkID = "TESTER"; // 링크아이디
+            joinInfo.ID = "userid_20181212"; // 아이디 6자이상 50자 미만
+            joinInfo.PWD = "12341234"; // 비밀번호 6자이상 20자 미만
+            joinInfo.CorpNum = "0000000001"; // 사업자번호 "-" 제외
+            joinInfo.CEOName = "대표자 성명"; // 대표자 성명 
+            joinInfo.CorpName = "상호"; // 상호
+            joinInfo.Addr = "주소"; // 주소
+            joinInfo.BizType = "업태"; // 업태
+            joinInfo.BizClass = "종목"; // 종목
+            joinInfo.ContactName = "담당자명"; // 담당자 성명 
+            joinInfo.ContactEmail = "test@test.com"; // 담당자 이메일주소         
+            joinInfo.ContactTEL = "070-4304-2992"; // 담당자 연락처   
+            joinInfo.ContactHP = "010-111-222"; // 담당자 휴대폰번호 
+            joinInfo.ContactFAX = "02-111-222"; // 담당자 팩스번호
 
             try
             {
@@ -2392,14 +2393,13 @@ namespace TaxinvoiceExample.Controllers
          */
         public IActionResult UpdateCorpInfo()
         {
-            CorpInfo corpInfo = new CorpInfo
-            {
-                ceoname = "대표자 성명 수정", // 대표자 성명
-                corpName = "상호 수정", // 상호
-                addr = "주소 수정", // 주소
-                bizType = "업태 수정", // 업태 
-                bizClass = "종목 수정" // 종목
-            };
+            CorpInfo corpInfo = new CorpInfo();
+
+            corpInfo.ceoname = "대표자 성명 수정"; // 대표자 성명
+            corpInfo.corpName = "상호 수정"; // 상호
+            corpInfo.addr = "주소 수정"; // 주소
+            corpInfo.bizType = "업태 수정"; // 업태 
+            corpInfo.bizClass = "종목 수정"; // 종목
 
             try
             {
@@ -2417,18 +2417,17 @@ namespace TaxinvoiceExample.Controllers
          */
         public IActionResult RegistContact()
         {
-            Contact contactInfo = new Contact
-            {
-                id = "testkorea_20181108", // 담당자 아이디, 6자 이상 50자 미만
-                pwd = "user_password", // 비밀번호, 6자 이상 20자 미만
-                personName = "코어담당자", // 담당자명
-                tel = "070-4304-2992", // 담당자연락처
-                hp = "010-111-222", // 담당자 휴대폰번호
-                fax = "02-111-222", // 담당자 팩스번호 
-                email = "netcore@linkhub.co.kr", // 담당자 메일주소
-                searchAllAllowYN = true, // 회사조회 권한여부, true(회사조회), false(개인조회)
-                mgrYN = false // 관리자 권한여부 
-            };
+            Contact contactInfo = new Contact();
+
+            contactInfo.id = "testkorea_20181212"; // 담당자 아이디; 6자 이상 50자 미만
+            contactInfo.pwd = "user_password"; // 비밀번호, 6자 이상 20자 미만
+            contactInfo.personName = "코어담당자"; // 담당자명
+            contactInfo.tel = "070-4304-2992"; // 담당자연락처
+            contactInfo.hp = "010-111-222"; // 담당자 휴대폰번호
+            contactInfo.fax = "02-111-222"; // 담당자 팩스번호 
+            contactInfo.email = "netcore@linkhub.co.kr"; // 담당자 메일주소
+            contactInfo.searchAllAllowYN = true; // 회사조회 권한여부, true(회사조회), false(개인조회)
+            contactInfo.mgrYN = false; // 관리자 권한여부 
 
             try
             {
@@ -2462,17 +2461,16 @@ namespace TaxinvoiceExample.Controllers
          */
         public IActionResult UpdateContact()
         {
-            Contact contactInfo = new Contact
-            {
-                id = "testkorea", // 아이디
-                personName = "담당자명", // 담당자명 
-                tel = "070-4304-2992", // 연락처
-                hp = "010-222-111", // 휴대폰번호
-                fax = "02-222-1110", // 팩스번호
-                email = "aspnetcore@popbill.co.kr", // 이메일주소
-                searchAllAllowYN = true, // 회사조회 권한여부, true(회사조회), false(개인조회)
-                mgrYN = false // 관리자 권한여부 
-            };
+            Contact contactInfo = new Contact();
+
+            contactInfo.id = "testkorea"; // 아이디
+            contactInfo.personName = "담당자명"; // 담당자명 
+            contactInfo.tel = "070-4304-2992"; // 연락처
+            contactInfo.hp = "010-222-111"; // 휴대폰번호
+            contactInfo.fax = "02-222-1110"; // 팩스번호
+            contactInfo.email = "aspnetcore@popbill.co.kr"; // 이메일주소
+            contactInfo.searchAllAllowYN = true; // 회사조회 권한여부, true(회사조회), false(개인조회)
+            contactInfo.mgrYN = false; // 관리자 권한여부 
 
             try
             {

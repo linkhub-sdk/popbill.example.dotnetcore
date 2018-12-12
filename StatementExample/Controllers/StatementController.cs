@@ -68,7 +68,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20181206";
+            statement.writeDate = "20181212";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -83,7 +83,7 @@ namespace StatementExample.Controllers
             statement.itemCode = 121;
 
             // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20181206-001";
+            statement.mgtKey = "20181212115601";
 
 
             /**************************************************************************
@@ -213,42 +213,42 @@ namespace StatementExample.Controllers
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
 
-            StatementDetail detail = new StatementDetail
-            {
-                serialNum = 1, // 일련번호 1부터 순차기재
-                purchaseDT = "20181206", // 거래일자 작성형식 yyyyMMdd
-                itemName = "품목명", // 품목명
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "100000", // 단가
-                supplyCost = "100000", // 공급가액
-                tax = "10000", // 세액
-                remark = "품목비고", // 비고
-                spare1 = "spare1", // 여분
-                spare2 = "spare2",
-                spare3 = "spare3",
-                spare4 = "spare4",
-                spare5 = "spare5"
-            };
+            StatementDetail detail = new StatementDetail();
+
+            detail.serialNum = 1; // 일련번호 1부터 순차기재
+            detail.purchaseDT = "20181212"; // 거래일자 작성형식 yyyyMMdd
+            detail.itemName = "품목명"; // 품목명
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "100000"; // 단가
+            detail.supplyCost = "100000"; // 공급가액
+            detail.tax = "10000"; // 세액
+            detail.remark = "품목비고"; // 비고
+            detail.spare1 = "spare1"; // 여분
+            detail.spare2 = "spare2";
+            detail.spare3 = "spare3";
+            detail.spare4 = "spare4";
+            detail.spare5 = "spare5";
+
             statement.detailList.Add(detail);
 
-            detail = new StatementDetail
-            {
-                serialNum = 2, // 일련번호 1부터 순차기재
-                purchaseDT = "20181206", // 거래일자 작성형식 yyyyMMdd
-                itemName = "품목명", // 품목명
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "100000", // 단가
-                supplyCost = "100000", // 공급가액
-                tax = "10000", // 세액
-                remark = "품목비고", // 비고
-                spare1 = "spare1", // 여분
-                spare2 = "spare2",
-                spare3 = "spare3",
-                spare4 = "spare4",
-                spare5 = "spare5"
-            };
+            detail = new StatementDetail();
+            
+            detail.serialNum = 2; // 일련번호 1부터 순차기재
+            detail.purchaseDT = "20181212"; // 거래일자 작성형식 yyyyMMdd
+            detail.itemName = "품목명"; // 품목명
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "100000"; // 단가
+            detail.supplyCost = "100000"; // 공급가액
+            detail.tax = "10000"; // 세액
+            detail.remark = "품목비고"; // 비고
+            detail.spare1 = "spare1"; // 여분
+            detail.spare2 = "spare2";
+            detail.spare3 = "spare3";
+            detail.spare4 = "spare4";
+            detail.spare5 = "spare5";
+            
             statement.detailList.Add(detail);
 
             // 추가속성항목, 자세한사항은 "전자명세서 API 연동매뉴얼> 5.2 기본양식 추가속성 테이블" 참조. 
@@ -281,7 +281,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20181206";
+            statement.writeDate = "20181212";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -296,7 +296,7 @@ namespace StatementExample.Controllers
             statement.itemCode = 121;
 
             // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20181206-123";
+            statement.mgtKey = "20181212115621";
 
 
             /**************************************************************************
@@ -426,42 +426,42 @@ namespace StatementExample.Controllers
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
 
-            StatementDetail detail = new StatementDetail
-            {
-                serialNum = 1, // 일련번호 1부터 순차기재
-                purchaseDT = "20181206", // 거래일자 작성형식 yyyyMMdd
-                itemName = "품목명", // 품목명
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "100000", // 단가
-                supplyCost = "100000", // 공급가액
-                tax = "10000", // 세액
-                remark = "품목비고", // 비고
-                spare1 = "spare1", // 여분
-                spare2 = "spare2",
-                spare3 = "spare3",
-                spare4 = "spare4",
-                spare5 = "spare5"
-            };
+            StatementDetail detail = new StatementDetail();
+
+            detail.serialNum = 1; // 일련번호 1부터 순차기재
+            detail.purchaseDT = "20181212"; // 거래일자 작성형식 yyyyMMdd
+            detail.itemName = "품목명"; // 품목명
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "100000"; // 단가
+            detail.supplyCost = "100000"; // 공급가액
+            detail.tax = "10000"; // 세액
+            detail.remark = "품목비고"; // 비고
+            detail.spare1 = "spare1"; // 여분
+            detail.spare2 = "spare2";
+            detail.spare3 = "spare3";
+            detail.spare4 = "spare4";
+            detail.spare5 = "spare5";
+
             statement.detailList.Add(detail);
 
-            detail = new StatementDetail
-            {
-                serialNum = 2, // 일련번호 1부터 순차기재
-                purchaseDT = "20181206", // 거래일자 작성형식 yyyyMMdd
-                itemName = "품목명", // 품목명
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "100000", // 단가
-                supplyCost = "100000", // 공급가액
-                tax = "10000", // 세액
-                remark = "품목비고", // 비고
-                spare1 = "spare1", // 여분
-                spare2 = "spare2",
-                spare3 = "spare3",
-                spare4 = "spare4",
-                spare5 = "spare5"
-            };
+            detail = new StatementDetail();
+            
+            detail.serialNum = 2; // 일련번호 1부터 순차기재
+            detail.purchaseDT = "20181212"; // 거래일자 작성형식 yyyyMMdd
+            detail.itemName = "품목명"; // 품목명
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "100000"; // 단가
+            detail.supplyCost = "100000"; // 공급가액
+            detail.tax = "10000"; // 세액
+            detail.remark = "품목비고"; // 비고
+            detail.spare1 = "spare1"; // 여분
+            detail.spare2 = "spare2";
+            detail.spare3 = "spare3";
+            detail.spare4 = "spare4";
+            detail.spare5 = "spare5";
+            
             statement.detailList.Add(detail);
 
             // 추가속성항목, 자세한사항은 "전자명세서 API 연동매뉴얼> 5.2 기본양식 추가속성 테이블" 참조. 
@@ -493,14 +493,14 @@ namespace StatementExample.Controllers
 
             // 수정할 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181206-123";
+            string mgtKey = "20181212115621";
 
 
             // 전자명세서 정보 객체
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20181206";
+            statement.writeDate = "20181212";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -639,42 +639,42 @@ namespace StatementExample.Controllers
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
 
-            StatementDetail detail = new StatementDetail
-            {
-                serialNum = 1, // 일련번호 1부터 순차기재
-                purchaseDT = "20181206", // 거래일자 작성형식 yyyyMMdd
-                itemName = "품목명", // 품목명
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "100000", // 단가
-                supplyCost = "100000", // 공급가액
-                tax = "10000", // 세액
-                remark = "품목비고", // 비고
-                spare1 = "spare1", // 여분
-                spare2 = "spare2",
-                spare3 = "spare3",
-                spare4 = "spare4",
-                spare5 = "spare5"
-            };
+            StatementDetail detail = new StatementDetail();
+
+            detail.serialNum = 1; // 일련번호 1부터 순차기재
+            detail.purchaseDT = "20181212"; // 거래일자 작성형식 yyyyMMdd
+            detail.itemName = "품목명(수정)"; // 품목명
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "100000"; // 단가
+            detail.supplyCost = "100000"; // 공급가액
+            detail.tax = "10000"; // 세액
+            detail.remark = "품목비고"; // 비고
+            detail.spare1 = "spare1"; // 여분
+            detail.spare2 = "spare2";
+            detail.spare3 = "spare3";
+            detail.spare4 = "spare4";
+            detail.spare5 = "spare5";
+
             statement.detailList.Add(detail);
 
-            detail = new StatementDetail
-            {
-                serialNum = 2, // 일련번호 1부터 순차기재
-                purchaseDT = "20181206", // 거래일자 작성형식 yyyyMMdd
-                itemName = "품목명", // 품목명
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "100000", // 단가
-                supplyCost = "100000", // 공급가액
-                tax = "10000", // 세액
-                remark = "품목비고", // 비고
-                spare1 = "spare1", // 여분
-                spare2 = "spare2",
-                spare3 = "spare3",
-                spare4 = "spare4",
-                spare5 = "spare5"
-            };
+            detail = new StatementDetail();
+            
+            detail.serialNum = 2; // 일련번호 1부터 순차기재
+            detail.purchaseDT = "20181212"; // 거래일자 작성형식 yyyyMMdd
+            detail.itemName = "품목명"; // 품목명
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "100000"; // 단가
+            detail.supplyCost = "100000"; // 공급가액
+            detail.tax = "10000"; // 세액
+            detail.remark = "품목비고"; // 비고
+            detail.spare1 = "spare1"; // 여분
+            detail.spare2 = "spare2";
+            detail.spare3 = "spare3";
+            detail.spare4 = "spare4";
+            detail.spare5 = "spare5";
+            
             statement.detailList.Add(detail);
 
             // 추가속성항목, 자세한사항은 "전자명세서 API 연동매뉴얼> 5.2 기본양식 추가속성 테이블" 참조. 
@@ -1742,23 +1742,22 @@ namespace StatementExample.Controllers
          */
         public IActionResult JoinMember()
         {
-            JoinForm joinInfo = new JoinForm
-            {
-                LinkID = "TESTER", // 링크아이디
-                ID = "userid", // 아이디, 6자이상 50자 미만
-                PWD = "12341234", // 비밀번호, 6자이상 20자 미만
-                CorpNum = "0000000001", // 사업자번호 "-" 제외
-                CEOName = "대표자 성명", // 대표자 성명 
-                CorpName = "상호", // 상호
-                Addr = "주소", // 주소
-                BizType = "업태", // 업태
-                BizClass = "종목", // 종목
-                ContactName = "담당자명", // 담당자 성명 
-                ContactEmail = "test@test.com", // 담당자 이메일주소         
-                ContactTEL = "070-4304-2992", // 담당자 연락처   
-                ContactHP = "010-111-222", // 담당자 휴대폰번호 
-                ContactFAX = "02-111-222" // 담당자 팩스번호
-            };
+            JoinForm joinInfo = new JoinForm();
+
+            joinInfo.LinkID = "TESTER"; // 링크아이디
+            joinInfo.ID = "userid"; // 아이디 6자이상 50자 미만
+            joinInfo.PWD = "12341234"; // 비밀번호 6자이상 20자 미만
+            joinInfo.CorpNum = "0000000001"; // 사업자번호 "-" 제외
+            joinInfo.CEOName = "대표자 성명"; // 대표자 성명 
+            joinInfo.CorpName = "상호"; // 상호
+            joinInfo.Addr = "주소"; // 주소
+            joinInfo.BizType = "업태"; // 업태
+            joinInfo.BizClass = "종목"; // 종목
+            joinInfo.ContactName = "담당자명"; // 담당자 성명 
+            joinInfo.ContactEmail = "test@test.com"; // 담당자 이메일주소         
+            joinInfo.ContactTEL = "070-4304-2992"; // 담당자 연락처   
+            joinInfo.ContactHP = "010-111-222"; // 담당자 휴대폰번호 
+            joinInfo.ContactFAX = "02-111-222"; // 담당자 팩스번호
 
             try
             {
@@ -1792,14 +1791,13 @@ namespace StatementExample.Controllers
          */
         public IActionResult UpdateCorpInfo()
         {
-            CorpInfo corpInfo = new CorpInfo
-            {
-                ceoname = "대표자 성명 수정", // 대표자 성명
-                corpName = "상호 수정", // 상호
-                addr = "주소 수정", // 주소
-                bizType = "업태 수정", // 업태 
-                bizClass = "종목 수정" // 종목
-            };
+            CorpInfo corpInfo = new CorpInfo();
+
+            corpInfo.ceoname = "대표자 성명 수정"; // 대표자 성명
+            corpInfo.corpName = "상호 수정"; // 상호
+            corpInfo.addr = "주소 수정"; // 주소
+            corpInfo.bizType = "업태 수정"; // 업태 
+            corpInfo.bizClass = "종목 수정"; // 종목
 
             try
             {
@@ -1817,18 +1815,17 @@ namespace StatementExample.Controllers
          */
         public IActionResult RegistContact()
         {
-            Contact contactInfo = new Contact
-            {
-                id = "testkorea_20181108", // 담당자 아이디, 6자 이상 50자 미만
-                pwd = "user_password", // 비밀번호, 6자 이상 20자 미만
-                personName = "코어담당자", // 담당자명
-                tel = "070-4304-2992", // 담당자연락처
-                hp = "010-111-222", // 담당자 휴대폰번호
-                fax = "02-111-222", // 담당자 팩스번호 
-                email = "netcore@linkhub.co.kr", // 담당자 메일주소
-                searchAllAllowYN = true, // 회사조회 권한여부, true(회사조회), false(개인조회)
-                mgrYN = false // 관리자 권한여부 
-            };
+            Contact contactInfo = new Contact();
+
+            contactInfo.id = "testkorea_20181108"; // 담당자 아이디; 6자 이상 50자 미만
+            contactInfo.pwd = "user_password"; // 비밀번호, 6자 이상 20자 미만
+            contactInfo.personName = "코어담당자"; // 담당자명
+            contactInfo.tel = "070-4304-2992"; // 담당자연락처
+            contactInfo.hp = "010-111-222"; // 담당자 휴대폰번호
+            contactInfo.fax = "02-111-222"; // 담당자 팩스번호 
+            contactInfo.email = "netcore@linkhub.co.kr"; // 담당자 메일주소
+            contactInfo.searchAllAllowYN = true; // 회사조회 권한여부, true(회사조회), false(개인조회)
+            contactInfo.mgrYN = false; // 관리자 권한여부 
 
             try
             {
@@ -1862,17 +1859,16 @@ namespace StatementExample.Controllers
          */
         public IActionResult UpdateContact()
         {
-            Contact contactInfo = new Contact
-            {
-                id = "testkorea", // 아이디
-                personName = "담당자명", // 담당자명 
-                tel = "070-4304-2992", // 연락처
-                hp = "010-222-111", // 휴대폰번호
-                fax = "02-222-1110", // 팩스번호
-                email = "aspnetcore@popbill.co.kr", // 이메일주소
-                searchAllAllowYN = true, // 회사조회 권한여부, true(회사조회), false(개인조회)
-                mgrYN = false // 관리자 권한여부 
-            };
+            Contact contactInfo = new Contact();
+
+            contactInfo.id = "testkorea"; // 아이디
+            contactInfo.personName = "담당자명"; // 담당자명 
+            contactInfo.tel = "070-4304-2992"; // 연락처
+            contactInfo.hp = "010-222-111"; // 휴대폰번호
+            contactInfo.fax = "02-222-1110"; // 팩스번호
+            contactInfo.email = "aspnetcore@popbill.co.kr"; // 이메일주소
+            contactInfo.searchAllAllowYN = true; // 회사조회 권한여부, true(회사조회), false(개인조회)
+            contactInfo.mgrYN = false; // 관리자 권한여부 
 
             try
             {
