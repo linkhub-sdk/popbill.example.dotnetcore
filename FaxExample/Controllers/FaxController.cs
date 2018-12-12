@@ -523,7 +523,7 @@ namespace FaxExample.Controllers
             // 정렬방향, D-내림차순, A-오름차순
             string Order = "D";
 
-            // 조회 검색어, 팩스 전송시 기재한 발신자명 또는 수신자명 기재
+            // 조회 검색어, 팩스 전송시 기재한 발신자명 또는 수신자명 기재, 공백시 전체조회
             string QString = "";
 
             try

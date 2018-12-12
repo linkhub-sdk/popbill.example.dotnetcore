@@ -885,7 +885,7 @@ namespace StatementExample.Controllers
             // 정렬방향, D-내림차순, A-오름차순
             string Order = "D";
 
-            // 거래처 조회, 거래처 등록번호, 상호 조회, 미기재시 전체조회
+            // 거래처 조회, 거래처 등록번호, 상호 조회, 공백시 전체조회
             string QString = "";
 
             try

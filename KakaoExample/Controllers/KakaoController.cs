@@ -771,7 +771,7 @@ namespace KakaoExample.Controllers
             // 정렬방향, D-내림차순, A-오름차순
             string Order = "D";
 
-            // 조회 검색어, 카카오톡 전송시 기재한 수신자명 입력
+            // 조회 검색어, 카카오톡 전송시 기재한 수신자명 입력, 공백시 전체조회
             string QString = "";
 
             try
