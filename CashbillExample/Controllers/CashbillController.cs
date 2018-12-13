@@ -265,7 +265,6 @@ namespace CashbillExample.Controllers
             // 수정할 현금영수증 문서관리번호
             string mgtKey = "20181127-002";
 
-
             // 현금영수증 정보 객체 
             Cashbill cashbill = new Cashbill();
 
@@ -358,7 +357,7 @@ namespace CashbillExample.Controllers
          */
         public IActionResult Issue()
         {
-            // 현금영수증 문서관리번호
+            // 발행처리할 현금영수증 문서관리번호
             string mgtKey = "20181127-002";
 
             // 메모
@@ -382,7 +381,7 @@ namespace CashbillExample.Controllers
          */
         public IActionResult CancelIssue()
         {
-            // 현금영수증 문서관리번호
+            // 발행취소할 현금영수증 문서관리번호
             string mgtKey = "20181122-001";
 
             // 메모
@@ -406,7 +405,7 @@ namespace CashbillExample.Controllers
          */
         public IActionResult Delete()
         {
-            // 현금영수증 문서관리번호
+            // 삭제처리할 현금영수증 문서관리번호
             string mgtKey = "20181122-001";
 
             try
@@ -428,7 +427,8 @@ namespace CashbillExample.Controllers
          */
         public IActionResult RevokeRegistIssue()
         {
-            // 현금영수증 문서관리번호
+            // 현금영수증 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20181124185045";
 
             // 원본 현금영수증 국세청승인번호
@@ -456,7 +456,8 @@ namespace CashbillExample.Controllers
          */
         public IActionResult RevokeRegistIssue_part()
         {
-            // 현금영수증 문서관리번호
+            // 현금영수증 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20181124185045";
 
             // 원본 현금영수증 국세청승인번호
@@ -510,7 +511,8 @@ namespace CashbillExample.Controllers
          */
         public IActionResult RevokeRegister()
         {
-            // 현금영수증 문서관리번호
+            // 현금영수증 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "R20181003-101";
 
             // 원본 현금영수증 국세청승인번호
@@ -539,7 +541,8 @@ namespace CashbillExample.Controllers
          */
         public IActionResult RevokeRegister_part()
         {
-            // 현금영수증 문서관리번호
+            // 현금영수증 문서관리번호,사업자별로 중복되지 않도록 관리번호 할당
+            // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "R20181003-100";
 
             // 원본 현금영수증 국세청승인번호
@@ -700,7 +703,7 @@ namespace CashbillExample.Controllers
             // 정렬방향, D-내림차순, A-오름차순
             string Order = "D";
 
-            // 식별번호 조회, 미기재시 전체조회 
+            // 식별번호 조회, 공백시 전체조회
             string QString = "";
 
             try
@@ -717,7 +720,8 @@ namespace CashbillExample.Controllers
 
         /*
          * 현금영수증 상태 변경이력을 확인합니다.
-         * - 상태 변경이력 확인(GetLogs API) 응답항목에 대한 자세한 정보는 "[현금영수증 API 연동매뉴얼] > 3.3.5 상태 변경이력 확인" 을 참조하시기 바랍니다.
+         * - 상태 변경이력 확인(GetLogs API) 응답항목에 대한 자세한 정보는
+         *   "[현금영수증 API 연동매뉴얼] > 3.3.5 상태 변경이력 확인" 을 참조하시기 바랍니다.
          */
         public IActionResult GetLogs()
         {
@@ -825,13 +829,14 @@ namespace CashbillExample.Controllers
         }
 
         /*
-         * 공급받는자 메일링크 URL을 반환합니다.
-         * - 메일링크 URL은 유효시간이 존재하지 않습니다.
+         * 현금영수증 수신메일 링크주소를 반환합니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetMailURL()
         {
             // 현금영수증 문서관리번호
             string mgtKey = "20181124185045";
+            
             try
             {
                 var result = _cashbillService.GetMailURL(corpNum, mgtKey, userID);

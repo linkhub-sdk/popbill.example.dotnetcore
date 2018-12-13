@@ -97,7 +97,7 @@ namespace MessageExample.Controllers
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
-            
+
             // 광고문자여부 (기본값 false)
             // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
             bool adsYN = false;
@@ -219,8 +219,8 @@ namespace MessageExample.Controllers
 
             try
             {
-                var receiptNum =
-                    _messageService.SendSMS(corpNum, senderNum, contents, messages, sndDT, adsYN, requestNum);
+                var receiptNum = _messageService.SendSMS(corpNum, senderNum, contents, messages: messages, sndDT: sndDT,
+                    adsYN: adsYN, requestNum: requestNum);
                 return View("ReceiptNum", receiptNum);
             }
             catch (PopbillException pe)
@@ -776,7 +776,7 @@ namespace MessageExample.Controllers
             // 종료일자, 날짜형식(yyyyMMdd)
             string EDate = "20181126";
 
-            // 전송상태값 배열, 1-대기, 2-성공, 3-실패, 4-취소
+            // 전송상태 배열, 1-대기, 2-성공, 3-실패, 4-취소
             string[] State = new string[4];
             State[0] = "1";
             State[1] = "2";
@@ -1103,47 +1103,47 @@ namespace MessageExample.Controllers
             JoinForm joinInfo = new JoinForm();
 
             // 링크아이디
-            joinInfo.LinkID = "TESTER"; 
-            
+            joinInfo.LinkID = "TESTER";
+
             // 아이디 6자이상 50자 미만
-            joinInfo.ID = "userid_20181212"; 
-            
+            joinInfo.ID = "userid_20181212";
+
             // 비밀번호 6자이상 20자 미만
-            joinInfo.PWD = "12341234"; 
-            
+            joinInfo.PWD = "12341234";
+
             // 사업자번호 "-" 제외
-            joinInfo.CorpNum = "0000000001"; 
-            
+            joinInfo.CorpNum = "0000000001";
+
             // 대표자 성명
-            joinInfo.CEOName = "대표자 성명";  
-            
+            joinInfo.CEOName = "대표자 성명";
+
             // 상호
-            joinInfo.CorpName = "상호"; 
-            
+            joinInfo.CorpName = "상호";
+
             // 주소
-            joinInfo.Addr = "주소"; 
-            
+            joinInfo.Addr = "주소";
+
             // 업태
-            joinInfo.BizType = "업태"; 
-            
+            joinInfo.BizType = "업태";
+
             // 종목
-            joinInfo.BizClass = "종목"; 
-            
+            joinInfo.BizClass = "종목";
+
             // 담당자 성명
-            joinInfo.ContactName = "담당자명";  
-            
+            joinInfo.ContactName = "담당자명";
+
             // 담당자 이메일주소
-            joinInfo.ContactEmail = "test@test.com";          
-            
+            joinInfo.ContactEmail = "test@test.com";
+
             // 담당자 연락처
-            joinInfo.ContactTEL = "070-4304-2992";    
-            
+            joinInfo.ContactTEL = "070-4304-2992";
+
             // 담당자 휴대폰번호
-            joinInfo.ContactHP = "010-111-222";  
-            
+            joinInfo.ContactHP = "010-111-222";
+
             // 담당자 팩스번호
-            joinInfo.ContactFAX = "02-111-222"; 
-            
+            joinInfo.ContactFAX = "02-111-222";
+
             try
             {
                 var response = _messageService.JoinMember(joinInfo);
@@ -1196,19 +1196,19 @@ namespace MessageExample.Controllers
             CorpInfo corpInfo = new CorpInfo();
 
             // 대표자 성명
-            corpInfo.ceoname = "대표자 성명 수정"; 
-            
+            corpInfo.ceoname = "대표자 성명 수정";
+
             // 상호
-            corpInfo.corpName = "상호 수정"; 
-            
+            corpInfo.corpName = "상호 수정";
+
             // 주소
-            corpInfo.addr = "주소 수정"; 
-            
+            corpInfo.addr = "주소 수정";
+
             // 업태
-            corpInfo.bizType = "업태 수정";  
-            
+            corpInfo.bizType = "업태 수정";
+
             // 종목
-            corpInfo.bizClass = "종목 수정"; 
+            corpInfo.bizClass = "종목 수정";
 
             try
             {
@@ -1230,25 +1230,25 @@ namespace MessageExample.Controllers
 
             // 아이디
             contactInfo.id = "testkorea";
-            
+
             // 담당자명
             contactInfo.personName = "담당자명";
-            
+
             // 연락처
             contactInfo.tel = "070-4304-2992";
-            
+
             // 휴대폰번호
             contactInfo.hp = "010-222-111";
-            
+
             // 팩스번호
             contactInfo.fax = "02-222-1110";
-            
+
             // 이메일주소
             contactInfo.email = "aspnetcore@popbill.co.kr";
-            
+
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
-            
+
             // 관리자 권한여부
             contactInfo.mgrYN = false;
 
@@ -1288,25 +1288,25 @@ namespace MessageExample.Controllers
 
             // 아이디
             contactInfo.id = "testkorea";
-            
+
             // 담당자명
             contactInfo.personName = "담당자명";
-            
+
             // 연락처
             contactInfo.tel = "070-4304-2992";
-            
+
             // 휴대폰번호
             contactInfo.hp = "010-222-111";
-            
+
             // 팩스번호
             contactInfo.fax = "02-222-1110";
-            
+
             // 이메일주소
             contactInfo.email = "aspnetcore@popbill.co.kr";
-            
+
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
-            
+
             // 관리자 권한여부
             contactInfo.mgrYN = false;
 

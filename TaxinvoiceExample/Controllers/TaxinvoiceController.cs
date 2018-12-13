@@ -883,7 +883,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 발행처리할 세금계산서 문서관리번호
             string mgtKey = "20181030-002";
 
             // 지연발행 강제여부, 기본값 - False
@@ -919,7 +919,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 발행취소할 세금계산서 문서관리번호
             string mgtKey = "20181030-002";
 
             // 메모
@@ -967,7 +967,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [발행예정] 세금계산서를 [공급자]가 [취소]합니다.
+         * [발행대기] 세금계산서를 [공급자]가 [취소]합니다.
          * - [취소]된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
          */
         public IActionResult CancelSend()
@@ -1053,7 +1053,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 삭제처리할 세금계산서 문서관리번호
             string mgtKey = "20181025-100";
 
             try
@@ -1068,7 +1068,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [공급받는자]가 공급자에게 1건의 역발행 세금계산서를 [즉시 요청]합니다.
+         * [공급받는자]가 공급자에게 역발행 세금계산서를 [즉시 요청]합니다.
          * - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서구성"을 참조하시기 바랍니다.
          * - 역발행 세금계산서 프로세스를 구현하기 위해서는 공급자/공급받는자가 모두 팝빌에 회원이여야 합니다.
          * - 역발행 즉시요청후 공급자가 [발행] 처리시 포인트가 차감되며 역발행 세금계산서 항목중 과금방향(ChargeDirection)에 기재한 값에 따라
@@ -1333,7 +1333,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [공급받는자]가 1건의 역발행 세금계산서를 공급자에게 [발행요청] 합니다. 
+         * [공급받는자]가 역발행 세금계산서를 공급자에게 [발행요청] 합니다. 
          * - 역발행 세금계산서 프로세스를 구현하기 위해서는 공급자/공급받는자가 모두 팝빌에 회원이여야 합니다.
          * - 역발행 요청후 공급자가 [발행] 처리시 포인트가 차감되며 역발행 세금계산서 항목중 과금방향(ChargeDirection)에 기재한 값에 따라
          *   정과금(공급자과금) 또는 역과금(공급받는자과금) 처리됩니다.
@@ -1361,7 +1361,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [공급받는자]가 역발행 세금계산서의 발행요청을 [취소] 합니다. 
+         * [공급받는자]가 역발행 세금계산서의 발행요청을 [취소]합니다. 
          * - [취소]한 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
          */
         public IActionResult CancelRequest()

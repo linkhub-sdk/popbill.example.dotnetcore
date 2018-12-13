@@ -253,7 +253,7 @@ namespace FaxExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고여부 (기본값 false)
+            // 광고팩스 전송여부 (기본값 false)
             bool adsYN = false;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
@@ -313,7 +313,7 @@ namespace FaxExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고여부 (기본값 false)
+            // 광고팩스 전송여부 (기본값 false)
             bool adsYN = false;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
@@ -383,7 +383,7 @@ namespace FaxExample.Controllers
          */
         public IActionResult ResendFAXRN()
         {
-            // 팩스전송 요청시 할당한 요청번호
+            // 팩스전송 요청시 할당한 전송요청번호
             string preRequestNum = "20181205-001";
 
             // 발신번호, 공백으로 처리시 기존전송정보로 전송
@@ -405,7 +405,7 @@ namespace FaxExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고여부 (기본값 false)
+            // 광고팩스 전송여부 (기본값 false)
             bool adsYN = false;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
@@ -465,7 +465,7 @@ namespace FaxExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고여부 (기본값 false)
+            // 광고팩스 전송여부 (기본값 false)
             bool adsYN = false;
 
             // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재

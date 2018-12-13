@@ -34,7 +34,7 @@ namespace KakaoExample.Controllers
             return View();
         }
 
-        #region 친구톡/알림톡/발신번호 관리
+        #region 친구톡/알림톡 관리
 
         /*
          * 플러스친구 계정관리 팝업 URL을 반환합니다.
@@ -54,7 +54,7 @@ namespace KakaoExample.Controllers
         }
 
         /*
-         * 팝빌에 등록된 플러스친구 계정목록을 확인합니다.
+         * 팝빌에 등록된 플러스친구 계정목록을 반환합니다.
          */
         public IActionResult ListPlusFriendID()
         {
@@ -70,7 +70,7 @@ namespace KakaoExample.Controllers
         }
 
         /*
-         * 발신번호 관리 팝업 URL을 반합니다.
+         * 발신번호 관리 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetSenderNumberMgtURL()
@@ -87,7 +87,7 @@ namespace KakaoExample.Controllers
         }
 
         /*
-         * 팝빌에 등록된 발신번호 목록을 확인합니다.
+         * 팝빌에 등록된 발신번호 목록을 반환합니다.
          */
         public IActionResult GetSenderNumberList()
         {
@@ -521,7 +521,7 @@ namespace KakaoExample.Controllers
             string receiverName = "수신자명";
 
             // 친구톡 내용 (최대 400자)
-            string content = "친구톡 내용";
+            string content = "친구톡(이미지) 내용은 최대 400자 입니다.";
 
             // 대체문자 메시지 내용 (최대 2000byte)
             string altContent = "대체문자 내용";
@@ -596,7 +596,7 @@ namespace KakaoExample.Controllers
                 receiverInfo.rcvnm = "수신자명" + i;
 
                 // 친구톡 내용 (최대 400자)
-                receiverInfo.msg = "친구톡 내용 입니다." + i;
+                receiverInfo.msg = "친구톡(이미지) 내용은 최대 400자 입니다." + i;
 
                 // 대체문자 내용 (최대 2000byte)
                 receiverInfo.altmsg = "대체문자 내용 입니다" + i;
@@ -661,7 +661,7 @@ namespace KakaoExample.Controllers
             string senderNum = "07043042991";
 
             // (동보) 친구톡 내용 (최대 400자)
-            string content = "친구톡 내용 입니다.";
+            string content = "친구톡(이미지) 내용은 최대 400자 입니다.";
 
             // (동보) 대체문자 메시지 내용 (최대 2000byte)
             string altContent = "대체문자 메시지 내용";
@@ -741,7 +741,7 @@ namespace KakaoExample.Controllers
             // 종료일자, 날자형식(yyyyMMdd)
             string EDate = "20180731";
 
-            // 전송상태값 배열, 0-대기, 1-전송중, -2-성공, 3-대체, 4-실패, 5-취소
+            // 전송상태 배열, 0-대기, 1-전송중, -2-성공, 3-대체, 4-실패, 5-취소
             string[] State = new string[6];
             State[0] = "0";
             State[1] = "1";

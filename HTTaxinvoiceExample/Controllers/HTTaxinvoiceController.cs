@@ -37,14 +37,15 @@ namespace HTTaxinvoiceExample.Controllers
         #region 홈택스 전자세금계산서 매입/매출 내역 수집
 
         /*
-         * 전자(세금)계산서 매출/매입 내역 수집을 요청합니다
-         * - 홈택스연동 프로세스는 "[홈택스연동(전자세금계산서계산서) API 연동매뉴얼]> 1.1. 홈택스연동(전자세금계산서) API 구성" 를 참고하시기 바랍니다.
+         * 전자세금계산서 매출/매입 내역 수집을 요청합니다
+         * - 홈택스연동 프로세스는 "[홈택스연동(전자세금계산서계산서) API 연동매뉴얼] >
+         *   1.1. 홈택스연동(전자세금계산서) API 구성" 을 참고하시기 바랍니다.
          * - 수집 요청후 반환받은 작업아이디(JobID)의 유효시간은 1시간 입니다.
          */
         public IActionResult RequestJob()
         {
             // 전자세금계산서 유형 SELL-매출, BUY-매입, TRUSTEE-위수탁
-            KeyType tiKeyType = KeyType.SELL;
+            KeyType keyType = KeyType.SELL;
 
             // 일자유형, W-작성일자, I-발행일자, S-전송일자
             string DType = "I";
@@ -57,7 +58,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var result = _htTaxinvoiceService.RequestJob(corpNum, tiKeyType, DType, SDate, EDate, userID);
+                var result = _htTaxinvoiceService.RequestJob(corpNum, keyType, DType, SDate, EDate, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -68,7 +69,8 @@ namespace HTTaxinvoiceExample.Controllers
 
         /*
          * 수집 요청 상태를 확인합니다.
-         * - 응답항목 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼] > 3.1.2. GetJobState(수집 상태 확인)" 을 참고하시기 바랍니다.
+         * - 응답항목 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼] >
+         *   3.1.2. GetJobState(수집 상태 확인)" 을 참고하시기 바랍니다.
          */
         public IActionResult GetJobState()
         {
@@ -89,7 +91,8 @@ namespace HTTaxinvoiceExample.Controllers
         /*
          * 수집 요청건들에 대한 상태 목록을 확인합니다.
          * - 수집 요청 작업아이디(JobID)의 유효시간은 1시간 입니다.
-         * - 응답항목에 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼] > 3.1.3. ListActiveJob(수집 상태 목록 확인)" 을 참고하시기 바랍니다.
+         * - 응답항목에 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼] >
+         *   3.1.3. ListActiveJob(수집 상태 목록 확인)" 을 참고하시기 바랍니다.
          */
         public IActionResult ListActiveJob()
         {
@@ -110,7 +113,8 @@ namespace HTTaxinvoiceExample.Controllers
 
         /*
          * 전자세금계산서 매입/매출 내역의 수집 결과를 조회합니다.
-         * - 응답항목에 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼] > 3.2.1. Search(수집 결과 조회)" 을 참고하시기 바랍니다.
+         * - 응답항목에 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼] >
+         *   3.2.1. Search(수집 결과 조회)" 을 참고하시기 바랍니다.
          */
         public IActionResult Search()
         {
@@ -158,7 +162,8 @@ namespace HTTaxinvoiceExample.Controllers
 
         /*
          * 전자세금계산서 매입/매출 내역의 수집 결과 요약정보를 조회합니다.
-         * - 응답항목에 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼] > 3.2.2. Summary(수집 결과 요약정보 조회)" 을 참고하시기 바랍니다.
+         * - 응답항목에 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼] >
+         *   3.2.2. Summary(수집 결과 요약정보 조회)" 을 참고하시기 바랍니다.
          */
         public IActionResult Summary()
         {
@@ -197,7 +202,8 @@ namespace HTTaxinvoiceExample.Controllers
 
         /*
          * 전자세금계산서 1건의 상세정보를 확인합니다.
-         * - 응답항목에 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼]> 4.1.2. GetTaxinvoice 응답전문 구성" 을 참고하시기 바랍니다.
+         * - 응답항목에 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼] >
+         *   4.1.2. GetTaxinvoice 응답전문 구성" 을 참고하시기 바랍니다.
          */
         public IActionResult GetTaxinvoice()
         {
@@ -217,7 +223,8 @@ namespace HTTaxinvoiceExample.Controllers
 
         /*
          * XML형식의 전자(세금)계산서 상세정보를 1건을 확인합니다.
-         * - 응답항목에 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼] > 3.2.4. GetXML(상세정보 확인 - XML)" 을 참고하시기 바랍니다.
+         * - 응답항목에 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼] >
+         *   3.2.4. GetXML(상세정보 확인 - XML)" 을 참고하시기 바랍니다.
          */
         public IActionResult GetXML()
         {

@@ -37,13 +37,14 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 현금영수증 매출/매입 내역 수집을 요청합니다
-         * - 홈택스연동 프로세스는 "[홈택스연동(현금영수증) API 연동매뉴얼]> 1.1. 홈택스연동(현금영수증) API 구성" 를 참고하시기 바랍니다.
+         * - 홈택스연동 프로세스는 "[홈택스연동(현금영수증) API 연동매뉴얼] >
+         *   1.1. 홈택스연동(현금영수증) API 구성" 을 참고하시기 바랍니다.
          * - 수집 요청후 반환받은 작업아이디(JobID)의 유효시간은 1시간 입니다.
          */
         public IActionResult RequestJob()
         {
             // 현금영수증 유형 SELL-매출, BUY-매입
-            KeyType tiKeyType = KeyType.SELL;
+            KeyType keyType = KeyType.SELL;
 
             // 시작일자, 표시형식(yyyyMMdd)
             string SDate = "20180101";
@@ -53,7 +54,7 @@ namespace HTCashbillExample.Controllers
 
             try
             {
-                var result = _htCashbillService.RequestJob(corpNum, tiKeyType, SDate, EDate, userID);
+                var result = _htCashbillService.RequestJob(corpNum, keyType, SDate, EDate, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -64,7 +65,8 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 수집 요청 상태를 확인합니다.
-         * - 응답항목 관한 정보는 "[홈택스연동 (현금영수증) API 연동매뉴얼] > 3.1.2. GetJobState(수집 상태 확인)" 을 참고하시기 바랍니다.
+         * - 응답항목 관한 정보는 "[홈택스연동 (현금영수증) API 연동매뉴얼] >
+         *   3.1.2. GetJobState(수집 상태 확인)" 을 참고하시기 바랍니다.
          */
         public IActionResult GetJobState()
         {
@@ -85,7 +87,8 @@ namespace HTCashbillExample.Controllers
         /*
          * 수집 요청건들에 대한 상태 목록을 확인합니다.
          * - 수집 요청 작업아이디(JobID)의 유효시간은 1시간 입니다.
-         * - 응답항목에 관한 정보는 "[홈택스연동 (현금영수증) API 연동매뉴얼] > 3.1.3. ListActiveJob(수집 상태 목록 확인)" 을 참고하시기 바랍니다.
+         * - 응답항목에 관한 정보는 "[홈택스연동 (현금영수증) API 연동매뉴얼] >
+         *   3.1.3. ListActiveJob(수집 상태 목록 확인)" 을 참고하시기 바랍니다.
          */
         public IActionResult ListActiveJob()
         {
@@ -106,7 +109,8 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 현금영수증 매입/매출 내역의 수집 결과를 조회합니다.
-         * - 응답항목에 관한 정보는 "[홈택스연동 (현금영수증) API 연동매뉴얼] > 3.2.1. Search(수집 결과 조회)" 을 참고하시기 바랍니다.
+         * - 응답항목에 관한 정보는 "[홈택스연동 (현금영수증) API 연동매뉴얼] >
+         *   3.2.1. Search(수집 결과 조회)" 을 참고하시기 바랍니다.
          */
         public IActionResult Search()
         {
@@ -142,7 +146,8 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 현금영수증 매입/매출 내역의 수집 결과 요약정보를 조회합니다.
-         * - 응답항목에 관한 정보는 "[홈택스연동 (현금영수증) API 연동매뉴얼] > 3.2.2. Summary(수집 결과 요약정보 조회)" 을 참고하시기 바랍니다.
+         * - 응답항목에 관한 정보는 "[홈택스연동 (현금영수증) API 연동매뉴얼] >
+         *   3.2.2. Summary(수집 결과 요약정보 조회)" 을 참고하시기 바랍니다.
          */
         public IActionResult Summary()
         {
