@@ -15,8 +15,6 @@ namespace MessageExample.Controllers
             //문자 서비스 객체 생성
             _messageService = MSGinstance.messageService;
 
-            //연동환경 설정값, 개발용(true), 상업용(false)
-            _messageService.IsTest = true;
         }
 
         //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)

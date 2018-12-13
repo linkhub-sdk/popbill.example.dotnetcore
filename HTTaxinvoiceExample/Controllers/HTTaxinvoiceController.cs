@@ -14,8 +14,6 @@ namespace HTTaxinvoiceExample.Controllers
             //홈택스연동(전자세금계산서) 서비스 객체 생성
             _htTaxinvoiceService = HTTaxinvoice.htTaxinvoiceService;
 
-            //연동환경 설정값, 개발용(true), 상업용(false)
-            _htTaxinvoiceService.IsTest = true;
         }
 
         //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
