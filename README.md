@@ -8,9 +8,9 @@
     $ dotnet add package Popbill --version 1.0.8
 
 
-연동 API 목차
-------------------------------
-* 전자세금계산서 API
+연동 API 목차 및 연동가이
+----------------
+* 전자세금계산서 API 연동가이드 <https://linkhub.tistory.com/176> 
 * 전자명세서 API
 * 현금영수증 API
 * 문자메시지 API
@@ -25,4 +25,3 @@
 * 링크허브 <https://www.linkhub.co.kr/>
 * 팝빌 상업용 <https://www.popbill.com/>
 * 팝빌 테스트베드 <https://www.test.popbill.com/>
-* ASP.NET Core SDK 적용방법 <http://>
