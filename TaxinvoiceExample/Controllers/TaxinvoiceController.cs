@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using ControllerDI.Services;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
 using Popbill.Taxinvoice;
@@ -967,7 +965,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [발행대기] 세금계산서를 [공급자]가 [취소]합니다.
+         * [발행대기] 상태의 세금계산서를 [공급자]가 [취소]합니다.
          * - [취소]된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
          */
         public IActionResult CancelSend()
@@ -993,7 +991,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [발행예정] 세금계산서를 [공급받는자]가 [승인]합니다.
+         * [승인대기] 상태의 세금계산서를 [공급받는자]가 [승인]합니다.
          */
         public IActionResult Accept()
         {
@@ -1018,7 +1016,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [발행예정] 세금계산서를 [공급받는자]가 [거부]합니다.
+         * [승인대기] 상태의 세금계산서를 [공급받는자]가 [거부]합니다.
          * - [거부]처리된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
          */
         public IActionResult Deny()
@@ -1333,7 +1331,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [공급받는자]가 역발행 세금계산서를 공급자에게 [발행요청] 합니다. 
+         * [공급받는자]가 임시저장 상태의 역발행 세금계산서를 공급자에게 [발행요청] 합니다. 
          * - 역발행 세금계산서 프로세스를 구현하기 위해서는 공급자/공급받는자가 모두 팝빌에 회원이여야 합니다.
          * - 역발행 요청후 공급자가 [발행] 처리시 포인트가 차감되며 역발행 세금계산서 항목중 과금방향(ChargeDirection)에 기재한 값에 따라
          *   정과금(공급자과금) 또는 역과금(공급받는자과금) 처리됩니다.
@@ -1361,7 +1359,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * [공급받는자]가 역발행 세금계산서의 발행요청을 [취소]합니다. 
+         * [공급받는자]가 역)발행대기 상태의 세금계산서를 [취소]합니다. 
          * - [취소]한 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
          */
         public IActionResult CancelRequest()
@@ -1387,7 +1385,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 공급받는자에게 요청받은 역발행 세금계산서를 [공급자]가 [거부]합니다.
+         * 공급받는자에게 요청받은 역)발행대기 상태의 세금계산서를 [공급자]가 [거부]합니다.
          * - 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
          */
         public IActionResult Refuse()
@@ -1905,7 +1903,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 알림문자를 전송합니다. (단문/SMS - 한글 최대 45자)
          * - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
-         * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [전송내역] 탭에서 전송결과를 확인할 수 있습니다.
+         * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
          */
         public IActionResult SendSMS()
         {
@@ -2357,10 +2355,10 @@ namespace TaxinvoiceExample.Controllers
             // 링크아이디
             joinInfo.LinkID = "TESTER"; 
             
-            // 아이디 6자이상 50자 미만
+            // 아이디, 6자이상 50자 미만
             joinInfo.ID = "userid_20181212"; 
             
-            // 비밀번호 6자이상 20자 미만
+            // 비밀번호, 6자이상 20자 미만
             joinInfo.PWD = "12341234"; 
             
             // 사업자번호 "-" 제외

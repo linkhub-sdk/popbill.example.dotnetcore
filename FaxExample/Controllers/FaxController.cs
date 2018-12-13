@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using ControllerDI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
 using Popbill.Fax;
@@ -496,10 +495,10 @@ namespace FaxExample.Controllers
         {
             // 최대 검색기간 : 6개월 이내 
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20181101";
+            string SDate = "20181213";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20181126";
+            string EDate = "20181213";
 
             //전송상태 배열 1-대기, 2-성공, 3-실패, 4-취소
             string[] State = new string[4];
@@ -508,10 +507,10 @@ namespace FaxExample.Controllers
             State[2] = "3";
             State[3] = "4";
 
-            // 예약여부, True-예약전송건 검색, False-즉시전송건 검색
+            // 예약여부, true-예약전송건 조회, false-전체전송건 조회
             bool ReserveYN = false;
 
-            // 개인조회여부, True-개인조회, False-전체조회
+            // 개인조회여부, true-개인조회, false-전체조회
             bool SenderOnly = false;
 
             // 페이지 번호, 기본값 '1'
@@ -733,10 +732,10 @@ namespace FaxExample.Controllers
             // 링크아이디
             joinInfo.LinkID = "TESTER"; 
             
-            // 아이디 6자이상 50자 미만
+            // 아이디, 6자이상 50자 미만
             joinInfo.ID = "userid_20181212"; 
             
-            // 비밀번호 6자이상 20자 미만
+            // 비밀번호, 6자이상 20자 미만
             joinInfo.PWD = "12341234"; 
             
             // 사업자번호 "-" 제외

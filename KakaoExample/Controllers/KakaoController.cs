@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using ControllerDI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
 using Popbill.Kakao;
@@ -34,7 +33,7 @@ namespace KakaoExample.Controllers
             return View();
         }
 
-        #region 친구톡/알림톡 관리
+        #region 플러스친구/발신번호/알림템플릿 관리
 
         /*
          * 플러스친구 계정관리 팝업 URL을 반환합니다.
@@ -334,10 +333,10 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
-            // 대체문자 유형, 공백-미전송, C-알림톡 내용, A-대체문자 내용
+            // 대체문자 유형, 공백-미전송, C-친구톡 내용, A-대체문자 내용
             string altSendType = "A";
 
-            // 광고전송여부
+            // 광고 전송여부
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
@@ -405,10 +404,10 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
-            // 대체문자 유형, 공백-미전송, C-알림톡 내용, A-대체문자 내용
+            // 대체문자 유형, 공백-미전송, C-친구톡 내용, A-대체문자 내용
             string altSendType = "A";
 
-            // 광고전송여부
+            // 광고 전송여부
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
@@ -475,10 +474,10 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
-            // 대체문자 유형, 공백-미전송, C-알림톡 내용, A-대체문자 내용
+            // 대체문자 유형, 공백-미전송, C-친구톡 내용, A-대체문자 내용
             string altSendType = "A";
 
-            // 광고전송여부
+            // 광고 전송여부
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
@@ -537,17 +536,17 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
-            // 대체문자 유형, 공백-미전송, C-알림톡 내용, A-대체문자 내용
+            // 대체문자 유형, 공백-미전송, C-친구톡 내용, A-대체문자 내용
             string altSendType = "A";
 
-            // 광고전송여부
+            // 광고 전송여부
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 이미지 링크 URL
+            // 이미지 링크 URL, 링크는 http(s)://... 형식으로 입력되어야 합니다.
             string imageURL = "https://www.popbill.com";
 
             // 이미지 파일경로
@@ -615,17 +614,17 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
-            // 대체문자 유형, 공백-미전송, C-알림톡 내용, A-대체문자 내용
+            // 대체문자 유형, 공백-미전송, C-친구톡 내용, A-대체문자 내용
             string altSendType = "A";
 
-            // 광고전송여부
+            // 광고 전송여부
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 이미지 링크 URL
+            // 이미지 링크 URL, 링크는 http(s)://... 형식으로 입력되어야 합니다.
             string imageURL = "https://www.popbill.com";
 
             // 이미지 파일경로
@@ -692,17 +691,17 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
-            // 대체문자 유형, 공백-미전송, C-알림톡 내용, A-대체문자 내용
+            // 대체문자 유형, 공백-미전송, C-친구톡 내용, A-대체문자 내용
             string altSendType = "A";
 
-            // 광고전송여부
+            // 광고 전송여부
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
             
-            // 이미지 링크 URL
+            // 이미지 링크 URL, 링크는 http(s)://... 형식으로 입력되어야 합니다.
             string imageURL = "https://www.popbill.com";
 
             // 이미지 파일경로
@@ -759,7 +758,7 @@ namespace KakaoExample.Controllers
             // 예약여부, 공백-전체조회, 1-예약전송건 조회, 0-즉시전송 조회
             string ReserveYN = "";
 
-            // 개인조회여부 true-개인조회, false-전체조회 
+            // 개인조회여부, true-개인조회, false-전체조회
             bool SenderYN = false;
 
             // 페이지 번호, 기본값 '1'
@@ -1045,10 +1044,10 @@ namespace KakaoExample.Controllers
             // 링크아이디
             joinInfo.LinkID = "TESTER"; 
             
-            // 아이디 6자이상 50자 미만
+            // 아이디, 6자이상 50자 미만
             joinInfo.ID = "userid_20181212"; 
             
-            // 비밀번호 6자이상 20자 미만
+            // 비밀번호, 6자이상 20자 미만
             joinInfo.PWD = "12341234"; 
             
             // 사업자번호 "-" 제외
@@ -1168,8 +1167,11 @@ namespace KakaoExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 아이디
-            contactInfo.id = "testkorea";
+            // 담당자 아이디, 6자 이상 50자 미만
+            contactInfo.id = "testkorea_20181212";
+            
+            // 비밀번호, 6자 이상 20자 미만
+            contactInfo.pwd = "user_password";
             
             // 담당자명
             contactInfo.personName = "담당자명";

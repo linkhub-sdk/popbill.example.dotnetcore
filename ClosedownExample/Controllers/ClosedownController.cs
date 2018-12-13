@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using ControllerDI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
 using Popbill.Closedown;
@@ -235,10 +234,10 @@ namespace ClosedownExample.Controllers
             // 링크아이디
             joinInfo.LinkID = "TESTER"; 
             
-            // 아이디 6자이상 50자 미만
+            // 아이디, 6자이상 50자 미만
             joinInfo.ID = "userid_20181212"; 
             
-            // 비밀번호 6자이상 20자 미만
+            // 비밀번호, 6자이상 20자 미만
             joinInfo.PWD = "12341234"; 
             
             // 사업자번호 "-" 제외

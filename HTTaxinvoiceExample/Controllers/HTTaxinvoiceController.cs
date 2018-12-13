@@ -1,5 +1,3 @@
-using System;
-using ControllerDI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
 using Popbill.HomeTax;
@@ -222,7 +220,7 @@ namespace HTTaxinvoiceExample.Controllers
         }
 
         /*
-         * XML형식의 전자(세금)계산서 상세정보를 1건을 확인합니다.
+         * XML 형식의 전자세금계산서 상세정보를 확인합니다.
          * - 응답항목에 관한 정보는 "[홈택스연동 (전자세금계산서계산서) API 연동매뉴얼] >
          *   3.2.4. GetXML(상세정보 확인 - XML)" 을 참고하시기 바랍니다.
          */
@@ -562,10 +560,10 @@ namespace HTTaxinvoiceExample.Controllers
             // 링크아이디
             joinInfo.LinkID = "TESTER"; 
             
-            // 아이디 6자이상 50자 미만
+            // 아이디, 6자이상 50자 미만
             joinInfo.ID = "userid_20181212"; 
             
-            // 비밀번호 6자이상 20자 미만
+            // 비밀번호, 6자이상 20자 미만
             joinInfo.PWD = "12341234"; 
             
             // 사업자번호 "-" 제외
@@ -684,8 +682,11 @@ namespace HTTaxinvoiceExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 아이디
-            contactInfo.id = "testkorea";
+            // 담당자 아이디, 6자 이상 50자 미만
+            contactInfo.id = "testkorea_20181212";
+            
+            // 비밀번호, 6자 이상 20자 미만
+            contactInfo.pwd = "user_password";
             
             // 담당자명
             contactInfo.personName = "담당자명";

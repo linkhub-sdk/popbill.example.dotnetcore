@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using ControllerDI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
 using Popbill.Message;
@@ -75,7 +74,7 @@ namespace MessageExample.Controllers
 
         /*
          * SMS(단문)를 전송합니다.
-         *  - 메시지 길이가 90 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
          */
         public IActionResult SendSMS()
         {
@@ -120,15 +119,15 @@ namespace MessageExample.Controllers
 
         /*
          * [대량전송] SMS(단문)를 전송합니다.
-         *  - 메시지 길이가 90 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
-         *  - 대량전송/부분전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.1 SendSMS(단문전송)"을 참조하시기 바랍니다.
+         *  - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.1 SendSMS(단문전송)"을 참조하시기 바랍니다.
          */
         public IActionResult SendSMS_Multi()
         {
             // 발신번호 
             string senderNum = "07043042992";
 
-            // 메시지 구성
+            // 메시지 구성, 최대 1000건
             List<Message> messages = new List<Message>();
 
             for (int i = 0; i < 100; i++)
@@ -175,8 +174,8 @@ namespace MessageExample.Controllers
 
         /*
          * [동보전송] SMS(단문)를 전송합니다.
-         *  - 메시지 길이가 90 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
-         *  - 대량전송/부분전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.1 SendSMS(단문전송)"을 참조하시기 바랍니다.
+         *  - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.1 SendSMS(단문전송)"을 참조하시기 바랍니다.
          */
         public IActionResult SendSMS_Same()
         {
@@ -186,7 +185,7 @@ namespace MessageExample.Controllers
             // (동보) 메시지내용, 90byte초과된 내용은 삭제되어 전송됨. 
             string contents = "단문 문자 메시지 내용. 90byte 초과시 삭제되어 전송";
 
-            // 메시지 구성
+            // 메시지 구성, 최대 1000건
             List<Message> messages = new List<Message>();
 
             for (int i = 0; i < 100; i++)
@@ -219,8 +218,8 @@ namespace MessageExample.Controllers
 
             try
             {
-                var receiptNum = _messageService.SendSMS(corpNum, senderNum, contents, messages: messages, sndDT: sndDT,
-                    adsYN: adsYN, requestNum: requestNum);
+                var receiptNum = _messageService.SendSMS(corpNum, senderNum, contents, messages, sndDT,
+                    adsYN, requestNum);
                 return View("ReceiptNum", receiptNum);
             }
             catch (PopbillException pe)
@@ -232,7 +231,7 @@ namespace MessageExample.Controllers
 
         /*
          * LMS(장문)를 전송합니다.
-         *  - 메시지 길이가 2,000 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
          */
         public IActionResult SendLMS()
         {
@@ -280,15 +279,15 @@ namespace MessageExample.Controllers
 
         /*
          * [대량전송] LMS(장문)를 전송합니다.
-         *  - 메시지 길이가 2,000 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
-         *  - 대량전송/부분전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.2 SendLMS(장문전송)"을 참조하시기 바랍니다.
+         *  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.2 SendLMS(장문전송)"을 참조하시기 바랍니다.
          */
         public IActionResult SendLMS_Multi()
         {
             // 발신번호 
             string senderNum = "07043042992";
 
-            // 메시지 구성
+            // 메시지 구성, 최대 1000건
             List<Message> messages = new List<Message>();
 
             for (int i = 0; i < 100; i++)
@@ -339,8 +338,8 @@ namespace MessageExample.Controllers
 
         /*
          * [동보전송] LNS(장문)를 전송합니다.
-         *  - 메시지 길이가 2,000 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
-         *  - 대량전송/부분전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.2 SendLMS(장문전송)"을 참조하시기 바랍니다.
+         *  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.2 SendLMS(장문전송)"을 참조하시기 바랍니다.
          */
         public IActionResult SendLMS_Same()
         {
@@ -353,7 +352,7 @@ namespace MessageExample.Controllers
             // (동보) 메시지내용, 최대 2000byte 초과된 내용은 삭제되어 전송됨.
             string contents = "장문 문자 메시지 내용. 최대 2000byte 초과된 내용은 삭제되어 전송.";
 
-            // 메시지 구성
+            // 메시지 구성, 최대 1000건
             List<Message> messages = new List<Message>();
 
             for (int i = 0; i < 100; i++)
@@ -399,7 +398,7 @@ namespace MessageExample.Controllers
 
         /*
          * MMS(포토)를 전송합니다.
-         *  - 메시지 길이가 2,000 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
          *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
          */
         public IActionResult SendMMS()
@@ -451,7 +450,7 @@ namespace MessageExample.Controllers
 
         /*
          * [대랑전송] MMS(포토)를 전송합니다.
-         *  - 메시지 길이가 2,000 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
          *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
          */
         public IActionResult SendMMS_Multi()
@@ -459,7 +458,7 @@ namespace MessageExample.Controllers
             // 발신번호 
             string senderNum = "07043042992";
 
-            // 메시지 구성
+            // 메시지 구성, 최대 1000건
             List<Message> messages = new List<Message>();
 
             for (int i = 0; i < 100; i++)
@@ -513,7 +512,7 @@ namespace MessageExample.Controllers
 
         /*
          * [동보전송] MMS(포토)를 전송합니다.
-         *  - 메시지 길이가 2,000 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
          *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
          */
         public IActionResult SendMMS_Same()
@@ -527,7 +526,7 @@ namespace MessageExample.Controllers
             // (동보) 메시지내용, 최대 2000byte 초과된 내용은 삭제되어 전송됨.
             string contents = "포토 문자 메시지 내용. 최대 2000byte 초과된 내용은 삭제되어 전송.";
 
-            // 메시지 구성
+            // 메시지 구성, 최대 1000건
             List<Message> messages = new List<Message>();
 
             for (int i = 0; i < 100; i++)
@@ -576,6 +575,7 @@ namespace MessageExample.Controllers
         /*
          * XMS(단문/장문 자동인식)를 전송합니다.
          *  - 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다.
+         *  - 90byte 초과시 LMS(장문)으로 인식 합니다.
          */
         public IActionResult SendXMS()
         {
@@ -624,14 +624,15 @@ namespace MessageExample.Controllers
         /*
          * [대량전송] XMS(단문/장문 자동인식)를 전송합니다.
          *  - 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다.
-         *  - 대량전송/부분전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.4 SendXMS(단문/장문 자동인식 전송)"을 참조하시기 바랍니다.
+         *  - 90byte 초과시 LMS(장문)으로 인식 합니다.
+         *  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.4 SendXMS(단문/장문 자동인식 전송)"을 참조하시기 바랍니다.
          */
         public IActionResult SendXMS_Multi()
         {
             // 발신번호 
             string senderNum = "07043042992";
 
-            // 메시지 구성
+            // 메시지 구성, 최대 1000건
             List<Message> messages = new List<Message>();
 
             for (int i = 0; i < 100; i++)
@@ -682,7 +683,8 @@ namespace MessageExample.Controllers
         /*
          * [동보전송] XMS(단문/장문 자동인식)를 전송합니다.
          *  - 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다.
-         *  - 대량전송/부분전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.4 SendXMS(단문/장문 자동인식 전송)"을 참조하시기 바랍니다.
+         *  - 90byte 초과시 LMS(장문)으로 인식 합니다.
+         *  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.4 SendXMS(단문/장문 자동인식 전송)"을 참조하시기 바랍니다.
          */
         public IActionResult SendXMS_Same()
         {
@@ -695,7 +697,7 @@ namespace MessageExample.Controllers
             // (동보) 메시지내용, 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송됨.
             string contents = "단문/장문 문자 메시지 내용. 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송됨";
 
-            // 메시지 구성
+            // 메시지 구성, 최대 1000건
             List<Message> messages = new List<Message>();
 
             for (int i = 0; i < 100; i++)
@@ -743,7 +745,7 @@ namespace MessageExample.Controllers
         #region 전송내역조회/요약정보확인
 
         /*
-         * 문자 전송내역 요약정보를 확인합니다.
+         * 문자 전송내역 요약정보를 확인합니다. (최대 1000건)
          */
         public IActionResult GetStates()
         {
@@ -789,10 +791,10 @@ namespace MessageExample.Controllers
             Item[1] = "LMS";
             Item[2] = "MMS";
 
-            // 예약여부, true-예약전송건 조회, false-즉시전송건 조회 
+            // 예약여부, true-예약전송건 조회, false-전체전송건 조회 
             bool ReserveYN = false;
 
-            // 개인조회여부 true-개인조회, false-전체조회 
+            // 개인조회여부, true-개인조회, false-전체조회 
             bool SenderYN = false;
 
             // 페이지 번호, 기본값 '1'
@@ -1105,11 +1107,11 @@ namespace MessageExample.Controllers
             // 링크아이디
             joinInfo.LinkID = "TESTER";
 
-            // 아이디 6자이상 50자 미만
-            joinInfo.ID = "userid_20181212";
-
-            // 비밀번호 6자이상 20자 미만
-            joinInfo.PWD = "12341234";
+            // 아이디, 6자이상 50자 미만
+            joinInfo.ID = "userid_20181212"; 
+            
+            // 비밀번호, 6자이상 20자 미만
+            joinInfo.PWD = "12341234"; 
 
             // 사업자번호 "-" 제외
             joinInfo.CorpNum = "0000000001";
@@ -1228,8 +1230,11 @@ namespace MessageExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 아이디
-            contactInfo.id = "testkorea";
+            // 담당자 아이디, 6자 이상 50자 미만
+            contactInfo.id = "testkorea_20181212";
+
+            // 비밀번호, 6자 이상 20자 미만
+            contactInfo.pwd = "user_password";
 
             // 담당자명
             contactInfo.personName = "담당자명";

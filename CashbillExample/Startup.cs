@@ -3,27 +3,23 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Popbill.Cashbill;
-using ControllerDI.Services;
 
 
-namespace ControllerDI.Services
+public class CashbillInstance
 {
-    public class CashbillInstance
+    //파트너 신청 후 메일로 발급받은 링크아이디(LinkID)와 비밀키(SecretKey)값 으로 변경하시기 바랍니다.
+    private string linkID = "TESTER";
+    private string secretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
+
+    public CashbillService cashbillService;
+
+    public CashbillInstance()
     {
-        //파트너 신청 후 메일로 발급받은 링크아이디(LinkID)와 비밀키(SecretKey)값 으로 변경하시기 바랍니다.
-        private string linkID = "TESTER";
-        private string secretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
+        //현금영수증 서비스 객체 초기화
+        cashbillService = new CashbillService(linkID, secretKey);
 
-        public CashbillService cashbillService;
-
-        public CashbillInstance()
-        {
-            //현금영수증 서비스 객체 초기화
-            cashbillService = new CashbillService(linkID, secretKey);
-
-            //연동환경 설정값, 개발용(true), 상업용(false)
-            cashbillService.IsTest = true;
-        }
+        //연동환경 설정값, 개발용(true), 상업용(false)
+        cashbillService.IsTest = true;
     }
 }
 
@@ -42,7 +38,7 @@ namespace CashbillExample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            
+
             //현금영수증 서비스 객체 의존성 주입
             services.AddSingleton<CashbillInstance>();
         }
