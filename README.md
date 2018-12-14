@@ -8,8 +8,8 @@
     $ dotnet add package Popbill --version 1.0.8
 
 
-연동 API 목차 및 연동가이
-----------------
+연동 API 목차 및 연동가이드
+-----------------
 * 전자세금계산서 API 연동가이드 <https://linkhub.tistory.com/176> 
 * 전자명세서 API
 * 현금영수증 API
