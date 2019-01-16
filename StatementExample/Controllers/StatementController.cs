@@ -65,7 +65,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20181212";
+            statement.writeDate = "20190115";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -80,7 +80,7 @@ namespace StatementExample.Controllers
             statement.itemCode = 121;
 
             // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20181212115601";
+            statement.mgtKey = "20190115-001";
 
 
             /**************************************************************************
@@ -138,7 +138,7 @@ namespace StatementExample.Controllers
             statement.receiverCorpNum = "8888888888";
 
             // [필수] 수신자 상호
-            statement.receiverCorpName = "공급받는자 상호";
+            statement.receiverCorpName = "수신자 상호";
 
             // 수신자 대표자성명 
             statement.receiverCEOName = "수신자 대표자 성명";
@@ -213,7 +213,7 @@ namespace StatementExample.Controllers
             StatementDetail detail = new StatementDetail();
 
             detail.serialNum = 1; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20181212"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20190115"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -232,7 +232,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail();
             
             detail.serialNum = 2; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20181212"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20190115"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -278,7 +278,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20181212";
+            statement.writeDate = "20190115";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -293,7 +293,7 @@ namespace StatementExample.Controllers
             statement.itemCode = 121;
 
             // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20181212115621";
+            statement.mgtKey = "20190115-002";
 
 
             /**************************************************************************
@@ -351,7 +351,7 @@ namespace StatementExample.Controllers
             statement.receiverCorpNum = "8888888888";
 
             // [필수] 수신자 상호
-            statement.receiverCorpName = "공급받는자 상호";
+            statement.receiverCorpName = "수신자 상호";
 
             // 수신자 대표자성명 
             statement.receiverCEOName = "수신자 대표자 성명";
@@ -426,7 +426,7 @@ namespace StatementExample.Controllers
             StatementDetail detail = new StatementDetail();
 
             detail.serialNum = 1; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20181212"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20190115"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -445,7 +445,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail();
             
             detail.serialNum = 2; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20181212"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20190115"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -489,14 +489,14 @@ namespace StatementExample.Controllers
             int itemCode = 121;
 
             // 수정할 명세서 문서관리번호
-            string mgtKey = "20181212115621";
+            string mgtKey = "20190115-002";
 
 
             // 전자명세서 정보 객체
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20181212";
+            statement.writeDate = "20190115";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -563,7 +563,7 @@ namespace StatementExample.Controllers
             statement.receiverCorpNum = "8888888888";
 
             // [필수] 수신자 상호
-            statement.receiverCorpName = "공급받는자 상호";
+            statement.receiverCorpName = "수신자 상호";
 
             // 수신자 대표자성명 
             statement.receiverCEOName = "수신자 대표자 성명";
@@ -638,7 +638,7 @@ namespace StatementExample.Controllers
             StatementDetail detail = new StatementDetail();
 
             detail.serialNum = 1; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20181212"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20190115"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명(수정)"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -657,7 +657,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail();
             
             detail.serialNum = 2; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20181212"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20190115"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -699,7 +699,7 @@ namespace StatementExample.Controllers
             int itemCode = 121;
 
             // 발행처리할 명세서 문서관리번호
-            string mgtKey = "20181206-123";
+            string mgtKey = "20190115-001";
 
             // 발행 메모
             string memo = "발행 메모";
@@ -724,7 +724,7 @@ namespace StatementExample.Controllers
             int itemCode = 121;
 
             // 발행취소할 명세서 문서관리번호
-            string mgtKey = "20181206-123";
+            string mgtKey = "20190115-001";
 
             // 발행 메모
             string memo = "발행 메모";
@@ -751,7 +751,7 @@ namespace StatementExample.Controllers
             int itemCode = 121;
 
             // 삭제처리할 명세서 문서관리번호
-            string mgtKey = "20181206-123";
+            string mgtKey = "20190115-001";
 
             // 발행 메모
             string memo = "발행 메모";
@@ -782,7 +782,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20190115-001";
 
             try
             {
@@ -806,9 +806,9 @@ namespace StatementExample.Controllers
 
             // 조회할 전자명세서 문서관리번호 배열, (최대 1000건)
             List<string> mgtKeyList = new List<string>();
-            mgtKeyList.Add("20181112-a003");
-            mgtKeyList.Add("20181124224344");
-            mgtKeyList.Add("20181112-a004");
+            mgtKeyList.Add("20190115-003");
+            mgtKeyList.Add("20190115-002");
+            mgtKeyList.Add("20190115-001");
 
             try
             {
@@ -832,7 +832,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20190115-001";
             try
             {
                 var response = _statementService.GetDetailInfo(corpNum, itemCode, mgtKey, userID);
@@ -854,10 +854,10 @@ namespace StatementExample.Controllers
             string DType = "W";
 
             // [필수] 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20181101";
+            string SDate = "20190101";
 
             // [필수] 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20181124";
+            string EDate = "20190115";
 
             // 전송상태값 배열, 미기재시 전체 상태조회, 상태코드(stateCode)값 3자리의 배열, 2,3번째 자리에 와일드카드 가능
             //  - 상태코드에 대한 자세한 사항은 "[전자명세서 API 연동매뉴얼] > 5.1 전자명세서 상태코드" 를 참조하시기 바랍니다. 
@@ -906,7 +906,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20190115-001";
             try
             {
                 var response = _statementService.GetLogs(corpNum, itemCode, mgtKey, userID);
@@ -953,7 +953,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20190115-001";
 
             try
             {
@@ -967,7 +967,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 1건의 전자명세서 인쇄팝업 URL을 반환합니다. (공급자/공급받는자용)
+         * 1건의 전자명세서 인쇄팝업 URL을 반환합니다. (발신자/수신자용)
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetPrintURL()
@@ -977,7 +977,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20190115-001";
 
             try
             {
@@ -991,7 +991,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 1건의 전자명세서 인쇄팝업 URL을 반환합니다. (공급받는자용)
+         * 1건의 전자명세서 인쇄팝업 URL을 반환합니다. (수신자용)
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          */
         public IActionResult GetEPrintURL()
@@ -1001,7 +1001,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20190115-001";
 
             try
             {
@@ -1025,9 +1025,9 @@ namespace StatementExample.Controllers
 
             // 조회할 전자명세서 문서관리번호 배열, (최대 100건)
             List<string> mgtKeyList = new List<string>();
-            mgtKeyList.Add("20181112103859");
-            mgtKeyList.Add("20181124224344");
-            mgtKeyList.Add("20181105-004");
+            mgtKeyList.Add("20190115-001");
+            mgtKeyList.Add("20190115-002");
+            mgtKeyList.Add("20190115-003");
 
             try
             {
@@ -1041,7 +1041,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 공급받는자 메일링크 URL을 반환합니다.
+         * 수신자 메일링크 URL을 반환합니다.
          * - 메일링크 URL은 유효시간이 존재하지 않습니다.
          */
         public IActionResult GetMailURL()
@@ -1051,7 +1051,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20190115-001";
 
             try
             {
@@ -1097,7 +1097,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124225313";
+            string mgtKey = "20190115-002";
 
             // 파일경로
             string filePath = "C:/popbill.example.dotnetcore/StatementExample/wwwroot/images/tax_image.png";
@@ -1125,7 +1125,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124225313";
+            string mgtKey = "20190115-002";
 
             // 파일아이디, 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값
             string fileID = "4D3B7765-1623-4FD1-AA94-9AB624B92A66.PBF";
@@ -1153,7 +1153,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124225313";
+            string mgtKey = "20190115-002";
 
             try
             {
@@ -1176,7 +1176,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20190115-002";
 
             // 수신자 이메일주소
             string receiver = "test@test.com";
@@ -1195,7 +1195,7 @@ namespace StatementExample.Controllers
         /*
          * 알림문자를 전송합니다. (단문/SMS- 한글 최대 45자)
          * - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
-         * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [전송내역] 탭에서 전송결과를 확인할 수 있습니다.
+         * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [문자] > [전송내역] 탭에서 전송결과를 확인할 수 있습니다.
          */
         public IActionResult SendSMS()
         {
@@ -1204,7 +1204,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20190115-002";
 
             // 발신번호
             string sender = "070-4304-2992";
@@ -1238,7 +1238,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124";
+            string mgtKey = "20190115-002";
 
             // 발신번호
             string sender = "070-4304-2992";
@@ -1258,7 +1258,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 팝빌에 전자명세서를 등록하지 않고 공급받는자에게 팩스전송합니다.
+         * 팝빌에 전자명세서를 등록하지 않고 수신자에게 팩스전송합니다.
          * - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 팩스 발행 요청시 작성한 문서관리번호는 팩스전송 파일명으로 사용됩니다.
          * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
@@ -1271,7 +1271,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20181124";
+            statement.writeDate = "20190115";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -1286,7 +1286,7 @@ namespace StatementExample.Controllers
             statement.itemCode = 121;
 
             // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20181127112719";
+            statement.mgtKey = "20190115-002";
 
 
             /**************************************************************************
@@ -1344,7 +1344,7 @@ namespace StatementExample.Controllers
             statement.receiverCorpNum = "8888888888";
 
             // [필수] 수신자 상호
-            statement.receiverCorpName = "공급받는자 상호";
+            statement.receiverCorpName = "수신자 상호";
 
             // 수신자 대표자성명 
             statement.receiverCEOName = "수신자 대표자 성명";
@@ -1419,7 +1419,7 @@ namespace StatementExample.Controllers
             StatementDetail detail = new StatementDetail
             {
                 serialNum = 1, // 일련번호 1부터 순차기재
-                purchaseDT = "20181124", // 거래일자 작성형식 yyyyMMdd
+                purchaseDT = "20190115", // 거래일자 작성형식 yyyyMMdd
                 itemName = "품목명", // 품목명
                 spec = "규격", // 규격
                 qty = "1", // 수량
@@ -1438,7 +1438,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail
             {
                 serialNum = 2, // 일련번호 1부터 순차기재
-                purchaseDT = "20181124", // 거래일자 작성형식 yyyyMMdd
+                purchaseDT = "20190115", // 거래일자 작성형식 yyyyMMdd
                 itemName = "품목명", // 품목명
                 spec = "규격", // 규격
                 qty = "1", // 수량
@@ -1488,13 +1488,13 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124225313";
+            string mgtKey = "20190115-001";
 
             // 첨부할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int subItemCode = 121;
 
             // 첨부할 명세서 문서관리번호
-            string subMgtKey = "20181124223932-001";
+            string subMgtKey = "20190115-002";
 
             try
             {
@@ -1518,13 +1518,13 @@ namespace StatementExample.Controllers
 
             // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124225313";
+            string mgtKey = "20190115-001";
 
             // 첨부해제할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int subItemCode = 121;
 
             // 첨부해제할 명세서 문서관리번호
-            string subMgtKey = "20181124223932-001";
+            string subMgtKey = "20190115-002";
 
             try
             {
@@ -1539,7 +1539,7 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 전자명세서 관련 메일전송 항목에 대한 전송여부를 목록으로 반환한다.
+         * 전자명세서 관련 메일전송 항목에 대한 전송여부를 목록으로 반환합니다.
          */
         public IActionResult ListEmailConfig()
         {
@@ -1555,14 +1555,14 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 전자명세서 관련 메일전송 항목에 대한 전송여부를 수정한다.
+         * 전자명세서 관련 메일전송 항목에 대한 전송여부를 수정합니다.
          *
          * 메일전송유형
-         * SMT_ISSUE : 공급받는자에게 전자명세서가 발행 되었음을 알려주는 메일입니다.
-         * SMT_ACCEPT : 공급자에게 전자명세서가 승인 되었음을 알려주는 메일입니다.
-         * SMT_DENY : 공급자에게 전자명세서가 거부 되었음을 알려주는 메일입니다.
-         * SMT_CANCEL : 공급받는자에게 전자명세서가 취소 되었음을 알려주는 메일입니다.
-         * SMT_CANCEL_ISSUE : 공급받는자에게 전자명세서가 발행취소 되었음을 알려주는 메일입니다.
+         * SMT_ISSUE : 수신자에게 전자명세서가 발행 되었음을 알려주는 메일입니다.
+         * SMT_ACCEPT : 발신자에게 전자명세서가 승인 되었음을 알려주는 메일입니다.
+         * SMT_DENY : 발신자에게 전자명세서가 거부 되었음을 알려주는 메일입니다.
+         * SMT_CANCEL : 수신자에게 전자명세서가 취소 되었음을 알려주는 메일입니다.
+         * SMT_CANCEL_ISSUE : 수신자에게 전자명세서가 발행취소 되었음을 알려주는 메일입니다.
          */
         public IActionResult UpdateEmailConfig()
         {
@@ -1745,46 +1745,46 @@ namespace StatementExample.Controllers
             JoinForm joinInfo = new JoinForm();
 
             // 링크아이디
-            joinInfo.LinkID = "TESTER"; 
-            
+            joinInfo.LinkID = "TESTER";
+
             // 아이디, 6자이상 50자 미만
-            joinInfo.ID = "userid_20181212"; 
-            
+            joinInfo.ID = "userid_20181212";
+
             // 비밀번호, 6자이상 20자 미만
-            joinInfo.PWD = "12341234"; 
-            
+            joinInfo.PWD = "12341234";
+
             // 사업자번호 "-" 제외
-            joinInfo.CorpNum = "0000000001"; 
-            
-            // 대표자 성명
-            joinInfo.CEOName = "대표자 성명";  
-            
-            // 상호
-            joinInfo.CorpName = "상호"; 
-            
-            // 주소
-            joinInfo.Addr = "주소"; 
-            
-            // 업태
-            joinInfo.BizType = "업태"; 
-            
-            // 종목
-            joinInfo.BizClass = "종목"; 
-            
-            // 담당자 성명
-            joinInfo.ContactName = "담당자명";  
-            
-            // 담당자 이메일주소
-            joinInfo.ContactEmail = "test@test.com";          
-            
-            // 담당자 연락처
-            joinInfo.ContactTEL = "070-4304-2992";    
-            
-            // 담당자 휴대폰번호
-            joinInfo.ContactHP = "010-111-222";  
-            
-            // 담당자 팩스번호
-            joinInfo.ContactFAX = "02-111-222"; 
+            joinInfo.CorpNum = "0000000001";
+
+            // 대표자 성명 (최대 100자)
+            joinInfo.CEOName = "대표자 성명";
+
+            // 상호 (최대 200자)
+            joinInfo.CorpName = "상호";
+
+            // 주소 (최대 300자)
+            joinInfo.Addr = "주소";
+
+            // 업태 (최대 100자)
+            joinInfo.BizType = "업태";
+
+            // 종목 (최대 100자)
+            joinInfo.BizClass = "종목";
+
+            // 담당자 성명 (최대 100자)
+            joinInfo.ContactName = "담당자명";
+
+            // 담당자 이메일주소 (최대 100자)
+            joinInfo.ContactEmail = "test@test.com";
+
+            // 담당자 연락처 (최대 20자)
+            joinInfo.ContactTEL = "070-4304-2992";
+
+            // 담당자 휴대폰번호 (최대 20자)
+            joinInfo.ContactHP = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            joinInfo.ContactFAX = "02-111-222";
 
             try
             {
@@ -1820,20 +1820,20 @@ namespace StatementExample.Controllers
         {
             CorpInfo corpInfo = new CorpInfo();
 
-            // 대표자 성명
-            corpInfo.ceoname = "대표자 성명 수정"; 
-            
-            // 상호
-            corpInfo.corpName = "상호 수정"; 
-            
-            // 주소
-            corpInfo.addr = "주소 수정"; 
-            
-            // 업태
-            corpInfo.bizType = "업태 수정";  
-            
-            // 종목
-            corpInfo.bizClass = "종목 수정"; 
+            // 대표자 성명 (최대 100자)
+            corpInfo.ceoname = "대표자 성명 수정";
+
+            // 상호 (최대 200자)
+            corpInfo.corpName = "상호 수정";
+
+            // 주소 (최대 300자)
+            corpInfo.addr = "주소 수정";
+
+            // 업태 (최대 100자)
+            corpInfo.bizType = "업태 수정";
+
+            // 종목 (최대 100자)
+            corpInfo.bizClass = "종목 수정";
 
             try
             {
@@ -1855,29 +1855,29 @@ namespace StatementExample.Controllers
 
             // 담당자 아이디, 6자 이상 50자 미만
             contactInfo.id = "testkorea_20181212";
-            
+
             // 비밀번호, 6자 이상 20자 미만
             contactInfo.pwd = "user_password";
-            
-            // 담당자명
-            contactInfo.personName = "담당자명";
-            
-            // 연락처
+
+            // 담당자명 (최대 100자)
+            contactInfo.personName = "코어담당자";
+
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
-            
-            // 휴대폰번호
-            contactInfo.hp = "010-222-111";
-            
-            // 팩스번호
-            contactInfo.fax = "02-222-1110";
-            
-            // 이메일주소
-            contactInfo.email = "aspnetcore@popbill.co.kr";
-            
+
+            // 담당자 휴대폰번호 (최대 20자)
+            contactInfo.hp = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            contactInfo.fax = "02-111-222";
+
+            // 담당자 이메일 (최대 100자)
+            contactInfo.email = "netcore@linkhub.co.kr";
+
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
-            
-            // 관리자 권한여부
+
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try
@@ -1914,28 +1914,28 @@ namespace StatementExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 아이디
+            // 담당자 아이디
             contactInfo.id = "testkorea";
-            
-            // 담당자명
-            contactInfo.personName = "담당자명";
-            
-            // 연락처
+
+            // 담당자명 (최대 100자)
+            contactInfo.personName = "코어담당자";
+
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
-            
-            // 휴대폰번호
-            contactInfo.hp = "010-222-111";
-            
-            // 팩스번호
-            contactInfo.fax = "02-222-1110";
-            
-            // 이메일주소
-            contactInfo.email = "aspnetcore@popbill.co.kr";
-            
+
+            // 담당자 휴대폰번호 (최대 20자)
+            contactInfo.hp = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            contactInfo.fax = "02-111-222";
+
+            // 담당자 이메일 (최대 100자)
+            contactInfo.email = "netcore@linkhub.co.kr";
+
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
-            
-            // 관리자 권한여부
+
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try
