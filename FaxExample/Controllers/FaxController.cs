@@ -14,7 +14,6 @@ namespace FaxExample.Controllers
         {
             //팩스 서비스 객체 생성
             _faxService = FAXinstance.faxService;
-
         }
 
         //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
@@ -177,49 +176,6 @@ namespace FaxExample.Controllers
             }
         }
 
-        #endregion
-
-        #region 접수번호 관련 기능 (요청번호 미할당)
-
-        /*
-         * 팩스전송요청시 발급받은 접수번호(receiptNum)로 전송결과를 확인합니다
-         * - 응답항목에 대한 자세한 사항은 "[팩스 API 연동매뉴얼] >  3.3.1 GetFaxDetail (전송내역 및 전송상태 확인)을 참조하시기 바랍니다.
-         */
-        public IActionResult GetFaxDetail()
-        {
-            // 팩스전송 요청시 발급받은 접수번호
-            string receiptNum = "018112714511700001";
-
-            try
-            {
-                var Response = _faxService.GetFaxDetail(corpNum, receiptNum, userID);
-                return View("GetFaxDetail", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 팩스전송요청시 발급받은 접수번호(receiptNum)로 팩스 예약전송건을 취소합니다.
-         * - 예약전송 취소는 예약전송시간 10분전까지 가능하며, 팩스변환 이후 가능합니다.
-         */
-        public IActionResult CancelReserve()
-        {
-            // 팩스전송 요청시 발급받은 접수번호
-            string receiptNum = "018120517184000001";
-
-            try
-            {
-                var Response = _faxService.CancelReserve(corpNum, receiptNum, userID);
-                return View("Response", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
 
         /*
          * 팩스를 재전송합니다.
@@ -329,49 +285,6 @@ namespace FaxExample.Controllers
             }
         }
 
-        #endregion
-
-        #region 요청번호 할당 전송건 관련 기능
-
-        /*
-          * 팩스전송요청시 할당한 전송요청번호(requestNum)으로 전송결과를 확인합니다
-          * - 응답항목에 대한 자세한 사항은 "[팩스 API 연동매뉴얼] >  3.3.2 GetFaxDetailRN (전송내역 및 전송상태 확인 - 요청번호 할당)을 참조하시기 바랍니다.
-          */
-        public IActionResult GetFaxDetailRN()
-        {
-            // 팩스 전송요청시 할당한 전송요청번호
-            string requestNum = "20180929225651";
-
-            try
-            {
-                var Response = _faxService.GetFaxDetailRN(corpNum, requestNum, userID);
-                return View("GetFaxDetail", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 팩스전송요청시 할당한 전송요청번호(requestNum)로 팩스 예약전송건을 취소합니다.
-         * - 예약전송 취소는 예약전송시간 10분전까지 가능하며, 팩스변환 이후 가능합니다.
-         */
-        public IActionResult CancelReserveRN()
-        {
-            // 팩스 전송요청시 할당한 전송요청번호
-            string requestNum = "20181205-002";
-
-            try
-            {
-                var Response = _faxService.CancelReserveRN(corpNum, requestNum, userID);
-                return View("Response", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
 
         /*
          * 전송요청번호(requestNum)을 할당한 팩스를 재전송합니다.
@@ -381,7 +294,7 @@ namespace FaxExample.Controllers
         public IActionResult ResendFAXRN()
         {
             // 팩스전송 요청시 할당한 전송요청번호
-            string preRequestNum = "20181205-001";
+            string preRequestNum = "20190115-001";
 
             // 발신번호, 공백으로 처리시 기존전송정보로 전송
             string senderNum = "";
@@ -429,7 +342,7 @@ namespace FaxExample.Controllers
         public IActionResult ResendFAXRN_multi()
         {
             // 팩스전송 요청시 할당한 요청번호
-            string preRequestNum = "20181205-001";
+            string preRequestNum = "20190115-001";
 
             // 발신번호, 공백으로 처리시 기존전송정보로 전송
             string senderNum = "";
@@ -481,10 +394,92 @@ namespace FaxExample.Controllers
             }
         }
 
+        /*
+         * 팩스전송요청시 발급받은 접수번호(receiptNum)로 팩스 예약전송건을 취소합니다.
+         * - 예약전송 취소는 예약전송시간 10분전까지 가능하며, 팩스변환 이후 가능합니다.
+         */
+        public IActionResult CancelReserve()
+        {
+            // 팩스전송 요청시 발급받은 접수번호
+            string receiptNum = "018120517184000001";
+
+            try
+            {
+                var Response = _faxService.CancelReserve(corpNum, receiptNum, userID);
+                return View("Response", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+
+        /*
+         * 팩스전송요청시 할당한 전송요청번호(requestNum)로 팩스 예약전송건을 취소합니다.
+         * - 예약전송 취소는 예약전송시간 10분전까지 가능하며, 팩스변환 이후 가능합니다.
+         */
+        public IActionResult CancelReserveRN()
+        {
+            // 팩스 전송요청시 할당한 전송요청번호
+            string requestNum = "20190115-002";
+
+            try
+            {
+                var Response = _faxService.CancelReserveRN(corpNum, requestNum, userID);
+                return View("Response", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
         #endregion
 
-        #region 팩스전송 목록조회
+        #region 정보조회
 
+        /*
+         * 팩스전송요청시 발급받은 접수번호(receiptNum)로 전송결과를 확인합니다
+         * - 응답항목에 대한 자세한 사항은 "[팩스 API 연동매뉴얼] >  3.3.1 GetFaxDetail (전송내역 및 전송상태 확인)을 참조하시기 바랍니다.
+         */
+        public IActionResult GetFaxDetail()
+        {
+            // 팩스전송 요청시 발급받은 접수번호
+            string receiptNum = "018112714511700001";
+
+            try
+            {
+                var Response = _faxService.GetFaxDetail(corpNum, receiptNum, userID);
+                return View("GetFaxDetail", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+
+        /*
+         * 팩스전송요청시 할당한 전송요청번호(requestNum)으로 전송결과를 확인합니다
+         * - 응답항목에 대한 자세한 사항은 "[팩스 API 연동매뉴얼] >  3.3.2 GetFaxDetailRN (전송내역 및 전송상태 확인 - 요청번호 할당)을 참조하시기 바랍니다.
+         */
+        public IActionResult GetFaxDetailRN()
+        {
+            // 팩스 전송요청시 할당한 전송요청번호
+            string requestNum = "20190115-001";
+
+            try
+            {
+                var Response = _faxService.GetFaxDetailRN(corpNum, requestNum, userID);
+                return View("GetFaxDetail", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+        
         /*
          * 검색조건을 사용하여 팩스전송 내역을 조회합니다.
          * - 최대 검색기간 : 6개월 이내
@@ -493,10 +488,10 @@ namespace FaxExample.Controllers
         {
             // 최대 검색기간 : 6개월 이내 
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20181213";
+            string SDate = "20190101";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20181213";
+            string EDate = "20190115";
 
             //전송상태 배열 1-대기, 2-성공, 3-실패, 4-취소
             string[] State = new string[4];
@@ -728,46 +723,46 @@ namespace FaxExample.Controllers
             JoinForm joinInfo = new JoinForm();
 
             // 링크아이디
-            joinInfo.LinkID = "TESTER"; 
-            
+            joinInfo.LinkID = "TESTER";
+
             // 아이디, 6자이상 50자 미만
-            joinInfo.ID = "userid_20181212"; 
-            
+            joinInfo.ID = "userid_20181212";
+
             // 비밀번호, 6자이상 20자 미만
-            joinInfo.PWD = "12341234"; 
-            
+            joinInfo.PWD = "12341234";
+
             // 사업자번호 "-" 제외
-            joinInfo.CorpNum = "0000000001"; 
-            
-            // 대표자 성명
-            joinInfo.CEOName = "대표자 성명";  
-            
-            // 상호
-            joinInfo.CorpName = "상호"; 
-            
-            // 주소
-            joinInfo.Addr = "주소"; 
-            
-            // 업태
-            joinInfo.BizType = "업태"; 
-            
-            // 종목
-            joinInfo.BizClass = "종목"; 
-            
-            // 담당자 성명
-            joinInfo.ContactName = "담당자명";  
-            
-            // 담당자 이메일주소
-            joinInfo.ContactEmail = "test@test.com";          
-            
-            // 담당자 연락처
-            joinInfo.ContactTEL = "070-4304-2992";    
-            
-            // 담당자 휴대폰번호
-            joinInfo.ContactHP = "010-111-222";  
-            
-            // 담당자 팩스번호
-            joinInfo.ContactFAX = "02-111-222"; 
+            joinInfo.CorpNum = "0000000001";
+
+            // 대표자 성명 (최대 100자)
+            joinInfo.CEOName = "대표자 성명";
+
+            // 상호 (최대 200자)
+            joinInfo.CorpName = "상호";
+
+            // 주소 (최대 300자)
+            joinInfo.Addr = "주소";
+
+            // 업태 (최대 100자)
+            joinInfo.BizType = "업태";
+
+            // 종목 (최대 100자)
+            joinInfo.BizClass = "종목";
+
+            // 담당자 성명 (최대 100자)
+            joinInfo.ContactName = "담당자명";
+
+            // 담당자 이메일주소 (최대 100자)
+            joinInfo.ContactEmail = "test@test.com";
+
+            // 담당자 연락처 (최대 20자)
+            joinInfo.ContactTEL = "070-4304-2992";
+
+            // 담당자 휴대폰번호 (최대 20자)
+            joinInfo.ContactHP = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            joinInfo.ContactFAX = "02-111-222";
 
             try
             {
@@ -820,20 +815,20 @@ namespace FaxExample.Controllers
         {
             CorpInfo corpInfo = new CorpInfo();
 
-            // 대표자 성명
-            corpInfo.ceoname = "대표자 성명 수정"; 
-            
-            // 상호
-            corpInfo.corpName = "상호 수정"; 
-            
-            // 주소
-            corpInfo.addr = "주소 수정"; 
-            
-            // 업태
-            corpInfo.bizType = "업태 수정";  
-            
-            // 종목
-            corpInfo.bizClass = "종목 수정"; 
+            // 대표자 성명 (최대 100자)
+            corpInfo.ceoname = "대표자 성명 수정";
+
+            // 상호 (최대 200자)
+            corpInfo.corpName = "상호 수정";
+
+            // 주소 (최대 300자)
+            corpInfo.addr = "주소 수정";
+
+            // 업태 (최대 100자)
+            corpInfo.bizType = "업태 수정";
+
+            // 종목 (최대 100자)
+            corpInfo.bizClass = "종목 수정";
 
             try
             {
@@ -855,29 +850,29 @@ namespace FaxExample.Controllers
 
             // 담당자 아이디, 6자 이상 50자 미만
             contactInfo.id = "testkorea_20181212";
-            
+
             // 비밀번호, 6자 이상 20자 미만
             contactInfo.pwd = "user_password";
-            
-            // 담당자명
+
+            // 담당자명 (최대 100자)
             contactInfo.personName = "코어담당자";
-            
-            // 담당자연락처
+
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
-            
-            // 담당자 휴대폰번호
+
+            // 담당자 휴대폰번호 (최대 20자)
             contactInfo.hp = "010-111-222";
-            
-            // 담당자 팩스번호
+
+            // 담당자 팩스번호 (최대 20자)
             contactInfo.fax = "02-111-222";
-            
-            // 담당자 메일주소
+
+            // 담당자 이메일 (최대 100자)
             contactInfo.email = "netcore@linkhub.co.kr";
-            
+
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
-            
-            // 관리자 권한여부
+
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try
@@ -914,28 +909,28 @@ namespace FaxExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 아이디
+            // 담당자 아이디
             contactInfo.id = "testkorea";
-            
-            // 담당자명
-            contactInfo.personName = "담당자명";
-            
-            // 연락처
+
+            // 담당자명 (최대 100자)
+            contactInfo.personName = "코어담당자";
+
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
-            
-            // 휴대폰번호
-            contactInfo.hp = "010-222-111";
-            
-            // 팩스번호
-            contactInfo.fax = "02-222-1110";
-            
-            // 이메일주소
-            contactInfo.email = "aspnetcore@popbill.co.kr";
-            
+
+            // 담당자 휴대폰번호 (최대 20자)
+            contactInfo.hp = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            contactInfo.fax = "02-111-222";
+
+            // 담당자 이메일 (최대 10자)
+            contactInfo.email = "netcore@linkhub.co.kr";
+
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
-            
-            // 관리자 권한여부
+
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try
