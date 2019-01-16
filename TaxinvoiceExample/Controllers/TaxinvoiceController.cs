@@ -40,7 +40,7 @@ namespace TaxinvoiceExample.Controllers
             try
             {
                 // 세금계산서 문서관리번호
-                string mgtKey = "20181030";
+                string mgtKey = "20190115";
 
                 // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
                 MgtKeyType mgtKeyType = MgtKeyType.SELL;
@@ -65,7 +65,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20181212";
+            taxinvoice.writeDate = "20190115";
 
             // [필수] 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -101,7 +101,7 @@ namespace TaxinvoiceExample.Controllers
 
             // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
-            taxinvoice.invoicerMgtKey = "20181212120149";
+            taxinvoice.invoicerMgtKey = "20190115-001";
 
             // [필수] 공급자 대표자 성명 
             taxinvoice.invoicerCEOName = "공급자 대표자 성명";
@@ -252,7 +252,7 @@ namespace TaxinvoiceExample.Controllers
             TaxinvoiceDetail detail = new TaxinvoiceDetail();
 
             detail.serialNum = 1; // 일련번호; 1부터 순차기재 
-            detail.purchaseDT = "20181212"; // 거래일자
+            detail.purchaseDT = "20190115"; // 거래일자
             detail.itemName = "품목명"; // 품목명 
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -266,7 +266,7 @@ namespace TaxinvoiceExample.Controllers
             detail = new TaxinvoiceDetail();
 
             detail.serialNum = 2; // 일련번호; 1부터 순차기재 
-            detail.purchaseDT = "20181212"; // 거래일자
+            detail.purchaseDT = "20190115"; // 거래일자
             detail.itemName = "품목명"; // 품목명 
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -346,7 +346,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20181212";
+            taxinvoice.writeDate = "20190115";
 
             // [필수] 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -382,7 +382,7 @@ namespace TaxinvoiceExample.Controllers
 
             // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
-            taxinvoice.invoicerMgtKey = "20181212115313";
+            taxinvoice.invoicerMgtKey = "20190115-002";
 
             // [필수] 공급자 대표자 성명 
             taxinvoice.invoicerCEOName = "공급자 대표자 성명";
@@ -532,7 +532,7 @@ namespace TaxinvoiceExample.Controllers
             TaxinvoiceDetail detail = new TaxinvoiceDetail();
 
             detail.serialNum = 1; // 일련번호; 1부터 순차기재 
-            detail.purchaseDT = "20181212"; // 거래일자
+            detail.purchaseDT = "20190115"; // 거래일자
             detail.itemName = "품목명"; // 품목명 
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -546,7 +546,7 @@ namespace TaxinvoiceExample.Controllers
             detail = new TaxinvoiceDetail();
 
             detail.serialNum = 2; // 일련번호; 1부터 순차기재 
-            detail.purchaseDT = "20181212"; // 거래일자
+            detail.purchaseDT = "20190115"; // 거래일자
             detail.itemName = "품목명"; // 품목명 
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -608,7 +608,7 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult Update()
         {
             // 수정할 세금계산서 문서관리번호
-            string mgtKey = "20181212115313";
+            string mgtKey = "20190115-002";
 
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
@@ -618,7 +618,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20181212";
+            taxinvoice.writeDate = "20190115";
 
             // [필수] 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -802,12 +802,10 @@ namespace TaxinvoiceExample.Controllers
 
             taxinvoice.detailList = new List<TaxinvoiceDetail>();
 
-            taxinvoice.detailList = new List<TaxinvoiceDetail>();
-
             TaxinvoiceDetail detail = new TaxinvoiceDetail();
 
             detail.serialNum = 1; // 일련번호; 1부터 순차기재 
-            detail.purchaseDT = "20181212"; // 거래일자
+            detail.purchaseDT = "20190115"; // 거래일자
             detail.itemName = "품목명(수정)"; // 품목명 
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -821,7 +819,7 @@ namespace TaxinvoiceExample.Controllers
             detail = new TaxinvoiceDetail();
 
             detail.serialNum = 2; // 일련번호; 1부터 순차기재 
-            detail.purchaseDT = "20181212"; // 거래일자
+            detail.purchaseDT = "20190115"; // 거래일자
             detail.itemName = "품목명"; // 품목명 
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -879,7 +877,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 발행처리할 세금계산서 문서관리번호
-            string mgtKey = "20181030-002";
+            string mgtKey = "20190115-002";
 
             // 지연발행 강제여부, 기본값 - False
             // 발행마감일이 지난 세금계산서를 발행하는 경우, 가산세가 부과될 수 있습니다.
@@ -915,7 +913,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 발행취소할 세금계산서 문서관리번호
-            string mgtKey = "20181030-002";
+            string mgtKey = "20190115-002";
 
             // 메모
             string memo = "발행 취소 메모";
@@ -942,7 +940,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181113135305";
+            string mgtKey = "20190115-002";
 
             //메모
             string memo = "발행예정 메모";
@@ -971,7 +969,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181113135305";
+            string mgtKey = "20190115-002";
 
             //메모
             string memo = "발행예정 취소 메모";
@@ -996,7 +994,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181025-abc";
+            string mgtKey = "20190115-002";
 
             //메모
             string memo = "발행예정 승인 메모";
@@ -1022,7 +1020,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181016_001";
+            string mgtKey = "20190115-002";
 
             //메모
             string memo = "발행예정 거부 메모";
@@ -1049,7 +1047,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 삭제처리할 세금계산서 문서관리번호
-            string mgtKey = "20181025-100";
+            string mgtKey = "20190115-002";
 
             try
             {
@@ -1075,7 +1073,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20181212";
+            taxinvoice.writeDate = "20190115";
 
             // [필수] 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -1158,7 +1156,7 @@ namespace TaxinvoiceExample.Controllers
 
             // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
             // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
-            taxinvoice.invoiceeMgtKey = "20181212115430";
+            taxinvoice.invoiceeMgtKey = "20190115-003";
 
             // [필수] 공급받는자 대표자 성명 
             taxinvoice.invoiceeCEOName = "공급받는자 대표자 성명";
@@ -1262,7 +1260,7 @@ namespace TaxinvoiceExample.Controllers
             TaxinvoiceDetail detail = new TaxinvoiceDetail();
 
             detail.serialNum = 1; // 일련번호; 1부터 순차기재 
-            detail.purchaseDT = "20181212"; // 거래일자
+            detail.purchaseDT = "20190115"; // 거래일자
             detail.itemName = "품목명"; // 품목명 
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -1276,7 +1274,7 @@ namespace TaxinvoiceExample.Controllers
             detail = new TaxinvoiceDetail();
 
             detail.serialNum = 2; // 일련번호; 1부터 순차기재 
-            detail.purchaseDT = "20181212"; // 거래일자
+            detail.purchaseDT = "20190115"; // 거래일자
             detail.itemName = "품목명"; // 품목명 
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -1339,7 +1337,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "nsmbr37hwy";
+            string mgtKey = "20190115-002";
 
             //메모
             string memo = "역발행요청 메모";
@@ -1365,7 +1363,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "nsmbr37hwy";
+            string mgtKey = "20190115-002";
 
             //메모
             string memo = "역발행 취소 메모";
@@ -1391,7 +1389,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-r002";
+            string mgtKey = "20190115-002";
 
             //메모
             string memo = "역발행 거부 메모";
@@ -1419,7 +1417,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181112-b1";
+            string mgtKey = "20190115-002";
 
             try
             {
@@ -1447,7 +1445,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-001";
+            string mgtKey = "20190115-002";
 
             try
             {
@@ -1472,9 +1470,9 @@ namespace TaxinvoiceExample.Controllers
 
             // 조회할 세금계산서 문서관리번호 배열, (최대 1000건)
             List<string> mgtKeyList = new List<string>();
-            mgtKeyList.Add("20181112-a003");
-            mgtKeyList.Add("20181108-002");
-            mgtKeyList.Add("20181023_01");
+            mgtKeyList.Add("20190115-001");
+            mgtKeyList.Add("20190115-002");
+            mgtKeyList.Add("20190115-003");
 
             try
             {
@@ -1497,7 +1495,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-001";
+            string mgtKey = "20190115-002";
 
             try
             {
@@ -1523,10 +1521,10 @@ namespace TaxinvoiceExample.Controllers
             string DType = "W";
 
             // [필수] 시작일자, 날자형식(yyyyMMdd)
-            string SDate = "20181101";
+            string SDate = "20190101";
 
             // [필수] 종료일자, 날자형식(yyyyMMdd)
-            string EDate = "20181212";
+            string EDate = "20190115";
 
             // 상태코드 배열, 미기재시 전체 상태조회, 상태코드(stateCode)값 3자리의 배열, 2,3번째 자리에 와일드카드 가능
             // - 상태코드에 대한 자세한 사항은 "[전자세금계산서 API 연동매뉴얼] > 5.1 세금계산서 상태코드" 를 참조하시기 바랍니다. 
@@ -1603,7 +1601,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-001";
+            string mgtKey = "20190115-001";
 
             try
             {
@@ -1650,7 +1648,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-001";
+            string mgtKey = "20190115-002";
 
             try
             {
@@ -1673,7 +1671,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181112-b2";
+            string mgtKey = "20190115-002";
 
             try
             {
@@ -1696,7 +1694,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181112-b2";
+            string mgtKey = "20190115-002";
 
             try
             {
@@ -1720,9 +1718,9 @@ namespace TaxinvoiceExample.Controllers
 
             // 조회할 세금계산서 문서관리번호 배열, (최대 100건)
             List<string> mgtKeyList = new List<string>();
-            mgtKeyList.Add("20181112-a003");
-            mgtKeyList.Add("20181108-002");
-            mgtKeyList.Add("20181023_01");
+            mgtKeyList.Add("20190115-001");
+            mgtKeyList.Add("20190115-002");
+            mgtKeyList.Add("20190115-003");
 
             try
             {
@@ -1745,7 +1743,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-001";
+            string mgtKey = "20190115-002";
 
             try
             {
@@ -1807,7 +1805,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181113135345";
+            string mgtKey = "20190115-002";
 
             // 파일경로
             string filePath = "C:/popbill.example.dotnetcore/TaxinvoiceExample/wwwroot/images/tax_image.png";
@@ -1833,7 +1831,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181113135345";
+            string mgtKey = "20190115-002";
 
             // 파일아이디, 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값
             string fileID = "F2A701E3-053B-40D8-AF28-FE1CBBE7FB53.PBF";
@@ -1859,7 +1857,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181113135345";
+            string mgtKey = "20190115-002";
 
             try
             {
@@ -1881,7 +1879,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-001";
+            string mgtKey = "20190115-002";
 
             // 수신자 이메일주소
             string receiver = "test@test.com";
@@ -1908,7 +1906,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-001";
+            string mgtKey = "20190115-001";
 
             // 발신번호
             string sender = "070-4304-2992";
@@ -1942,7 +1940,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-001";
+            string mgtKey = "20190115-001";
 
             // 발신번호
             string sender = "070-4304-2992";
@@ -1970,13 +1968,13 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-001";
+            string mgtKey = "20190115-001";
 
             // 첨부할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int docItemCode = 121;
 
             // 첨부할 명세서 관리번호
-            string docMgtKey = "20181025-002";
+            string docMgtKey = "20190115-002";
 
             try
             {
@@ -1998,7 +1996,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 세금계산서 문서관리번호
-            string mgtKey = "20181030-001";
+            string mgtKey = "20190115-001";
 
             // 첨부해제할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int docItemCode = 121;
@@ -2045,7 +2043,7 @@ namespace TaxinvoiceExample.Controllers
             string itemKey = "018103016112000001";
 
             // 세금계산서에 할당할 문서관리번호
-            string mgtKey = "20181030-itemkey";
+            string mgtKey = "20190115-100";
 
             try
             {
@@ -2059,7 +2057,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 전자세금계산서 관련 메일전송 항목에 대한 전송여부를 목록으로 반환한다.
+         * 전자세금계산서 관련 메일전송 항목에 대한 전송여부를 목록으로 반환합니다.
          */
         public IActionResult ListEmailConfig()
         {
@@ -2141,7 +2139,7 @@ namespace TaxinvoiceExample.Controllers
 
         #region 공인인증서 관리
 
-        /*
+       /*
         * 팝빌 회원의 공인인증서를 등록하는 팝업 URL을 반환합니다.
         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
         * - 팝빌에 등록된 공인인증서가 유효하지 않은 경우 (비밀번호 변경, 인증서 재발급/갱신, 만료일 경과)
@@ -2178,7 +2176,7 @@ namespace TaxinvoiceExample.Controllers
             }
         }
 
-        /*
+       /*
         * 팝빌에 등록된 공인인증서의 유효성을 확인합니다.
         */
         public IActionResult CheckCertValidation()
@@ -2353,7 +2351,7 @@ namespace TaxinvoiceExample.Controllers
             joinInfo.LinkID = "TESTER";
 
             // 아이디, 6자이상 50자 미만
-            joinInfo.ID = "userid_20181212";
+            joinInfo.ID = "userid_20190115";
 
             // 비밀번호, 6자이상 20자 미만
             joinInfo.PWD = "12341234";
@@ -2361,34 +2359,34 @@ namespace TaxinvoiceExample.Controllers
             // 사업자번호 "-" 제외
             joinInfo.CorpNum = "0000000001";
 
-            // 대표자 성명
+            // 대표자 성명 (최대 100자)
             joinInfo.CEOName = "대표자 성명";
 
-            // 상호
+            // 상호 (최대 200자)
             joinInfo.CorpName = "상호";
 
-            // 주소
+            // 주소 (최대 300자)
             joinInfo.Addr = "주소";
 
-            // 업태
+            // 업태 (최대 100자)
             joinInfo.BizType = "업태";
 
-            // 종목
+            // 종목 (최대 100자)
             joinInfo.BizClass = "종목";
 
-            // 담당자 성명
+            // 담당자 성명 (최대 100자)
             joinInfo.ContactName = "담당자명";
 
-            // 담당자 이메일주소
+            // 담당자 이메일주소 (최대 100자)
             joinInfo.ContactEmail = "test@test.com";
 
-            // 담당자 연락처
+            // 담당자 연락처 (최대 20자)
             joinInfo.ContactTEL = "070-4304-2992";
 
-            // 담당자 휴대폰번호
+            // 담당자 휴대폰번호 (최대 20자)
             joinInfo.ContactHP = "010-111-222";
 
-            // 담당자 팩스번호
+            // 담당자 팩스번호 (최대 20자)
             joinInfo.ContactFAX = "02-111-222";
 
             try
@@ -2425,19 +2423,19 @@ namespace TaxinvoiceExample.Controllers
         {
             CorpInfo corpInfo = new CorpInfo();
 
-            // 대표자 성명
+            // 대표자 성명 (최대 100자)
             corpInfo.ceoname = "대표자 성명 수정";
 
-            // 상호
+            // 상호 (최대 200자)
             corpInfo.corpName = "상호 수정";
 
-            // 주소
+            // 주소 (최대 300자)
             corpInfo.addr = "주소 수정";
 
-            // 업태
+            // 업태 (최대 100자)
             corpInfo.bizType = "업태 수정";
 
-            // 종목
+            // 종목 (최대 100자)
             corpInfo.bizClass = "종목 수정";
 
             try
@@ -2459,30 +2457,30 @@ namespace TaxinvoiceExample.Controllers
             Contact contactInfo = new Contact();
 
             // 담당자 아이디, 6자 이상 50자 미만
-            contactInfo.id = "testkorea_20181212";
+            contactInfo.id = "testkorea_20190115";
 
             // 비밀번호, 6자 이상 20자 미만
             contactInfo.pwd = "user_password";
 
-            // 담당자명
+            // 담당자명 (최대 100자)
             contactInfo.personName = "코어담당자";
 
-            // 담당자연락처
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
 
-            // 담당자 휴대폰번호
+            // 담당자 휴대폰번호 (최대 20자)
             contactInfo.hp = "010-111-222";
 
-            // 담당자 팩스번호
+            // 담당자 팩스번호 (최대 20자)
             contactInfo.fax = "02-111-222";
 
-            // 담당자 메일주소
+            // 담당자 이메일 (최대 100자)
             contactInfo.email = "netcore@linkhub.co.kr";
 
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
 
-            // 관리자 권한여부
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try
@@ -2519,28 +2517,28 @@ namespace TaxinvoiceExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 아이디
+            // 담당자 아이디
             contactInfo.id = "testkorea";
 
-            // 담당자명
-            contactInfo.personName = "담당자명";
+            // 담당자명 (최대 100자)
+            contactInfo.personName = "코어담당자";
 
-            // 연락처
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
 
-            // 휴대폰번호
-            contactInfo.hp = "010-222-111";
+            // 담당자 휴대폰번호 (최대 20자)
+            contactInfo.hp = "010-111-222";
 
-            // 팩스번호
-            contactInfo.fax = "02-222-1110";
+            // 담당자 팩스번호 (최대 20자)
+            contactInfo.fax = "02-111-222";
 
-            // 이메일주소
-            contactInfo.email = "aspnetcore@popbill.co.kr";
+            // 담당자 이메일 (최대 100자)
+            contactInfo.email = "netcore@linkhub.co.kr";
 
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
 
-            // 관리자 권한여부
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try
