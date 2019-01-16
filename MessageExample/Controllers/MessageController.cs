@@ -14,7 +14,6 @@ namespace MessageExample.Controllers
         {
             //문자 서비스 객체 생성
             _messageService = MSGinstance.messageService;
-
         }
 
         //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
@@ -51,7 +50,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 문자 발신번호 목록을 반환합니다.
+         * 팝빌에 등록된 문자 발신번호 목록을 반환합니다.
          */
         public IActionResult GetSenderNumberList()
         {
@@ -738,10 +737,90 @@ namespace MessageExample.Controllers
             }
         }
 
+        /*
+         * 문자전송요청시 발급받은 접수번호(receiptNum)로 예약문자 전송을 취소합니다.
+         * - 예약취소는 예약전송시간 10분전까지만 가능합니다.
+         */
+        public IActionResult CancelReserve()
+        {
+            // 문자 전송요청시 발급받은 접수번호
+            string receiptNum = "018112714000000020";
+
+            try
+            {
+                var Response = _messageService.CancelReserve(corpNum, receiptNum, userID);
+                return View("Response", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 문자전송요청시 할당한 전송요청번호(requestNum)로 예약문자 전송을 취소합니다.
+         * - 예예약취소는 예약전송시간 10분전까지만 가능합니다.
+         */
+        public IActionResult CancelReserveRN()
+        {
+            // 문자 전송요청시 할당한 요청번호
+            string requestNum = "20190115-001";
+
+            try
+            {
+                var Response = _messageService.CancelReserveRN(corpNum, requestNum, userID);
+                return View("Response", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+        
         #endregion
 
-        #region 전송내역조회/요약정보확인
+        #region 정보확인
 
+        /*
+         * 문자전송요청시 발급받은 접수번호(receiptNum)로 전송상태를 확인합니다
+         * - 응답항목에 대한 자세한 사항은 "[문자 API 연동매뉴얼] >  3.3.1. GetMessages (전송내역 확인)을 참조하시기 바랍니다.
+         */
+        public IActionResult GetMessages()
+        {
+            // 문자 전송요청시 발급받은 접수번호
+            string receiptNum = "018112714000000020";
+
+            try
+            {
+                var Response = _messageService.GetMessages(corpNum, receiptNum, userID);
+                return View("GetMessages", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+        
+        /*
+         * 문자전송요청시 할당한 전송요청번호(requestNum)로 전송상태를 확인합니다
+         * - 응답항목에 대한 자세한 사항은 "[문자 API 연동매뉴얼] > 3.3.2. GetMessagesRN (전송내역 확인 - 요청번호 할당)을 참조하시기 바랍니다.
+         */
+        public IActionResult GetMessagesRN()
+        {
+            // 문자 전송요청시 할당한 요청번호
+            string requestNum = "20190115-001";
+
+            try
+            {
+                var Response = _messageService.GetMessagesRN(corpNum, requestNum, userID);
+                return View("GetMessages", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+        
         /*
          * 문자 전송내역 요약정보를 확인합니다. (최대 1000건)
          */
@@ -771,10 +850,10 @@ namespace MessageExample.Controllers
         {
             // 최대 검색기간 : 6개월 이내
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20181101";
+            string SDate = "20190101";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20181126";
+            string EDate = "20190115";
 
             // 전송상태 배열, 1-대기, 2-성공, 3-실패, 4-취소
             string[] State = new string[4];
@@ -846,94 +925,6 @@ namespace MessageExample.Controllers
             {
                 var Response = _messageService.GetAutoDenyList(corpNum, userID);
                 return View("GetAutoDenyList", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        #endregion
-
-        #region 접수번호 관련 기능 (요청번호 미할당)
-
-        /*
-         * 문자전송요청시 발급받은 접수번호(receiptNum)로 전송상태를 확인합니다
-         * - 응답항목에 대한 자세한 사항은 "[문자 API 연동매뉴얼] >  3.3.1. GetMessages (전송내역 확인)을 참조하시기 바랍니다.
-         */
-        public IActionResult GetMessages()
-        {
-            // 문자 전송요청시 발급받은 접수번호
-            string receiptNum = "018112714000000020";
-
-            try
-            {
-                var Response = _messageService.GetMessages(corpNum, receiptNum, userID);
-                return View("GetMessages", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 문자전송요청시 발급받은 접수번호(receiptNum)로 예약문자 전송을 취소합니다.
-         * - 예약취소는 예약전송시간 10분전까지만 가능합니다.
-         */
-        public IActionResult CancelReserve()
-        {
-            // 문자 전송요청시 발급받은 접수번호
-            string receiptNum = "018112714000000020";
-
-            try
-            {
-                var Response = _messageService.CancelReserve(corpNum, receiptNum, userID);
-                return View("Response", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        #endregion
-
-        #region 요청번호 할당 전송건 관련 기능
-
-        /*
-         * 문자전송요청시 할당한 전송요청번호(requestNum)로 전송상태를 확인합니다
-         * - 응답항목에 대한 자세한 사항은 "[문자 API 연동매뉴얼] > 3.3.2. GetMessagesRN (전송내역 확인 - 요청번호 할당)을 참조하시기 바랍니다.
-         */
-        public IActionResult GetMessagesRN()
-        {
-            // 문자 전송요청시 할당한 요청번호
-            string requestNum = "20181127141839";
-
-            try
-            {
-                var Response = _messageService.GetMessagesRN(corpNum, requestNum, userID);
-                return View("GetMessages", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 문자전송요청시 할당한 전송요청번호(requestNum)로 예약문자 전송을 취소합니다.
-         * - 예예약취소는 예약전송시간 10분전까지만 가능합니다.
-         */
-        public IActionResult CancelReserveRN()
-        {
-            // 문자 전송요청시 할당한 요청번호
-            string requestNum = "20181127141839";
-
-            try
-            {
-                var Response = _messageService.CancelReserveRN(corpNum, requestNum, userID);
-                return View("Response", Response);
             }
             catch (PopbillException pe)
             {
@@ -1106,44 +1097,44 @@ namespace MessageExample.Controllers
             joinInfo.LinkID = "TESTER";
 
             // 아이디, 6자이상 50자 미만
-            joinInfo.ID = "userid_20181212"; 
-            
+            joinInfo.ID = "userid_20181212";
+
             // 비밀번호, 6자이상 20자 미만
-            joinInfo.PWD = "12341234"; 
+            joinInfo.PWD = "12341234";
 
             // 사업자번호 "-" 제외
             joinInfo.CorpNum = "0000000001";
 
-            // 대표자 성명
+            // 대표자 성명 (최대 100자)
             joinInfo.CEOName = "대표자 성명";
 
-            // 상호
+            // 상호 (최대 200자)
             joinInfo.CorpName = "상호";
 
-            // 주소
+            // 주소 (최대 300자)
             joinInfo.Addr = "주소";
 
-            // 업태
+            // 업태 (최대 100자)
             joinInfo.BizType = "업태";
 
-            // 종목
+            // 종목 (최대 100자)
             joinInfo.BizClass = "종목";
 
-            // 담당자 성명
+            // 담당자 성명 (최대 100자)
             joinInfo.ContactName = "담당자명";
 
-            // 담당자 이메일주소
+            // 담당자 이메일주소 (최대 100자)
             joinInfo.ContactEmail = "test@test.com";
 
-            // 담당자 연락처
+            // 담당자 연락처 (최대 20자)
             joinInfo.ContactTEL = "070-4304-2992";
 
-            // 담당자 휴대폰번호
+            // 담당자 휴대폰번호 (최대 20자)
             joinInfo.ContactHP = "010-111-222";
 
-            // 담당자 팩스번호
+            // 담당자 팩스번호 (최대 20자)
             joinInfo.ContactFAX = "02-111-222";
-
+            
             try
             {
                 var response = _messageService.JoinMember(joinInfo);
@@ -1195,19 +1186,19 @@ namespace MessageExample.Controllers
         {
             CorpInfo corpInfo = new CorpInfo();
 
-            // 대표자 성명
+            // 대표자 성명 (최대 100자)
             corpInfo.ceoname = "대표자 성명 수정";
 
-            // 상호
+            // 상호 (최대 200자)
             corpInfo.corpName = "상호 수정";
 
-            // 주소
+            // 주소 (최대 300자)
             corpInfo.addr = "주소 수정";
 
-            // 업태
+            // 업태 (최대 100자)
             corpInfo.bizType = "업태 수정";
 
-            // 종목
+            // 종목 (최대 100자)
             corpInfo.bizClass = "종목 수정";
 
             try
@@ -1234,25 +1225,25 @@ namespace MessageExample.Controllers
             // 비밀번호, 6자 이상 20자 미만
             contactInfo.pwd = "user_password";
 
-            // 담당자명
-            contactInfo.personName = "담당자명";
+            // 담당자명 (최대 100자)
+            contactInfo.personName = "코어담당자";
 
-            // 연락처
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
 
-            // 휴대폰번호
-            contactInfo.hp = "010-222-111";
+            // 담당자 휴대폰번호 (최대 20자)
+            contactInfo.hp = "010-111-222";
 
-            // 팩스번호
-            contactInfo.fax = "02-222-1110";
+            // 담당자 팩스번호 (최대 20자)
+            contactInfo.fax = "02-111-222";
 
-            // 이메일주소
-            contactInfo.email = "aspnetcore@popbill.co.kr";
+            // 담당자 이메일 (최대 100자)
+            contactInfo.email = "netcore@linkhub.co.kr";
 
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
 
-            // 관리자 권한여부
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try
@@ -1289,28 +1280,28 @@ namespace MessageExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 아이디
+            // 담당자 아이디
             contactInfo.id = "testkorea";
 
-            // 담당자명
-            contactInfo.personName = "담당자명";
+            // 담당자명 (최대 100자)
+            contactInfo.personName = "코어담당자";
 
-            // 연락처
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
 
-            // 휴대폰번호
-            contactInfo.hp = "010-222-111";
+            // 담당자 휴대폰번호 (최대 20자)
+            contactInfo.hp = "010-111-222";
 
-            // 팩스번호
-            contactInfo.fax = "02-222-1110";
+            // 담당자 팩스번호 (최대 20자)
+            contactInfo.fax = "02-111-222";
 
-            // 이메일주소
-            contactInfo.email = "aspnetcore@popbill.co.kr";
+            // 담당자 이메일 (최대 10자)
+            contactInfo.email = "netcore@linkhub.co.kr";
 
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
 
-            // 관리자 권한여부
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try
