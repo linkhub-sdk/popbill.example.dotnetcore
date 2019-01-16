@@ -57,7 +57,6 @@ namespace CashbillExample.Controllers
          * 1건의 현금영수증을 [즉시발행]합니다.
          * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
          * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
-         * - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
          */
         public IActionResult RegistIssue()
         {
@@ -66,7 +65,7 @@ namespace CashbillExample.Controllers
 
             // [필수] 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            cashbill.mgtKey = "20181127-001";
+            cashbill.mgtKey = "20190116-001";
 
             // [취소거래시 필수] 원본 현금영수증 국세청승인번호
             cashbill.orgConfirmNum = "";
@@ -158,7 +157,6 @@ namespace CashbillExample.Controllers
          * - [임시저장] 상태의 현금영수증은 발행(Issue API)을 호출해야만 국세청에 전송됩니다.
          * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
          * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
-         * - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
          */
         public IActionResult Register()
         {
@@ -167,7 +165,7 @@ namespace CashbillExample.Controllers
 
             // [필수] 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            cashbill.mgtKey = "20181127-002";
+            cashbill.mgtKey = "20190116-002";
 
             // [취소거래시 필수] 원본 현금영수증 국세청승인번호
             cashbill.orgConfirmNum = "";
@@ -255,12 +253,11 @@ namespace CashbillExample.Controllers
          * 1건의 현금영수증을 [수정]합니다.
          * - [임시저장] 상태의 현금영수증만 수정할 수 있습니다.
          * - 국세청에 신고된 현금영수증은 수정할 수 없으며, 취소 현금영수증을 발행하여 취소처리 할 수 있습니다.
-         * - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
          */
         public IActionResult Update()
         {
             // 수정할 현금영수증 문서관리번호
-            string mgtKey = "20181127-002";
+            string mgtKey = "20190116-002";
 
             // 현금영수증 정보 객체 
             Cashbill cashbill = new Cashbill();
@@ -355,7 +352,7 @@ namespace CashbillExample.Controllers
         public IActionResult Issue()
         {
             // 발행처리할 현금영수증 문서관리번호
-            string mgtKey = "20181127-002";
+            string mgtKey = "20190116-002";
 
             // 메모
             string memo = "발행 메모";
@@ -374,12 +371,12 @@ namespace CashbillExample.Controllers
         /*
          * [발행완료] 상태의 현금영수증을 [발행취소]합니다.
          * - 발행취소는 국세청 전송전에만 가능합니다.
-         * - 발행취소된 형금영수증은 국세청에 전송되지 않습니다.
+         * - 발행취소된 현금영수증은 국세청에 전송되지 않습니다.
          */
         public IActionResult CancelIssue()
         {
             // 발행취소할 현금영수증 문서관리번호
-            string mgtKey = "20181122-001";
+            string mgtKey = "20190116-001";
 
             // 메모
             string memo = "발행취소 메모";
@@ -403,7 +400,7 @@ namespace CashbillExample.Controllers
         public IActionResult Delete()
         {
             // 삭제처리할 현금영수증 문서관리번호
-            string mgtKey = "20181122-001";
+            string mgtKey = "20190116-001";
 
             try
             {
@@ -426,10 +423,10 @@ namespace CashbillExample.Controllers
         {
             // 현금영수증 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124185045";
+            string mgtKey = "20190115-003";
 
             // 원본 현금영수증 국세청승인번호
-            string orgConfirmNum = "820116333";
+            string orgConfirmNum = "158814020";
 
             // 원본현금영수증 거래일자 (날짜형식yyyyMMdd)
             string orgTradeDate = "20170711";
@@ -449,19 +446,18 @@ namespace CashbillExample.Controllers
          * 1건의 (부분)취소현금영수증을 [즉시발행]합니다.
          * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
          * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
-         * - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
          */
         public IActionResult RevokeRegistIssue_part()
         {
             // 현금영수증 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20181124185045";
+            string mgtKey = "20190115-003";
 
             // 원본 현금영수증 국세청승인번호
-            string orgConfirmNum = "820116333";
+            string orgConfirmNum = "158814020";
 
             // 원본현금영수증 거래일자 (날짜형식yyyyMMdd)
-            string orgTradeDate = "20170711";
+            string orgTradeDate = "20190115";
 
             // 발행 안내문자 전송여부           
             bool smssendYN = false;
@@ -510,13 +506,13 @@ namespace CashbillExample.Controllers
         {
             // 현금영수증 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "R20181003-101";
+            string mgtKey = "20190115-101";
 
             // 원본 현금영수증 국세청승인번호
-            string orgConfirmNum = "662216870";
+            string orgConfirmNum = "158814020";
 
             // 원본현금영수증 거래일자 (날짜형식yyyyMMdd)
-            string orgTradeDate = "20181121";
+            string orgTradeDate = "20190115";
 
             try
             {
@@ -540,13 +536,13 @@ namespace CashbillExample.Controllers
         {
             // 현금영수증 문서관리번호,사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "R20181003-100";
+            string mgtKey = "20190115-100";
 
             // 원본 현금영수증 국세청승인번호
-            string orgConfirmNum = "662216870";
+            string orgConfirmNum = "158814020";
 
             // 원본현금영수증 거래일자 (날짜형식yyyyMMdd)
-            string orgTradeDate = "20181121";
+            string orgTradeDate = "20190115";
 
             // 발행 안내문자 전송여부           
             bool smssendYN = false;
@@ -592,7 +588,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetInfo()
         {
             // 현금영수증 문서관리번호
-            string mgtKey = "20181124185045";
+            string mgtKey = "20190115-003";
 
             try
             {
@@ -613,9 +609,9 @@ namespace CashbillExample.Controllers
         {
             // 조회할 현금영수증 문서관리번호 배열, (최대 1000건)
             List<string> mgtKeyList = new List<string>();
-            mgtKeyList.Add("20181124185045");
-            mgtKeyList.Add("20181127-002");
-            mgtKeyList.Add("NLJ81029-80592698");
+            mgtKeyList.Add("20190115-001");
+            mgtKeyList.Add("20190115-002");
+            mgtKeyList.Add("20190115-003");
 
             try
             {
@@ -635,7 +631,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetDetailInfo()
         {
             // 현금영수증 문서관리번호
-            string mgtKey = "20181124185045";
+            string mgtKey = "20190115-003";
 
             try
             {
@@ -658,10 +654,10 @@ namespace CashbillExample.Controllers
             string DType = "T";
 
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20181101";
+            string SDate = "20190101";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20181124";
+            string EDate = "20190115";
 
             // 상태코드 배열, 미기재시 전체 상태조회, 상태코드(stateCode)값 3자리의 배열, 2,3번째 자리에 와일드카드 가능
             // - 상태코드에 대한 자세한 사항은 "[현금영수증 API 연동매뉴얼] > 5.1 현금영수증 상태코드" 를 참조하시기 바랍니다. 
@@ -723,7 +719,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetLogs()
         {
             // 현금영수증 문서관리번호
-            string mgtKey = "20181003-100";
+            string mgtKey = "20190115-001";
 
             try
             {
@@ -742,9 +738,6 @@ namespace CashbillExample.Controllers
          */
         public IActionResult GetURL()
         {
-            // 현금영수증 문서관리번호
-            string mgtKey = "20181124185045";
-
             // TBOX(임시문서함), PBOX(발행문서함), WRITE(현금영수증 작성)
             string TOGO = "WRITE";
 
@@ -770,7 +763,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetPopUpURL()
         {
             // 현금영수증 문서관리번호
-            string mgtKey = "20181124185045";
+            string mgtKey = "20190115-003";
 
             try
             {
@@ -790,7 +783,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetPrintURL()
         {
             // 현금영수증 문서관리번호
-            string mgtKey = "20181124185045";
+            string mgtKey = "20190115-003";
             try
             {
                 var result = _cashbillService.GetPrintURL(corpNum, mgtKey, userID);
@@ -810,9 +803,9 @@ namespace CashbillExample.Controllers
         {
             // 조회할 현금영수증 문서관리번호 배열, (최대 100건)
             List<string> MgtKeyList = new List<string>();
-            MgtKeyList.Add("20181124185045");
-            MgtKeyList.Add("20181127-002");
-            MgtKeyList.Add("NLJ81029-80592698");
+            MgtKeyList.Add("20190115-003");
+            MgtKeyList.Add("20190115-002");
+            MgtKeyList.Add("20190115-001");
 
             try
             {
@@ -827,12 +820,12 @@ namespace CashbillExample.Controllers
 
         /*
          * 현금영수증 수신메일 링크주소를 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - 메일링크 URL은 유효시간이 존재하지 않습니다.
          */
         public IActionResult GetMailURL()
         {
             // 현금영수증 문서관리번호
-            string mgtKey = "20181124185045";
+            string mgtKey = "20190115-003";
             
             try
             {
@@ -850,9 +843,9 @@ namespace CashbillExample.Controllers
         #region 부가기능
 
         /*
-          * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
-          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
-          */
+         * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         */
         public IActionResult GetAccessURL()
         {
             try
@@ -872,7 +865,7 @@ namespace CashbillExample.Controllers
         public IActionResult SendEmail()
         {
             // 현금영수증 문서관리번호
-            string mgtKey = "20181124185045";
+            string mgtKey = "20190115-003";
 
             // 수신자 이메일주소
             string receiveEmail = "test@test.com";
@@ -891,12 +884,12 @@ namespace CashbillExample.Controllers
         /*
          * 알림문자를 전송합니다. (단문/SMS - 한글 최대 45자)
          * - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
-         * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [전송내역] 탭에서 전송결과를 확인할 수 있습니다.
+         * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [문자] > [전송내역] 탭에서 전송결과를 확인할 수 있습니다.
          */
         public IActionResult SendSMS()
         {
             // 현금영수증 문서관리번호
-            string mgtKey = "20181124185045";
+            string mgtKey = "20190115-003";
 
             // 발신자 번호
             string sender = "070-4304-2991";
@@ -926,7 +919,7 @@ namespace CashbillExample.Controllers
         public IActionResult SendFAX()
         {
             // 현금영수증 문서관리번호
-            string mgtKey = "20181124185045";
+            string mgtKey = "20190115-003";
 
             // 발신번호
             string sender = "070-4304-2991";
@@ -1143,46 +1136,46 @@ namespace CashbillExample.Controllers
             JoinForm joinInfo = new JoinForm();
 
             // 링크아이디
-            joinInfo.LinkID = "TESTER"; 
-            
+            joinInfo.LinkID = "TESTER";
+
             // 아이디, 6자이상 50자 미만
-            joinInfo.ID = "userid_20181212"; 
-            
+            joinInfo.ID = "userid_20181212";
+
             // 비밀번호, 6자이상 20자 미만
-            joinInfo.PWD = "12341234"; 
-            
+            joinInfo.PWD = "12341234";
+
             // 사업자번호 "-" 제외
-            joinInfo.CorpNum = "0000000001"; 
-            
-            // 대표자 성명
-            joinInfo.CEOName = "대표자 성명";  
-            
-            // 상호
-            joinInfo.CorpName = "상호"; 
-            
-            // 주소
-            joinInfo.Addr = "주소"; 
-            
-            // 업태
-            joinInfo.BizType = "업태"; 
-            
-            // 종목
-            joinInfo.BizClass = "종목"; 
-            
-            // 담당자 성명
-            joinInfo.ContactName = "담당자명";  
-            
-            // 담당자 이메일주소
-            joinInfo.ContactEmail = "test@test.com";          
-            
-            // 담당자 연락처
-            joinInfo.ContactTEL = "070-4304-2992";    
-            
-            // 담당자 휴대폰번호
-            joinInfo.ContactHP = "010-111-222";  
-            
-            // 담당자 팩스번호
-            joinInfo.ContactFAX = "02-111-222"; 
+            joinInfo.CorpNum = "0000000001";
+
+            // 대표자 성명 (최대 100자)
+            joinInfo.CEOName = "대표자 성명";
+
+            // 상호 (최대 200자)
+            joinInfo.CorpName = "상호";
+
+            // 주소 (최대 300자)
+            joinInfo.Addr = "주소";
+
+            // 업태 (최대 100자)
+            joinInfo.BizType = "업태";
+
+            // 종목 (최대 100자)
+            joinInfo.BizClass = "종목";
+
+            // 담당자 성명 (최대 100자)
+            joinInfo.ContactName = "담당자명";
+
+            // 담당자 이메일주소 (최대 100자)
+            joinInfo.ContactEmail = "test@test.com";
+
+            // 담당자 연락처 (최대 20자)
+            joinInfo.ContactTEL = "070-4304-2992";
+
+            // 담당자 휴대폰번호 (최대 20자)
+            joinInfo.ContactHP = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            joinInfo.ContactFAX = "02-111-222";
 
             try
             {
@@ -1218,20 +1211,20 @@ namespace CashbillExample.Controllers
         {
             CorpInfo corpInfo = new CorpInfo();
 
-            // 대표자 성명
-            corpInfo.ceoname = "대표자 성명 수정"; 
-            
-            // 상호
-            corpInfo.corpName = "상호 수정"; 
-            
-            // 주소
-            corpInfo.addr = "주소 수정"; 
-            
-            // 업태
-            corpInfo.bizType = "업태 수정";  
-            
-            // 종목
-            corpInfo.bizClass = "종목 수정"; 
+            // 대표자 성명 (최대 100자)
+            corpInfo.ceoname = "대표자 성명 수정";
+
+            // 상호 (최대 200자)
+            corpInfo.corpName = "상호 수정";
+
+            // 주소 (최대 300자)
+            corpInfo.addr = "주소 수정";
+
+            // 업태 (최대 100자)
+            corpInfo.bizType = "업태 수정";
+
+            // 종목 (최대 100자)
+            corpInfo.bizClass = "종목 수정";
 
             try
             {
@@ -1253,29 +1246,29 @@ namespace CashbillExample.Controllers
 
             // 담당자 아이디, 6자 이상 50자 미만
             contactInfo.id = "testkorea_20181212";
-            
+
             // 비밀번호, 6자 이상 20자 미만
             contactInfo.pwd = "user_password";
-            
-            // 담당자명
+
+            // 담당자명 (최대 100자)
             contactInfo.personName = "코어담당자";
-            
-            // 담당자연락처
+
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
-            
-            // 담당자 휴대폰번호
+
+            // 담당자 휴대폰번호 (최대 20자)
             contactInfo.hp = "010-111-222";
-            
-            // 담당자 팩스번호
+
+            // 담당자 팩스번호 (최대 20자)
             contactInfo.fax = "02-111-222";
-            
-            // 담당자 메일주소
+
+            // 담당자 이메일 (최대 100자)
             contactInfo.email = "netcore@linkhub.co.kr";
-            
+
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
-            
-            // 관리자 권한여부
+
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try
@@ -1312,28 +1305,28 @@ namespace CashbillExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 아이디
+            // 담당자 아이디
             contactInfo.id = "testkorea";
-            
-            // 담당자명
-            contactInfo.personName = "담당자명";
-            
-            // 연락처
+
+            // 담당자명 (최대 100자)
+            contactInfo.personName = "코어담당자";
+
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
-            
-            // 휴대폰번호
-            contactInfo.hp = "010-222-111";
-            
-            // 팩스번호
-            contactInfo.fax = "02-222-1110";
-            
-            // 이메일주소
-            contactInfo.email = "aspnetcore@popbill.co.kr";
-            
+
+            // 담당자 휴대폰번호 (최대 20자)
+            contactInfo.hp = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            contactInfo.fax = "02-111-222";
+
+            // 담당자 이메일 (최대 10자)
+            contactInfo.email = "netcore@linkhub.co.kr";
+
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
-            
-            // 관리자 권한여부
+
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try
