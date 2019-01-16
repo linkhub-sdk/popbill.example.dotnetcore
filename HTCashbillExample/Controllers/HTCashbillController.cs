@@ -44,10 +44,10 @@ namespace HTCashbillExample.Controllers
             KeyType keyType = KeyType.SELL;
 
             // 시작일자, 표시형식(yyyyMMdd)
-            string SDate = "20180101";
+            string SDate = "20190101";
 
             // 종료일자, 표시형식(yyyyMMdd)
-            string EDate = "20181126";
+            string EDate = "20190115";
 
             try
             {
@@ -465,46 +465,46 @@ namespace HTCashbillExample.Controllers
             JoinForm joinInfo = new JoinForm();
 
             // 링크아이디
-            joinInfo.LinkID = "TESTER"; 
-            
+            joinInfo.LinkID = "TESTER";
+
             // 아이디, 6자이상 50자 미만
-            joinInfo.ID = "userid_20181212"; 
-            
+            joinInfo.ID = "userid_20181212";
+
             // 비밀번호, 6자이상 20자 미만
-            joinInfo.PWD = "12341234"; 
-            
+            joinInfo.PWD = "12341234";
+
             // 사업자번호 "-" 제외
-            joinInfo.CorpNum = "0000000001"; 
-            
-            // 대표자 성명
-            joinInfo.CEOName = "대표자 성명";  
-            
-            // 상호
-            joinInfo.CorpName = "상호"; 
-            
-            // 주소
-            joinInfo.Addr = "주소"; 
-            
-            // 업태
-            joinInfo.BizType = "업태"; 
-            
-            // 종목
-            joinInfo.BizClass = "종목"; 
-            
-            // 담당자 성명
-            joinInfo.ContactName = "담당자명";  
-            
-            // 담당자 이메일주소
-            joinInfo.ContactEmail = "test@test.com";          
-            
-            // 담당자 연락처
-            joinInfo.ContactTEL = "070-4304-2992";    
-            
-            // 담당자 휴대폰번호
-            joinInfo.ContactHP = "010-111-222";  
-            
-            // 담당자 팩스번호
-            joinInfo.ContactFAX = "02-111-222"; 
+            joinInfo.CorpNum = "0000000001";
+
+            // 대표자 성명 (최대 100자)
+            joinInfo.CEOName = "대표자 성명";
+
+            // 상호 (최대 200자)
+            joinInfo.CorpName = "상호";
+
+            // 주소 (최대 300자)
+            joinInfo.Addr = "주소";
+
+            // 업태 (최대 100자)
+            joinInfo.BizType = "업태";
+
+            // 종목 (최대 100자)
+            joinInfo.BizClass = "종목";
+
+            // 담당자 성명 (최대 100자)
+            joinInfo.ContactName = "담당자명";
+
+            // 담당자 이메일주소 (최대 100자)
+            joinInfo.ContactEmail = "test@test.com";
+
+            // 담당자 연락처 (최대 20자)
+            joinInfo.ContactTEL = "070-4304-2992";
+
+            // 담당자 휴대폰번호 (최대 20자)
+            joinInfo.ContactHP = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            joinInfo.ContactFAX = "02-111-222";
 
             try
             {
@@ -558,20 +558,20 @@ namespace HTCashbillExample.Controllers
         {
             CorpInfo corpInfo = new CorpInfo();
 
-            // 대표자 성명
-            corpInfo.ceoname = "대표자 성명 수정"; 
-            
-            // 상호
-            corpInfo.corpName = "상호 수정"; 
-            
-            // 주소
-            corpInfo.addr = "주소 수정"; 
-            
-            // 업태
-            corpInfo.bizType = "업태 수정";  
-            
-            // 종목
-            corpInfo.bizClass = "종목 수정"; 
+            // 대표자 성명 (최대 100자)
+            corpInfo.ceoname = "대표자 성명 수정";
+
+            // 상호 (최대 200자)
+            corpInfo.corpName = "상호 수정";
+
+            // 주소 (최대 300자)
+            corpInfo.addr = "주소 수정";
+
+            // 업태 (최대 100자)
+            corpInfo.bizType = "업태 수정";
+
+            // 종목 (최대 100자)
+            corpInfo.bizClass = "종목 수정";
 
             try
             {
@@ -593,29 +593,29 @@ namespace HTCashbillExample.Controllers
 
             // 담당자 아이디, 6자 이상 50자 미만
             contactInfo.id = "testkorea_20181212";
-            
+
             // 비밀번호, 6자 이상 20자 미만
             contactInfo.pwd = "user_password";
-            
-            // 담당자명
-            contactInfo.personName = "담당자명";
-            
-            // 연락처
+
+            // 담당자명 (최대 100자)
+            contactInfo.personName = "코어담당자";
+
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
-            
-            // 휴대폰번호
-            contactInfo.hp = "010-222-111";
-            
-            // 팩스번호
-            contactInfo.fax = "02-222-1110";
-            
-            // 이메일주소
-            contactInfo.email = "aspnetcore@popbill.co.kr";
-            
+
+            // 담당자 휴대폰번호 (최대 20자)
+            contactInfo.hp = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            contactInfo.fax = "02-111-222";
+
+            // 담당자 이메일 (최대 100자)
+            contactInfo.email = "netcore@linkhub.co.kr";
+
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
-            
-            // 관리자 권한여부
+
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try
@@ -652,28 +652,28 @@ namespace HTCashbillExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 아이디
+            // 담당자 아이디
             contactInfo.id = "testkorea";
-            
-            // 담당자명
-            contactInfo.personName = "담당자명";
-            
-            // 연락처
+
+            // 담당자명 (최대 100자)
+            contactInfo.personName = "코어담당자";
+
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
-            
-            // 휴대폰번호
-            contactInfo.hp = "010-222-111";
-            
-            // 팩스번호
-            contactInfo.fax = "02-222-1110";
-            
-            // 이메일주소
-            contactInfo.email = "aspnetcore@popbill.co.kr";
-            
+
+            // 담당자 휴대폰번호 (최대 20자)
+            contactInfo.hp = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            contactInfo.fax = "02-111-222";
+
+            // 담당자 이메일 (최대 10자)
+            contactInfo.email = "netcore@linkhub.co.kr";
+
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
-            
-            // 관리자 권한여부
+
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try

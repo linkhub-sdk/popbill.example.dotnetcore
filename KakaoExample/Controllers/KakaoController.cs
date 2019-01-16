@@ -144,7 +144,7 @@ namespace KakaoExample.Controllers
         public IActionResult SendATS_One()
         {
             // 알림톡 템플릿 코드, ListATSTemplate API의 templateCode 확인
-            string templateCode = "018030000066";
+            string templateCode = "018110000047";
 
             // 발신번호
             string senderNum = "07043042992";
@@ -191,7 +191,7 @@ namespace KakaoExample.Controllers
         public IActionResult SendATS_Multi()
         {
             // 알림톡 템플릿 코드, ListATSTemplate API의 templateCode 확인
-            string templateCode = "018030000066";
+            string templateCode = "018110000047";
 
             // 발신번호
             string senderNum = "07043042992";
@@ -247,7 +247,7 @@ namespace KakaoExample.Controllers
         public IActionResult SendATS_Same()
         {
             // 알림톡 템플릿 코드, ListATSTemplate API의 templateCode 확인
-            string templateCode = "018030000066";
+            string templateCode = "018110000047";
 
             // 발신번호
             string senderNum = "07043042992";
@@ -721,10 +721,91 @@ namespace KakaoExample.Controllers
             }
         }
 
+        /*
+         * 알림톡/친구톡 전송요청시 발급받은 접수번호(receiptNum)로 예약전송건을 취소합니다.
+         * - 예약취소는 예약전송시간 10분전까지만 가능합니다.
+         */
+        public IActionResult CancelReserve()
+        {
+            // 알림톡/친구톡 전송요청시 발급받은 접수번호
+            string receiptNum = "018120515512000001";
+
+            try
+            {
+                var Response = _kakaoService.CancelReserve(corpNum, receiptNum, userID);
+                return View("Response", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+        
+        /*
+         * 전송요청번호(requestNum)를 할당한 알림톡/친구톡 예약전송건을 취소합니다.
+         * - 예약전송 취소는 예약시간 10분전까지만 가능합니다.
+         */
+        public IActionResult CancelReserveRN()
+        {
+            // 알림톡/친구톡 전송요청시 할당한 요청번호
+            string requestNum = "20190115-001";
+
+            try
+            {
+                var Response = _kakaoService.CancelReserveRN(corpNum, requestNum, userID);
+                return View("Response", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+        
         #endregion
 
         #region 정보확인
 
+        /*
+         * 알림톡/친구톡 전송요청시 발급받은 접수번호(receiptNum)로 전송결과를 확인합니다.
+         */
+        public IActionResult GetMessages()
+        {
+            // 알림톡/친구톡 전송요청시 발급받은 접수번호
+            string receiptNum = "018112717221800001";
+
+            try
+            {
+                var Response = _kakaoService.GetMessages(corpNum, receiptNum, userID);
+                return View("GetMessages", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+
+
+        /*
+         * 전송요청번호(requestNum)를 할당한 알림톡/친구톡 전송내역 및 전송상태를 확인합니다.
+         */
+        public IActionResult GetMessagesRN()
+        {
+            // 알림톡/친구톡 전송요청시 할당한 요청번호
+            string requestNum = "20190115-001";
+
+            try
+            {
+                var Response = _kakaoService.GetMessagesRN(corpNum, requestNum, userID);
+                return View("GetMessages", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        
         /*
          * 검색조건을 사용하여 알림톡/친구톡 전송 내역을 조회합니다.
          * - 최대 검색기간 : 6개월 이내
@@ -733,10 +814,10 @@ namespace KakaoExample.Controllers
         {
             // 최대 검색기한 : 6개월 이내
             // 시작일자, 날자형식(yyyyMMdd)
-            string SDate = "20180601";
+            string SDate = "20190101";
 
             // 종료일자, 날자형식(yyyyMMdd)
-            string EDate = "20180731";
+            string EDate = "20190115";
 
             // 전송상태 배열, 0-대기, 1-전송중, -2-성공, 3-대체, 4-실패, 5-취소
             string[] State = new string[6];
@@ -800,83 +881,8 @@ namespace KakaoExample.Controllers
             }
         }
 
-        /*
-         * 알림톡/친구톡 전송요청시 발급받은 접수번호(receiptNum)로 전송결과를 확인합니다.
-         */
-        public IActionResult GetMessages()
-        {
-            // 알림톡/친구톡 전송요청시 발급받은 접수번호
-            string receiptNum = "018112717221800001";
 
-            try
-            {
-                var Response = _kakaoService.GetMessages(corpNum, receiptNum, userID);
-                return View("GetMessages", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
 
-        /*
-         * 알림톡/친구톡 전송요청시 발급받은 접수번호(receiptNum)로 예약전송건을 취소합니다.
-         * - 예약취소는 예약전송시간 10분전까지만 가능합니다.
-         */
-        public IActionResult CancelReserve()
-        {
-            // 알림톡/친구톡 전송요청시 발급받은 접수번호
-            string receiptNum = "018120515512000001";
-
-            try
-            {
-                var Response = _kakaoService.CancelReserve(corpNum, receiptNum, userID);
-                return View("Response", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 전송요청번호(requestNum)를 할당한 알림톡/친구톡 전송내역 및 전송상태를 확인합니다,
-         */
-        public IActionResult GetMessagesRN()
-        {
-            // 알림톡/친구톡 전송요청시 할당한 요청번호
-            string requestNum = "20181127155110";
-
-            try
-            {
-                var Response = _kakaoService.GetMessagesRN(corpNum, requestNum, userID);
-                return View("GetMessages", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 전송요청번호(requestNum)를 할당한 알림톡/친구톡 예약전송건을 취소합니다.
-         * - 예약전송 취소는 예약시간 10분전까지만 가능합니다.
-         */
-        public IActionResult CancelReserveRN()
-        {
-            // 알림톡/친구톡 전송요청시 할당한 요청번호
-            string requestNum = "20181205155125";
-
-            try
-            {
-                var Response = _kakaoService.CancelReserveRN(corpNum, requestNum, userID);
-                return View("Response", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
 
         #endregion
 
@@ -1014,7 +1020,7 @@ namespace KakaoExample.Controllers
         }
 
         /*
-         * 파트너의 연동회원으로 신규가입 처리합니다.
+         * 팝빌 회원아이디 중복여부를 확인합니다.
          */
         public IActionResult CheckID()
         {
@@ -1040,46 +1046,46 @@ namespace KakaoExample.Controllers
             JoinForm joinInfo = new JoinForm();
 
             // 링크아이디
-            joinInfo.LinkID = "TESTER"; 
-            
+            joinInfo.LinkID = "TESTER";
+
             // 아이디, 6자이상 50자 미만
-            joinInfo.ID = "userid_20181212"; 
-            
+            joinInfo.ID = "userid_20181212";
+
             // 비밀번호, 6자이상 20자 미만
-            joinInfo.PWD = "12341234"; 
-            
+            joinInfo.PWD = "12341234";
+
             // 사업자번호 "-" 제외
-            joinInfo.CorpNum = "0000000001"; 
-            
-            // 대표자 성명
-            joinInfo.CEOName = "대표자 성명";  
-            
-            // 상호
-            joinInfo.CorpName = "상호"; 
-            
-            // 주소
-            joinInfo.Addr = "주소"; 
-            
-            // 업태
-            joinInfo.BizType = "업태"; 
-            
-            // 종목
-            joinInfo.BizClass = "종목"; 
-            
-            // 담당자 성명
-            joinInfo.ContactName = "담당자명";  
-            
-            // 담당자 이메일주소
-            joinInfo.ContactEmail = "test@test.com";          
-            
-            // 담당자 연락처
-            joinInfo.ContactTEL = "070-4304-2992";    
-            
-            // 담당자 휴대폰번호
-            joinInfo.ContactHP = "010-111-222";  
-            
-            // 담당자 팩스번호
-            joinInfo.ContactFAX = "02-111-222"; 
+            joinInfo.CorpNum = "0000000001";
+
+            // 대표자 성명 (최대 100자)
+            joinInfo.CEOName = "대표자 성명";
+
+            // 상호 (최대 200자)
+            joinInfo.CorpName = "상호";
+
+            // 주소 (최대 300자)
+            joinInfo.Addr = "주소";
+
+            // 업태 (최대 100자)
+            joinInfo.BizType = "업태";
+
+            // 종목 (최대 100자)
+            joinInfo.BizClass = "종목";
+
+            // 담당자 성명 (최대 100자)
+            joinInfo.ContactName = "담당자명";
+
+            // 담당자 이메일주소 (최대 100자)
+            joinInfo.ContactEmail = "test@test.com";
+
+            // 담당자 연락처 (최대 20자)
+            joinInfo.ContactTEL = "070-4304-2992";
+
+            // 담당자 휴대폰번호 (최대 20자)
+            joinInfo.ContactHP = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            joinInfo.ContactFAX = "02-111-222";
 
             try
             {
@@ -1132,21 +1138,21 @@ namespace KakaoExample.Controllers
         {
             CorpInfo corpInfo = new CorpInfo();
 
-            // 대표자 성명
-            corpInfo.ceoname = "대표자 성명 수정"; 
-            
-            // 상호
-            corpInfo.corpName = "상호 수정"; 
-            
-            // 주소
-            corpInfo.addr = "주소 수정"; 
-            
-            // 업태
-            corpInfo.bizType = "업태 수정";  
-            
-            // 종목
-            corpInfo.bizClass = "종목 수정"; 
+            // 대표자 성명 (최대 100자)
+            corpInfo.ceoname = "대표자 성명 수정";
 
+            // 상호 (최대 200자)
+            corpInfo.corpName = "상호 수정";
+
+            // 주소 (최대 300자)
+            corpInfo.addr = "주소 수정";
+
+            // 업태 (최대 100자)
+            corpInfo.bizType = "업태 수정";
+
+            // 종목 (최대 100자)
+            corpInfo.bizClass = "종목 수정";
+            
             try
             {
                 var response = _kakaoService.UpdateCorpInfo(corpNum, corpInfo, userID);
@@ -1167,29 +1173,29 @@ namespace KakaoExample.Controllers
 
             // 담당자 아이디, 6자 이상 50자 미만
             contactInfo.id = "testkorea_20181212";
-            
+
             // 비밀번호, 6자 이상 20자 미만
             contactInfo.pwd = "user_password";
-            
-            // 담당자명
-            contactInfo.personName = "담당자명";
-            
-            // 연락처
+
+            // 담당자명 (최대 100자)
+            contactInfo.personName = "코어담당자";
+
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
-            
-            // 휴대폰번호
-            contactInfo.hp = "010-222-111";
-            
-            // 팩스번호
-            contactInfo.fax = "02-222-1110";
-            
-            // 이메일주소
-            contactInfo.email = "aspnetcore@popbill.co.kr";
-            
+
+            // 담당자 휴대폰번호 (최대 20자)
+            contactInfo.hp = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            contactInfo.fax = "02-111-222";
+
+            // 담당자 이메일 (최대 100자)
+            contactInfo.email = "netcore@linkhub.co.kr";
+
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
-            
-            // 관리자 권한여부
+
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try
@@ -1226,28 +1232,28 @@ namespace KakaoExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 아이디
+            // 담당자 아이디
             contactInfo.id = "testkorea";
-            
-            // 담당자명
-            contactInfo.personName = "담당자명";
-            
-            // 연락처
+
+            // 담당자명 (최대 100자)
+            contactInfo.personName = "코어담당자";
+
+            // 담당자 연락처 (최대 20자)
             contactInfo.tel = "070-4304-2992";
-            
-            // 휴대폰번호
-            contactInfo.hp = "010-222-111";
-            
-            // 팩스번호
-            contactInfo.fax = "02-222-1110";
-            
-            // 이메일주소
-            contactInfo.email = "aspnetcore@popbill.co.kr";
-            
+
+            // 담당자 휴대폰번호 (최대 20자)
+            contactInfo.hp = "010-111-222";
+
+            // 담당자 팩스번호 (최대 20자)
+            contactInfo.fax = "02-111-222";
+
+            // 담당자 이메일 (최대 100자)
+            contactInfo.email = "netcore@linkhub.co.kr";
+
             // 회사조회 권한여부, true(회사조회), false(개인조회)
             contactInfo.searchAllAllowYN = true;
-            
-            // 관리자 권한여부
+
+            // 관리자 권한여부, true(관리자), false(사용자)
             contactInfo.mgrYN = false;
 
             try

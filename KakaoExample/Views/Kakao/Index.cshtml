@@ -30,65 +30,58 @@
     </fieldset>
     <br/>
     <fieldset class="fieldset1">
-        <legend>알림톡 전송</legend>
-        <ul>
-            <li><a href="Kakao/SendATS_One">SendATS</a> (알림톡 단건 전송) </li>
-            <li><a href="Kakao/SendATS_Same">SendATS</a> (알림톡 동일내용 대량 전송) </li>
-            <li><a href="Kakao/SendATS_Multi">SendATS</a> (알림톡 개별내용 대량 전송) </li>
-        </ul>
-    </fieldset>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend>친구톡 텍스트 전송</legend>
-        <ul>
-            <li><a href="Kakao/SendFTS_One">SendFTS</a> (친구톡 텍스트 단건 전송) </li>
-            <li><a href="Kakao/sendFTS_Same">SendFTS</a> (친구톡 텍스트 동일내용 대량전송) </li>
-            <li><a href="Kakao/sendFTS_Multi">SendFTS</a> (친구톡 텍스트 개별내용 대량전송) </li>
-        </ul>
-    </fieldset>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend>친구톡 이미지 전송</legend>
-        <ul>
-            <li><a href="Kakao/SendFMS_One">SendFMS</a> (친구톡 이미지 단건 전송) </li>
-            <li><a href="Kakao/SendFMS_Same">SendFMS</a> (친구톡 이미지 동일내용 대량전송) </li>
-            <li><a href="Kakao/SendFMS_Multi">SendFMS</a> (친구톡 이미지 개별내용 대량전송) </li>
-        </ul>
+        <fieldset class="fieldset2">
+            <legend>알림톡 전송</legend>
+            <ul>
+                <li><a href="Kakao/SendATS_One">SendATS</a> (알림톡 단건 전송) </li>
+                <li><a href="Kakao/SendATS_Same">SendATS</a> (알림톡 동일내용 대량 전송) </li>
+                <li><a href="Kakao/SendATS_Multi">SendATS</a> (알림톡 개별내용 대량 전송) </li>
+            </ul>
+        </fieldset>
+        <fieldset class="fieldset2">
+            <legend>친구톡 텍스트 전송</legend>
+            <ul>
+                <li><a href="Kakao/SendFTS_One">SendFTS</a> (친구톡 텍스트 단건 전송) </li>
+                <li><a href="Kakao/sendFTS_Same">SendFTS</a> (친구톡 텍스트 동일내용 대량전송) </li>
+                <li><a href="Kakao/sendFTS_Multi">SendFTS</a> (친구톡 텍스트 개별내용 대량전송) </li>
+            </ul>
+        </fieldset>
+        <fieldset class="fieldset2">
+            <legend>친구톡 이미지 전송</legend>
+            <ul>
+                <li><a href="Kakao/SendFMS_One">SendFMS</a> (친구톡 이미지 단건 전송) </li>
+                <li><a href="Kakao/SendFMS_Same">SendFMS</a> (친구톡 이미지 동일내용 대량전송) </li>
+                <li><a href="Kakao/SendFMS_Multi">SendFMS</a> (친구톡 이미지 개별내용 대량전송) </li>
+            </ul>
+        </fieldset>
+        <fieldset class="fieldset2">
+            <legend>예약전송 취소</legend>
+            <ul>
+                <li><a href="Kakao/CancelReserve">CancelReserve</a> (예약전송 취소) </li>
+                <li><a href="Kakao/CancelReserveRN">CancelReserveRN</a> (예약전송 취소 - 요청번호 할당) </li>
+            </ul>
+        </fieldset>
     </fieldset>
     <br/>
     <fieldset class="fieldset1">
         <legend>정보확인</legend>
         <ul>
+            <li><a href="Kakao/GetMessages">GetMessages</a> (알림톡/친구톡 전송내역 확인) </li>
+            <li><a href="Kakao/GetMessagesRN">GetMessagesRN</a> (알림톡/친구톡 전송내역 확인 - 요청번호 할당) </li>
             <li><a href="Kakao/Search">Search</a> (전송내역 목록 조회) </li>
             <li><a href="Kakao/GetSentListURL">GetSentListURL</a> (카카오톡 전송내역 팝업 URL) </li>
         </ul>
     </fieldset>
     <br/>
     <fieldset class="fieldset1">
-        <legend>접수번호 관련 기능 (요청번호 미할당)</legend>
-        <ul>
-            <li><a href="Kakao/GetMessages">GetMessages</a> (알림톡/친구톡 전송내역 확인) </li>
-            <li><a href="Kakao/CancelReserve">CancelReserve</a> (예약전송 취소) </li>
-        </ul>
-    </fieldset>
-    <br/>
-    <fieldset class="fieldset1">
-        <legend>요청번호 할당 전송건 관련 기능</legend>
-        <ul>
-            <li><a href="Kakao/GetMessagesRN">GetMessagesRN</a> (알림톡/친구톡 전송내역 확인) </li>
-            <li><a href="Kakao/CancelReserveRN">CancelReserveRN</a> (예약전송 취소) </li>
-        </ul>
-    </fieldset>
-    <br/>
-    <fieldset class="fieldset1">
         <legend>포인트관리</legend>
         <ul>
-            <li><a href="Kakao/GetUnitCost">GetUnitCost</a> (전송 단가 확인) </li>
-            <li><a href="Kakao/GetChargeInfo">GetChargeInfo</a> (과금정보 확인) </li>
             <li><a href="Kakao/GetBalance">GetBalance</a> (연동회원 잔여포인트 확인) </li>
             <li><a href="Kakao/GetChargeURL">GetChargeURL</a> (연동회원 포인트충전 URL) </li>
             <li><a href="Kakao/GetPartnerBalance">GetPartnerBalance</a> (파트너 잔여포인트 확인) </li>
             <li><a href="Kakao/GetPartnerURL">GetPartnerURL</a> (파트너 포인트충전 URL) </li>
+            <li><a href="Kakao/GetUnitCost">GetUnitCost</a> (전송 단가 확인) </li>
+            <li><a href="Kakao/GetChargeInfo">GetChargeInfo</a> (과금정보 확인) </li>
         </ul>
     </fieldset>
     <br/>
