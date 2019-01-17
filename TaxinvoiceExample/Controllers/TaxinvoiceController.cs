@@ -214,9 +214,11 @@ namespace TaxinvoiceExample.Controllers
             taxinvoice.remark3 = "비고3";
 
             // 기재상 권 항목, 최대값 32767
+            // 미기재시 taxinvoice.kwon = null;
             taxinvoice.kwon = 1;
 
             // 기재상 호 항목, 최대값 32767
+            // 미기재시 taxinvoice.ho = null;
             taxinvoice.ho = 1;
 
             // 사업자등록증 이미지 첨부여부
@@ -495,9 +497,11 @@ namespace TaxinvoiceExample.Controllers
             taxinvoice.remark3 = "비고3";
 
             // 기재상 권 항목, 최대값 32767
+            // 미기재시 taxinvoice.kwon = null;
             taxinvoice.kwon = 1;
 
             // 기재상 호 항목, 최대값 32767
+            // 미기재시 taxinvoice.ho = null;
             taxinvoice.ho = 1;
 
             // 사업자등록증 이미지 첨부여부
@@ -767,9 +771,11 @@ namespace TaxinvoiceExample.Controllers
             taxinvoice.remark3 = "비고3";
 
             // 기재상 권 항목, 최대값 32767
+            // 미기재시 taxinvoice.kwon = null;
             taxinvoice.kwon = 1;
 
             // 기재상 호 항목, 최대값 32767
+            // 미기재시 taxinvoice.ho = null;
             taxinvoice.ho = 1;
 
             // 사업자등록증 이미지 첨부여부
@@ -1222,9 +1228,11 @@ namespace TaxinvoiceExample.Controllers
             taxinvoice.remark3 = "비고3";
 
             // 기재상 권 항목, 최대값 32767
+            // 미기재시 taxinvoice.kwon = null;
             taxinvoice.kwon = 1;
 
             // 기재상 호 항목, 최대값 32767
+            // 미기재시 taxinvoice.ho = null;
             taxinvoice.ho = 1;
 
             // 사업자등록증 이미지 첨부여부
@@ -2139,12 +2147,12 @@ namespace TaxinvoiceExample.Controllers
 
         #region 공인인증서 관리
 
-       /*
-        * 팝빌 회원의 공인인증서를 등록하는 팝업 URL을 반환합니다.
-        * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
-        * - 팝빌에 등록된 공인인증서가 유효하지 않은 경우 (비밀번호 변경, 인증서 재발급/갱신, 만료일 경과)
-        *   인증서를 재등록해야 정상적으로 전자세금계산서 발행이 가능합니다.
-        */
+        /*
+         * 팝빌 회원의 공인인증서를 등록하는 팝업 URL을 반환합니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - 팝빌에 등록된 공인인증서가 유효하지 않은 경우 (비밀번호 변경, 인증서 재발급/갱신, 만료일 경과)
+         *   인증서를 재등록해야 정상적으로 전자세금계산서 발행이 가능합니다.
+         */
         public IActionResult GetTaxCertURL()
         {
             try
@@ -2176,9 +2184,9 @@ namespace TaxinvoiceExample.Controllers
             }
         }
 
-       /*
-        * 팝빌에 등록된 공인인증서의 유효성을 확인합니다.
-        */
+        /*
+         * 팝빌에 등록된 공인인증서의 유효성을 확인합니다.
+         */
         public IActionResult CheckCertValidation()
         {
             try
