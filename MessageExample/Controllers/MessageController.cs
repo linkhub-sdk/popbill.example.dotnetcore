@@ -71,7 +71,7 @@ namespace MessageExample.Controllers
 
         /*
          * SMS(단문)를 전송합니다.
-         *  - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 길이가 90 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
          */
         public IActionResult SendSMS()
         {
@@ -116,7 +116,7 @@ namespace MessageExample.Controllers
 
         /*
          * [대량전송] SMS(단문)를 전송합니다.
-         *  - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 길이가 90 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
          *  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.1 SendSMS(단문전송)"을 참조하시기 바랍니다.
          */
         public IActionResult SendSMS_Multi()
@@ -171,7 +171,7 @@ namespace MessageExample.Controllers
 
         /*
          * [동보전송] SMS(단문)를 전송합니다.
-         *  - 메시지 내용이 90Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 길이가 90 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
          *  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.1 SendSMS(단문전송)"을 참조하시기 바랍니다.
          */
         public IActionResult SendSMS_Same()
@@ -228,7 +228,7 @@ namespace MessageExample.Controllers
 
         /*
          * LMS(장문)를 전송합니다.
-         *  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
          */
         public IActionResult SendLMS()
         {
@@ -276,7 +276,7 @@ namespace MessageExample.Controllers
 
         /*
          * [대량전송] LMS(장문)를 전송합니다.
-         *  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
          *  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.2 SendLMS(장문전송)"을 참조하시기 바랍니다.
          */
         public IActionResult SendLMS_Multi()
@@ -335,7 +335,7 @@ namespace MessageExample.Controllers
 
         /*
          * [동보전송] LNS(장문)를 전송합니다.
-         *  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
          *  - 단건/대량 전송에 대한 설명은 "[문자 API 연동매뉴얼] > 3.2.2 SendLMS(장문전송)"을 참조하시기 바랍니다.
          */
         public IActionResult SendLMS_Same()
@@ -395,7 +395,7 @@ namespace MessageExample.Controllers
 
         /*
          * MMS(포토)를 전송합니다.
-         *  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
          *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
          */
         public IActionResult SendMMS()
@@ -447,7 +447,7 @@ namespace MessageExample.Controllers
 
         /*
          * [대랑전송] MMS(포토)를 전송합니다.
-         *  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
          *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
          */
         public IActionResult SendMMS_Multi()
@@ -509,7 +509,7 @@ namespace MessageExample.Controllers
 
         /*
          * [동보전송] MMS(포토)를 전송합니다.
-         *  - 메시지 내용이 2,000Byte 초과시 메시지 내용은 자동으로 제거됩니다.
+         *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
          *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
          */
         public IActionResult SendMMS_Same()
@@ -826,7 +826,7 @@ namespace MessageExample.Controllers
          */
         public IActionResult GetStates()
         {
-            // 요약정보 확인할 문자 접수번호 배열
+            // 요약정보 확인할 문자 접수번호 배열 (최대 1000건)
             List<string> receiptNumList = new List<string>();
             receiptNumList.Add("018090410000000416");
             receiptNumList.Add("018090410000000395");
