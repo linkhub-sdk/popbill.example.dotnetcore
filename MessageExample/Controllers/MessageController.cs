@@ -813,7 +813,7 @@ namespace MessageExample.Controllers
             try
             {
                 var Response = _messageService.GetMessagesRN(corpNum, requestNum, userID);
-                return View("GetMessages", Response);
+                return View("GetMessagesRN", Response);
             }
             catch (PopbillException pe)
             {

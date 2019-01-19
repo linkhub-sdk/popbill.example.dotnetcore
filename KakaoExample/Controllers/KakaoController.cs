@@ -797,7 +797,7 @@ namespace KakaoExample.Controllers
             try
             {
                 var Response = _kakaoService.GetMessagesRN(corpNum, requestNum, userID);
-                return View("GetMessages", Response);
+                return View("GetMessagesRN", Response);
             }
             catch (PopbillException pe)
             {

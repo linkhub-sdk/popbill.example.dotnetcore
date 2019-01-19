@@ -472,14 +472,14 @@ namespace FaxExample.Controllers
             try
             {
                 var Response = _faxService.GetFaxDetailRN(corpNum, requestNum, userID);
-                return View("GetFaxDetail", Response);
+                return View("GetFaxDetailRN", Response);
             }
             catch (PopbillException pe)
             {
                 return View("Exception", pe);
             }
         }
-        
+
         /*
          * 검색조건을 사용하여 팩스전송 내역을 조회합니다.
          * - 최대 검색기간 : 6개월 이내
