@@ -714,7 +714,7 @@ namespace CashbillExample.Controllers
         /*
          * 현금영수증 상태 변경이력을 확인합니다.
          * - 상태 변경이력 확인(GetLogs API) 응답항목에 대한 자세한 정보는
-         *   "[현금영수증 API 연동매뉴얼] > 3.3.5 상태 변경이력 확인" 을 참조하시기 바랍니다.
+         *   "[현금영수증 API 연동매뉴얼] > 3.3.5. 상태 변경이력 확인" 을 참조하시기 바랍니다.
          */
         public IActionResult GetLogs()
         {

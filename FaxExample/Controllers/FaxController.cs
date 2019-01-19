@@ -414,7 +414,6 @@ namespace FaxExample.Controllers
             }
         }
 
-
         /*
          * 팩스전송요청시 할당한 전송요청번호(requestNum)로 팩스 예약전송건을 취소합니다.
          * - 예약전송 취소는 예약전송시간 10분전까지 가능하며, 팩스변환 이후 가능합니다.
@@ -458,7 +457,6 @@ namespace FaxExample.Controllers
                 return View("Exception", pe);
             }
         }
-
 
         /*
          * 팩스전송요청시 할당한 전송요청번호(requestNum)으로 전송결과를 확인합니다
