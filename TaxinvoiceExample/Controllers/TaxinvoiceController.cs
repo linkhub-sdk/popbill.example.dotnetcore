@@ -65,7 +65,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20190115";
+            taxinvoice.writeDate = "20190227";
 
             // [필수] 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -101,7 +101,7 @@ namespace TaxinvoiceExample.Controllers
 
             // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
-            taxinvoice.invoicerMgtKey = "20190115-001";
+            taxinvoice.invoicerMgtKey = "20190227-010";
 
             // [필수] 공급자 대표자 성명 
             taxinvoice.invoicerCEOName = "공급자 대표자 성명";
@@ -327,7 +327,7 @@ namespace TaxinvoiceExample.Controllers
             {
                 var response = _taxinvoiceService.RegistIssue(corpNum, taxinvoice, writeSpecification, forceIssue,
                     dealInvoiceMgtKey, memo, emailSubject);
-                return View("Response", response);
+                return View("IssueResponse", response);
             }
             catch (PopbillException pe)
             {
@@ -348,7 +348,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // [필수] 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20190115";
+            taxinvoice.writeDate = "20190227";
 
             // [필수] 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -384,7 +384,7 @@ namespace TaxinvoiceExample.Controllers
 
             // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
-            taxinvoice.invoicerMgtKey = "20190115-002";
+            taxinvoice.invoicerMgtKey = "20190227-011";
 
             // [필수] 공급자 대표자 성명 
             taxinvoice.invoicerCEOName = "공급자 대표자 성명";
@@ -883,7 +883,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 발행처리할 세금계산서 문서관리번호
-            string mgtKey = "20190115-002";
+            string mgtKey = "20190227-011";
 
             // 지연발행 강제여부, 기본값 - False
             // 발행마감일이 지난 세금계산서를 발행하는 경우, 가산세가 부과될 수 있습니다.
@@ -899,7 +899,7 @@ namespace TaxinvoiceExample.Controllers
             try
             {
                 var response = _taxinvoiceService.Issue(corpNum, mgtKeyType, mgtKey, forceIssue, memo, emailSubject);
-                return View("Response", response);
+                return View("IssueResponse", response);
             }
             catch (PopbillException pe)
             {
@@ -919,7 +919,7 @@ namespace TaxinvoiceExample.Controllers
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
             // 발행취소할 세금계산서 문서관리번호
-            string mgtKey = "20190115-002";
+            string mgtKey = "20190227-011";
 
             // 메모
             string memo = "발행 취소 메모";
@@ -927,113 +927,6 @@ namespace TaxinvoiceExample.Controllers
             try
             {
                 var response = _taxinvoiceService.CancelIssue(corpNum, mgtKeyType, mgtKey, memo);
-                return View("Response", response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*    
-         * [임시저장] 상태의 세금계산서를 [공급자]가 [발행예정]합니다.
-         * - 발행예정이란 공급자와 공급받는자 사이에 세금계산서 확인 후 발행하는 방법입니다.
-         * - "[전자세금계산서 API 연동매뉴얼] > 1.2.1. 정발행 > 다. 임시저장 발행예정" 의 프로세스를 참조하시기 바랍니다.
-         */
-        public IActionResult Send()
-        {
-            // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
-            MgtKeyType mgtKeyType = MgtKeyType.SELL;
-
-            // 세금계산서 문서관리번호
-            string mgtKey = "20190115-002";
-
-            //메모
-            string memo = "발행예정 메모";
-
-            //발행예정 메일제목, 공백으로 처리시 기본메일 제목으로 전송
-            string emailSubject = "";
-
-            try
-            {
-                var response = _taxinvoiceService.Send(corpNum, mgtKeyType, mgtKey, memo, emailSubject);
-                return View("Response", response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * [승인대기] 상태의 세금계산서를 [공급자]가 [취소]합니다.
-         * - [취소]된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
-         */
-        public IActionResult CancelSend()
-        {
-            // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
-            MgtKeyType mgtKeyType = MgtKeyType.SELL;
-
-            // 세금계산서 문서관리번호
-            string mgtKey = "20190115-002";
-
-            //메모
-            string memo = "발행예정 취소 메모";
-
-            try
-            {
-                var response = _taxinvoiceService.CancelSend(corpNum, mgtKeyType, mgtKey, memo);
-                return View("Response", response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * [승인대기] 상태의 세금계산서를 [공급받는자]가 [승인]합니다.
-         */
-        public IActionResult Accept()
-        {
-            // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
-            MgtKeyType mgtKeyType = MgtKeyType.BUY;
-
-            // 세금계산서 문서관리번호
-            string mgtKey = "20190115-002";
-
-            //메모
-            string memo = "발행예정 승인 메모";
-
-            try
-            {
-                var response = _taxinvoiceService.Accept(corpNum, mgtKeyType, mgtKey, memo);
-                return View("Response", response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * [승인대기] 상태의 세금계산서를 [공급받는자]가 [거부]합니다.
-         * - [거부]처리된 세금계산서를 삭제(Delete API)하면 등록된 문서관리번호를 재사용할 수 있습니다.
-         */
-        public IActionResult Deny()
-        {
-            // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
-            MgtKeyType mgtKeyType = MgtKeyType.BUY;
-
-            // 세금계산서 문서관리번호
-            string mgtKey = "20190115-002";
-
-            //메모
-            string memo = "발행예정 거부 메모";
-
-            try
-            {
-                var response = _taxinvoiceService.Deny(corpNum, mgtKeyType, mgtKey, memo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1292,32 +1185,6 @@ namespace TaxinvoiceExample.Controllers
             detail.remark = "품목비고"; //비고
 
             taxinvoice.detailList.Add(detail);
-
-
-            /*********************************************************************************
-            *                           추가담당자 정보                                      *  
-            * - 세금계산서 발행안내 메일을 수신받을 공급받는자 담당자가 다수인 경우 담당자   *
-            *   정보를 추가하여 발행안내메일을 다수에게 전송할 수 있습니다.                  *
-            * - 최대 5개까지 기재가능                                                        *
-            **********************************************************************************/
-
-            taxinvoice.addContactList = new List<TaxinvoiceAddContact>();
-
-            TaxinvoiceAddContact addContact = new TaxinvoiceAddContact();
-
-            addContact.serialNum = 1; // 일련번호, 1부터 순차기재
-            addContact.email = "test2@invoicee.com"; // 추가담당자 메일주소 
-            addContact.contactName = "추가담당자명"; // 추가담당자 성명 
-
-            taxinvoice.addContactList.Add(addContact);
-
-            addContact = new TaxinvoiceAddContact();
-
-            addContact.serialNum = 2; // 일련번호, 1부터 순차기재 
-            addContact.email = "test2@invoicee.com"; // 추가담당자 메일주소
-            addContact.contactName = "추가담당자명"; // 추가담당자 성명
-
-            taxinvoice.addContactList.Add(addContact);
 
             // 메모
             string memo = "";
@@ -1661,6 +1528,29 @@ namespace TaxinvoiceExample.Controllers
             try
             {
                 var result = _taxinvoiceService.GetPopUpURL(corpNum, mgtKeyType, mgtKey, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 1건의 전자세금계산서 보기 팝업 URL을 반환합니다. (메뉴/버튼 제외)
+         * - 반환된 URL은 보안정책으로 인해 30초의 유효시간을 갖습니다.
+         */
+        public IActionResult GetViewURL()
+        {
+            // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
+
+            // 세금계산서 문서관리번호
+            string mgtKey = "20190227-011";
+
+            try
+            {
+                var result = _taxinvoiceService.GetViewURL(corpNum, mgtKeyType, mgtKey, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
