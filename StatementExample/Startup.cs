@@ -20,6 +20,9 @@ public class StatementInstance
 
         //연동환경 설정값, 개발용(true), 상업용(false)
         statementService.IsTest = true;
+
+        //인증토큰의 IP제한기능 사용여부, 권장(true)
+        statementService.IPRestrictOnOff = true;
     }
 }
 
