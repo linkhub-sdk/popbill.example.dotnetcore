@@ -1,23 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxinvoiceExample", "TaxinvoiceExample\TaxinvoiceExample.csproj", "{0B6E9F62-EF9B-4C06-AAC0-DEDDEE463663}"
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxinvoiceExample", "TaxinvoiceExample\TaxinvoiceExample.csproj", "{0B6E9F62-EF9B-4C06-AAC0-DEDDEE463663}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatementExample", "StatementExample\StatementExample.csproj", "{C8E5F429-EBF0-4B1C-9CB7-BB57ED051549}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StatementExample", "StatementExample\StatementExample.csproj", "{C8E5F429-EBF0-4B1C-9CB7-BB57ED051549}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashbillExample", "CashbillExample\CashbillExample.csproj", "{495B609B-E790-45AE-9C3B-CEBE1A3402CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashbillExample", "CashbillExample\CashbillExample.csproj", "{495B609B-E790-45AE-9C3B-CEBE1A3402CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageExample", "MessageExample\MessageExample.csproj", "{A2749765-6442-4EB2-BFA3-1D97B2E9BF95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageExample", "MessageExample\MessageExample.csproj", "{A2749765-6442-4EB2-BFA3-1D97B2E9BF95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaxExample", "FaxExample\FaxExample.csproj", "{CBCD0CEE-0076-480A-B21B-64C009B11A89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FaxExample", "FaxExample\FaxExample.csproj", "{CBCD0CEE-0076-480A-B21B-64C009B11A89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KakaoExample", "KakaoExample\KakaoExample.csproj", "{4BC1FA8A-49B2-4C1A-A9AB-C56C665570F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KakaoExample", "KakaoExample\KakaoExample.csproj", "{4BC1FA8A-49B2-4C1A-A9AB-C56C665570F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClosedownExample", "ClosedownExample\ClosedownExample.csproj", "{51B0A84D-9702-4B64-93C8-E97CB1168309}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClosedownExample", "ClosedownExample\ClosedownExample.csproj", "{51B0A84D-9702-4B64-93C8-E97CB1168309}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTaxinvoiceExample", "HTTaxinvoiceExample\HTTaxinvoiceExample.csproj", "{C4728BD7-55FF-4308-B8E1-AE56547D4045}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTTaxinvoiceExample", "HTTaxinvoiceExample\HTTaxinvoiceExample.csproj", "{C4728BD7-55FF-4308-B8E1-AE56547D4045}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTCashbillExample", "HTCashbillExample\HTCashbillExample.csproj", "{5531D4F6-B98E-4A03-8698-58DBC0A28CE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTCashbillExample", "HTCashbillExample\HTCashbillExample.csproj", "{5531D4F6-B98E-4A03-8698-58DBC0A28CE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyFinBankExample", "EasyFinBankExample\EasyFinBankExample.csproj", "{8DCB1DB1-903E-4627-9195-984F7F3405ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,5 +65,15 @@ Global
 		{5531D4F6-B98E-4A03-8698-58DBC0A28CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5531D4F6-B98E-4A03-8698-58DBC0A28CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5531D4F6-B98E-4A03-8698-58DBC0A28CE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DCB1DB1-903E-4627-9195-984F7F3405ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DCB1DB1-903E-4627-9195-984F7F3405ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DCB1DB1-903E-4627-9195-984F7F3405ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DCB1DB1-903E-4627-9195-984F7F3405ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {289181B3-52BE-41B0-AC83-6B45D15447FA}
 	EndGlobalSection
 EndGlobal

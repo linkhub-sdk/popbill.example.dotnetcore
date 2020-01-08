@@ -1,0 +1,22 @@
+﻿@{
+	ViewBag.Title = "GetJobState (수집 상태 확인)";
+}
+
+<div id="content">
+	<p class="heading1">Response</p>
+	<br />
+	<fieldset class="fieldset1">
+		<legend>@ViewData["Title"]</legend>
+		<ul>
+			<li>jobID (작업아이디) : @Model.jobID</li>
+			<li>jobState (수집상태) : @Model.jobState</li>
+			<li>startDate (시작일자) : @Model.startDate</li>
+			<li>endDate (종료일자) : @Model.endDate</li>
+			<li>errorCode (오류코드) : @Model.errorCode</li>
+			<li>errorReason (오류메시지) : @Model.errorReason</li>
+			<li>jobStartDT (작업 시작일시) : @Model.jobStartDT</li>
+			<li>jobEndDT (작업 종료일시) : @Model.jobEndDT</li>
+			<li>regDT (수집 요청일시) : @Model.regDT</li>
+		</ul>
+	</fieldset>
+</div>

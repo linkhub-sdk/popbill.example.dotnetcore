@@ -1,0 +1,30 @@
+﻿@{
+	ViewBag.Title = "ListBankAccount (계좌 목록 확인)";
+}
+
+<div id="content">
+	<p class="heading1">Response</p>
+	<br />
+	<fieldset class="fieldset1">
+		<legend>@ViewData["Title"]</legend>
+		@{
+			int i = 0;
+			foreach (var list in Model)
+			{
+				i++;
+				<fieldset class="fieldset2">
+					<legend>계좌 정보 [ @i / @Model.Count ]</legend>
+					<ul>
+						<li>bankCode (은행코드) : @list.bankCode</li>
+						<li>accountNumber (계좌번호) : @list.accountNumber</li>
+						<li>accountName (계좌별칭) : @list.accountName</li>
+						<li>accountType (계좌유형) : @list.accountType</li>
+						<li>state (정액제 상태) : @list.state</li>
+						<li>regDT (등록일시) : @list.regDT</li>
+						<li>memo (메모) : @list.memo</li>
+					</ul>
+				</fieldset>
+			}
+		}
+	</fieldset>
+</div>

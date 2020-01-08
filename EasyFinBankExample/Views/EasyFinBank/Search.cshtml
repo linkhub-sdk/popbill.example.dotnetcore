@@ -1,0 +1,43 @@
+﻿@{
+	ViewBag.Title = "Search (수집 결과 조회)";
+}
+
+<div id="content">
+	<p class="heading1">Response</p>
+	<br />
+	<fieldset class="fieldset1">
+		<legend>@ViewData["Title"]</legend>
+		<ul>
+			<li>code (응답코드) : @Model.code</li>
+			<li>message (응답메시지) : @Model.message</li>
+			<li>total (총 검색결과 건수) : @Model.total</li>
+			<li>perPage (페이지당 검색개수) : @Model.perPage</li>
+			<li>pageNum (페이지당 번호) : @Model.pageNum</li>
+			<li>pageCount (페이지 개수) : @Model.pageCount</li>
+		</ul>
+
+		@{
+			int i = 0;
+			foreach (var list in Model.list)
+			{
+				i++;
+				<fieldset class="fieldset2">
+					<legend>거래내역 [ @i / @Model.list.Count ]</legend>
+					<ul>
+						<li>tid (거래내역 아이디) : @list.tid</li>
+						<li>trdate (거래일자) : @list.trdate</li>
+						<li>trserial (거래일자별 거래내역 순번) : @list.trserial</li>
+						<li>trdt (거래일시) : @list.trdt</li>
+						<li>accIn (입금액) : @list.accIn</li>
+						<li>accOut (출금액) : @list.accOut</li>
+						<li>balance (잔액) : @list.balance</li>
+						<li>remark1 (비고1) : @list.remark1</li>
+						<li>remark2 (비고2) : @list.remark2</li>
+						<li>remark3 (비고3) : @list.remark3</li>
+						<li>memo (메모) : @list.memo</li>
+					</ul>
+				</fieldset>
+			}
+		}
+	</fieldset>
+</div>
