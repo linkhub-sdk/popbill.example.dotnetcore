@@ -32,14 +32,14 @@ namespace TaxinvoiceExample.Controllers
         #region 정발행/역발행/위수탁발행
 
         /*
-         * 세금계산서 관리번호 중복여부를 확인합니다.
-         * - 관리번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
+         * 세금계산서 문서번호 중복여부를 확인합니다.
+         * - 문서번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
          */
         public IActionResult CheckMgtKeyInUse()
         {
             try
             {
-                // 세금계산서 문서관리번호
+                // 세금계산서 문서번호
                 string mgtKey = "20190115";
 
                 // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
@@ -99,7 +99,7 @@ namespace TaxinvoiceExample.Controllers
             // [필수] 공급자 상호
             taxinvoice.invoicerCorpName = "공급자 상호";
 
-            // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
+            // [필수] 공급자 문서번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
             taxinvoice.invoicerMgtKey = "20200526-003";
 
@@ -146,7 +146,7 @@ namespace TaxinvoiceExample.Controllers
             // [필수] 공급받는자 상호
             taxinvoice.invoiceeCorpName = "공급받는자 상호";
 
-            // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
+            // [역발행시 필수] 공급받는자 문서번호, 숫자, 영문, '-', '_' 조합으로
             // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
             taxinvoice.invoiceeMgtKey = "";
 
@@ -172,6 +172,8 @@ namespace TaxinvoiceExample.Controllers
             taxinvoice.invoiceeHP1 = "010-5678-1234";
 
             // 공급받는자 주)담당자 메일주소 
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
             taxinvoice.invoiceeEmail1 = "test@invoicee.com";
 
             // 역발행 요청시 알림문자 전송여부 (역발행에서만 사용가능)
@@ -314,7 +316,7 @@ namespace TaxinvoiceExample.Controllers
             // - 가산세가 부과되더라도 발행을 해야하는 경우에는 forceIssue의 값을 true로 선언하여 호출하시면 됩니다.
             bool forceIssue = false;
 
-            // 거래명세서 동시작성시 거래명세서 관리번호, 미기재시 세금계산서 관리번호로 자동작성
+            // 거래명세서 동시작성시 거래명세서 문서번호, 미기재시 세금계산서 문서번호로 자동작성
             string dealInvoiceMgtKey = "";
 
             // 메모
@@ -382,7 +384,7 @@ namespace TaxinvoiceExample.Controllers
             // [필수] 공급자 상호
             taxinvoice.invoicerCorpName = "공급자 상호";
 
-            // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
+            // [필수] 공급자 문서번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
             taxinvoice.invoicerMgtKey = "20190227-011";
 
@@ -429,7 +431,7 @@ namespace TaxinvoiceExample.Controllers
             // [필수] 공급받는자 상호
             taxinvoice.invoiceeCorpName = "공급받는자 상호";
 
-            // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
+            // [역발행시 필수] 공급받는자 문서번호, 숫자, 영문, '-', '_' 조합으로
             // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
             taxinvoice.invoiceeMgtKey = "";
 
@@ -513,7 +515,7 @@ namespace TaxinvoiceExample.Controllers
             /**************************************************************************
              *        수정세금계산서 정보 (수정세금계산서 작성시에만 기재             *
              * - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조      *
-             * - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650  *
+             * - [참고] 수정세금계산서 작성방법 안내 - https://docs.popbill.com/taxinvoice/modify?lang=dotnetcore  *
              *************************************************************************/
 
             // 수정사유코드, 1~6까지 선택기재.
@@ -591,7 +593,7 @@ namespace TaxinvoiceExample.Controllers
             // 거래명세서 동시작성여부
             bool writeSpecification = false;
 
-            // 거래명세서 동시작성시 거래명세서 관리번호, 미기재시 세금계산서 관리번호로 자동작성
+            // 거래명세서 동시작성시 거래명세서 문서번호, 미기재시 세금계산서 문서번호로 자동작성
             string dealInvoiceMgtKey = "";
 
             try
@@ -611,7 +613,7 @@ namespace TaxinvoiceExample.Controllers
          */
         public IActionResult Update()
         {
-            // 수정할 세금계산서 문서관리번호
+            // 수정할 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
@@ -656,7 +658,7 @@ namespace TaxinvoiceExample.Controllers
             // [필수] 공급자 상호
             taxinvoice.invoicerCorpName = "공급자 상호";
 
-            // [필수] 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
+            // [필수] 공급자 문서번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
             taxinvoice.invoicerMgtKey = "";
 
@@ -703,7 +705,7 @@ namespace TaxinvoiceExample.Controllers
             // [필수] 공급받는자 상호
             taxinvoice.invoiceeCorpName = "공급받는자 상호";
 
-            // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
+            // [역발행시 필수] 공급받는자 문서번호, 숫자, 영문, '-', '_' 조합으로
             // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
             taxinvoice.invoiceeMgtKey = "";
 
@@ -729,6 +731,8 @@ namespace TaxinvoiceExample.Controllers
             taxinvoice.invoiceeHP1 = "010-5678-1234";
 
             // 공급받는자 주)담당자 메일주소 
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
             taxinvoice.invoiceeEmail1 = "test@invoicee.com";
 
             // 역발행 요청시 알림문자 전송여부 (역발행에서만 사용가능)
@@ -788,7 +792,7 @@ namespace TaxinvoiceExample.Controllers
             /**************************************************************************
              *        수정세금계산서 정보 (수정세금계산서 작성시에만 기재             *
              * - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조      *
-             * - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650  *
+             * - [참고] 수정세금계산서 작성방법 안내 - https://docs.popbill.com/taxinvoice/modify?lang=dotnetcore  *
              *************************************************************************/
 
             // 수정사유코드, 1~6까지 선택기재.
@@ -882,7 +886,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 발행처리할 세금계산서 문서관리번호
+            // 발행처리할 세금계산서 문서번호
             string mgtKey = "20190227-011";
 
             // 지연발행 강제여부, 기본값 - False
@@ -911,14 +915,14 @@ namespace TaxinvoiceExample.Controllers
          * [발행완료] 상태의 세금계산서를 [공급자]가 [발행취소]합니다.
          * - [발행취소]는 국세청 전송전에만 가능합니다.
          * - 발행취소된 세금계산서는 국세청에 전송되지 않습니다.
-         * - 발행취소 세금계산서에 사용된 문서관리번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
+         * - 발행취소 세금계산서에 사용된 문서번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
          */
         public IActionResult CancelIssue()
         {
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 발행취소할 세금계산서 문서관리번호
+            // 발행취소할 세금계산서 문서번호
             string mgtKey = "20190227-011";
 
             // 메모
@@ -937,7 +941,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 1건의 전자세금계산서를 [삭제]합니다.
-         * - 세금계산서를 삭제해야만 문서관리번호(mgtKey)를 재사용할 수 있습니다.
+         * - 세금계산서를 삭제해야만 문서번호(mgtKey)를 재사용할 수 있습니다.
          * - 삭제가능한 문서 상태 : [임시저장], [발행취소], [발행예정 취소], [발행예정 거부]
          */
         public IActionResult Delete()
@@ -945,7 +949,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 삭제처리할 세금계산서 문서관리번호
+            // 삭제처리할 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             try
@@ -1006,7 +1010,7 @@ namespace TaxinvoiceExample.Controllers
             // [필수] 공급자 상호
             taxinvoice.invoicerCorpName = "공급자 상호";
 
-            // 공급자 문서관리번호, 숫자, 영문, '-', '_' 조합으로 
+            // 공급자 문서번호, 숫자, 영문, '-', '_' 조합으로 
             //  1~24자리까지 사업자번호별 중복없는 고유번호 할당
             taxinvoice.invoicerMgtKey = "";
 
@@ -1053,7 +1057,7 @@ namespace TaxinvoiceExample.Controllers
             // [필수] 공급받는자 상호
             taxinvoice.invoiceeCorpName = "공급받는자 상호";
 
-            // [역발행시 필수] 공급받는자 문서관리번호, 숫자, 영문, '-', '_' 조합으로
+            // [역발행시 필수] 공급받는자 문서번호, 숫자, 영문, '-', '_' 조합으로
             // 1~24자리까지 사업자번호별 중복없는 고유번호 할당
             taxinvoice.invoiceeMgtKey = "20190115-003";
 
@@ -1079,6 +1083,8 @@ namespace TaxinvoiceExample.Controllers
             taxinvoice.invoiceeHP1 = "010-5678-1234";
 
             // 공급받는자 주)담당자 메일주소 
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
             taxinvoice.invoiceeEmail1 = "test@invoicee.com";
 
             // 역발행 요청시 알림문자 전송여부 (역발행에서만 사용가능)
@@ -1138,7 +1144,7 @@ namespace TaxinvoiceExample.Controllers
             /**************************************************************************
              *        수정세금계산서 정보 (수정세금계산서 작성시에만 기재             *
              * - 수정세금계산서 관련 정보는 연동매뉴얼 또는 개발가이드 링크 참조      *
-             * - [참고] 수정세금계산서 작성방법 안내 - http://blog.linkhub.co.kr/650  *
+             * - [참고] 수정세금계산서 작성방법 안내 - https://docs.popbill.com/taxinvoice/modify?lang=dotnetcore  *
              *************************************************************************/
 
             // 수정사유코드, 1~6까지 선택기재.
@@ -1211,7 +1217,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             //메모
@@ -1230,14 +1236,14 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * [공급받는자]가 역)발행대기 상태의 세금계산서를 [취소]합니다. 
-         * - [취소]한 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
+         * - [취소]한 세금계산서의 문서번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
          */
         public IActionResult CancelRequest()
         {
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.BUY;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             //메모
@@ -1256,14 +1262,14 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 공급받는자에게 요청받은 역)발행대기 상태의 세금계산서를 [공급자]가 [거부]합니다.
-         * - 세금계산서의 문서관리번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
+         * - 세금계산서의 문서번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
          */
         public IActionResult Refuse()
         {
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             //메모
@@ -1291,7 +1297,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             try
@@ -1319,7 +1325,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             try
@@ -1343,7 +1349,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 조회할 세금계산서 문서관리번호 배열, (최대 1000건)
+            // 조회할 세금계산서 문서번호 배열, (최대 1000건)
             List<string> mgtKeyList = new List<string>();
             mgtKeyList.Add("20190115-001");
             mgtKeyList.Add("20190115-002");
@@ -1369,7 +1375,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             try
@@ -1475,7 +1481,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-001";
 
             try
@@ -1522,7 +1528,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             try
@@ -1545,7 +1551,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190227-011";
 
             try
@@ -1568,7 +1574,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             try
@@ -1591,7 +1597,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             try
@@ -1614,7 +1620,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 조회할 세금계산서 문서관리번호 배열, (최대 100건)
+            // 조회할 세금계산서 문서번호 배열, (최대 100건)
             List<string> mgtKeyList = new List<string>();
             mgtKeyList.Add("20190115-001");
             mgtKeyList.Add("20190115-002");
@@ -1640,7 +1646,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             try
@@ -1702,7 +1708,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             // 파일경로
@@ -1728,7 +1734,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             // 파일아이디, 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값
@@ -1754,7 +1760,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             try
@@ -1776,7 +1782,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-002";
 
             // 수신자 이메일주소
@@ -1803,7 +1809,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-001";
 
             // 발신번호
@@ -1837,7 +1843,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-001";
 
             // 발신번호
@@ -1865,13 +1871,13 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-001";
 
             // 첨부할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int docItemCode = 121;
 
-            // 첨부할 명세서 관리번호
+            // 첨부할 명세서 문서번호
             string docMgtKey = "20190115-002";
 
             try
@@ -1893,13 +1899,13 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.SELL;
 
-            // 세금계산서 문서관리번호
+            // 세금계산서 문서번호
             string mgtKey = "20190115-001";
 
             // 첨부해제할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int docItemCode = 121;
 
-            // 첨부해제할 명세서 관리번호
+            // 첨부해제할 명세서 문서번호
             string docMgtKey = "20181025-002";
 
             try
@@ -1930,7 +1936,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 팝빌사이트에서 작성된 세금계산서에 파트너 문서관리번호를 할당합니다.
+         * 팝빌사이트에서 작성된 세금계산서에 파트너 문서번호를 할당합니다.
          */
         public IActionResult AssignMgtKey()
         {
@@ -1940,7 +1946,7 @@ namespace TaxinvoiceExample.Controllers
             // 세금계산서 아이템키, 목록조회(Search) API의 반환항목중 ItemKey 참조
             string itemKey = "018103016112000001";
 
-            // 세금계산서에 할당할 문서관리번호
+            // 세금계산서에 할당할 문서번호
             string mgtKey = "20190115-100";
 
             try

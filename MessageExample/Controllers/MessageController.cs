@@ -396,7 +396,7 @@ namespace MessageExample.Controllers
         /*
          * MMS(포토)를 전송합니다.
          *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
-         *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
+         *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1000px 이하 권장
          */
         public IActionResult SendMMS()
         {
@@ -448,7 +448,7 @@ namespace MessageExample.Controllers
         /*
          * [대랑전송] MMS(포토)를 전송합니다.
          *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
-         *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
+         *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1000px 이하 권장
          */
         public IActionResult SendMMS_Multi()
         {
@@ -510,7 +510,7 @@ namespace MessageExample.Controllers
         /*
          * [동보전송] MMS(포토)를 전송합니다.
          *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
-         *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1500px 이하 권장
+         *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1000px 이하 권장
          */
         public IActionResult SendMMS_Same()
         {

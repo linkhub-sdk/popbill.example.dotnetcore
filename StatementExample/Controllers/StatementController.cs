@@ -168,7 +168,9 @@ namespace StatementExample.Controllers
             statement.receiverHP = "010-000-2222";
 
             // 수신자 이메일주소 
-            statement.receiverEmail = "code@linkhub.co.kr";
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
+            statement.receiverEmail = "test@test.com";
 
             // 수신자 팩스번호 
             statement.receiverFAX = "02-111-2222";
@@ -384,6 +386,8 @@ namespace StatementExample.Controllers
             statement.receiverHP = "010-000-2222";
 
             // 수신자 이메일주소 
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
             statement.receiverEmail = "test@test.com";
 
             // 수신자 팩스번호 
@@ -596,6 +600,8 @@ namespace StatementExample.Controllers
             statement.receiverHP = "010-000-2222";
 
             // 수신자 이메일주소 
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
             statement.receiverEmail = "test@test.com";
 
             // 수신자 팩스번호 
@@ -1377,6 +1383,8 @@ namespace StatementExample.Controllers
             statement.receiverHP = "010-000-2222";
 
             // 수신자 이메일주소 
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
             statement.receiverEmail = "test@test.com";
 
             // 수신자 팩스번호 

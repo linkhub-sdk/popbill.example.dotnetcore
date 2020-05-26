@@ -44,7 +44,7 @@ namespace HTTaxinvoiceExample.Controllers
             KeyType keyType = KeyType.SELL;
 
             // 일자유형, W-작성일자, I-발행일자, S-전송일자
-            string DType = "I";
+            string DType = "S";
 
             // 시작일자, 표시형식(yyyyMMdd)
             string SDate = "20190101";

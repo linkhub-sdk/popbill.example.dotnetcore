@@ -127,7 +127,9 @@ namespace CashbillExample.Controllers
             cashbill.orderNumber = "주문번호";
 
             // 주문자 이메일
-            cashbill.email = "code@linkhub.co.kr";
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
+            cashbill.email = "test@test.com";
 
             // 주문자 휴대폰
             cashbill.hp = "010-111-222";
@@ -230,6 +232,8 @@ namespace CashbillExample.Controllers
             cashbill.orderNumber = "주문번호";
 
             // 주문자 이메일
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
             cashbill.email = "test@test.com";
 
             // 주문자 휴대폰
@@ -325,6 +329,8 @@ namespace CashbillExample.Controllers
             cashbill.orderNumber = "주문번호";
 
             // 주문자 이메일
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
             cashbill.email = "test@test.com";
 
             // 주문자 휴대폰
@@ -1266,6 +1272,8 @@ namespace CashbillExample.Controllers
             contactInfo.fax = "02-111-222";
 
             // 담당자 이메일 (최대 100자)
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
             contactInfo.email = "netcore@linkhub.co.kr";
 
             // 회사조회 권한여부, true(회사조회), false(개인조회)
@@ -1324,6 +1332,8 @@ namespace CashbillExample.Controllers
             contactInfo.fax = "02-111-222";
 
             // 담당자 이메일 (최대 10자)
+            // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
+            // 실제 거래처의 메일주소가 기재되지 않도록 주의
             contactInfo.email = "netcore@linkhub.co.kr";
 
             // 회사조회 권한여부, true(회사조회), false(개인조회)
