@@ -258,6 +258,26 @@ namespace HTTaxinvoiceExample.Controllers
             }
         }
 
+        /*
+        * 홈택스 전자세금계산서 인쇄 팝업 URL을 반환합니다.
+        * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+        */
+        public IActionResult GetPrintURL()
+        {
+            // 조회할 전자세금계산서 국세청 승인번호
+            string ntsConfirmNum = "201812044100020300000c0a";
+
+            try
+            {
+                var result = _htTaxinvoiceService.GetPrintURL(corpNum, ntsConfirmNum, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
         #endregion
 
         #region 홈택스연동 인증 관리
