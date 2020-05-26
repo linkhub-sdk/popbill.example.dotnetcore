@@ -144,10 +144,13 @@ namespace HTTaxinvoiceExample.Controllers
             // 정렬방향, A-오름차순, D-내림차순
             string Order = "D";
 
+            // 조회검색어, 거래처명 또는 사업자번호 , like 검색 %keyworkd%
+            string SearchString = "";
+
             try
             {
                 var response = _htTaxinvoiceService.Search(corpNum, jobID, Type, TaxType, PurposeType, TaxRegIDYN,
-                    TaxRegIDType, TaxRegID, Page, PerPage, Order, userID);
+                    TaxRegIDType, TaxRegID, Page, PerPage, Order, userID, SearchString);
                 return View("Search", response);
             }
             catch (PopbillException pe)
@@ -184,10 +187,13 @@ namespace HTTaxinvoiceExample.Controllers
             // 종사업장번호, 콤마(",")로 구분하여 구성 ex) "0001,1234"
             string TaxRegID = "";
 
+            // 조회검색어, 거래처명 또는 사업자번호 , like 검색 %keyworkd%
+            string SearchString = "";
+
             try
             {
                 var response = _htTaxinvoiceService.Summary(corpNum, jobID, Type, TaxType, PurposeType, TaxRegIDYN,
-                    TaxRegIDType, TaxRegID, userID);
+                    TaxRegIDType, TaxRegID, userID, SearchString);
                 return View("Summary", response);
             }
             catch (PopbillException pe)
