@@ -65,7 +65,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20190115";
+            statement.writeDate = "20200526";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -80,7 +80,7 @@ namespace StatementExample.Controllers
             statement.itemCode = 121;
 
             // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20190115-001";
+            statement.mgtKey = "20200526-002";
 
 
             /**************************************************************************
@@ -168,7 +168,7 @@ namespace StatementExample.Controllers
             statement.receiverHP = "010-000-2222";
 
             // 수신자 이메일주소 
-            statement.receiverEmail = "test@test.com";
+            statement.receiverEmail = "code@linkhub.co.kr";
 
             // 수신자 팩스번호 
             statement.receiverFAX = "02-111-2222";
@@ -258,9 +258,12 @@ namespace StatementExample.Controllers
             // 즉시발행 
             string memo = "즉시발행 메모";
 
+            // 메일제목, 공백처리시 기본양식으로 전송
+            string emailSubject = "";
+
             try
             {
-                var response = _statementService.RegistIssue(corpNum, statement, memo, userID);
+                var response = _statementService.RegistIssue(corpNum, statement, memo, userID, emailSubject);
                 return View("Response", response);
             }
             catch (PopbillException pe)

@@ -65,7 +65,7 @@ namespace CashbillExample.Controllers
 
             // [필수] 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            cashbill.mgtKey = "20190116-001";
+            cashbill.mgtKey = "20200526-002";
 
             // [취소거래시 필수] 원본 현금영수증 국세청승인번호
             cashbill.orgConfirmNum = "";
@@ -127,7 +127,7 @@ namespace CashbillExample.Controllers
             cashbill.orderNumber = "주문번호";
 
             // 주문자 이메일
-            cashbill.email = "test@test.com";
+            cashbill.email = "code@linkhub.co.kr";
 
             // 주문자 휴대폰
             cashbill.hp = "010-111-222";
@@ -141,9 +141,12 @@ namespace CashbillExample.Controllers
             // 현금영수증 발행 메모
             string memo = "현금영수증 즉시발행 메모";
 
+            // 메일제목, 공백처리시 기본양식으로 전송
+            string emailSubject = "";
+
             try
             {
-                var response = _cashbillService.RegistIssue(corpNum, cashbill, memo, userID);
+                var response = _cashbillService.RegistIssue(corpNum, cashbill, memo, userID, emailSubject);
                 return View("Response", response);
             }
             catch (PopbillException pe)
