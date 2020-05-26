@@ -190,9 +190,9 @@ namespace KakaoExample.Controllers
             btnInfo.n = "템플릿 안내";
             // 버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
             btnInfo.t = "WL";
-            // 버튼링크1 [앱링크] Android / [웹링크] Mobile
+            // 버튼링크1 [앱링크] iOS / [웹링크] Mobile
             btnInfo.u1 = "https://www.popbill.com";
-            // 버튼링크2 [앱링크] IOS / [웹링크] PC URL
+            // 버튼링크2 [앱링크] Android / [웹링크] PC URL
             btnInfo.u2 = "http://test.popbill.com";
             buttons.Add(btnInfo);
             */
@@ -274,9 +274,9 @@ namespace KakaoExample.Controllers
             btnInfo.n = "템플릿 안내";
             // 버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
             btnInfo.t = "WL";
-            // 버튼링크1 [앱링크] Android / [웹링크] Mobile
+            // 버튼링크1 [앱링크] iOS / [웹링크] Mobile
             btnInfo.u1 = "https://www.popbill.com";
-            // 버튼링크2 [앱링크] IOS / [웹링크] PC URL
+            // 버튼링크2 [앱링크] Android / [웹링크] PC URL
             btnInfo.u2 = "http://test.popbill.com";
             buttons.Add(btnInfo);
             */
@@ -355,9 +355,9 @@ namespace KakaoExample.Controllers
             btnInfo.n = "템플릿 안내";
             // 버튼유형 DS(-배송조회 / WL - 웹링크 / AL - 앱링크 / MD - 메시지전달 / BK - 봇키워드)
             btnInfo.t = "WL";
-            // 버튼링크1 [앱링크] Android / [웹링크] Mobile
+            // 버튼링크1 [앱링크] iOS / [웹링크] Mobile
             btnInfo.u1 = "https://www.popbill.com";
-            // 버튼링크2 [앱링크] IOS / [웹링크] PC URL
+            // 버튼링크2 [앱링크] Android / [웹링크] PC URL
             btnInfo.u2 = "http://test.popbill.com";
             buttons.Add(btnInfo);
             */
@@ -404,8 +404,8 @@ namespace KakaoExample.Controllers
             {
                 n = "버튼이름", // 버튼명
                 t = "WL", // 버튼 유형, WL-웹링크, AL-앱링크, MD-메시지 전달, BK-봇키워드
-                u1 = "http://www.popbill.com", // [앱링크] Android, [웹링크] Mobile
-                u2 = "http://test.popbill.com" // [앱링크] IOS, [웹링크] PC URL
+                u1 = "http://www.popbill.com", // [앱링크] iOS, [웹링크] Mobile
+                u2 = "http://test.popbill.com" // [앱링크] Android, [웹링크] PC URL
             };
             buttons.Add(btnInfo);
 
@@ -475,8 +475,8 @@ namespace KakaoExample.Controllers
             {
                 n = "버튼이름", // 버튼명
                 t = "WL", // 버튼 유형, WL-웹링크, AL-앱링크, MD-메시지 전달, BK-봇키워드
-                u1 = "http://www.popbill.com", // [앱링크] Android, [웹링크] Mobile
-                u2 = "http://test.popbill.com" // [앱링크] IOS, [웹링크] PC URL
+                u1 = "http://www.popbill.com", // [앱링크] iOS, [웹링크] Mobile
+                u2 = "http://test.popbill.com" // [앱링크] Android, [웹링크] PC URL
             };
             buttons.Add(btnInfo);
 
@@ -545,8 +545,8 @@ namespace KakaoExample.Controllers
             {
                 n = "버튼이름", // 버튼명
                 t = "WL", // 버튼 유형, WL-웹링크, AL-앱링크, MD-메시지 전달, BK-봇키워드
-                u1 = "http://www.popbill.com", // [앱링크] Android, [웹링크] Mobile
-                u2 = "http://test.popbill.com" // [앱링크] IOS, [웹링크] PC URL
+                u1 = "http://www.popbill.com", // [앱링크] iOS, [웹링크] Mobile
+                u2 = "http://test.popbill.com" // [앱링크] Android, [웹링크] PC URL
             };
             buttons.Add(btnInfo);
 
@@ -607,8 +607,8 @@ namespace KakaoExample.Controllers
             {
                 n = "버튼이름", // 버튼명
                 t = "WL", // 버튼 유형, WL-웹링크, AL-앱링크, MD-메시지 전달, BK-봇키워드
-                u1 = "http://www.popbill.com", // [앱링크] Android, [웹링크] Mobile
-                u2 = "http://test.popbill.com" // [앱링크] IOS, [웹링크] PC URL
+                u1 = "http://www.popbill.com", // [앱링크] iOS, [웹링크] Mobile
+                u2 = "http://test.popbill.com" // [앱링크] Android, [웹링크] PC URL
             };
             buttons.Add(btnInfo);
 
@@ -685,8 +685,8 @@ namespace KakaoExample.Controllers
             {
                 n = "버튼이름", // 버튼명
                 t = "WL", // 버튼 유형, WL-웹링크, AL-앱링크, MD-메시지 전달, BK-봇키워드
-                u1 = "http://www.popbill.com", // [앱링크] Android, [웹링크] Mobile
-                u2 = "http://test.popbill.com" // [앱링크] IOS, [웹링크] PC URL
+                u1 = "http://www.popbill.com", // [앱링크] iOS, [웹링크] Mobile
+                u2 = "http://test.popbill.com" // [앱링크] Android, [웹링크] PC URL
             };
             buttons.Add(btnInfo);
 
@@ -762,8 +762,8 @@ namespace KakaoExample.Controllers
             {
                 n = "버튼이름", // 버튼명
                 t = "WL", // 버튼 유형, WL-웹링크, AL-앱링크, MD-메시지 전달, BK-봇키워드
-                u1 = "http://www.popbill.com", // [앱링크] Android, [웹링크] Mobile
-                u2 = "http://test.popbill.com" // [앱링크] IOS, [웹링크] PC URL
+                u1 = "http://www.popbill.com", // [앱링크] iOS, [웹링크] Mobile
+                u2 = "http://test.popbill.com" // [앱링크] Android, [웹링크] PC URL
             };
             buttons.Add(btnInfo);
 
