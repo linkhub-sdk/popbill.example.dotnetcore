@@ -27,6 +27,197 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
+        * 계좌조회 서비스를 이용할 은행계좌를 등록한다.
+        */
+        public IActionResult RegistBankAccount()
+        {
+            EasyFinBankAccountForm info = new EasyFinBankAccountForm();
+
+            // [필수] 은행코드
+            // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
+            // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
+            // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
+            info.BankCode = "";
+
+            // [필수] 계좌번호, 하이픈('-') 제외
+            info.AccountNumber = "";
+
+            // [필수] 계좌비밀번호
+            info.AccountPWD = "";
+
+            // [필수] 계좌유형, "법인" 또는 "개인" 입력
+            info.AccountType = "";
+
+            // [필수] 예금주 식별정보 (‘-‘ 제외)
+            // 계좌유형이 “법인”인 경우 : 사업자번호(10자리)
+            // 계좌유형이 “개인”인 경우 : 예금주 생년월일 (6자리-YYMMDD)
+            info.IdentityNumber = "";
+
+            // 계좌 별칭
+            info.AccountName = "";
+
+            // 인터넷뱅킹 아이디 (국민은행 필수)
+            info.BankID = "";
+
+            // 조회전용 계정 아이디 (대구은행, 신협, 신한은행 필수)
+            info.FastID = "";
+
+            // 조회전용 계정 비밀번호 (대구은행, 신협, 신한은행 필수)
+            info.FastPWD = "";
+
+            // 결제기간(개월), 1~12 입력가능, 미기재시 기본값(1) 처리
+            // - 파트너 과금방식의 경우 입력값에 관계없이 1개월 처리
+            info.UsePeriod = "1";
+
+            // 메모
+            info.Memo = "";
+
+
+            try
+            {
+                var response = _easyFinBankService.RegistBankAccount(corpNum, info);
+
+                return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 팝빌에 등록된 은행 계좌정보를 수정합니다.
+         */
+        public IActionResult UpdateBankAccount()
+        {
+            EasyFinBankAccountForm info = new EasyFinBankAccountForm();
+
+            // [필수] 은행코드
+            // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
+            // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
+            // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
+            info.BankCode = "";
+
+            // [필수] 계좌번호, 하이픈('-') 제외
+            info.AccountNumber = "";
+
+            // [필수] 계좌비밀번호
+            info.AccountPWD = "";
+
+            // 계좌 별칭
+            info.AccountName = "";
+
+            // 인터넷뱅킹 아이디 (국민은행 필수)
+            info.BankID = "";
+
+            // 조회전용 계정 아이디 (대구은행, 신협, 신한은행 필수)
+            info.FastID = "";
+
+            // 조회전용 계정 비밀번호 (대구은행, 신협, 신한은행 필수)
+            info.FastPWD = "";
+
+            // 메모
+            info.Memo = "";
+
+
+            try
+            {
+                var response = _easyFinBankService.UpdateBankAccount(corpNum, info);
+
+                return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 팝빌에 등록된 은행 계좌정보를 확인합니다.
+         */
+        public IActionResult GetBankAccountInfo()
+        {
+            // [필수] 은행코드
+            // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
+            // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
+            // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
+            string BankCode = "";
+
+            // [필수] 계좌번호, 하이픈('-') 제외
+            string AccountNumber = "";
+
+            try
+            {
+                var response = _easyFinBankService.GetBankAccountInfo(corpNum, BankCode, AccountNumber);
+                return View("GetBankAccountInfo", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 팝빌에 등록된 은행계좌의 정액제 해지를 요청합니다.
+         */
+        public IActionResult CloseBankAccount()
+        {
+            // [필수] 은행코드
+            // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
+            // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
+            // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
+            string BankCode = "";
+
+            // [필수] 계좌번호, 하이픈('-') 제외
+            string AccountNumber = "";
+
+            // [필수] 해지유형, “일반”, “중도” 중 선택 기재
+            // 일반해지 – 이용중인 정액제 사용기간까지 이용후 정지
+            // 중도해지 – 요청일 기준으로 정지, 정액제 잔여기간은 일할로 계산되어 포인트 환불 (무료 이용기간 중 중도해지 시 전액 환불)
+            string CloseType = "중도";
+
+
+            try
+            {
+                var response = _easyFinBankService.CloseBankAccount(corpNum, BankCode, AccountNumber, CloseType);
+
+                return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+
+        /*
+         * 계좌 정액제 해지요청을 취소합니다.
+         */
+        public IActionResult RevokeCloseBankAccount()
+        {
+            // [필수] 은행코드
+            // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
+            // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
+            // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
+            string BankCode = "";
+
+            // [필수] 계좌번호, 하이픈('-') 제외
+            string AccountNumber = "";
+
+            try
+            {
+                var response = _easyFinBankService.RevokeCloseBankAccount(corpNum, BankCode, AccountNumber);
+
+                return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+
+        /*
          * 팝빌 계좌 관리 팝업 URL을 반환합니다.
          */
         public IActionResult GetBankAccountMgtURL()

@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTTaxinvoiceExample", "HTTa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTCashbillExample", "HTCashbillExample\HTCashbillExample.csproj", "{5531D4F6-B98E-4A03-8698-58DBC0A28CE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyFinBankExample", "EasyFinBankExample\EasyFinBankExample.csproj", "{8DCB1DB1-903E-4627-9195-984F7F3405ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyFinBankExample", "EasyFinBankExample\EasyFinBankExample.csproj", "{8DCB1DB1-903E-4627-9195-984F7F3405ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

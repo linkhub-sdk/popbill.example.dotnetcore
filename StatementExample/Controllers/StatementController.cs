@@ -761,10 +761,7 @@ namespace StatementExample.Controllers
 
             // 삭제처리할 명세서 문서관리번호
             string mgtKey = "20190115-001";
-
-            // 발행 메모
-            string memo = "발행 메모";
-
+            
             try
             {
                 var response = _statementService.Delete(corpNum, itemCode, mgtKey, userID);
