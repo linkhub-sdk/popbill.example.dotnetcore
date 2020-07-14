@@ -22,6 +22,9 @@ public class AccountCheckInstance
 
         //인증토큰의 IP제한기능 사용여부, 권장(true)
         accountCheckService.IPRestrictOnOff = true;
+
+        // 팝빌 API 서비스 고정 IP 사용여부(GA), true-사용, false-미사용, 기본값(false)
+        accountCheckService.UseStaticIP = false;
     }
 }
 
