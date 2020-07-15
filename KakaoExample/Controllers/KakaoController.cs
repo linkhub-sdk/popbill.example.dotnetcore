@@ -12,19 +12,19 @@ namespace KakaoExample.Controllers
 
         public KakaoController(KakaoInstance KKOinstance)
         {
-            //카카오 서비스 객체 생성
+            // 카카오톡 서비스 객체 생성
             _kakaoService = KKOinstance.kakaoService;
 
         }
 
-        //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
+        // 팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
         string corpNum = "1234567890";
 
-        //팝빌 연동회원 아이디
+        // 팝빌 연동회원 아이디
         string userID = "testkorea";
 
         /*
-         * 카카오 Index page (Kakao/Index.cshtml)
+         * 카카오톡 Index page (Kakao/Index.cshtml)
          */
         public IActionResult Index()
         {
@@ -36,6 +36,7 @@ namespace KakaoExample.Controllers
         /*
          * 플러스친구 계정관리 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetPlusFriendMgtURL
          */
         public IActionResult GetPlusFriendMgtURL()
         {
@@ -52,6 +53,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 팝빌에 등록된 플러스친구 계정목록을 반환합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#ListPlusFriendID
          */
         public IActionResult ListPlusFriendID()
         {
@@ -69,6 +71,7 @@ namespace KakaoExample.Controllers
         /*
          * 발신번호 관리 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetSenderNumberMgtURL
          */
         public IActionResult GetSenderNumberMgtURL()
         {
@@ -85,6 +88,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 팝빌에 등록된 발신번호 목록을 반환합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetSenderNumberList
          */
         public IActionResult GetSenderNumberList()
         {
@@ -102,6 +106,7 @@ namespace KakaoExample.Controllers
         /*
          * 알림톡 템플릿관리 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetATSTemplateMgtURL
          */
         public IActionResult GetATSTemplateMgtURL()
         {
@@ -119,6 +124,7 @@ namespace KakaoExample.Controllers
         /*
          * (주)카카오로 부터 승인된 알림톡 템플릿 목록을 확인합니다.
          * - 반환항목중 템플릿코드(templateCode)는 알림톡 전송시 사용됩니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#ListATSTemplate
          */
         public IActionResult ListATSTemplate()
         {
@@ -139,7 +145,8 @@ namespace KakaoExample.Controllers
 
         /*
          * 알림톡 전송을 요청합니다.
-         * 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+         * - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#SendATS
          */
         public IActionResult SendATS_One()
         {
@@ -211,9 +218,10 @@ namespace KakaoExample.Controllers
 
         /*
          * [대량전송] 알림톡 전송을 요청합니다.
-         * 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+         * - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#SendATS_Multi
          */
-            public IActionResult SendATS_Multi()
+        public IActionResult SendATS_Multi()
         {
             // 알림톡 템플릿 코드, ListATSTemplate API의 templateCode 확인
             string templateCode = "019020000163";
@@ -295,7 +303,8 @@ namespace KakaoExample.Controllers
 
         /*
          * [동보전송] 알림톡 전송을 요청합니다.
-         * 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+         * - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#SendATS_Same
          */
         public IActionResult SendATS_Same()
         {
@@ -377,6 +386,7 @@ namespace KakaoExample.Controllers
         /*
          * 친구톡(텍스트) 전송을 요청합니다.
          * - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#SendFTS
          */
         public IActionResult SendFTS_One()
         {
@@ -438,6 +448,7 @@ namespace KakaoExample.Controllers
         /*
          * [대량전송] 친구톡(텍스트) 전송을 요청합니다.
          * - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#SendFTS_Multi
          */
         public IActionResult sendFTS_Multi()
         {
@@ -509,6 +520,7 @@ namespace KakaoExample.Controllers
         /*
          * [동보전송] 친구톡(텍스트) 전송을 요청합니다.
          * - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#SendFTS_Same
          */
         public IActionResult sendFTS_Same()
         {
@@ -580,6 +592,7 @@ namespace KakaoExample.Controllers
          * 친구톡(이미지) 전송을 요청합니다.
          * - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
          * - 이미지 전송규격 / jpg 포맷, 용량 최대 500KByte, 이미지 높이/너비 비율 1.333 이하, 1/2 이상
+         * - https://docs.popbill.com/kakao/dotnetcore/api#SendFMS
          */
         public IActionResult SendFMS_One()
         {
@@ -648,6 +661,7 @@ namespace KakaoExample.Controllers
          * [대량전송] 친구톡(이미지) 전송을 요청합니다.
          * - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
          * - 이미지 전송규격 / jpg 포맷, 용량 최대 500KByte, 이미지 높이/너비 비율 1.333 이하, 1/2 이상
+         * - https://docs.popbill.com/kakao/dotnetcore/api#SendFMS_Multi
          */
         public IActionResult SendFMS_Multi()
         {
@@ -726,6 +740,7 @@ namespace KakaoExample.Controllers
          * [동보전송] 친구톡(이미지) 전송을 요청합니다.
          * - 친구톡은 심야 전송(20:00~08:00)이 제한됩니다.
          * - 이미지 전송규격 / jpg 포맷, 용량 최대 500KByte, 이미지 높이/너비 비율 1.333 이하, 1/2 이상
+         * - https://docs.popbill.com/kakao/dotnetcore/api#SendFMS_Same
          */
         public IActionResult SendFMS_Same()
         {
@@ -802,6 +817,7 @@ namespace KakaoExample.Controllers
         /*
          * 알림톡/친구톡 전송요청시 발급받은 접수번호(receiptNum)로 예약전송건을 취소합니다.
          * - 예약취소는 예약전송시간 10분전까지만 가능합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#CancelReserve
          */
         public IActionResult CancelReserve()
         {
@@ -818,10 +834,11 @@ namespace KakaoExample.Controllers
                 return View("Exception", pe);
             }
         }
-        
+
         /*
          * 전송요청번호(requestNum)를 할당한 알림톡/친구톡 예약전송건을 취소합니다.
          * - 예약전송 취소는 예약시간 10분전까지만 가능합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#CancelReserveRN
          */
         public IActionResult CancelReserveRN()
         {
@@ -838,13 +855,14 @@ namespace KakaoExample.Controllers
                 return View("Exception", pe);
             }
         }
-        
+
         #endregion
 
         #region 정보확인
 
         /*
          * 알림톡/친구톡 전송요청시 발급받은 접수번호(receiptNum)로 전송결과를 확인합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetMessages
          */
         public IActionResult GetMessages()
         {
@@ -864,6 +882,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 전송요청번호(requestNum)를 할당한 알림톡/친구톡 전송내역 및 전송상태를 확인합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetMessagesRN
          */
         public IActionResult GetMessagesRN()
         {
@@ -881,10 +900,11 @@ namespace KakaoExample.Controllers
             }
         }
 
-        
+
         /*
          * 검색조건을 사용하여 알림톡/친구톡 전송 내역을 조회합니다.
          * - 최대 검색기간 : 6개월 이내
+         * - https://docs.popbill.com/kakao/dotnetcore/api#Search
          */
         public IActionResult Search()
         {
@@ -943,6 +963,7 @@ namespace KakaoExample.Controllers
         /*
          * 알림톡/친구톡 전송내역 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetSentListURL
          */
         public IActionResult GetSentListURL()
         {
@@ -966,6 +987,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 연동회원 잔여포인트를 확인합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
         {
@@ -983,6 +1005,7 @@ namespace KakaoExample.Controllers
         /*
          * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetChargeURL
          */
         public IActionResult GetChargeURL()
         {
@@ -1000,6 +1023,7 @@ namespace KakaoExample.Controllers
         /*
          * 파트너의 잔여포인트를 확인합니다.
          * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
         {
@@ -1017,6 +1041,7 @@ namespace KakaoExample.Controllers
         /*
          * 파트너 포인트 충전 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
         {
@@ -1036,6 +1061,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 알림톡/친구톡 서비스 전송단가를 확인합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetUnitCost
          */
         public IActionResult GetUnitCost()
         {
@@ -1055,6 +1081,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 알림톡/친구톡 서비스 API 서비스 과금정보를 확인합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetChargeInfo
          */
         public IActionResult GetChargeInfo()
         {
@@ -1078,6 +1105,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#CheckIsMember
          */
         public IActionResult CheckIsMember()
         {
@@ -1097,6 +1125,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 팝빌 회원아이디 중복여부를 확인합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#CheckID
          */
         public IActionResult CheckID()
         {
@@ -1116,6 +1145,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 파트너의 연동회원으로 회원가입을 요청합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#JoinMember
          */
         public IActionResult JoinMember()
         {
@@ -1177,6 +1207,7 @@ namespace KakaoExample.Controllers
         /*
          * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetAccessURL
          */
         public IActionResult GetAccessURL()
         {
@@ -1193,6 +1224,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 연동회원의 회사정보를 확인합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetCorpInfo
          */
         public IActionResult GetCorpInfo()
         {
@@ -1209,6 +1241,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 연동회원의 회사정보를 수정합니다
+         * - https://docs.popbill.com/kakao/dotnetcore/api#UpdateCorpInfo
          */
         public IActionResult UpdateCorpInfo()
         {
@@ -1242,6 +1275,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 연동회원의 담당자를 신규로 등록합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#RegistContact
          */
         public IActionResult RegistContact()
         {
@@ -1287,6 +1321,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 연동회원의 담당자 목록을 확인합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#ListContact
          */
         public IActionResult ListContact()
         {
@@ -1303,6 +1338,7 @@ namespace KakaoExample.Controllers
 
         /*
          * 연동회원의 담당자 정보를 수정합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#UpdateContact
          */
         public IActionResult UpdateContact()
         {

@@ -11,15 +11,15 @@ namespace StatementExample.Controllers
 
         public StatementController(StatementInstance STMinstance)
         {
-            //전자명세서 서비스 객체 생성
+            // 전자명세서 서비스 객체 생성
             _statementService = STMinstance.statementService;
 
         }
 
-        //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
+        // 팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
         string corpNum = "1234567890";
 
-        //팝빌 연동회원 아이디
+        // 팝빌 연동회원 아이디
         string userID = "testkorea";
 
         /*
@@ -33,8 +33,9 @@ namespace StatementExample.Controllers
         #region 전자명세서 발행 
 
         /*
-         * 전자명세서 관리번호 중복여부를 확인합니다.
-         * - 관리번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
+         * 전자명세서 문서번호 중복여부를 확인합니다.
+         * - 문서번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#CheckMgtKeyInUse
          */
         public IActionResult CheckMgtKeyInUse()
         {
@@ -43,7 +44,7 @@ namespace StatementExample.Controllers
                 // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
                 int itemCode = 121;
 
-                // 전자명세서 문서관리번호
+                // 전자명세서 문서번호
                 string mgtKey = "20181030";
 
                 bool result = _statementService.CheckMgtKeyInUse(corpNum, itemCode, mgtKey);
@@ -58,6 +59,7 @@ namespace StatementExample.Controllers
 
         /*
          * 1건의 전자명세서를 [즉시발행]합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#RegistIssue
          */
         public IActionResult RegistIssue()
         {
@@ -79,7 +81,7 @@ namespace StatementExample.Controllers
             // [필수] 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             statement.itemCode = 121;
 
-            // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
+            // [필수] 문서번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
             statement.mgtKey = "20200526-002";
 
 
@@ -250,7 +252,7 @@ namespace StatementExample.Controllers
             
             statement.detailList.Add(detail);
 
-            // 추가속성항목, 자세한사항은 "전자명세서 API 연동매뉴얼> 5.2 기본양식 추가속성 테이블" 참조. 
+            // 추가속성항목
             statement.propertyBag = new propertyBag();
 
             statement.propertyBag.Add("Balance", "15000"); // 전잔액
@@ -276,6 +278,7 @@ namespace StatementExample.Controllers
 
         /*
          * 1건의 전자명세서를 [임시저장]합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#Register
          */
         public IActionResult Register()
         {
@@ -297,7 +300,7 @@ namespace StatementExample.Controllers
             // [필수] 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             statement.itemCode = 121;
 
-            // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
+            // [필수] 문서번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
             statement.mgtKey = "20190115-002";
 
 
@@ -468,7 +471,7 @@ namespace StatementExample.Controllers
             
             statement.detailList.Add(detail);
 
-            // 추가속성항목, 자세한사항은 "전자명세서 API 연동매뉴얼> 5.2 기본양식 추가속성 테이블" 참조. 
+            // 추가속성항목
             statement.propertyBag = new propertyBag();
 
             statement.propertyBag.Add("Balance", "15000"); // 전잔액
@@ -489,13 +492,14 @@ namespace StatementExample.Controllers
         /*
          * 1건의 전자명세서를 [수정]합니다.
          * - [임시저장] 상태의 전자명세서만 수정할 수 있습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#Update
          */
         public IActionResult Update()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 수정할 명세서 문서관리번호
+            // 수정할 명세서 문서번호
             string mgtKey = "20190115-002";
 
 
@@ -682,7 +686,7 @@ namespace StatementExample.Controllers
             
             statement.detailList.Add(detail);
 
-            // 추가속성항목, 자세한사항은 "전자명세서 API 연동매뉴얼> 5.2 기본양식 추가속성 테이블" 참조. 
+            // 추가속성항목
             statement.propertyBag = new propertyBag();
 
             statement.propertyBag.Add("Balance", "15000"); // 전잔액
@@ -701,13 +705,14 @@ namespace StatementExample.Controllers
 
         /*
          * 1건의 [임시저장] 상태의 전자명세서를 [발행]합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#StmIssue
          */
         public IActionResult Issue()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 발행처리할 명세서 문서관리번호
+            // 발행처리할 명세서 문서번호
             string mgtKey = "20190115-001";
 
             // 발행 메모
@@ -726,13 +731,14 @@ namespace StatementExample.Controllers
 
         /*
          * 1건의 전자명세서를 [발행취소]합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#Cancel
          */
         public IActionResult Cancel()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 발행취소할 명세서 문서관리번호
+            // 발행취소할 명세서 문서번호
             string mgtKey = "20190115-001";
 
             // 발행 메모
@@ -751,15 +757,16 @@ namespace StatementExample.Controllers
 
         /*
          * 1건의 전자명세서를 [삭제]합니다.
-         * - 전자명세서를 삭제하면 사용된 문서관리번호(mgtKey)를 재사용할 수 있습니다.
+         * - 전자명세서를 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
          * - 삭제가능한 문서 상태 : [임시저장], [발행취소]
+         * - https://docs.popbill.com/statement/dotnetcore/api#Delete
          */
         public IActionResult Delete()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 삭제처리할 명세서 문서관리번호
+            // 삭제처리할 명세서 문서번호
             string mgtKey = "20190115-001";
             
             try
@@ -779,14 +786,14 @@ namespace StatementExample.Controllers
 
         /*
          * 1건의 전자명세서 상태/요약 정보를 확인합니다.
-         * - 응답항목에 대한 자세한 정보는 "[전자명세서 API 연동매뉴얼] > 3.2.1. GetInfo (상태 확인)"을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetInfo
          */
         public IActionResult GetInfo()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-001";
 
@@ -803,14 +810,14 @@ namespace StatementExample.Controllers
 
         /*
          * 다수건의 전자명세서 상태/요약 정보를 확인합니다.
-         * - 응답항목에 대한 자세한 정보는 "[전자명세서 API 연동매뉴얼] > 3.2.2. GetInfos (상태 대량 확인)"을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetInfos
          */
         public IActionResult GetInfos()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 조회할 전자명세서 문서관리번호 배열, (최대 1000건)
+            // 조회할 전자명세서 문서번호 배열, (최대 1000건)
             List<string> mgtKeyList = new List<string>();
             mgtKeyList.Add("20190115-003");
             mgtKeyList.Add("20190115-002");
@@ -829,14 +836,14 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서 1건의 상세정보를 조회합니다.
-         * - 응답항목에 대한 자세한 사항은 "[전자명세서 API 연동매뉴얼] > 4.1. 전자명세서 구성" 을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetDetailInfo
          */
         public IActionResult GetDetailInfo()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-001";
             try
@@ -852,7 +859,7 @@ namespace StatementExample.Controllers
 
         /*
          * 검색조건을 사용하여 전자명세서 목록을 조회합니다.
-         * - 응답항목에 대한 자세한 사항은 "[전자명세서 API 연동매뉴얼] > 3.2.4. Search (목록 조회)" 를 참조하시기 바랍니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#Search
          */
         public IActionResult Search()
         {
@@ -866,7 +873,6 @@ namespace StatementExample.Controllers
             string EDate = "20190115";
 
             // 전송상태값 배열, 미기재시 전체 상태조회, 상태코드(stateCode)값 3자리의 배열, 2,3번째 자리에 와일드카드 가능
-            //  - 상태코드에 대한 자세한 사항은 "[전자명세서 API 연동매뉴얼] > 5.1 전자명세서 상태코드" 를 참조하시기 바랍니다. 
             string[] State = new string[4];
             State[0] = "100";
             State[1] = "2**";
@@ -902,15 +908,14 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서 상태 변경이력을 확인합니다.
-         * - 상태 변경이력 확인(GetLogs API) 응답항목에 대한 자세한 정보는
-         *  "[전자명세서 API 연동매뉴얼] > 3.2.5 GetLogs (상태 변경이력 확인)" 을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetLogs
          */
         public IActionResult GetLogs()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-001";
             try
@@ -927,6 +932,7 @@ namespace StatementExample.Controllers
         /*
          * 팝빌 전자명세서 문서함 관련 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetURL
          */
         public IActionResult GetURL()
         {
@@ -951,13 +957,14 @@ namespace StatementExample.Controllers
         /*
          * 1건의 전자명세서 보기 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetPopUpURL
          */
         public IActionResult GetPopUpURL()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-001";
 
@@ -975,13 +982,14 @@ namespace StatementExample.Controllers
         /*
          * 1건의 전자명세서 인쇄팝업 URL을 반환합니다. (발신자/수신자용)
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetPrintURL
          */
         public IActionResult GetPrintURL()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-001";
 
@@ -999,13 +1007,14 @@ namespace StatementExample.Controllers
         /*
          * 1건의 전자명세서 인쇄팝업 URL을 반환합니다. (수신자용)
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetEPrintURL
          */
         public IActionResult GetEPrintURL()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-001";
 
@@ -1023,13 +1032,14 @@ namespace StatementExample.Controllers
         /*
          * 다수건의 전자명세서 인쇄팝업 URL을 반환합니다. (최대 100건)
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetMassPrintURL
          */
         public IActionResult GetMassPrintURL()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 조회할 전자명세서 문서관리번호 배열, (최대 100건)
+            // 조회할 전자명세서 문서번호 배열, (최대 100건)
             List<string> mgtKeyList = new List<string>();
             mgtKeyList.Add("20190115-001");
             mgtKeyList.Add("20190115-002");
@@ -1049,13 +1059,14 @@ namespace StatementExample.Controllers
         /*
          * 수신자 메일링크 URL을 반환합니다.
          * - 메일링크 URL은 유효시간이 존재하지 않습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetMailURL
          */
         public IActionResult GetMailURL()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-001";
 
@@ -1077,6 +1088,7 @@ namespace StatementExample.Controllers
         /*
          * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetAccessURL
          */
         public IActionResult GetAccessURL()
         {
@@ -1095,13 +1107,14 @@ namespace StatementExample.Controllers
          * 전자명세서에 첨부파일을 등록합니다.
          * - 첨부파일 등록은 전자명세서가 [임시저장] 상태인 경우에만 가능합니다.
          * - 첨부파일은 최대 5개까지 등록할 수 있습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#AttachFile
          */
         public IActionResult AttachFile()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-002";
 
@@ -1123,13 +1136,14 @@ namespace StatementExample.Controllers
          * 전자명세서에 첨부된 파일을 삭제합니다.
          * - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목
          *   중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#DeleteFile
          */
         public IActionResult DeleteFile()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-002";
 
@@ -1151,13 +1165,14 @@ namespace StatementExample.Controllers
          * 전자명세서에 첨부된 파일의 목록을 확인합니다.
          * - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API)
          *   호출시 이용할 수 있습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetFiles
          */
         public IActionResult GetFiles()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-002";
 
@@ -1174,13 +1189,14 @@ namespace StatementExample.Controllers
 
         /*
          * 발행 안내메일을 재전송합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#SendEmail
          */
         public IActionResult SendEmail()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-002";
 
@@ -1202,13 +1218,14 @@ namespace StatementExample.Controllers
          * 알림문자를 전송합니다. (단문/SMS- 한글 최대 45자)
          * - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [문자] > [전송내역] 탭에서 전송결과를 확인할 수 있습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#SendSMS
          */
         public IActionResult SendSMS()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-002";
 
@@ -1236,13 +1253,14 @@ namespace StatementExample.Controllers
          * 전자명세서를 팩스전송합니다.
          * - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#SendFAX
          */
         public IActionResult SendFAX()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-002";
 
@@ -1266,10 +1284,11 @@ namespace StatementExample.Controllers
         /*
          * 팝빌에 전자명세서를 등록하지 않고 수신자에게 팩스전송합니다.
          * - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
-         * - 팩스 발행 요청시 작성한 문서관리번호는 팩스전송 파일명으로 사용됩니다.
+         * - 팩스 발행 요청시 작성한 문서번호는 팩스전송 파일명으로 사용됩니다.
          * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
          * - 팩스 전송결과를 확인하기 위해서는 선팩스 전송 요청 시 반환받은 접수번호를 이용하여
          *   팩스 API의 전송결과 확인 (GetFaxDetail) API를 이용하면 됩니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#FAXSend
          */
         public IActionResult FAXSend()
         {
@@ -1291,7 +1310,7 @@ namespace StatementExample.Controllers
             // [필수] 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
             statement.itemCode = 121;
 
-            // [필수] 문서관리번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
+            // [필수] 문서번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
             statement.mgtKey = "20190115-002";
 
 
@@ -1462,7 +1481,7 @@ namespace StatementExample.Controllers
             };
             statement.detailList.Add(detail);
 
-            // 추가속성항목, 자세한사항은 "전자명세서 API 연동매뉴얼> 5.2 기본양식 추가속성 테이블" 참조. 
+            // 추가속성항목
             statement.propertyBag = new propertyBag();
 
             statement.propertyBag.Add("Balance", "15000"); // 전잔액
@@ -1488,20 +1507,21 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서에 다른 전자명세서 1건을 첨부합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#AttachStatement
          */
         public IActionResult AttachStatement()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-001";
 
             // 첨부할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int subItemCode = 121;
 
-            // 첨부할 명세서 문서관리번호
+            // 첨부할 명세서 문서번호
             string subMgtKey = "20190115-002";
 
             try
@@ -1518,20 +1538,21 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서에 첨부된 다른 전자명세서를 첨부해제합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#DetachStatement
          */
         public IActionResult DetachStatement()
         {
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int itemCode = 121;
 
-            // 명세서 문서관리번호, 사업자별로 중복되지 않도록 관리번호 할당
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20190115-001";
 
             // 첨부해제할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int subItemCode = 121;
 
-            // 첨부해제할 명세서 문서관리번호
+            // 첨부해제할 명세서 문서번호
             string subMgtKey = "20190115-002";
 
             try
@@ -1548,6 +1569,7 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서 관련 메일전송 항목에 대한 전송여부를 목록으로 반환합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#ListEmailConfig
          */
         public IActionResult ListEmailConfig()
         {
@@ -1571,6 +1593,7 @@ namespace StatementExample.Controllers
          * SMT_DENY : 발신자에게 전자명세서가 거부 되었음을 알려주는 메일입니다.
          * SMT_CANCEL : 수신자에게 전자명세서가 취소 되었음을 알려주는 메일입니다.
          * SMT_CANCEL_ISSUE : 수신자에게 전자명세서가 발행취소 되었음을 알려주는 메일입니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#UpdateEmailConfig
          */
         public IActionResult UpdateEmailConfig()
         {
@@ -1597,6 +1620,7 @@ namespace StatementExample.Controllers
 
         /*
          * 연동회원 잔여포인트를 확인합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
         {
@@ -1614,6 +1638,7 @@ namespace StatementExample.Controllers
         /*
          * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetChargeURL
          */
         public IActionResult GetChargeURL()
         {
@@ -1631,6 +1656,7 @@ namespace StatementExample.Controllers
         /*
          * 파트너의 잔여포인트를 확인합니다.
          * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
         {
@@ -1648,6 +1674,7 @@ namespace StatementExample.Controllers
         /*
          * 파트너 포인트 충전 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
         {
@@ -1667,6 +1694,7 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서 발행단가를 확인합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetUnitCost
          */
         public IActionResult GetUnitCost()
         {
@@ -1686,6 +1714,7 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서 API 서비스 과금정보를 확인합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetChargeInfo
          */
         public IActionResult GetChargeInfo()
         {
@@ -1709,6 +1738,7 @@ namespace StatementExample.Controllers
 
         /*
          * 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#CheckIsMember
          */
         public IActionResult CheckIsMember()
         {
@@ -1728,6 +1758,7 @@ namespace StatementExample.Controllers
 
         /*
          * 팝빌 회원아이디 중복여부를 확인합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#CheckID
          */
         public IActionResult CheckID()
         {
@@ -1747,6 +1778,7 @@ namespace StatementExample.Controllers
 
         /*
          * 파트너의 연동회원으로 신규가입 처리합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#JoinMember
          */
         public IActionResult JoinMember()
         {
@@ -1807,6 +1839,7 @@ namespace StatementExample.Controllers
 
         /*
          * 연동회원의 회사정보를 확인합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#GetCorpInfo
          */
         public IActionResult GetCorpInfo()
         {
@@ -1822,7 +1855,8 @@ namespace StatementExample.Controllers
         }
 
         /*
-         * 연동회원의 회사정보를 수정합니다
+         * 연동회원의 회사정보를 수정합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#UpdateCorpInfo
          */
         public IActionResult UpdateCorpInfo()
         {
@@ -1856,6 +1890,7 @@ namespace StatementExample.Controllers
 
         /*
          * 연동회원의 담당자를 신규로 등록합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#RegistContact
          */
         public IActionResult RegistContact()
         {
@@ -1901,6 +1936,7 @@ namespace StatementExample.Controllers
 
         /*
          * 연동회원의 담당자 목록을 확인합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#ListContact
          */
         public IActionResult ListContact()
         {
@@ -1917,6 +1953,7 @@ namespace StatementExample.Controllers
 
         /*
          * 연동회원의 담당자 정보를 수정합니다.
+         * - https://docs.popbill.com/statement/dotnetcore/api#UpdateContact
          */
         public IActionResult UpdateContact()
         {
@@ -1956,7 +1993,6 @@ namespace StatementExample.Controllers
                 return View("Exception", pe);
             }
         }
-
         #endregion
     }
 }

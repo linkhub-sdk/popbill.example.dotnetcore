@@ -11,15 +11,15 @@ namespace HTCashbillExample.Controllers
 
         public HTCashbillController(HTCashbillInstance HTCashbill)
         {
-            //홈택스연동(현금영수증) 서비스 객체 생성
+            // 홈택스연동(현금영수증) 서비스 객체 생성
             _htCashbillService = HTCashbill.htCashbillService;
 
         }
 
-        //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
+        // 팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
         string corpNum = "1234567890";
 
-        //팝빌 연동회원 아이디
+        // 팝빌 연동회원 아이디
         string userID = "testkorea";
 
         /*
@@ -34,9 +34,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 현금영수증 매출/매입 내역 수집을 요청합니다
-         * - 홈택스연동 프로세스는 "[홈택스연동(현금영수증) API 연동매뉴얼] >
-         *   1.1. 홈택스연동(현금영수증) API 구성" 을 참고하시기 바랍니다.
-         * - 수집 요청후 반환받은 작업아이디(JobID)의 유효시간은 1시간 입니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#RequestJob
          */
         public IActionResult RequestJob()
         {
@@ -62,8 +60,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 수집 요청 상태를 확인합니다.
-         * - 응답항목 관한 정보는 "[홈택스연동 (현금영수증) API 연동매뉴얼] >
-         *   3.1.2. GetJobState(수집 상태 확인)" 을 참고하시기 바랍니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetJobState
          */
         public IActionResult GetJobState()
         {
@@ -83,9 +80,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 수집 요청건들에 대한 상태 목록을 확인합니다.
-         * - 수집 요청 작업아이디(JobID)의 유효시간은 1시간 입니다.
-         * - 응답항목에 관한 정보는 "[홈택스연동 (현금영수증) API 연동매뉴얼] >
-         *   3.1.3. ListActiveJob(수집 상태 목록 확인)" 을 참고하시기 바랍니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#ListActiveJob
          */
         public IActionResult ListActiveJob()
         {
@@ -106,8 +101,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 현금영수증 매입/매출 내역의 수집 결과를 조회합니다.
-         * - 응답항목에 관한 정보는 "[홈택스연동 (현금영수증) API 연동매뉴얼] >
-         *   3.2.1. Search(수집 결과 조회)" 을 참고하시기 바랍니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#Search
          */
         public IActionResult Search()
         {
@@ -143,8 +137,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 현금영수증 매입/매출 내역의 수집 결과 요약정보를 조회합니다.
-         * - 응답항목에 관한 정보는 "[홈택스연동 (현금영수증) API 연동매뉴얼] >
-         *   3.2.2. Summary(수집 결과 요약정보 조회)" 을 참고하시기 바랍니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#Summary
          */
         public IActionResult Summary()
         {
@@ -176,6 +169,7 @@ namespace HTCashbillExample.Controllers
          * 홈택스연동 인증관리를 위한 URL을 반환합니다.
          * 인증방식에는 부서사용자/공인인증서 인증 방식이 있습니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetCertificatePopUpURL
          */
         public IActionResult GetCertificatePopUpURL()
         {
@@ -192,6 +186,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 팝빌에 등록된 홈택스 공인인증서의 만료일자를 반환합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetCertificateExpireDate
          */
         public IActionResult GetCertificateExpireDate()
         {
@@ -208,6 +203,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 팝빌에 등록된 공인인증서의 홈택스 로그인을 테스트합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#CheckCertValidation
          */
         public IActionResult CheckCertValidation()
         {
@@ -224,6 +220,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 홈택스 현금영수증 부서사용자 계정을 팝빌에 등록합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#RegistDeptUser
          */
         public IActionResult RegistDeptUser()
         {
@@ -246,6 +243,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 팝빌에 등록된 현금영수증 부서사용자 아이디를 확인합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#CheckDeptUser
          */
         public IActionResult CheckDeptUser()
         {
@@ -262,6 +260,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 팝빌에 등록된 현금영수증 부서사용자 계정정보를 이용하여 홈택스 로그인을 테스트합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#CheckLoginDeptUser
          */
         public IActionResult CheckLoginDeptUser()
         {
@@ -278,6 +277,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 팝빌에 등록된 현금영수증 부서사용자 계정정보를 삭제합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#DeleteDeptUser
          */
         public IActionResult DeleteDeptUser()
         {
@@ -298,6 +298,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원 잔여포인트를 확인합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
         {
@@ -315,6 +316,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetChargeURL
          */
         public IActionResult GetChargeURL()
         {
@@ -332,6 +334,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 파트너의 잔여포인트를 확인합니다.
          * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
         {
@@ -349,6 +352,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 파트너 포인트 충전 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
         {
@@ -368,6 +372,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 홈택스연동 API 서비스 과금정보를 확인합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetChargeInfo
          */
         public IActionResult GetChargeInfo()
         {
@@ -385,6 +390,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 정액제 서비스 신청 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetFlatRatePopUpURL
          */
         public IActionResult GetFlatRatePopUpURL()
         {
@@ -401,6 +407,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 정액제 서비스 상태를 확인합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetFlatRateState
          */
         public IActionResult GetFlatRateState()
         {
@@ -421,6 +428,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#CheckIsMember
          */
         public IActionResult CheckIsMember()
         {
@@ -440,6 +448,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 팝빌 회원아이디 중복여부를 확인합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#CheckID
          */
         public IActionResult CheckID()
         {
@@ -459,6 +468,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 파트너의 연동회원으로 신규가입 처리합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#JoinMember
          */
         public IActionResult JoinMember()
         {
@@ -520,6 +530,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetAccessURL
          */
         public IActionResult GetAccessURL()
         {
@@ -534,9 +545,10 @@ namespace HTCashbillExample.Controllers
             }
         }
 
-        
+
         /*
          * 연동회원의 회사정보를 확인합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetCorpInfo
          */
         public IActionResult GetCorpInfo()
         {
@@ -552,7 +564,8 @@ namespace HTCashbillExample.Controllers
         }
 
         /*
-         * 연동회원의 회사정보를 수정합니다
+         * 연동회원의 회사정보를 수정합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#UpdateCorpInfo
          */
         public IActionResult UpdateCorpInfo()
         {
@@ -586,6 +599,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원의 담당자를 신규로 등록합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#RegistContact
          */
         public IActionResult RegistContact()
         {
@@ -631,6 +645,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원의 담당자 목록을 확인합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#ListContact
          */
         public IActionResult ListContact()
         {
@@ -647,6 +662,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원의 담당자 정보를 수정합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#UpdateContact
          */
         public IActionResult UpdateContact()
         {

@@ -6,7 +6,7 @@ using Popbill.AccountCheck;
 
 public class AccountCheckInstance
 {
-    //파트너 신청 후 메일로 발급받은 링크아이디(LinkID)와 비밀키(SecretKey)값 으로 변경하시기 바랍니다.
+    // 파트너 신청 후 메일로 발급받은 링크아이디(LinkID)와 비밀키(SecretKey)값 으로 변경하시기 바랍니다.
     private string linkID = "TESTER";
     private string secretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
 
@@ -14,13 +14,13 @@ public class AccountCheckInstance
 
     public AccountCheckInstance()
     {
-        //예금주조회 서비스 객체 초기화
+        // 예금주조회 서비스 객체 초기화
         accountCheckService = new AccountCheckService(linkID, secretKey);
 
-        //연동환경 설정값, 개발용(true), 상업용(false)
+        // 연동환경 설정값, 개발용(true), 상업용(false)
         accountCheckService.IsTest = true;
 
-        //인증토큰의 IP제한기능 사용여부, 권장(true)
+        // 인증토큰의 IP제한기능 사용여부, 권장(true)
         accountCheckService.IPRestrictOnOff = true;
 
         // 팝빌 API 서비스 고정 IP 사용여부(GA), true-사용, false-미사용, 기본값(false)

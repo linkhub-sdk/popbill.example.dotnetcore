@@ -11,15 +11,15 @@ namespace AccountCheckExample.Controllers
 
         public AccountCheckController(AccountCheckInstance ACInstance)
         {
-            //예금주조회 서비스 객체 생성
+            // 예금주조회 서비스 객체 생성
             _accountCheckService = ACInstance.accountCheckService;
 
         }
 
-        //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
+        // 팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
         string corpNum = "1234567890";
 
-        //팝빌 연동회원 아이디
+        // 팝빌 연동회원 아이디
         string userID = "testkorea";
 
         /*
@@ -31,9 +31,10 @@ namespace AccountCheckExample.Controllers
         }
 
 
-        
+
         /*
          * 1건의 계좌에 대한 예금주정보 조회합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#CheckAccountInfo
          */
         public IActionResult CheckAccountInfo()
         {
@@ -57,6 +58,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 연동회원 잔여포인트를 확인합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
         {
@@ -74,6 +76,7 @@ namespace AccountCheckExample.Controllers
         /*
          * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#GetChargeURL
          */
         public IActionResult GetChargeURL()
         {
@@ -91,6 +94,7 @@ namespace AccountCheckExample.Controllers
         /*
          * 파트너의 잔여포인트를 확인합니다.
          * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
         {
@@ -108,6 +112,7 @@ namespace AccountCheckExample.Controllers
         /*
          * 파트너 포인트 충전 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
         {
@@ -127,6 +132,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 예금주조회 조회단가를 확인합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#GetUnitCost
          */
         public IActionResult GetUnitCost()
         {
@@ -143,6 +149,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 예금주조회 API 서비스 과금정보를 확인합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#GetChargeInfo
          */
         public IActionResult GetChargeInfo()
         {
@@ -159,6 +166,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#CheckIsMember
          */
         public IActionResult CheckIsMember()
         {
@@ -178,6 +186,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 팝빌 회원아이디 중복여부를 확인합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#CheckID
          */
         public IActionResult CheckID()
         {
@@ -197,6 +206,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 파트너의 연동회원으로 신규가입 처리합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#JoinMember
          */
         public IActionResult JoinMember()
         {
@@ -257,6 +267,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 연동회원의 회사정보를 확인합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#GetCorpInfo
          */
         public IActionResult GetCorpInfo()
         {
@@ -273,6 +284,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 연동회원의 회사정보를 수정합니다
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#UpdateCorpInfo
          */
         public IActionResult UpdateCorpInfo()
         {
@@ -306,6 +318,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 연동회원의 담당자를 신규로 등록합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#RegistContact
          */
         public IActionResult RegistContact()
         {
@@ -351,6 +364,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 연동회원의 담당자 목록을 확인합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#ListContact
          */
         public IActionResult ListContact()
         {
@@ -367,6 +381,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 연동회원의 담당자 정보를 수정합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#UpdateContact
          */
         public IActionResult UpdateContact()
         {
@@ -410,6 +425,7 @@ namespace AccountCheckExample.Controllers
         /*
          * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#GetAccessURL
          */
         public IActionResult GetAccessURL()
         {

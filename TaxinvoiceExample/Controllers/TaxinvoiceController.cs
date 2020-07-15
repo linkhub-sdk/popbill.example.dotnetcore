@@ -11,14 +11,14 @@ namespace TaxinvoiceExample.Controllers
 
         public TaxinvoiceController(TaxinvoiceInstance TIinstance)
         {
-            //세금계산서 서비스 객체 생성
+            // 세금계산서 서비스 객체 생성
             _taxinvoiceService = TIinstance.taxinvoiceService;
         }
 
-        //팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
+        // 팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
         string corpNum = "1234567890";
 
-        //팝빌 연동회원 아이디
+        // 팝빌 연동회원 아이디
         string userID = "testkorea";
 
         /*
@@ -34,6 +34,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 세금계산서 문서번호 중복여부를 확인합니다.
          * - 문서번호는 1~24자리로 숫자, 영문 '-', '_' 조합으로 구성할 수 있습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#CheckMgtKeyInUse
          */
         public IActionResult CheckMgtKeyInUse()
         {
@@ -58,6 +59,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 1건의 세금계산서를 [즉시발행]합니다.
          * - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서구성"을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#RegistIssue
          */
         public IActionResult RegistIssue()
         {
@@ -343,6 +345,7 @@ namespace TaxinvoiceExample.Controllers
          * - 정발행시 임시저장(Register)과 발행(Issue)을 한번의 호출로 처리하는 즉시발행(RegistIssue API) 프로세스 연동을 권장합니다.
          * - 역발행시 임시저장(Register)과 역발행요청(Request)을 한번의 호출로 처리하는 즉시요청(RegistRequest API) 프로세스 연동을 권장합니다.
          * - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서구성"을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#Register
          */
         public IActionResult Register()
         {
@@ -610,6 +613,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * [임시저장] 상태의 세금계산서의 항목을 [수정]합니다.
          * - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서구성"을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#Update
          */
         public IActionResult Update()
         {
@@ -880,6 +884,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * [임시저장] 또는 [발행대기] 상태의 세금계산서를 [공급자]가 [발행]합니다.
          * - 세금계산서 항목별 정보는 "[전자세금계산서 API 연동매뉴얼] > 4.1. (세금)계산서구성"을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#TIIssue
          */
         public IActionResult Issue()
         {
@@ -916,6 +921,7 @@ namespace TaxinvoiceExample.Controllers
          * - [발행취소]는 국세청 전송전에만 가능합니다.
          * - 발행취소된 세금계산서는 국세청에 전송되지 않습니다.
          * - 발행취소 세금계산서에 사용된 문서번호를 재사용 하기 위해서는 삭제(Delete API)를 호출하여 해당세금계산서를 삭제해야 합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#CancelIssue
          */
         public IActionResult CancelIssue()
         {
@@ -943,6 +949,7 @@ namespace TaxinvoiceExample.Controllers
          * 1건의 전자세금계산서를 [삭제]합니다.
          * - 세금계산서를 삭제해야만 문서번호(mgtKey)를 재사용할 수 있습니다.
          * - 삭제가능한 문서 상태 : [임시저장], [발행취소], [발행예정 취소], [발행예정 거부]
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#Delete
          */
         public IActionResult Delete()
         {
@@ -969,6 +976,7 @@ namespace TaxinvoiceExample.Controllers
          * - 역발행 세금계산서 프로세스를 구현하기 위해서는 공급자/공급받는자가 모두 팝빌에 회원이여야 합니다.
          * - 역발행 즉시요청후 공급자가 [발행] 처리시 포인트가 차감되며 역발행 세금계산서 항목중 과금방향(ChargeDirection)에 기재한 값에 따라
          *   정과금(공급자과금) 또는 역과금(공급받는자과금) 처리됩니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#RegistRequest
          */
         public IActionResult RegistRequest()
         {
@@ -1211,8 +1219,9 @@ namespace TaxinvoiceExample.Controllers
          * - 역발행 세금계산서 프로세스를 구현하기 위해서는 공급자/공급받는자가 모두 팝빌에 회원이여야 합니다.
          * - 역발행 요청후 공급자가 [발행] 처리시 포인트가 차감되며 역발행 세금계산서 항목중 과금방향(ChargeDirection)에 기재한 값에 따라
          *   정과금(공급자과금) 또는 역과금(공급받는자과금) 처리됩니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#Request
          */
-        public IActionResult Request()
+        public IActionResult TIRequest()
         {
             // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
             MgtKeyType mgtKeyType = MgtKeyType.BUY;
@@ -1237,6 +1246,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * [공급받는자]가 역)발행대기 상태의 세금계산서를 [취소]합니다. 
          * - [취소]한 세금계산서의 문서번호를 재사용하기 위해서는 삭제 (Delete API)를 호출해야 합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#CancelRequest
          */
         public IActionResult CancelRequest()
         {
@@ -1263,6 +1273,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 공급받는자에게 요청받은 역)발행대기 상태의 세금계산서를 [공급자]가 [거부]합니다.
          * - 세금계산서의 문서번호를 재사용하기 위해서는 삭제 (Delete API)를 호출하여 [삭제] 처리해야 합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#Refuse
          */
         public IActionResult Refuse()
         {
@@ -1291,6 +1302,7 @@ namespace TaxinvoiceExample.Controllers
          * - 국세청 즉시전송을 호출하지 않은 세금계산서는 발행일 기준 익일 오후 3시에 팝빌 시스템에서 일괄적으로 국세청으로 전송합니다.
          * - 익일전송시 전송일이 법정공휴일인 경우 다음 영업일에 전송됩니다.
          * - 국세청 전송에 관한 사항은 "[전자세금계산서 API 연동매뉴얼] > 1.3 국세청 전송 정책" 을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#SendToNTS
          */
         public IActionResult SendToNTS()
         {
@@ -1319,6 +1331,7 @@ namespace TaxinvoiceExample.Controllers
          * 1건의 세금계산서 상태/요약 정보를 확인합니다.
          * - 세금계산서 상태정보(GetInfo API) 응답항목에 대한 자세한 정보는
          *   "[전자세금계산서 API 연동매뉴얼] > 4.2. (세금)계산서 상태정보 구성" 을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetInfo
          */
         public IActionResult GetInfo()
         {
@@ -1343,6 +1356,7 @@ namespace TaxinvoiceExample.Controllers
          * 대량의 세금계산서 상태/요약 정보를 확인합니다. (최대 1000건)
          * - 세금계산서 상태정보(GetInfos API) 응답항목에 대한 자세한 정보는
          *   "[전자세금계산서 API 연동매뉴얼]  > 4.2. (세금)계산서 상태정보 구성" 을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetInfos
          */
         public IActionResult GetInfos()
         {
@@ -1369,6 +1383,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 1건의 세금계산서 상세정보를 확인합니다.
          * - 응답항목에 대한 자세한 사항은 "[전자세금계산서 API 연동매뉴얼] > 4.1 (세금)계산서 구성" 을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetDetailInfo
          */
         public IActionResult GetDetailInfo()
         {
@@ -1392,6 +1407,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 검색조건을 사용하여 세금계산서 목록을 조회합니다.
          * - 응답항목에 대한 자세한 사항은 "[전자세금계산서 API 연동매뉴얼] > 4.2. (세금)계산서 상태정보 구성" 을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#Search
          */
         public IActionResult Search()
         {
@@ -1475,6 +1491,7 @@ namespace TaxinvoiceExample.Controllers
          * 세금계산서 상태 변경이력을 확인합니다.
          * - 상태 변경이력 확인(GetLogs API) 응답항목에 대한 자세한 정보는
          *   "[전자세금계산서 API 연동매뉴얼] > 3.5.5 상태 변경이력 확인" 을 참조하시기 바랍니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetLogs
          */
         public IActionResult GetLogs()
         {
@@ -1498,6 +1515,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 팝빌 전자세금계산서 문서함 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetURL
          */
         public IActionResult GetURL()
         {
@@ -1522,6 +1540,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 1건의 전자세금계산서 보기 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책으로 인해 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetPopUpURL
          */
         public IActionResult GetPopUpURL()
         {
@@ -1545,6 +1564,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 1건의 전자세금계산서 보기 팝업 URL을 반환합니다. (메뉴/버튼 제외)
          * - 반환된 URL은 보안정책으로 인해 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetViewURL
          */
         public IActionResult GetViewURL()
         {
@@ -1568,6 +1588,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 1건의 전자세금계산서 인쇄팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책으로 인해 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetPrintURL
          */
         public IActionResult GetPrintURL()
         {
@@ -1591,6 +1612,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 세금계산서 인쇄(공급받는자) 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetEPrintURL
          */
         public IActionResult GetEPrintURL()
         {
@@ -1614,6 +1636,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 대량의 세금계산서 인쇄팝업 URL을 반환합니다. (최대 100건)
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetMassPrintURL
          */
         public IActionResult GetMassPrintURL()
         {
@@ -1640,6 +1663,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 공급받는자 메일링크 URL을 반환합니다.
          * - 메일링크 URL은 유효시간이 존재하지 않습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetMailURL
          */
         public IActionResult GetMailURL()
         {
@@ -1667,6 +1691,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetAccessURL
          */
         public IActionResult GetAccessURL()
         {
@@ -1684,6 +1709,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 인감 및 첨부문서 등록 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetSealURL
          */
         public IActionResult GetSealURL()
         {
@@ -1702,6 +1728,7 @@ namespace TaxinvoiceExample.Controllers
          * 세금계산서에 첨부파일을 등록합니다.
          * - [임시저장] 상태의 세금계산서만 파일을 첨부할수 있습니다.
          * - 첨부파일은 최대 5개까지 등록할 수 있습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#AttachFile
          */
         public IActionResult AttachFile()
         {
@@ -1728,6 +1755,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 세금계산서에 첨부된 파일을 삭제합니다.
          * - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#DeleteFile
          */
         public IActionResult DeleteFile()
         {
@@ -1754,6 +1782,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 세금계산서 첨부파일 목록을 확인합니다.
          * - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API) 호출시 이용할 수 있습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetFiles
          */
         public IActionResult GetFiles()
         {
@@ -1776,6 +1805,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 세금계산서 발행안내 메일을 재전송합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#SendEmail
          */
         public IActionResult SendEmail()
         {
@@ -1803,6 +1833,7 @@ namespace TaxinvoiceExample.Controllers
          * 알림문자를 전송합니다. (단문/SMS - 한글 최대 45자)
          * - 알림문자 전송시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#SendSMS
          */
         public IActionResult SendSMS()
         {
@@ -1837,6 +1868,7 @@ namespace TaxinvoiceExample.Controllers
          * 전자세금계산서를 팩스전송합니다.
          * - 팩스 전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 전송내역 확인은 "팝빌 로그인" > [문자 팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인할 수 있습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#SendFAX
          */
         public IActionResult SendFAX()
         {
@@ -1865,6 +1897,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 1건의 전자명세서를 세금계산서에 첨부합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#AttachStatement
          */
         public IActionResult AttachStatement()
         {
@@ -1893,6 +1926,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 세금계산서에 첨부된 전자명세서 1건을 첨부해제합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#DetachStatement
          */
         public IActionResult DetachStatement()
         {
@@ -1921,6 +1955,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 대용량 연계사업자 유통메일주소 목록을 반환합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetEmailPublicKeys
          */
         public IActionResult GetEmailPublicKeys()
         {
@@ -1937,6 +1972,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 팝빌사이트에서 작성된 세금계산서에 파트너 문서번호를 할당합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#AssignMgtKey
          */
         public IActionResult AssignMgtKey()
         {
@@ -1962,6 +1998,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 전자세금계산서 관련 메일전송 항목에 대한 전송여부를 목록으로 반환합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#ListEmailConfig
          */
         public IActionResult ListEmailConfig()
         {
@@ -2019,6 +2056,7 @@ namespace TaxinvoiceExample.Controllers
          * [정기발송]
          * TAX_SEND_INFO : 전월 귀속분 [매출 발행 대기] 세금계산서의 발행을 안내하는 메일입니다.
          * ETC_CERT_EXPIRATION : 팝빌에서 이용중인 공인인증서의 갱신을 안내하는 메일입니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#UpdateEmailConfig
          */
         public IActionResult UpdateEmailConfig()
         {
@@ -2048,6 +2086,7 @@ namespace TaxinvoiceExample.Controllers
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          * - 팝빌에 등록된 공인인증서가 유효하지 않은 경우 (비밀번호 변경, 인증서 재발급/갱신, 만료일 경과)
          *   인증서를 재등록해야 정상적으로 전자세금계산서 발행이 가능합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetTaxCertURL
          */
         public IActionResult GetTaxCertURL()
         {
@@ -2066,6 +2105,7 @@ namespace TaxinvoiceExample.Controllers
          * 팝빌에 등록되어 있는 공인인증서의 만료일자를 확인합니다.
          * - 공인인증서가 갱신/재발급/비밀번호 변경이 되는 경우 해당 인증서를
          *   재등록 하셔야 정상적으로 세금계산서를 발행할 수 있습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetCertificateExpireDate
          */
         public IActionResult GetCertificateExpireDate()
         {
@@ -2082,6 +2122,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 팝빌에 등록된 공인인증서의 유효성을 확인합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#CheckCertValidation
          */
         public IActionResult CheckCertValidation()
         {
@@ -2102,6 +2143,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 연동회원 잔여포인트를 확인합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
         {
@@ -2119,6 +2161,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetChargeURL
          */
         public IActionResult GetChargeURL()
         {
@@ -2136,6 +2179,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 파트너의 잔여포인트를 확인합니다.
          * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
         {
@@ -2153,6 +2197,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 파트너 포인트 충전 팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
         {
@@ -2172,6 +2217,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 전자세금계산서 발행단가를 확인합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetUnitCost
          */
         public IActionResult GetUnitCost()
         {
@@ -2188,6 +2234,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 전자세금계산서 API 서비스 과금정보를 확인합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetChargeInfo
          */
         public IActionResult GetChargeInfo()
         {
@@ -2208,6 +2255,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#CheckIsMember
          */
         public IActionResult CheckIsMember()
         {
@@ -2227,6 +2275,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 팝빌 회원아이디 중복여부를 확인합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#CheckID
          */
         public IActionResult CheckID()
         {
@@ -2246,6 +2295,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 파트너의 연동회원으로 신규가입 처리합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#JoinMember
          */
         public IActionResult JoinMember()
         {
@@ -2306,6 +2356,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 연동회원의 회사정보를 확인합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetCorpInfo
          */
         public IActionResult GetCorpInfo()
         {
@@ -2322,6 +2373,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 연동회원의 회사정보를 수정합니다
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#UpdateCorpInfo
          */
         public IActionResult UpdateCorpInfo()
         {
@@ -2355,6 +2407,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 연동회원의 담당자를 신규로 등록합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#RegistContact
          */
         public IActionResult RegistContact()
         {
@@ -2400,6 +2453,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 연동회원의 담당자 목록을 확인합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#ListContact
          */
         public IActionResult ListContact()
         {
@@ -2416,6 +2470,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 연동회원의 담당자 정보를 수정합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#UpdateContact
          */
         public IActionResult UpdateContact()
         {
