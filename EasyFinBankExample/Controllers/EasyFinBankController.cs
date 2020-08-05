@@ -331,7 +331,7 @@ namespace EasyFinBankExample.Controllers
         public IActionResult Search()
         {
             // 수집 요청(requestJob API)시 반환반은 작업아이디(jobID)
-            string jobID = "020010816000000002";
+            string jobID = "020080511000000001";
 
             // 거래유형 배열, I-입금, O-출금
             string[] TradeType = { "N", "M" };
