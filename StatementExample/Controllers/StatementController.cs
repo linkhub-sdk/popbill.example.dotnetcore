@@ -980,6 +980,31 @@ namespace StatementExample.Controllers
         }
 
         /*
+         * 1건의 전자명세서 보기 URL을 반환합니다. (메뉴/버튼 제외)
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         */
+        public IActionResult GetViewURL()
+        {
+            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
+            int itemCode = 121;
+
+            // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
+            // 1~24자리 영문,숫자,'-','_' 조합 구성
+            string mgtKey = "20190115-001";
+
+            try
+            {
+                var result = _statementService.GetViewURL(corpNum, itemCode, mgtKey, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+
+        /*
          * 1건의 전자명세서 인쇄팝업 URL을 반환합니다. (발신자/수신자용)
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          * - https://docs.popbill.com/statement/dotnetcore/api#GetPrintURL
