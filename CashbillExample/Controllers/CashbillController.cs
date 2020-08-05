@@ -992,6 +992,29 @@ namespace CashbillExample.Controllers
         }
 
         /*
+         * 팝빌사이트에서 작성된 현금영수증에 파트너 문서번호를 할당합니다.
+         */
+        public IActionResult AssignMgtKey()
+        {
+            // 현금영수증 아이템키, 목록조회(Search) API의 반환항목중 ItemKey 참조
+            string itemKey = "020080513514100001";
+
+            // 현금영수증에 할당할 문서번호
+            string mgtKey = "20200805-100";
+
+            try
+            {
+                var response = _cashbillService.AssignMgtKey(corpNum, itemKey, mgtKey);
+                return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+
+        /*
          * 현금영수증 관련 메일전송 항목에 대한 전송여부를 목록을 반환합니다.
          * - https://docs.popbill.com/cashbill/dotnetcore/api#ListEmailConfig
          */
