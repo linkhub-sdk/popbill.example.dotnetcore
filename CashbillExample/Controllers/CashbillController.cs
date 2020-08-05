@@ -804,6 +804,25 @@ namespace CashbillExample.Controllers
         }
 
         /*
+        * 1건의 현금영수증 PDF 다운로드 URL을 반환합니다.
+        * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+        */
+        public IActionResult GetPDFURL()
+        {
+            // 현금영수증 문서번호
+            string mgtKey = "20190115-003";
+            try
+            {
+                var result = _cashbillService.GetPDFURL(corpNum, mgtKey, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
          * 1건의 현금영수증 인쇄팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          * - https://docs.popbill.com/cashbill/dotnetcore/api#GetPrintURL

@@ -1585,6 +1585,31 @@ namespace TaxinvoiceExample.Controllers
             }
         }
 
+
+        /*
+         * 1건의 전자세금계산서 PDF 다운로드 URL을 반환합니다.
+         * - 반환된 URL은 보안정책으로 인해 30초의 유효시간을 갖습니다.
+         */
+        public IActionResult GetPDFURL()
+        {
+            // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
+
+            // 세금계산서 문서번호
+            string mgtKey = "20190115-002";
+
+            try
+            {
+                var result = _taxinvoiceService.GetPDFURL(corpNum, mgtKeyType, mgtKey, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+
         /*
          * 1건의 전자세금계산서 인쇄팝업 URL을 반환합니다.
          * - 반환된 URL은 보안정책으로 인해 30초의 유효시간을 갖습니다.
