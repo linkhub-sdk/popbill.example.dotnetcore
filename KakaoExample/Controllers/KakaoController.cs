@@ -235,7 +235,7 @@ namespace KakaoExample.Controllers
             content += "support@linkhub.co.kr".Replace("\n", Environment.NewLine);
 
             // 발신번호
-            string senderNum = "07043042992";
+            string senderNum = "01043245117";
 
             // 수신자정보 배열, 최대 1000건
             List<KakaoReceiver> receivers = new List<KakaoReceiver>();
@@ -254,6 +254,9 @@ namespace KakaoExample.Controllers
 
                 // 대체문자 내용 (최대 2000byte)
                 receiverInfo.altmsg = "대체문자 내용입니다" + i;
+
+                // 파트너 지정키, 수신자 구분용 메모
+                receiverInfo.interOPRefKey = "20200805-"+i;
 
                 receivers.Add(receiverInfo);
             }
@@ -867,7 +870,7 @@ namespace KakaoExample.Controllers
         public IActionResult GetMessages()
         {
             // 알림톡/친구톡 전송요청시 발급받은 접수번호
-            string receiptNum = "018112717221800001";
+            string receiptNum = "020080512164500002";
 
             try
             {
