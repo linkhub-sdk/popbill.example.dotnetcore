@@ -1402,18 +1402,17 @@ namespace TaxinvoiceExample.Controllers
             string DType = "W";
 
             // [필수] 시작일자, 날자형식(yyyyMMdd)
-            string SDate = "20190101";
+            string SDate = "20200701";
 
             // [필수] 종료일자, 날자형식(yyyyMMdd)
-            string EDate = "20190115";
+            string EDate = "20200731";
 
             // 상태코드 배열, 미기재시 전체 상태조회, 상태코드(stateCode)값 3자리의 배열, 2,3번째 자리에 와일드카드 가능
             // - 상태코드에 대한 자세한 사항은 "[전자세금계산서 API 연동매뉴얼] > 5.1 세금계산서 상태코드" 를 참조하시기 바랍니다. 
-            string[] state = new string[4];
-            state[0] = "1**";
-            state[1] = "3**";
-            state[2] = "4**";
-            state[3] = "6**";
+            string[] state = new string[3];
+            state[0] = "3**";
+            state[1] = "4**";
+            state[2] = "6**";
 
             // 문서유형 배열, N-일반세금계산서, M-수정세금계산서
             string[] Type = new string[2];
@@ -1431,6 +1430,19 @@ namespace TaxinvoiceExample.Controllers
             IssueType[0] = "N";
             IssueType[1] = "R";
             IssueType[2] = "T";
+
+            // 등록유형 배열, P-팝빌, H-홈택스 또는 외부ASP
+            string[] RegType = new string[2];
+            RegType[0] = "P";
+            RegType[1] = "H";
+
+            // 공급받는자 휴폐업상태 배열, N-미확인, 0-미등록, 1-사업중, 2-폐업, 3-휴업
+            string[] CloseDownState = new string[5];
+            CloseDownState[0] = "N";
+            CloseDownState[1] = "0";
+            CloseDownState[2] = "1";
+            CloseDownState[3] = "2";
+            CloseDownState[4] = "3";
 
             // 지연발행 여부, null-전체 조회, true-지연발행분 조회, false-정상발행분 조회
             bool? LateOnly = null;
@@ -1456,13 +1468,17 @@ namespace TaxinvoiceExample.Controllers
             // 거래처 조회, 거래처 사업자등록번호 또는 상호명 기재, 공백시 전체조회
             string Qstring = "";
 
+            // 문서번호 또는 국세청승인번호 조회 검색어
+            string MgtKey = "";
+
             // 일반/연동 문서구분, 공백-전체조회, 0-일반문서 조회, 1-연동문서 조회
             string InterOPYN = "";
 
             try
             {
                 var response = _taxinvoiceService.Search(corpNum, mgtKeyType, DType, SDate, EDate, state, Type, TaxType,
-                    IssueType, LateOnly, TaxRegIDYN, TaxRegIDType, TaxRegID, Page, PerPage, Order, Qstring, InterOPYN);
+                    IssueType, LateOnly, TaxRegIDYN, TaxRegIDType, TaxRegID, Page, PerPage, Order, Qstring, InterOPYN, 
+                    userID, RegType, CloseDownState, MgtKey);
                 return View("Search", response);
             }
             catch (PopbillException pe)
