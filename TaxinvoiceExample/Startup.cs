@@ -15,8 +15,20 @@ public class TaxinvoiceInstance
 
     public TaxinvoiceInstance()
     {
+        // Set whether to use Proxy.
+        bool proxyYN = true;
+
+        // Enter the proxy server IP and port
+        string proxyAddress = "http://192.168.215:8082";
+
+        // Enter proxy username
+        string proxyUserName = "linkhub";
+
+        // Enter proxy password
+        string proxyPassWord = "popbill";
+
         //세금계산서 서비스 객체 초기화
-        taxinvoiceService = new TaxinvoiceService(linkID, secretKey);
+        taxinvoiceService = new TaxinvoiceService(linkID, secretKey, proxyYN, proxyAddress, proxyUserName, proxyPassWord);
 
         //연동환경 설정값, 개발용(true), 상업용(false)
         taxinvoiceService.IsTest = true;

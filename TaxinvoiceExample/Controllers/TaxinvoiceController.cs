@@ -41,7 +41,7 @@ namespace TaxinvoiceExample.Controllers
             try
             {
                 // 세금계산서 문서번호
-                string mgtKey = "20190115";
+                string mgtKey = "201901115";
 
                 // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
                 MgtKeyType mgtKeyType = MgtKeyType.SELL;
