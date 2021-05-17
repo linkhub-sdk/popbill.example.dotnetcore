@@ -1,0 +1,36 @@
+﻿@{
+	ViewBag.Title = "GetATSTemplate (알림톡 템플릿 정보 확인)";
+}
+
+<div id="content">
+	<p class="heading1">Response</p>
+	<br />
+	<fieldset class="fieldset1">
+		<legend>@ViewData["Title"]</legend>
+		<ul>
+			<li>templateCode(대표자성명) : @Model.templateCode</li>
+			<li>templateName(상호) : @Model.templateName</li>
+			<li>template(주소) : @Model.template</li>
+			<li>plusFriendID(업태) : @Model.plusFriendID</li>
+		</ul>
+		@{
+			int i = 0;
+			foreach (var btns in Model.btns)
+			{
+				i++; ;
+				<fieldset class="fieldset2">
+					<legend> 버튼 정보 [ @i / @Model.btns.Count ]</legend>
+					<ul>
+						<li>n (버튼명) : @btns.n</li>
+						<li>t (버튼유형) : @btns.t</li>
+						<li>u1 (버튼링크1) : @btns.u1</li>
+						<li>u2 (버튼링크2) : @btns.u2</li>
+
+					</ul>
+				</fieldset>
+			}
+		}
+
+	</fieldset>
+	<br />
+</div>
