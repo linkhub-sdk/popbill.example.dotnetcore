@@ -646,6 +646,44 @@ namespace FaxExample.Controllers
         }
 
         /*
+        * 연동회원 포인트 결재내역 URL을 반환합니다.
+        * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+        * - https://docs.popbill.com/fax/dotnetcore/api#GetPaymentURL
+        */
+        public IActionResult GetPaymentURL()
+        {
+
+            try
+            {
+                var result = _faxService.GetPaymentURL(corpNum, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 연동회원 포인트 사용내역 URL을 반환합니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/fax/dotnetcore/api#GetUseHistoryURL
+         */
+        public IActionResult GetUseHistoryURL()
+        {
+
+            try
+            {
+                var result = _faxService.GetUseHistoryURL(corpNum, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
          * 팩스 전송단가를 확인합니다.
          * - https://docs.popbill.com/fax/dotnetcore/api#GetUnitCost
          */
