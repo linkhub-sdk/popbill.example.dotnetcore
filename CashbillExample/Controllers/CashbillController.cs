@@ -609,7 +609,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetInfo()
         {
             // 현금영수증 문서번호
-            string mgtKey = "20190115-003";
+            string mgtKey = "20210518-003";
 
             try
             {
@@ -631,9 +631,9 @@ namespace CashbillExample.Controllers
         {
             // 조회할 현금영수증 문서번호 배열, (최대 1000건)
             List<string> mgtKeyList = new List<string>();
-            mgtKeyList.Add("20190115-001");
-            mgtKeyList.Add("20190115-002");
-            mgtKeyList.Add("20190115-003");
+            mgtKeyList.Add("20210518-001");
+            mgtKeyList.Add("20210518-002");
+            mgtKeyList.Add("20210518-003");
 
             try
             {
@@ -654,7 +654,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetDetailInfo()
         {
             // 현금영수증 문서번호
-            string mgtKey = "20190115-003";
+            string mgtKey = "20210518-003";
 
             try
             {
@@ -678,10 +678,10 @@ namespace CashbillExample.Controllers
             string DType = "T";
 
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20190101";
+            string SDate = "20210518";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20190115";
+            string EDate = "20210518";
 
             // 상태코드 배열, 미기재시 전체 상태조회, 상태코드(stateCode)값 3자리의 배열, 2,3번째 자리에 와일드카드 가능
             // - 상태코드에 대한 자세한 사항은 "[현금영수증 API 연동매뉴얼] > 5.1 현금영수증 상태코드" 를 참조하시기 바랍니다. 
@@ -744,7 +744,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetLogs()
         {
             // 현금영수증 문서번호
-            string mgtKey = "20190115-001";
+            string mgtKey = "20210518-001";
 
             try
             {
@@ -790,11 +790,32 @@ namespace CashbillExample.Controllers
         public IActionResult GetPopUpURL()
         {
             // 현금영수증 문서번호
-            string mgtKey = "20190115-003";
+            string mgtKey = "20210518-003";
 
             try
             {
                 var result = _cashbillService.GetPopUpURL(corpNum, mgtKey, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 1건의 현금영수증 보기 팝업 URL을 반환합니다.
+         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetViewURL
+         */
+        public IActionResult GetViewURL()
+        {
+            // 현금영수증 문서번호
+            string mgtKey = "20210518-003";
+
+            try
+            {
+                var result = _cashbillService.GetViewURL(corpNum, mgtKey, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -810,7 +831,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetPDFURL()
         {
             // 현금영수증 문서번호
-            string mgtKey = "20190115-003";
+            string mgtKey = "20210518-003";
             try
             {
                 var result = _cashbillService.GetPDFURL(corpNum, mgtKey, userID);
@@ -830,7 +851,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetPrintURL()
         {
             // 현금영수증 문서번호
-            string mgtKey = "20190115-003";
+            string mgtKey = "20210518-003";
             try
             {
                 var result = _cashbillService.GetPrintURL(corpNum, mgtKey, userID);
@@ -851,9 +872,9 @@ namespace CashbillExample.Controllers
         {
             // 조회할 현금영수증 문서번호 배열, (최대 100건)
             List<string> MgtKeyList = new List<string>();
-            MgtKeyList.Add("20190115-003");
-            MgtKeyList.Add("20190115-002");
-            MgtKeyList.Add("20190115-001");
+            MgtKeyList.Add("20210518-003");
+            MgtKeyList.Add("20210518-002");
+            MgtKeyList.Add("20210518-001");
 
             try
             {
@@ -874,7 +895,7 @@ namespace CashbillExample.Controllers
         public IActionResult GetMailURL()
         {
             // 현금영수증 문서번호
-            string mgtKey = "20190115-003";
+            string mgtKey = "20210518-003";
             
             try
             {
@@ -916,7 +937,7 @@ namespace CashbillExample.Controllers
         public IActionResult SendEmail()
         {
             // 현금영수증 문서번호
-            string mgtKey = "20190115-003";
+            string mgtKey = "20210518-003";
 
             // 수신자 이메일주소
             string receiveEmail = "test@test.com";
@@ -941,7 +962,7 @@ namespace CashbillExample.Controllers
         public IActionResult SendSMS()
         {
             // 현금영수증 문서번호
-            string mgtKey = "20190115-003";
+            string mgtKey = "20210518-003";
 
             // 발신자 번호
             string sender = "070-4304-2991";
@@ -972,7 +993,7 @@ namespace CashbillExample.Controllers
         public IActionResult SendFAX()
         {
             // 현금영수증 문서번호
-            string mgtKey = "20190115-003";
+            string mgtKey = "20210518-003";
 
             // 발신번호
             string sender = "070-4304-2991";
@@ -1000,7 +1021,7 @@ namespace CashbillExample.Controllers
             string itemKey = "020080513514100001";
 
             // 현금영수증에 할당할 문서번호
-            string mgtKey = "20200805-100";
+            string mgtKey = "20210518-100";
 
             try
             {
