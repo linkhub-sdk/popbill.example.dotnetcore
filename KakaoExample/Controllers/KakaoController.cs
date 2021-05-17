@@ -121,6 +121,11 @@ namespace KakaoExample.Controllers
             }
         }
 
+        /*
+         * (주)카카오로 부터 승인된 알림톡 템플릿 정보를 확인합니다.
+         * - 반환항목중 템플릿코드(templateCode)는 알림톡 전송시 사용됩니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetATSTemplate
+         */
         public IActionResult GetATSTemplate()
         {
             string templateCdoe = "021010000076";
