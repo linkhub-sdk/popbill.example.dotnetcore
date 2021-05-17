@@ -2367,6 +2367,20 @@ namespace TaxinvoiceExample.Controllers
             }
         }
 
+        public IActionResult GetSendToNTSConfig()
+        {
+           
+            try
+            {
+                SendToNTSConfig config = _taxinvoiceService.GetSendToNTSConfig(corpNum);
+                return View("GetSendToNTSConfig", config);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
         #endregion
 
         #region 공인인증서 관리
