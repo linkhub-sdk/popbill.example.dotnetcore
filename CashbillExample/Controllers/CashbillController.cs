@@ -1416,11 +1416,8 @@ namespace CashbillExample.Controllers
             // 실제 거래처의 메일주소가 기재되지 않도록 주의
             contactInfo.email = "netcore@linkhub.co.kr";
 
-            // 회사조회 권한여부, true(회사조회), false(개인조회)
-            contactInfo.searchAllAllowYN = true;
-
-            // 관리자 권한여부, true(관리자), false(사용자)
-            contactInfo.mgrYN = false;
+            // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
+            contactInfo.searchRole = 1;
 
             try
             {
@@ -1497,11 +1494,8 @@ namespace CashbillExample.Controllers
             // 실제 거래처의 메일주소가 기재되지 않도록 주의
             contactInfo.email = "netcore@linkhub.co.kr";
 
-            // 회사조회 권한여부, true(회사조회), false(개인조회)
-            contactInfo.searchAllAllowYN = true;
-
-            // 관리자 권한여부, true(관리자), false(사용자)
-            contactInfo.mgrYN = false;
+            // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
+            contactInfo.searchRole = 1;
 
             try
             {
