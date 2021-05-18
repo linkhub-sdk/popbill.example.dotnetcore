@@ -27,8 +27,8 @@ public class CashbillInstance
         // 팝빌 API 서비스 고정 IP 사용여부(GA), true-사용, false-미사용, 기본값(false)
         cashbillService.UseStaticIP = false;
 
-        // 로컬 시스템시간 사용 여부, true(사용), fasle(미사용) - 기본값
-        cashbillService.UseLocalTimeYN = false;
+        // 로컬 시스템시간 사용 여부, true(사용) - 기본값, fasle(미사용)
+        cashbillService.UseLocalTimeYN = true;
     }
 }
 
