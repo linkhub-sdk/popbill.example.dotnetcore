@@ -428,6 +428,25 @@ namespace ClosedownExample.Controllers
         }
 
         /*
+        * 연동회원의 담당자 정보를 확인합니다.
+        * - https://docs.popbill.com/closedown/dotnetcore/api#GetContactInfo
+        */
+        public IActionResult GetContactInfo()
+        {
+            string contactID = "test0730";
+
+            try
+            {
+                var contactInfo = _closedownService.GetContactInfo(corpNum, contactID, userID);
+                return View("GetContactInfo", contactInfo);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
          * 연동회원의 담당자 목록을 확인합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#ListContact
          */

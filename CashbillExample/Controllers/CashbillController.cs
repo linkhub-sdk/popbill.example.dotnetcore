@@ -1434,6 +1434,25 @@ namespace CashbillExample.Controllers
         }
 
         /*
+        * 연동회원의 담당자 정보를 확인합니다.
+        * - https://docs.popbill.com/cashbill/dotnetcore/api#GetContactInfo
+        */
+        public IActionResult GetContactInfo()
+        {
+            string contactID = "test0730";
+
+            try
+            {
+                var contactInfo = _cashbillService.GetContactInfo(corpNum, contactID, userID);
+                return View("GetContactInfo", contactInfo);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
          * 연동회원의 담당자 목록을 확인합니다.
          * - https://docs.popbill.com/cashbill/dotnetcore/api#ListContact
          */
