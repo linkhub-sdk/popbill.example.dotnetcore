@@ -45,7 +45,7 @@ namespace StatementExample.Controllers
                 int itemCode = 121;
 
                 // 전자명세서 문서번호
-                string mgtKey = "20181030";
+                string mgtKey = "20210518-001";
 
                 bool result = _statementService.CheckMgtKeyInUse(corpNum, itemCode, mgtKey);
 
@@ -67,7 +67,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20200526";
+            statement.writeDate = "20210518";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -82,7 +82,7 @@ namespace StatementExample.Controllers
             statement.itemCode = 121;
 
             // [필수] 문서번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20200526-002";
+            statement.mgtKey = "20210518-CORE002";
 
 
             /**************************************************************************
@@ -130,8 +130,7 @@ namespace StatementExample.Controllers
 
             // 발신자 팩스번호 
             statement.senderFAX = "02-111-2222";
-
-
+            
             /**************************************************************************
              *                               수신자 정보                                 *
              **************************************************************************/
@@ -208,16 +207,13 @@ namespace StatementExample.Controllers
             // 문자 자동전송 여부
             statement.smssendYN = false;
 
-            // 발행시 자동승인 여부
-            statement.autoAcceptYN = false;
-
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
 
             StatementDetail detail = new StatementDetail();
 
             detail.serialNum = 1; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20190115"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20210518"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -236,7 +232,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail();
             
             detail.serialNum = 2; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20190115"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20210518"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -267,8 +263,8 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.RegistIssue(corpNum, statement, memo, userID, emailSubject);
-                return View("Response", response);
+                var STMIssueResponse = _statementService.RegistIssue(corpNum, statement, memo, userID, emailSubject);
+                return View("STMIssueResponse", STMIssueResponse);
             }
             catch (PopbillException pe)
             {
@@ -286,7 +282,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20190115";
+            statement.writeDate = "20210518";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -427,16 +423,13 @@ namespace StatementExample.Controllers
             // 문자 자동전송 여부
             statement.smssendYN = false;
 
-            // 발행시 자동승인 여부
-            statement.autoAcceptYN = false;
-
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
 
             StatementDetail detail = new StatementDetail();
 
             detail.serialNum = 1; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20190115"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20210518"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -455,7 +448,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail();
             
             detail.serialNum = 2; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20190115"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20210518"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -500,14 +493,14 @@ namespace StatementExample.Controllers
             int itemCode = 121;
 
             // 수정할 명세서 문서번호
-            string mgtKey = "20190115-002";
+            string mgtKey = "20210518-002";
 
 
             // 전자명세서 정보 객체
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20190115";
+            statement.writeDate = "20210518";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -642,16 +635,13 @@ namespace StatementExample.Controllers
             // 문자 자동전송 여부
             statement.smssendYN = false;
 
-            // 발행시 자동승인 여부
-            statement.autoAcceptYN = false;
-
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
 
             StatementDetail detail = new StatementDetail();
 
             detail.serialNum = 1; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20190115"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20210518"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명(수정)"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -670,7 +660,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail();
             
             detail.serialNum = 2; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20190115"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20210518"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -713,7 +703,7 @@ namespace StatementExample.Controllers
             int itemCode = 121;
 
             // 발행처리할 명세서 문서번호
-            string mgtKey = "20190115-001";
+            string mgtKey = "20210518-001";
 
             // 발행 메모
             string memo = "발행 메모";
@@ -739,7 +729,7 @@ namespace StatementExample.Controllers
             int itemCode = 121;
 
             // 발행취소할 명세서 문서번호
-            string mgtKey = "20190115-001";
+            string mgtKey = "20210518-001";
 
             // 발행 메모
             string memo = "발행 메모";
@@ -767,7 +757,7 @@ namespace StatementExample.Controllers
             int itemCode = 121;
 
             // 삭제처리할 명세서 문서번호
-            string mgtKey = "20190115-001";
+            string mgtKey = "20210518-001";
             
             try
             {
@@ -795,7 +785,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-001";
+            string mgtKey = "20210518-001";
 
             try
             {
@@ -819,9 +809,9 @@ namespace StatementExample.Controllers
 
             // 조회할 전자명세서 문서번호 배열, (최대 1000건)
             List<string> mgtKeyList = new List<string>();
-            mgtKeyList.Add("20190115-003");
-            mgtKeyList.Add("20190115-002");
-            mgtKeyList.Add("20190115-001");
+            mgtKeyList.Add("20210518-003");
+            mgtKeyList.Add("20210518-002");
+            mgtKeyList.Add("20210518-001");
 
             try
             {
@@ -845,7 +835,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-001";
+            string mgtKey = "20210518-001";
             try
             {
                 var response = _statementService.GetDetailInfo(corpNum, itemCode, mgtKey, userID);
@@ -867,10 +857,10 @@ namespace StatementExample.Controllers
             string DType = "W";
 
             // [필수] 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20190101";
+            string SDate = "20210518";
 
             // [필수] 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20190115";
+            string EDate = "20210518";
 
             // 전송상태값 배열, 미기재시 전체 상태조회, 상태코드(stateCode)값 3자리의 배열, 2,3번째 자리에 와일드카드 가능
             string[] State = new string[4];
@@ -917,7 +907,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-001";
+            string mgtKey = "20210518-001";
             try
             {
                 var response = _statementService.GetLogs(corpNum, itemCode, mgtKey, userID);
@@ -1141,7 +1131,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-002";
+            string mgtKey = "20210518-002";
 
             // 파일경로
             string filePath = "C:/popbill.example.dotnetcore/StatementExample/wwwroot/images/tax_image.png";
@@ -1170,7 +1160,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-002";
+            string mgtKey = "20210518-002";
 
             // 파일아이디, 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값
             string fileID = "4D3B7765-1623-4FD1-AA94-9AB624B92A66.PBF";
@@ -1199,7 +1189,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-002";
+            string mgtKey = "20210518-002";
 
             try
             {
@@ -1223,7 +1213,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-002";
+            string mgtKey = "20210518-002";
 
             // 수신자 이메일주소
             string receiver = "test@test.com";
@@ -1252,7 +1242,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-002";
+            string mgtKey = "20210518-002";
 
             // 발신번호
             string sender = "070-4304-2992";
@@ -1287,7 +1277,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-002";
+            string mgtKey = "20210518-002";
 
             // 발신번호
             string sender = "070-4304-2992";
@@ -1321,7 +1311,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // [필수], 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20190115";
+            statement.writeDate = "20210518";
 
             // [필수], {영수, 청구} 중 기재 
             statement.purposeType = "영수";
@@ -1336,7 +1326,7 @@ namespace StatementExample.Controllers
             statement.itemCode = 121;
 
             // [필수] 문서번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20190115-002";
+            statement.mgtKey = "20210518-002";
 
 
             /**************************************************************************
@@ -1462,16 +1452,13 @@ namespace StatementExample.Controllers
             // 문자 자동전송 여부
             statement.smssendYN = false;
 
-            // 발행시 자동승인 여부
-            statement.autoAcceptYN = false;
-
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
 
             StatementDetail detail = new StatementDetail
             {
                 serialNum = 1, // 일련번호 1부터 순차기재
-                purchaseDT = "20190115", // 거래일자 작성형식 yyyyMMdd
+                purchaseDT = "20210518", // 거래일자 작성형식 yyyyMMdd
                 itemName = "품목명", // 품목명
                 spec = "규격", // 규격
                 qty = "1", // 수량
@@ -1490,7 +1477,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail
             {
                 serialNum = 2, // 일련번호 1부터 순차기재
-                purchaseDT = "20190115", // 거래일자 작성형식 yyyyMMdd
+                purchaseDT = "20210518", // 거래일자 작성형식 yyyyMMdd
                 itemName = "품목명", // 품목명
                 spec = "규격", // 규격
                 qty = "1", // 수량
@@ -1541,7 +1528,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-001";
+            string mgtKey = "20210518-001";
 
             // 첨부할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int subItemCode = 121;
@@ -1572,7 +1559,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-001";
+            string mgtKey = "20210518-001";
 
             // 첨부해제할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int subItemCode = 121;
