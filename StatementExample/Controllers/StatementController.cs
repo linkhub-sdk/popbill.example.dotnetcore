@@ -1850,8 +1850,8 @@ namespace StatementExample.Controllers
             // 링크아이디
             joinInfo.LinkID = "TESTER";
 
-            // 아이디, 6자이상 50자 미만
-            joinInfo.ID = "userid_20181212";
+            // 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
+            joinInfo.Password = "asdfasdf123!@#";
 
             // 비밀번호, 6자이상 20자 미만
             joinInfo.PWD = "12341234";
@@ -1962,8 +1962,8 @@ namespace StatementExample.Controllers
             // 담당자 아이디, 6자 이상 50자 미만
             contactInfo.id = "testkorea_20181212";
 
-            // 비밀번호, 6자 이상 20자 미만
-            contactInfo.pwd = "user_password";
+            // 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
+            contactInfo.Password = "asdfasdf123!@#";
 
             // 담당자명 (최대 100자)
             contactInfo.personName = "코어담당자";
