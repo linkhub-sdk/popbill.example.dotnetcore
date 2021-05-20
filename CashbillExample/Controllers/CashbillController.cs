@@ -1436,6 +1436,7 @@ namespace CashbillExample.Controllers
         */
         public IActionResult GetContactInfo()
         {
+            // 확인할 담당자 아이디
             string contactID = "test0730";
 
             try

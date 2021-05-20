@@ -1313,7 +1313,11 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult BulkSubmit()
         {
 
+            // 제출아이디
+            // 최대 36자리 영문, 숫자, '-'조합
             string submitID = "20210514-CORE-1";
+
+            //세금계산서 객체정보 목록
             List<Taxinvoice> taxinvoiceList = new List<Taxinvoice>();
           
             for (int i = 0; i < 10; i++)
@@ -1540,7 +1544,10 @@ namespace TaxinvoiceExample.Controllers
          */
         public IActionResult GetBulkResult()
         {
+            // 초대량 발행 접수시 기재한 제출아이디
+            // 최대 36자리 영문, 숫자, '-'조합
             string submitID = "20210514-CORE-1";
+
             try
             {
                 var bulkTaxinvoiceResult = _taxinvoiceService.GetBulkResult(corpNum, submitID);
@@ -2805,6 +2812,7 @@ namespace TaxinvoiceExample.Controllers
         */
         public IActionResult GetContactInfo()
         {
+            // 확인할 담당자 아이디
             string contactID = "test0730";
 
             try
