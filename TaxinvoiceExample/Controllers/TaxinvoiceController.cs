@@ -1534,6 +1534,10 @@ namespace TaxinvoiceExample.Controllers
             }
         }
 
+        /*
+         * 초대량 발행 접수결과를 확인합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetBulkResult
+         */
         public IActionResult GetBulkResult()
         {
             string submitID = "20210514-CORE-1";

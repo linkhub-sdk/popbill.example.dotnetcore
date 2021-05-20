@@ -221,6 +221,10 @@ namespace EasyFinBankExample.Controllers
             }
         }
 
+        /*
+        * 종량제 이용시, 등록된 계좌를 삭제합니다.
+        * - https://docs.popbill.com/easyfinbank/dotnetcore/api#DeleteBankAccount
+        */
         public IActionResult DeleteBankAccount()
         {
             EasyFinBankAccountForm info = new EasyFinBankAccountForm();
