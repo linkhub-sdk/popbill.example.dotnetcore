@@ -2371,13 +2371,17 @@ namespace TaxinvoiceExample.Controllers
             }
         }
 
+        /*
+         * 팝빌 회원의 세금계산서 국세청 전송 설정을 확인합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetSendToNTSConfig
+         */
         public IActionResult GetSendToNTSConfig()
         {
            
             try
             {
-                SendToNTSConfig config = _taxinvoiceService.GetSendToNTSConfig(corpNum);
-                return View("GetSendToNTSConfig", config);
+                bool config = _taxinvoiceService.GetSendToNTSConfig(corpNum);
+                return View("result", config ? "발행 즉시 전송" : "익일 자동 전송");
             }
             catch (PopbillException pe)
             {
