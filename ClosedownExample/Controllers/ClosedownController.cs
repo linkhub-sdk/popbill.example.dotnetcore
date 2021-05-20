@@ -115,7 +115,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 연동회원 포인트 결재내역 URL을 반환합니다.
+         * 연동회원 포인트 결제내역 URL을 반환합니다.
          * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#GetPaymentURL
          */
@@ -411,7 +411,7 @@ namespace ClosedownExample.Controllers
             contactInfo.email = "netcore@linkhub.co.kr";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
-            contactInfo.searchRole = 1;
+            contactInfo.searchRole = 3;
 
             try
             {
@@ -487,7 +487,7 @@ namespace ClosedownExample.Controllers
             contactInfo.email = "netcore@linkhub.co.kr";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
-            contactInfo.searchRole = 1;
+            contactInfo.searchRole = 3;
 
             try
             {

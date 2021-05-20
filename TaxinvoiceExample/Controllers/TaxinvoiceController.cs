@@ -2373,6 +2373,7 @@ namespace TaxinvoiceExample.Controllers
 
         /*
          * 팝빌 회원의 세금계산서 국세청 전송 설정을 확인합니다.
+         * 국세청 전송 옵션 설정은 팝빌 사이트 [전자세금계산서] > [환경설정] > [세금계산서 관리] 메뉴에서 설정할 수 있으며, API로 설정은 불가능 합니다.
          * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetSendToNTSConfig
          */
         public IActionResult GetSendToNTSConfig()
@@ -2528,7 +2529,7 @@ namespace TaxinvoiceExample.Controllers
         }
 
       /*
-       * 연동회원 포인트 결재내역 URL을 반환합니다.
+       * 연동회원 포인트 결제내역 URL을 반환합니다.
        * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
        * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetPaymentURL
        */
@@ -2764,7 +2765,7 @@ namespace TaxinvoiceExample.Controllers
             Contact contactInfo = new Contact();
 
             // 담당자 아이디, 6자 이상 50자 미만
-            contactInfo.id = "testkorea_20190115";
+            contactInfo.id = "testkorea_20210165";
 
             // 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
             contactInfo.Password = "asdfasdf123!@#";
@@ -2785,7 +2786,7 @@ namespace TaxinvoiceExample.Controllers
             contactInfo.email = "netcore@linkhub.co.kr";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
-            contactInfo.searchRole = 1;
+            contactInfo.searchRole = 3;
 
             try
             {
@@ -2861,7 +2862,7 @@ namespace TaxinvoiceExample.Controllers
             contactInfo.email = "netcore@linkhub.co.kr";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
-            contactInfo.searchRole = 1;
+            contactInfo.searchRole = 3;
 
             try
             {

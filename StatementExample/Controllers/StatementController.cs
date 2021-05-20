@@ -1968,7 +1968,7 @@ namespace StatementExample.Controllers
             contactInfo.email = "netcore@linkhub.co.kr";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
-            contactInfo.searchRole = 1;
+            contactInfo.searchRole = 3;
 
             try
             {
@@ -2044,7 +2044,7 @@ namespace StatementExample.Controllers
             contactInfo.email = "netcore@linkhub.co.kr";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
-            contactInfo.searchRole = 1;
+            contactInfo.searchRole = 3;
 
             try
             {
