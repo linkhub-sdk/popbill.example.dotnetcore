@@ -1288,7 +1288,7 @@ namespace CashbillExample.Controllers
             joinInfo.ID = "userid_20181212";
 
             //// 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
-            join.Password = "asdfasdf123!@#";
+            joinInfo.Password = "asdfasdf123!@#";
 
             // 사업자번호 "-" 제외
             joinInfo.CorpNum = "0000000001";
