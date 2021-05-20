@@ -25,18 +25,18 @@
         int i = 0;
         foreach (var issueResult in Model.issueResult)
         {
-          i++; ;
+          i++;
           <fieldset class="fieldset2">
             <legend> 발행결과 확인 [ @i / @Model.issueResult.Count ]</legend>
             <ul>
-              <li>invoicerMgtKey (공급자 문서번호    ) : @issueResult.invoicerMgtKey</li>
-			  <li>invoicerMgtKey (수탁자 문서번호	) : @issueResult.invoicerMgtKey</li>
+              <li>invoicerMgtKey (공급자 문서번호) : @issueResult.invoicerMgtKey</li>
+              <li>trusteeMgtKey (수탁자 문서번호) : @issueResult.trusteeMgtKey</li>
               <li>code (응답코드) : @issueResult.code</li>
               <li>ntsconfirmNum (국세청승인번호) : @issueResult.ntsconfirmNum</li>
               <li>issueDT (발행일시) : @issueResult.issueDT</li>
             </ul>
           </fieldset>
-        }		
+        }	
       }
 		
 	</fieldset>
