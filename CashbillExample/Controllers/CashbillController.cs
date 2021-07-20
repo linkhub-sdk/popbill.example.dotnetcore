@@ -56,8 +56,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 1건의 현금영수증을 [즉시발행]합니다.
-         * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-         * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
+         * - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnetcore
          * - https://docs.popbill.com/cashbill/dotnetcore/api#RegistIssue
          */
         public IActionResult RegistIssue()
@@ -162,8 +161,6 @@ namespace CashbillExample.Controllers
         /*
          * 1건의 현금영수증을 [임시저장]합니다.
          * - [임시저장] 상태의 현금영수증은 발행(Issue API)을 호출해야만 국세청에 전송됩니다.
-         * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-         * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
          * - https://docs.popbill.com/cashbill/dotnetcore/api#Register
          */
         public IActionResult Register()
@@ -359,8 +356,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 1건의 [임시저장] 현금영수증을 [발행]합니다.
-         * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-         * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
+         * - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnetcore
          * - https://docs.popbill.com/cashbill/dotnetcore/api#CBIssue
          */
         public IActionResult Issue()
@@ -431,8 +427,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 1건의 취소현금영수증을 [즉시발행]합니다.
-         * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-         * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
+         * - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnetcore
          * - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
          * - https://docs.popbill.com/cashbill/dotnetcore/api#RevokeRegistIssue
          */
@@ -461,8 +456,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 1건의 (부분)취소현금영수증을 [즉시발행]합니다.
-         * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-         * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
+         * - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnetcore
          * - https://docs.popbill.com/cashbill/dotnetcore/api#RevokeRegistIssue
          */
         public IActionResult RevokeRegistIssue_part()
@@ -516,8 +510,6 @@ namespace CashbillExample.Controllers
         /*
          * 1건의 취소현금영수증을 [임시저장]합니다.
          * - [임시저장] 상태의 현금영수증은 발행(Issue API)을 호출해야만 국세청에 전송됩니다.
-         * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-         * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
          * - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
          * - https://docs.popbill.com/cashbill/dotnetcore/api#RevokeRegister
          */
@@ -547,8 +539,6 @@ namespace CashbillExample.Controllers
         /*
          * 1건의 (부분)취소현금영수증을 [임시저장]합니다.
          * - [임시저장] 상태의 현금영수증은 발행(Issue API)을 호출해야만 국세청에 전송됩니다.
-         * - 발행일 기준 오후 5시 이전에 발행된 현금영수증은 다음날 오후 2시에 국세청 전송결과를 확인할 수 있습니다.
-         * - 현금영수증 국세청 전송 정책에 대한 정보는 "[현금영수증 API 연동매뉴얼] > 1.3. 국세청 전송정책"을 참조하시기 바랍니다.
          * - 취소현금영수증 작성방법 안내 - http://blog.linkhub.co.kr/702
          * - https://docs.popbill.com/cashbill/dotnetcore/api#RevokeRegister
          */
