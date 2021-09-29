@@ -33,8 +33,8 @@ namespace MessageExample.Controllers
         #region 발신번호 사전등록
 
         /*
-         * 문자 발신번호 관리 팝업 URL을 반합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 발신번호를 등록하고 내역을 확인하는 문자 발신번호 관리 페이지 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetSenderNumberMgtURL
          */
         public IActionResult GetSenderNumberMgtURL()
@@ -51,7 +51,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 팝빌에 등록된 문자 발신번호 목록을 반환합니다.
+         * 팝빌에 등록한 연동회원의 문자 발신번호 목록을 확인합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetSenderNumberList
          */
         public IActionResult GetSenderNumberList()
@@ -72,8 +72,7 @@ namespace MessageExample.Controllers
         #region 문자전송
 
         /*
-         * SMS(단문)를 전송합니다.
-         * - 메시지 길이가 90 byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
+         * 최대 90byte의 단문(SMS) 메시지 1건 전송을 팝빌에 접수합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#SendSMS
          */
         public IActionResult SendSMS()
@@ -118,8 +117,9 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * [대량전송] SMS(단문)를 전송합니다.
-         *  - https://docs.popbill.com/message/dotnetcore/api#SendSMS_Multi
+         * 최대 90byte의 단문(SMS) 메시지 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
+         * - 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
+         * - https://docs.popbill.com/message/dotnetcore/api#SendSMS_Multi
          */
         public IActionResult SendSMS_Multi()
         {
@@ -172,8 +172,9 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * [동보전송] SMS(단문)를 전송합니다.
-         *  - https://docs.popbill.com/message/dotnetcore/api#SendSMS_Same
+         * 최대 90byte의 단문(SMS) 메시지 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
+         * - 모든 수신자에게 동일한 내용을 전송합니다(동보전송).
+         * - https://docs.popbill.com/message/dotnetcore/api#SendSMS_Same
          */
         public IActionResult SendSMS_Same()
         {
@@ -228,9 +229,8 @@ namespace MessageExample.Controllers
 
 
         /*
-         * LMS(장문)를 전송합니다.
-         *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
-         *  - https://docs.popbill.com/message/dotnetcore/api#SendLMS
+         * 최대 2,000byte의 장문(LMS) 메시지 1건 전송을 팝빌에 접수합니다.
+         * - https://docs.popbill.com/message/dotnetcore/api#SendLMS
          */
         public IActionResult SendLMS()
         {
@@ -277,8 +277,9 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * [대량전송] LMS(장문)를 전송합니다.
-         *  - https://docs.popbill.com/message/dotnetcore/api#SendLMS_Multi
+         * 최대 2,000byte의 장문(LMS) 메시지 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
+         * - 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
+         * - https://docs.popbill.com/message/dotnetcore/api#SendLMS_Multi
          */
         public IActionResult SendLMS_Multi()
         {
@@ -335,8 +336,9 @@ namespace MessageExample.Controllers
 
 
         /*
-         * [동보전송] LNS(장문)를 전송합니다.
-         *  - https://docs.popbill.com/message/dotnetcore/api#SendLMS_Same
+         * 최대 2,000byte의 장문(LMS) 메시지 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
+         * - 모든 수신자에게 동일한 내용을 전송합니다(동보전송).
+         * - https://docs.popbill.com/message/dotnetcore/api#SendLMS_Same
          */
         public IActionResult SendLMS_Same()
         {
@@ -394,10 +396,9 @@ namespace MessageExample.Controllers
 
 
         /*
-         * MMS(포토)를 전송합니다.
-         *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
-         *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1000px 이하 권장
-         *  - https://docs.popbill.com/message/dotnetcore/api#SendMMS
+         * 최대 2,000byte의 메시지와 이미지로 구성된 포토문자(MMS) 1건 전송을 팝빌에 접수합니다.
+         * - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG, JPG), 가로/세로 1,000px 이하 권장
+         * - https://docs.popbill.com/message/dotnetcore/api#SendMMS
          */
         public IActionResult SendMMS()
         {
@@ -447,10 +448,10 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * [대랑전송] MMS(포토)를 전송합니다.
-         *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
-         *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1000px 이하 권장
-         *  - https://docs.popbill.com/message/dotnetcore/api#SendMMS_Multi
+         * 최대 2,000byte의 메시지와 이미지로 구성된 포토문자(MMS) 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
+         * - 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
+         * - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG), 가로/세로 1,000px 이하 권장
+         * - https://docs.popbill.com/message/dotnetcore/api#SendMMS_Multi
          */
         public IActionResult SendMMS_Multi()
         {
@@ -510,10 +511,10 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * [동보전송] MMS(포토)를 전송합니다.
-         *  - 메시지 길이가 2,000Byte 이상인 경우, 길이를 초과하는 메시지 내용은 자동으로 제거됩니다.
-         *  - 이미지 파일의 크기는 최대 300Kbtye (JPEG), 가로/세로 1000px 이하 권장
-         *  - https://docs.popbill.com/message/dotnetcore/api#SendMMS_Same
+         * 최대 2,000byte의 메시지와 이미지로 구성된 포토문자(MMS) 다수건 전송을 팝빌에 접수합니다. (최대 1,000건)
+         * - 모든 수신자에게 동일한 내용을 전송합니다(동보전송).
+         * - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG), 가로/세로 1,000px 이하 권장
+         * - https://docs.popbill.com/message/dotnetcore/api#SendMMS_Same
          */
         public IActionResult SendMMS_Same()
         {
@@ -573,10 +574,8 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * XMS(단문/장문 자동인식)를 전송합니다.
-         *  - 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송합니다.
-         *  - 90byte 초과시 LMS(장문)으로 인식 합니다.
-         *  - https://docs.popbill.com/message/dotnetcore/api#SendXMS
+         * 메시지 크기(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 1건의 메시지를 전송을 팝빌에 접수합니다.
+         * - https://docs.popbill.com/message/dotnetcore/api#SendXMS
          */
         public IActionResult SendXMS()
         {
@@ -623,8 +622,9 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * [대량전송] XMS(단문/장문 자동인식)를 전송합니다.
-         *  - https://docs.popbill.com/message/dotnetcore/api#SendXMS_Multi
+         * 메시지 크기(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 다수건의 메시지 전송을 팝빌에 접수합니다. (최대 1,000건)
+         * - 수신자마다 개별 내용을 전송할 수 있습니다(대량전송).
+         * - https://docs.popbill.com/message/dotnetcore/api#SendXMS_Multi
          */
         public IActionResult SendXMS_Multi()
         {
@@ -680,8 +680,9 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * [동보전송] XMS(단문/장문 자동인식)를 전송합니다.
-         *  - https://docs.popbill.com/message/dotnetcore/api#SendXMS_Same
+         * 메시지 크기(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 다수건의 메시지 전송을 팝빌에 접수합니다. (최대 1,000건)
+         * - 모든 수신자에게 동일한 내용을 전송합니다(동보전송).
+         * - https://docs.popbill.com/message/dotnetcore/api#SendXMS_Same
          */
         public IActionResult SendXMS_Same()
         {
@@ -738,8 +739,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 문자전송요청시 발급받은 접수번호(receiptNum)로 예약문자 전송을 취소합니다.
-         * - 예약취소는 예약전송시간 10분전까지만 가능합니다.
+         * 팝빌에서 반환받은 접수번호를 통해 예약접수된 문자 메시지 전송을 취소합니다. (예약시간 10분 전까지 가능)
          * - https://docs.popbill.com/message/dotnetcore/api#CancelReserve
          */
         public IActionResult CancelReserve()
@@ -759,8 +759,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 문자전송요청시 할당한 전송요청번호(requestNum)로 예약문자 전송을 취소합니다.
-         * - 예예약취소는 예약전송시간 10분전까지만 가능합니다.
+         * 파트너가 할당한 전송요청 번호를 통해 예약접수된 문자 전송을 취소합니다. (예약시간 10분 전까지 가능)
          * - https://docs.popbill.com/message/dotnetcore/api#CancelReserveRN
          */
         public IActionResult CancelReserveRN()
@@ -784,7 +783,7 @@ namespace MessageExample.Controllers
         #region 정보확인
 
         /*
-         * 문자전송요청시 발급받은 접수번호(receiptNum)로 전송상태를 확인합니다
+         * 팝빌에서 반환받은 접수번호를 통해 문자 전송상태 및 결과를 확인합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetMessages
          */
         public IActionResult GetMessages()
@@ -804,7 +803,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 문자전송요청시 할당한 전송요청번호(requestNum)로 전송상태를 확인합니다
+         * 파트너가 할당한 전송요청 번호를 통해 문자 전송상태 및 결과를 확인합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetMessagesRN
          */
         public IActionResult GetMessagesRN()
@@ -824,7 +823,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 문자 전송내역 요약정보를 확인합니다. (최대 1000건)
+         * 문자전송에 대한 전송결과 요약정보를 확인합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetStates
          */
         public IActionResult GetStates()
@@ -846,8 +845,8 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 검색조건을 사용하여 문자전송 내역을 조회합니다.
-         * - 최대 검색기간 : 6개월 이내
+         * 검색조건에 해당하는 문자 전송내역을 조회합니다. (조회기간 단위 : 최대 2개월)
+         * 문자 접수일시로부터 6개월 이내 접수건만 조회할 수 있습니다.
          * - https://docs.popbill.com/message/dotnetcore/api#Search
          */
         public IActionResult Search()
@@ -904,8 +903,8 @@ namespace MessageExample.Controllers
 
 
         /*
-         * 문자 전송내역 팝업 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 팝빌 사이트와 동일한 문자 전송내역 확인 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetSentListURL
          */
         public IActionResult GetSentListURL()
@@ -922,7 +921,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 080 서비스 수신거부 목록을 확인합니다.
+         * 전용 080 번호에 등록된 수신거부 목록을 반환합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetAutoDenyList
          */
         public IActionResult GetAutoDenyList()
@@ -943,7 +942,8 @@ namespace MessageExample.Controllers
         #region 포인트관리 
 
         /*
-         * 연동회원 잔여포인트를 확인합니다.
+         * 연동회원의 잔여포인트를 확인합니다.
+         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetBalance 
          */
         public IActionResult GetBalance()
@@ -960,8 +960,8 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetChargeURL
          */
         public IActionResult GetChargeURL()
@@ -996,8 +996,8 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 파트너 포인트 충전 팝업 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
@@ -1016,9 +1016,9 @@ namespace MessageExample.Controllers
             }
         }
 
-        /*
-        * 연동회원 포인트 결제내역 URL을 반환합니다.
-        * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+       /*
+        * 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
+        * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
         * - https://docs.popbill.com/message/dotnetcore/api#GetPaymentURL
         */
         public IActionResult GetPaymentURL()
@@ -1036,8 +1036,8 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 연동회원 포인트 사용내역URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetUseHistoryURL
          */
         public IActionResult GetUseHistoryURL()
@@ -1055,7 +1055,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 문자서비스 전송단가를 확인합니다.
+         * 문자 전송시 과금되는 포인트 단가를 확인합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetUnitCost
          */
         public IActionResult GetUnitCost()
@@ -1075,7 +1075,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 문자서비스 API 서비스 과금정보를 확인합니다.
+         * 팝빌 문자 API 서비스 과금정보를 확인합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetChargeInfo
          */
         public IActionResult GetChargeInfo()
@@ -1099,7 +1099,7 @@ namespace MessageExample.Controllers
         #region 회원정보
 
         /*
-         * 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
+         * 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#CheckIsMember
          */
         public IActionResult CheckIsMember()
@@ -1119,7 +1119,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 팝빌 회원아이디 중복여부를 확인합니다.
+         * 사용하고자 하는 아이디의 중복여부를 확인합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#CheckID
          */
         public IActionResult CheckID()
@@ -1139,7 +1139,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 파트너의 연동회원으로 신규가입 처리합니다.
+         * 사용자를 연동회원으로 가입처리합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#JoinMember
          */
         public IActionResult JoinMember()
@@ -1200,8 +1200,8 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetAccessURL
          */
         public IActionResult GetAccessURL()
@@ -1235,7 +1235,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 연동회원의 회사정보를 수정합니다
+         * 연동회원의 회사정보를 수정합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#UpdateCorpInfo
          */
         public IActionResult UpdateCorpInfo()
@@ -1269,7 +1269,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 연동회원의 담당자를 신규로 등록합니다.
+         * 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#RegistContact
          */
         public IActionResult RegistContact()
@@ -1312,9 +1312,9 @@ namespace MessageExample.Controllers
         }
 
         /*
-        * 연동회원의 담당자 정보를 확인합니다.
-        * - https://docs.popbill.com/message/dotnetcore/api#GetContactInfo
-        */
+         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
+         * - https://docs.popbill.com/message/dotnetcore/api#GetContactInfo
+         */
         public IActionResult GetContactInfo()
         {
             // 확인할 담당자 아이디
@@ -1332,7 +1332,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 연동회원의 담당자 목록을 확인합니다.
+         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#ListContact
          */
         public IActionResult ListContact()
@@ -1349,7 +1349,7 @@ namespace MessageExample.Controllers
         }
 
         /*
-         * 연동회원의 담당자 정보를 수정합니다.
+         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#UpdateContact
          */
         public IActionResult UpdateContact()

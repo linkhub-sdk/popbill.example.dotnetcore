@@ -27,9 +27,9 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-        * 계좌조회 서비스를 이용할 은행계좌를 등록한다.
-        * - https://docs.popbill.com/easyfinbank/dotnetcore/api#RegistBankAccount
-        */
+         * 계좌조회 서비스를 이용할 계좌를 팝빌에 등록합니다.
+         * - https://docs.popbill.com/easyfinbank/dotnetcore/api#RegistBankAccount
+         */
         public IActionResult RegistBankAccount()
         {
             EasyFinBankAccountForm info = new EasyFinBankAccountForm();
@@ -87,7 +87,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 팝빌에 등록된 은행 계좌정보를 수정합니다.
+         * 팝빌에 등록된 계좌정보를 수정합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#UpdateBankAccount
          */
         public IActionResult UpdateBankAccount()
@@ -135,7 +135,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 팝빌에 등록된 은행 계좌정보를 확인합니다.
+         * 팝빌에 등록된 계좌 정보를 확인합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetBankAccountInfo
          */
         public IActionResult GetBankAccountInfo()
@@ -161,7 +161,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 팝빌에 등록된 은행계좌의 정액제 해지를 요청합니다.
+         * 계좌의 정액제 해지를 요청합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#CloseBankAccount
          */
         public IActionResult CloseBankAccount()
@@ -195,7 +195,7 @@ namespace EasyFinBankExample.Controllers
 
 
         /*
-         * 계좌 정액제 해지요청을 취소합니다.
+         * 신청한 정액제 해지요청을 취소합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#RevokeCloseBankAccount
          */
         public IActionResult RevokeCloseBankAccount()
@@ -222,26 +222,24 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-        * 종량제 이용시, 등록된 계좌를 삭제합니다.
-        * - https://docs.popbill.com/easyfinbank/dotnetcore/api#DeleteBankAccount
-        */
+         * 등록된 계좌를 삭제합니다.
+         * - 정액제가 아닌 종량제 이용 시에만 등록된 계좌를 삭제할 수 있습니다.
+         * - https://docs.popbill.com/easyfinbank/dotnetcore/api#DeleteBankAccount
+         */
         public IActionResult DeleteBankAccount()
         {
-            // 삭제할 계좌 객체 정보
-            EasyFinBankAccountForm info = new EasyFinBankAccountForm();
-
             // [필수] 은행코드
             // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
             // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
             // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
-            info.BankCode = "";
+            string BankCode = "";
 
             // [필수] 계좌번호, 하이픈('-') 제외
-            info.AccountNumber = "";
+            string AccountNumber = "";
 
             try
             {
-                var response = _easyFinBankService.DeleteBankAccount(corpNum, info, userID);
+                var response = _easyFinBankService.DeleteBankAccount(corpNum, BankCode, AccountNumber);
 
                 return View("Response", response);
             }
@@ -253,7 +251,8 @@ namespace EasyFinBankExample.Controllers
 
 
         /*
-         * 팝빌 계좌 관리 팝업 URL을 반환합니다.
+         * 계좌 등록, 수정 및 삭제할 수 있는 계좌 관리 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetBankAccountMgtURL
          */
         public IActionResult GetBankAccountMgtURL()
@@ -271,7 +270,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 팝빌에 등록된 계좌 목록을 확인합니다.
+         * 팝빌에 등록된 은행계좌 목록을 반환한다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#ListBankAccount
          */
         public IActionResult LIstBankAccount()
@@ -288,7 +287,9 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 계좌의 거래내역 수집을 요청합니다.
+         * 계좌 거래내역을 확인하기 위해 팝빌에 수집요청을 합니다. (조회기간 단위 : 최대 1개월)
+         * - 조회일로부터 최대 3개월 이전 내역까지 조회할 수 있습니다.
+         * - 반환 받은 작업아이디는 함수 호출 시점부터 1시간 동안 유효합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#RequestJob
          */
         public IActionResult RequestJob()
@@ -318,7 +319,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 수집 작업 상태를 확인합니다.
+         * RequestJob(수집 요청)를 통해 반환 받은 작업아이디의 상태를 확인합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetJobState
          */
         public IActionResult GetJobState()
@@ -338,7 +339,8 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 수집작업 목록을 확인합니다.
+         * RequestJob(수집 요청)를 통해 반환 받은 작업아이디의 목록을 확인합니다.
+         * - 수집 요청 후 1시간이 경과한 수집 요청건은 상태정보가 반환되지 않습니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#ListActiveJob
          */
         public IActionResult ListActiveJob()
@@ -355,7 +357,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 수집이 완료된 계좌의 거래내역을 조회합니다.
+         * GetJobState(수집 상태 확인)를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래 내역을 조회합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#Search
          */
         public IActionResult Search()
@@ -389,7 +391,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 수집이 완료된 거래내역의 요약정보를 조회합니다.
+         * GetJobState(수집 상태 확인)를 통해 상태 정보가 확인된 작업아이디를 활용하여 계좌 거래내역의 요약 정보를 조회합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#Summary
          */
         public IActionResult Summary()
@@ -414,7 +416,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 거래내역에 메모를 저장합니다.
+         * 한 건의 거래 내역에 메모를 저장합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#SaveMemo
          */
         public IActionResult SaveMemo()
@@ -435,7 +437,8 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 계좌조회 정액제 신청 팝업 URL을 반환합니다.
+         * 계좌조회 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetFlatRatePopUpURL
          */
         public IActionResult GetFlatRatePopUpURL()
@@ -452,7 +455,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 계좌 정액제 상태를 확인합니다.
+         * 계좌조회 정액제 서비스 상태를 확인합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetFlatRateState
          */
         public IActionResult GetFlatRateState()
@@ -474,7 +477,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
+         * 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#CheckIsMember
          */
         public IActionResult CheckIsMember()
@@ -494,7 +497,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 팝빌 회원아이디 중복여부를 확인합니다.
+         * 사용하고자 하는 아이디의 중복여부를 확인합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#CheckID
          */
         public IActionResult CheckID()
@@ -514,7 +517,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 파트너의 연동회원으로 신규가입 처리합니다.
+         * 사용자를 연동회원으로 가입처리합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#JoinMember
          */
         public IActionResult JoinMember()
@@ -574,8 +577,8 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetAccessURL
          */
         public IActionResult GetAccessURL()
@@ -643,7 +646,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 연동회원의 담당자를 신규로 등록합니다.
+         * 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#RegistContact
          */
         public IActionResult RegistContact()
@@ -686,9 +689,9 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-        * 연동회원의 담당자 정보를 확인합니다.
-        * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetContactInfo
-        */
+         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
+         * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetContactInfo
+         */
         public IActionResult GetContactInfo()
         {
             // 확인할 담당자 아이디
@@ -708,7 +711,7 @@ namespace EasyFinBankExample.Controllers
 
 
         /*
-         * 연동회원의 담당자 목록을 확인합니다.
+         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#ListContact
          */
         public IActionResult ListContact()
@@ -725,7 +728,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 연동회원의 담당자 정보를 수정합니다.
+         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#UpdateContact
          */
         public IActionResult UpdateContact()
@@ -765,7 +768,8 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 연동회원 잔여포인트를 확인합니다.
+         * 연동회원의 잔여포인트를 확인합니다.
+         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
@@ -782,8 +786,8 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetChargeURL
          */
         public IActionResult GetChargeURL()
@@ -818,8 +822,8 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 파트너 포인트 충전 팝업 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
@@ -839,8 +843,8 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-        * 연동회원 포인트 결제내역 URL을 반환합니다.
-        * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+        * 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
+        * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
         * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetPaymentURL
         */
         public IActionResult GetPaymentURL()
@@ -858,8 +862,8 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 연동회원 포인트 사용내역 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetUseHistoryURL
          */
         public IActionResult GetUseHistoryURL()
@@ -877,7 +881,7 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
-         * 홈택스연동 API 서비스 과금정보를 확인합니다.
+         * 팝빌 계좌조회 API 서비스 과금정보를 확인합니다.
          * - https://docs.popbill.com/easyfinbank/dotnetcore/api#GetChargeInfo
          */
         public IActionResult GetChargeInfo()

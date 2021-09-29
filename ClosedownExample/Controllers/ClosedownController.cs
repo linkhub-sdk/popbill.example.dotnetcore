@@ -33,7 +33,7 @@ namespace ClosedownExample.Controllers
         #region 휴폐업조회
 
         /*
-         * 1건의 사업자에 대한 휴폐업여부를 조회합니다.
+         * 사업자번호 1건에 대한 휴폐업정보를 확인합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#CheckCorpNum
          */
         public IActionResult CheckCorpNum()
@@ -53,7 +53,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 다수의 사업자에 대한 휴폐업여부를 조회합니다. (최대 1000건)
+         * 다수건의 사업자번호에 대한 휴폐업정보를 확인합니다. (최대 1,000건)
          * - https://docs.popbill.com/closedown/dotnetcore/api#CheckCorpNums
          */
         public IActionResult CheckCorpNums()
@@ -80,7 +80,8 @@ namespace ClosedownExample.Controllers
         #region 포인트관리 
 
         /*
-         * 연동회원 잔여포인트를 확인합니다.
+         * 연동회원의 잔여포인트를 확인합니다.
+         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
@@ -97,8 +98,8 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 팝빌 연동회원의 포인트충전 팝업 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#GetChargeURL
          */
         public IActionResult GetChargeURL()
@@ -115,8 +116,8 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 연동회원 포인트 결제내역 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#GetPaymentURL
          */
         public IActionResult GetPaymentURL()
@@ -134,8 +135,8 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 연동회원 포인트 사용내역 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#GetUseHistoryURL
          */
         public IActionResult GetUseHistoryURL()
@@ -171,8 +172,8 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 파트너 포인트 충전 팝업 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 파트너의 잔여포인트를 확인합니다.
+         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
@@ -192,7 +193,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 휴폐업조회 조회단가를 확인합니다.
+         * 휴폐업 조회시 과금되는 포인트 단가를 확인합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#GetUnitCost
          */
         public IActionResult GetUnitCost()
@@ -230,7 +231,7 @@ namespace ClosedownExample.Controllers
         #region 회원정보
 
         /*
-         * 해당 사업자의 파트너 연동회원 가입여부를 확인합니다.
+         * 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#CheckIsMember
          */
         public IActionResult CheckIsMember()
@@ -250,7 +251,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 팝빌 회원아이디 중복여부를 확인합니다.
+         * 사용하고자 하는 아이디의 중복여부를 확인합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#CheckID
          */
         public IActionResult CheckID()
@@ -270,7 +271,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 파트너의 연동회원으로 신규가입 처리합니다.
+         * 사용자를 연동회원으로 가입처리합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#JoinMember
          */
         public IActionResult JoinMember()
@@ -348,7 +349,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 연동회원의 회사정보를 수정합니다
+         * 연동회원의 회사정보를 수정합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#UpdateCorpInfo
          */
         public IActionResult UpdateCorpInfo()
@@ -382,7 +383,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 연동회원의 담당자를 신규로 등록합니다.
+         * 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#RegistContact
          */
         public IActionResult RegistContact()
@@ -425,9 +426,9 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-        * 연동회원의 담당자 정보를 확인합니다.
-        * - https://docs.popbill.com/closedown/dotnetcore/api#GetContactInfo
-        */
+         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
+         * - https://docs.popbill.com/closedown/dotnetcore/api#GetContactInfo
+         */
         public IActionResult GetContactInfo()
         {
             // 확인할 담당자 아이디
@@ -445,7 +446,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 연동회원의 담당자 목록을 확인합니다.
+         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#ListContact
          */
         public IActionResult ListContact()
@@ -502,8 +503,8 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 팝빌에 로그인 상태로 접근할 수 있는 팝업 URL을 반환합니다.
-         * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
+         * 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#GetAccessURL
          */
         public IActionResult GetAccessURL()
