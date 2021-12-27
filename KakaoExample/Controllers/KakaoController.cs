@@ -864,7 +864,7 @@ namespace KakaoExample.Controllers
         public IActionResult CancelReserveRN()
         {
             // 알림톡/친구톡 전송요청시 할당한 요청번호
-            string requestNum = "20190115-001";
+            string requestNum = "20211201-001";
 
             try
             {
@@ -908,7 +908,7 @@ namespace KakaoExample.Controllers
         public IActionResult GetMessagesRN()
         {
             // 알림톡/친구톡 전송요청시 할당한 요청번호
-            string requestNum = "20190115-001";
+            string requestNum = "20211201-001";
 
             try
             {
@@ -931,10 +931,10 @@ namespace KakaoExample.Controllers
         {
             // 최대 검색기한 : 6개월 이내
             // 시작일자, 날자형식(yyyyMMdd)
-            string SDate = "20190101";
+            string SDate = "20211201";
 
             // 종료일자, 날자형식(yyyyMMdd)
-            string EDate = "20190115";
+            string EDate = "20211230";
 
             // 전송상태 배열, 0-대기, 1-전송중, -2-성공, 3-대체, 4-실패, 5-취소
             string[] State = new string[6];

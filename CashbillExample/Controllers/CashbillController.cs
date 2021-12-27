@@ -393,7 +393,7 @@ namespace CashbillExample.Controllers
         public IActionResult CancelIssue()
         {
             // 발행취소할 현금영수증 문서번호
-            string mgtKey = "20190116-001";
+            string mgtKey = "20211201-001";
 
             // 메모
             string memo = "발행취소 메모";
@@ -418,7 +418,7 @@ namespace CashbillExample.Controllers
         public IActionResult Delete()
         {
             // 삭제처리할 현금영수증 문서번호
-            string mgtKey = "20190116-001";
+            string mgtKey = "20211201-001";
 
             try
             {
@@ -521,13 +521,13 @@ namespace CashbillExample.Controllers
         {
             // 현금영수증 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-101";
+            string mgtKey = "20211201-101";
 
             // 원본 현금영수증 국세청승인번호
             string orgConfirmNum = "158814020";
 
             // 원본현금영수증 거래일자 (날짜형식yyyyMMdd)
-            string orgTradeDate = "20190115";
+            string orgTradeDate = "20211201";
 
             try
             {
@@ -548,13 +548,13 @@ namespace CashbillExample.Controllers
         {
             // 현금영수증 문서번호,사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-100";
+            string mgtKey = "20211201-100";
 
             // 원본 현금영수증 국세청승인번호
             string orgConfirmNum = "158814020";
 
             // 원본현금영수증 거래일자 (날짜형식yyyyMMdd)
-            string orgTradeDate = "20190115";
+            string orgTradeDate = "20211201";
 
             // 발행 안내문자 전송여부           
             bool smssendYN = false;

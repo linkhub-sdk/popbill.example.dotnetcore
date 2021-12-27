@@ -302,10 +302,10 @@ namespace EasyFinBankExample.Controllers
             string AccountNumber = "131020538645";
 
             // 시작일자, 표시형식(yyyyMMdd)
-            string SDate = "20191101";
+            string SDate = "20211201";
 
             // 종료일자, 표시형식(yyyyMMdd)
-            string EDate = "20200108";
+            string EDate = "20211230";
 
             try
             {

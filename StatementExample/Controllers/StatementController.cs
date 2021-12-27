@@ -298,7 +298,7 @@ namespace StatementExample.Controllers
             statement.itemCode = 121;
 
             // [필수] 문서번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20190115-002";
+            statement.mgtKey = "20211201-002";
 
 
             /**************************************************************************
@@ -958,7 +958,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-001";
+            string mgtKey = "20211201-001";
 
             try
             {
@@ -982,7 +982,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-001";
+            string mgtKey = "20211201-001";
 
             try
             {
@@ -1008,7 +1008,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-001";
+            string mgtKey = "20211201-001";
 
             try
             {
@@ -1033,7 +1033,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-001";
+            string mgtKey = "20211201-001";
 
             try
             {
@@ -1058,9 +1058,9 @@ namespace StatementExample.Controllers
 
             // 조회할 전자명세서 문서번호 배열, (최대 100건)
             List<string> mgtKeyList = new List<string>();
-            mgtKeyList.Add("20190115-001");
-            mgtKeyList.Add("20190115-002");
-            mgtKeyList.Add("20190115-003");
+            mgtKeyList.Add("20211201-001");
+            mgtKeyList.Add("20211201-002");
+            mgtKeyList.Add("20211201-003");
 
             try
             {
@@ -1085,7 +1085,7 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-001";
+            string mgtKey = "20211201-001";
 
             try
             {
@@ -1542,13 +1542,13 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20210518-001";
+            string mgtKey = "20211201-001";
 
             // 첨부할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int subItemCode = 121;
 
             // 첨부할 명세서 문서번호
-            string subMgtKey = "20190115-002";
+            string subMgtKey = "20211201-002";
 
             try
             {
@@ -1573,13 +1573,13 @@ namespace StatementExample.Controllers
 
             // 명세서 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20210518-001";
+            string mgtKey = "20211201-001";
 
             // 첨부해제할 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             int subItemCode = 121;
 
             // 첨부해제할 명세서 문서번호
-            string subMgtKey = "20190115-002";
+            string subMgtKey = "20211201-002";
 
             try
             {

@@ -46,10 +46,10 @@ namespace HTTaxinvoiceExample.Controllers
             string DType = "S";
 
             // 시작일자, 표시형식(yyyyMMdd)
-            string SDate = "20190101";
+            string SDate = "20211201";
 
             // 종료일자, 표시형식(yyyyMMdd)
-            string EDate = "20190115";
+            string EDate = "20211230";
 
             try
             {

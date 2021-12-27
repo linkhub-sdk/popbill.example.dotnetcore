@@ -2266,7 +2266,7 @@ namespace TaxinvoiceExample.Controllers
             string itemKey = "018103016112000001";
 
             // 세금계산서에 할당할 문서번호
-            string mgtKey = "20190115-100";
+            string mgtKey = "20211201-100";
 
             try
             {
@@ -2642,7 +2642,7 @@ namespace TaxinvoiceExample.Controllers
             joinInfo.LinkID = "TESTER";
 
             // 아이디, 6자이상 50자 미만
-            joinInfo.ID = "userid_20190115";
+            joinInfo.ID = "userid";
 
             // 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
             joinInfo.Password = "asdfasdf123!@#";

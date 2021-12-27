@@ -765,7 +765,7 @@ namespace MessageExample.Controllers
         public IActionResult CancelReserveRN()
         {
             // 문자 전송요청시 할당한 요청번호
-            string requestNum = "20190115-001";
+            string requestNum = "20211201-001";
 
             try
             {
@@ -809,7 +809,7 @@ namespace MessageExample.Controllers
         public IActionResult GetMessagesRN()
         {
             // 문자 전송요청시 할당한 요청번호
-            string requestNum = "20190115-001";
+            string requestNum = "20211201-001";
 
             try
             {
@@ -853,10 +853,10 @@ namespace MessageExample.Controllers
         {
             // 최대 검색기간 : 6개월 이내
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20190101";
+            string SDate = "20211201";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20190115";
+            string EDate = "20211230";
 
             // 전송상태 배열, 1-대기, 2-성공, 3-실패, 4-취소
             string[] State = new string[4];
