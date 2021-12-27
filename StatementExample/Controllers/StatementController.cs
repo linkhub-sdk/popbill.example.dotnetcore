@@ -1121,6 +1121,24 @@ namespace StatementExample.Controllers
         }
 
         /*
+         * 전자명세서에 첨부할 인감, 사업자등록증, 통장사본을 등록하는 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetSealURL
+         */
+        public IActionResult GetSealURL()
+        {
+            try
+            {
+                var result = _statementService.GetSealURL(corpNum, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
          * "임시저장" 상태의 명세서에 1개의 파일을 첨부합니다. (최대 5개)
          * - https://docs.popbill.com/statement/dotnetcore/api#AttachFile
          */
