@@ -67,7 +67,7 @@ namespace CashbillExample.Controllers
 
             // [필수] 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            cashbill.mgtKey = "20200526-002";
+            cashbill.mgtKey = "20211227-CORE001";
 
             // [취소거래시 필수] 원본 현금영수증 국세청승인번호
             cashbill.orgConfirmNum = "";
@@ -101,6 +101,9 @@ namespace CashbillExample.Controllers
 
             // [필수] 가맹점 사업자번호
             cashbill.franchiseCorpNum = corpNum;
+
+            // 가맹점 종사업장 식별번호
+            cashbill.franchiseTaxRegID = "";
 
             // 가맹점 상호
             cashbill.franchiseCorpName = "가맹점 상호";
@@ -205,6 +208,9 @@ namespace CashbillExample.Controllers
             // [필수] 가맹점 사업자번호
             cashbill.franchiseCorpNum = corpNum;
 
+            // 가맹점 종사업장 식별번호
+            cashbill.franchiseTaxRegID = "";
+
             // 가맹점 상호
             cashbill.franchiseCorpName = "가맹점 상호";
 
@@ -264,7 +270,7 @@ namespace CashbillExample.Controllers
         public IActionResult Update()
         {
             // 수정할 현금영수증 문서번호
-            string mgtKey = "20190116-002";
+            string mgtKey = "20211222-002";
 
             // 현금영수증 정보 객체 
             Cashbill cashbill = new Cashbill();
@@ -301,6 +307,9 @@ namespace CashbillExample.Controllers
 
             // [필수] 가맹점 사업자번호
             cashbill.franchiseCorpNum = corpNum;
+
+            // 가맹점 종사업장 식별번호
+            cashbill.franchiseTaxRegID = "";
 
             // 가맹점 상호
             cashbill.franchiseCorpName = "가맹점 상호";
@@ -657,10 +666,10 @@ namespace CashbillExample.Controllers
             string DType = "T";
 
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20210518";
+            string SDate = "20211201";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20210518";
+            string EDate = "20211220";
 
             // 상태코드 배열, 미기재시 전체 상태조회, 상태코드(stateCode)값 3자리의 배열, 2,3번째 자리에 와일드카드 가능
             // - 상태코드에 대한 자세한 사항은 "[현금영수증 API 연동매뉴얼] > 5.1 현금영수증 상태코드" 를 참조하시기 바랍니다. 
@@ -702,10 +711,13 @@ namespace CashbillExample.Controllers
             // 식별번호 조회, 공백시 전체조회
             string QString = "";
 
+            // 가맹점 종사업장 번호, 다수건 검색시 콤마(",")로 구분. 예) 1234,1000
+            string FranchiseTaxRegID = "";
+
             try
             {
                 var response = _cashbillService.Search(corpNum, DType, SDate, EDate, State, TradeType, TradeUsage,
-                    TradeOpt, TaxationType, Page, PerPage, Order, QString, userID);
+                    TradeOpt, TaxationType, Page, PerPage, Order, QString, userID, FranchiseTaxRegID);
                 return View("Search", response);
             }
             catch (PopbillException pe)
