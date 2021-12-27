@@ -67,7 +67,7 @@ namespace CashbillExample.Controllers
 
             // [필수] 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            cashbill.mgtKey = "20211227-CORE001";
+            cashbill.mgtKey = "20211227-CORE002";
 
             // [취소거래시 필수] 원본 현금영수증 국세청승인번호
             cashbill.orgConfirmNum = "";
@@ -154,7 +154,7 @@ namespace CashbillExample.Controllers
             try
             {
                 var response = _cashbillService.RegistIssue(corpNum, cashbill, memo, userID, emailSubject);
-                return View("Response", response);
+                return View("IssueResponse", response);
             }
             catch (PopbillException pe)
             {
@@ -173,7 +173,7 @@ namespace CashbillExample.Controllers
 
             // [필수] 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            cashbill.mgtKey = "20190116-002";
+            cashbill.mgtKey = "20211227-CoreR001";
 
             // [취소거래시 필수] 원본 현금영수증 국세청승인번호
             cashbill.orgConfirmNum = "";
@@ -209,7 +209,7 @@ namespace CashbillExample.Controllers
             cashbill.franchiseCorpNum = corpNum;
 
             // 가맹점 종사업장 식별번호
-            cashbill.franchiseTaxRegID = "";
+            cashbill.franchiseTaxRegID = "0001";
 
             // 가맹점 상호
             cashbill.franchiseCorpName = "가맹점 상호";
@@ -369,7 +369,7 @@ namespace CashbillExample.Controllers
         public IActionResult Issue()
         {
             // 발행처리할 현금영수증 문서번호
-            string mgtKey = "20190116-002";
+            string mgtKey = "20211227-CoreR001";
 
             // 메모
             string memo = "발행 메모";
@@ -377,7 +377,7 @@ namespace CashbillExample.Controllers
             try
             {
                 var response = _cashbillService.Issue(corpNum, mgtKey, memo, userID);
-                return View("Response", response);
+                return View("IssueResponse", response);
             }
             catch (PopbillException pe)
             {
@@ -440,18 +440,18 @@ namespace CashbillExample.Controllers
         {
             // 현금영수증 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-003";
+            string mgtKey = "20211227-Revoke001";
 
             // 원본 현금영수증 국세청승인번호
-            string orgConfirmNum = "158814020";
+            string orgConfirmNum = "TB0000015";
 
             // 원본현금영수증 거래일자 (날짜형식yyyyMMdd)
-            string orgTradeDate = "20170711";
+            string orgTradeDate = "20211224";
 
             try
             {
                 var response = _cashbillService.RevokeRegistIssue(corpNum, mgtKey, orgConfirmNum, orgTradeDate);
-                return View("Response", response);
+                return View("IssueResponse", response);
             }
             catch (PopbillException pe)
             {
@@ -469,13 +469,13 @@ namespace CashbillExample.Controllers
         {
             // 현금영수증 문서번호, 사업자별로 중복되지 않도록 문서번호 할당
             // 1~24자리 영문,숫자,'-','_' 조합 구성
-            string mgtKey = "20190115-003";
+            string mgtKey = "20211227-Revoke002";
 
             // 원본 현금영수증 국세청승인번호
-            string orgConfirmNum = "158814020";
+            string orgConfirmNum = "TB0000015";
 
             // 원본현금영수증 거래일자 (날짜형식yyyyMMdd)
-            string orgTradeDate = "20190115";
+            string orgTradeDate = "20211224";
 
             // 발행 안내문자 전송여부           
             bool smssendYN = false;
@@ -505,7 +505,7 @@ namespace CashbillExample.Controllers
             {
                 var response = _cashbillService.RevokeRegistIssue(corpNum, mgtKey, orgConfirmNum, orgTradeDate,
                     smssendYN, memo, isPartCancel, cancelType, totalAmount, supplyCost, tax, serviceFee, userID);
-                return View("Response", response);
+                return View("IssueResponse", response);
             }
             catch (PopbillException pe)
             {

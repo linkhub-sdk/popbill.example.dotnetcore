@@ -16,4 +16,10 @@
         <Folder Include="wwwroot\lib" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Update="Views\Cashbill\IssueResponse.cshtml">
+        <Pack>$(IncludeRazorContentInPack)</Pack>
+      </Content>
+    </ItemGroup>
+
 </Project>
