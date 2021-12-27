@@ -44,11 +44,42 @@ namespace AccountCheckExample.Controllers
                 string bankCode = "0004";
 
                 // 계좌번호
-                string accountNumber = "94324511758";
+                string accountNumber = "94322311758";
 
 
                 var response = _accountCheckService.CheckAccountInfo(corpNum, bankCode, accountNumber);
                 return View("CheckAccountInfo", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 1건의 예금주실명을 조회합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#CheckDepositorInfo
+         */
+        public IActionResult CheckDepositorInfo()
+        {
+            try
+            {
+                // 기관코드
+                string bankCode = "0004";
+
+                // 계좌번호
+                string accountNumber = "9432451323";
+
+                // 등록번호 유형, P-개인, B-사업자
+                string identityNumType = "P";
+
+                // 등록번호
+                // └ 등록번호 유형 값이 "B"인 경우 사업자번호(10 자리)입력 ('-' 제외)
+                // └ 등록번호 유형 값이 "P"인 경우 생년월일(6 자리) 입력 (형식 : YYMMDD)
+                string identityNum = "941219";
+
+                var response = _accountCheckService.CheckDepositorInfo(corpNum, bankCode, accountNumber, identityNumType, identityNum, userID);
+                return View("CheckDepositorInfo", response);
             }
             catch (PopbillException pe)
             {
@@ -175,9 +206,12 @@ namespace AccountCheckExample.Controllers
          */
         public IActionResult GetUnitCost()
         {
+            // 서비스 유형, 성명 / 실명 중 택 1
+            string serviceType = "실명";
+
             try
             {
-                var result = _accountCheckService.GetUnitCost(corpNum);
+                var result = _accountCheckService.GetUnitCost(corpNum, serviceType, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -192,9 +226,12 @@ namespace AccountCheckExample.Controllers
          */
         public IActionResult GetChargeInfo()
         {
+            // 서비스 유형, 성명 / 실명 중 택 1
+            string serviceType = "실명";
+
             try
             {
-                var response = _accountCheckService.GetChargeInfo(corpNum);
+                var response = _accountCheckService.GetChargeInfo(corpNum, userID, serviceType);
                 return View("GetChargeInfo", response);
             }
             catch (PopbillException pe)
