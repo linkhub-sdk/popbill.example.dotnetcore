@@ -1,22 +1,22 @@
 ﻿@{
-	ViewBag.Title = "GetFlatRateState (정액제 서비스 상태 확인)";
+    ViewBag.Title = "GetFlatRateState (정액제 서비스 상태 확인)";
 }
 
 <div id="content">
-	<p class="heading1">Response</p>
-	<br />
-	<fieldset class="fieldset1">
-		<legend>@ViewData["Title"]</legend>
-		<ul>
-			<li>referenceID(계좌아아디) : @Model.referenceID </li>
-			<li>contractDT(정액제 서비스 시작일시) : @Model.contractDT </li>
-			<li>useEndDate(정액제 서비스 종료일) : @Model.useEndDate </li>
-			<li>baseDate(자동연장 결제일) : @Model.baseDate </li>
-			<li>state(정액제 서비스 상태 1-사용 / 2-해지) : @Model.state </li>
-			<li>closeRequestYN(정액제 서비스 해지신청 여부) : @Model.closeRequestYN </li>
-			<li>useRestrictYN(정액제 서비스 사용제한 여부) : @Model.useRestrictYN </li>
-			<li>closeOnExpired(정액제 서비스 만료 시 해지 여부) : @Model.closeOnExpired </li>
-			<li>unPaidYN(미수금 보유 여부) : @Model.unPaidYN </li>
-		</ul>
-	</fieldset>
+    <p class="heading1">Response</p>
+    <br />
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>referenceID(계좌아아디) : @Model.referenceID </li>
+            <li>contractDT(정액제 서비스 시작일시) : @Model.contractDT </li>
+            <li>useEndDate(정액제 서비스 종료일) : @Model.useEndDate </li>
+            <li>baseDate(자동연장 결제일) : @Model.baseDate </li>
+            <li>state(정액제 서비스 상태 1-사용 / 2-해지) : @Model.state </li>
+            <li>closeRequestYN(정액제 서비스 해지신청 여부) : @Model.closeRequestYN </li>
+            <li>useRestrictYN(정액제 서비스 사용제한 여부) : @Model.useRestrictYN </li>
+            <li>closeOnExpired(정액제 서비스 만료 시 해지 여부) : @Model.closeOnExpired </li>
+            <li>unPaidYN(미수금 보유 여부) : @Model.unPaidYN </li>
+        </ul>
+    </fieldset>
 </div>

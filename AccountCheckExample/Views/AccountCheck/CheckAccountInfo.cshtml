@@ -1,19 +1,19 @@
 ﻿@{ 
-	ViewBag.Title = " CheckAccountInfo (예금주성명 조회)";
+    ViewBag.Title = " CheckAccountInfo (예금주성명 조회)";
 }
 
-	<div id="content">
-		<p class="heading1">Response</p>
-		<br />
-		<fieldset class="fieldset1">
-			<legend>@ViewData["Title"]</legend>
-			<ul>
-				<li>bankCode (기관코드) : @Model.bankCode</li>
-				<li>accountNumber (계좌번호) : @Model.accountNumber</li>
-				<li>accountName (예금주 성명) : @Model.accountName</li>
-				<li>checkDate (확인일시) : @Model.checkDate</li>
-				<li>result (응답코드) : @Model.result</li>
-				<li>resultMessage (응답메시지) : @Model.resultMessage</li>
-			</ul>
-		</fieldset>
-	</div>
+    <div id="content">
+        <p class="heading1">Response</p>
+        <br />
+        <fieldset class="fieldset1">
+            <legend>@ViewData["Title"]</legend>
+            <ul>
+                <li>bankCode (기관코드) : @Model.bankCode</li>
+                <li>accountNumber (계좌번호) : @Model.accountNumber</li>
+                <li>accountName (예금주 성명) : @Model.accountName</li>
+                <li>checkDate (확인일시) : @Model.checkDate</li>
+                <li>result (응답코드) : @Model.result</li>
+                <li>resultMessage (응답메시지) : @Model.resultMessage</li>
+            </ul>
+        </fieldset>
+    </div>
