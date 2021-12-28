@@ -672,7 +672,6 @@ namespace CashbillExample.Controllers
             string EDate = "20211220";
 
             // 상태코드 배열, 미기재시 전체 상태조회, 상태코드(stateCode)값 3자리의 배열, 2,3번째 자리에 와일드카드 가능
-            // - 상태코드에 대한 자세한 사항은 "[현금영수증 API 연동매뉴얼] > 5.1 현금영수증 상태코드" 를 참조하시기 바랍니다. 
             string[] State = new string[3];
             State[0] = "1**";
             State[1] = "3**";
