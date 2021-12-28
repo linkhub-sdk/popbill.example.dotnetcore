@@ -209,7 +209,7 @@ namespace CashbillExample.Controllers
             cashbill.franchiseCorpNum = corpNum;
 
             // 가맹점 종사업장 식별번호
-            cashbill.franchiseTaxRegID = "0001";
+            cashbill.franchiseTaxRegID = "";
 
             // 가맹점 상호
             cashbill.franchiseCorpName = "가맹점 상호";
