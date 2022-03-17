@@ -169,7 +169,7 @@ namespace CashbillExample.Controllers
         public IActionResult BulkSubmit()
         {
             // 제출아이디
-            string submitID = "NETCOREBULK003";
+            string submitID = "NETCOREBULK001";
 
             // 현금영수증 객체정보 목록
             List<Cashbill> cashbillList = new List<Cashbill>();
