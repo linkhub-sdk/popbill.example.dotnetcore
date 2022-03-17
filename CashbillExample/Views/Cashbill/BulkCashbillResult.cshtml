@@ -1,0 +1,42 @@
+﻿@{
+	ViewBag.Title = "BulkCashbillResult";
+}
+
+<div id="content">
+	<p class="heading1">Response</p>
+	<br />
+	<fieldset class="fieldset1">
+		<legend>@ViewData["Title"]</legend>
+		<ul>
+			<li>code (응답코드) : @Model.code</li>
+			<li>message (응답메시지) : @Model.message</li>
+			<li>submitID (제출아이디) : @Model.submitID</li>
+			<li>submitCount (현금영수증 접수 건수) : @Model.submitCount</li>
+			<li>successCount (현금영수증 발행 성공 건수) : @Model.successCount</li>
+			<li>failCount (현금영수증 발행 실패 건수) : @Model.failCount</li>
+			<li>txState (접수상태코드) : @Model.txState</li>
+			<li>txResultCode (접수 결과코드) : @Model.txResultCode</li>
+			<li>txStartDT (발행처리 시작일시) : @Model.txStartDT</li>
+			<li>txEndDT (발행처리 완료일시) : @Model.txEndDT</li>
+			<li>receiptDT (접수일시) : @Model.receiptDT</li>
+			<li>receiptID (접수아이디) : @Model.receiptID</li>
+		</ul>
+		@{
+			int i = 0;
+			foreach (var issueResult in Model.issueResult)
+			{
+				i++;
+				<fieldset class="fieldset2">
+					<legend> 발행결과 확인 [ @i / @Model.issueResult.Count ]</legend>
+					<ul>
+						<li>mgtKey (문서번호) : @issueResult.mgtKey</li>
+						<li>code (응답코드) : @issueResult.code</li>
+						<li>confirmNum (국세청승인번호) : @issueResult.confirmNum</li>
+						<li>tradeDate (거래일자) : @issueResult.tradeDate</li>
+					</ul>
+				</fieldset>
+			}
+		}
+
+	</fieldset>
+</div>
