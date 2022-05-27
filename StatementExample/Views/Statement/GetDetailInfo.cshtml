@@ -50,6 +50,10 @@
             <li> receiverHP(수신자 휴대전화) : @Model.receiverHP</li>
             <li> receiverEmail(수신자 이메일주소) : @Model.receiverEmail</li>
             <li> receiverFAX(수신자 팩스번호) : @Model.receiverFAX</li>
+                        
+            <li> businessLicenseYN (사업자등록증 첨부) : @Model.businessLicenseYN</li>
+            <li> bankBookYN (통장사본 첨부) : @Model.bankBookYN</li>
+            <li> smssendYN (문자 자동전송 여부) : @Model.smssendYN</li>
 
             @{
                 int i = 0;
@@ -78,10 +82,6 @@
                 }
             }
             
-            <li> businessLicenseYN (사업자등록증 첨부) : @Model.businessLicenseYN</li>
-            <li> bankBookYN (통장사본 첨부) : @Model.bankBookYN</li>
-            <li> smssendYN (문자 자동전송 여부) : @Model.smssendYN</li>
-            <li> autoAcceptYN (발행시 자동승인 여부) : @Model.autoAcceptYN</li>
         </ul>
     </fieldset>
 </div>

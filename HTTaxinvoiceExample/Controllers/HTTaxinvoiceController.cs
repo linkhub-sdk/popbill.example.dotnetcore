@@ -34,7 +34,7 @@ namespace HTTaxinvoiceExample.Controllers
 
         /*
          * 홈택스에 신고된 전자세금계산서 매입/매출 내역 수집을 팝빌에 요청합니다. (조회기간 단위 : 최대 3개월)
-         * - 수집 요청후 반환받은 작업아이디(JobID)의 유효시간은 1시간 입니다.
+         * - 주기적으로 자체 DB에 세금계산서 정보를 INSERT 하는 경우, 조회할 일자 유형(DType) 값을 "S"로 하는 것을 권장합니다.
          * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#RequestJob
          */
         public IActionResult RequestJob()
@@ -46,10 +46,10 @@ namespace HTTaxinvoiceExample.Controllers
             string DType = "S";
 
             // 시작일자, 표시형식(yyyyMMdd)
-            string SDate = "20211201";
+            string SDate = "20220501";
 
             // 종료일자, 표시형식(yyyyMMdd)
-            string EDate = "20211230";
+            string EDate = "20220527";
 
             try
             {
@@ -63,7 +63,13 @@ namespace HTTaxinvoiceExample.Controllers
         }
 
         /*
-         * 함수 RequestJob(수집 요청)를 통해 반환 받은 작업 아이디의 상태를 확인합니다.
+         * 수집 요청(RequestJob API) 함수를 통해 반환 받은 작업 아이디의 상태를 확인합니다.
+         * - 수집 결과 조회(Search API) 함수 또는 수집 결과 요약 정보 조회(Summary API) 함수를 사용하기 전에
+         *   수집 작업의 진행 상태, 수집 작업의 성공 여부를 확인해야 합니다.
+         * - 작업 상태(jobState) = 3(완료)이고 수집 결과 코드(errorCode) = 1(수집성공)이면
+         *   수집 결과 내역 조회(Search) 또는 수집 결과 요약 정보 조회(Summary)를 해야합니다.
+         * - 작업 상태(jobState)가 3(완료)이지만 수집 결과 코드(errorCode)가 1(수집성공)이 아닌 경우에는
+         *   오류메시지(errorReason)로 수집 실패에 대한 원인을 파악할 수 있습니다.
          * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetJobState
          */
         public IActionResult GetJobState()
@@ -113,34 +119,46 @@ namespace HTTaxinvoiceExample.Controllers
             // 수집 요청(requestJob API)시 반환반은 작업아이디(jobID)
             string jobID = "018120517000000006";
 
-            // 문서형태 배열, N-일반 전자세금계산서, M-수정 전자세금계산서
+            // 문서형태 배열 ("N" 와 "M" 중 선택, 다중 선택 가능)
+            // └ N = 일반 , M = 수정
+            // - 미입력 시 전체조회
             string[] Type = {"N", "M"};
 
-            // 과세형태, T-과세, N-면세, Z-영세 
+            // 과세형태 배열 ("T" , "N" , "Z" 중 선택, 다중 선택 가능)
+            // └ T = 과세, N = 면세, Z = 영세
+            // - 미입력 시 전체조회
             string[] TaxType = {"T", "N", "Z"};
 
-            // 영수/청구, R-영수, C-청구, N-없음
+            // 발행목적 배열 ("R", "C", "N" 중 선택, 다중 선택 가능)
+            // └ R = 영수, C = 청구, N = 없음
+            // - 미입력 시 전체조회
             string[] PurposeType = {"R", "C", "N"};
 
-            // 종사업장유무, 공백-전체조회, 0-종사업장번호 없는 경우 조회, 1-종사업장번호 조건에 따라 조회
+            // 종사업장번호 유무 (null , "0" , "1" 중 택 1)
+            // - null = 전체조회 , 0 = 없음, 1 = 있음
             string TaxRegIDYN = "";
 
-            // 종사업장번호 사업자 유형, S-공급자, B-공급받는자, T-수탁자
+            // 종사업장번호의 주체 ("S" , "B" , "T" 중 택 1)
+            // - S = 공급자 , B = 공급받는자 , T = 수탁자
             string TaxRegIDType = "S";
 
-            // 종사업장번호, 콤마(",")로 구분하여 구성 ex) "0001,1234"
+            // 종사업장번호
+            // - 다수기재 시 콤마(",")로 구분. ex) "0001,0002"
+            // - 미입력 시 전체조회
             string TaxRegID = "";
 
             // 페이지 번호, 기본값 '1'
             int Page = 1;
 
-            // 페이지당 검색개수, 기본값 '500', 최대 '1000' 
+            // 페이지당 검색개수, 기본값 '500', 최대 '1000'
             int PerPage = 30;
 
             // 정렬방향, A-오름차순, D-내림차순
             string Order = "D";
 
-            // 조회검색어, 거래처명 또는 사업자번호 , like 검색 %keyworkd%
+            // 거래처 상호 / 사업자번호 (사업자) / 주민등록번호 (개인) / "9999999999999" (외국인) 중 검색하고자 하는 정보 입력
+            // - 사업자번호 / 주민등록번호는 하이픈('-')을 제외한 숫자만 입력
+            // - 미입력시 전체조회
             string SearchString = "";
 
             try
@@ -156,7 +174,8 @@ namespace HTTaxinvoiceExample.Controllers
         }
 
         /*
-         * 함수 GetJobState(수집 상태 확인)를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 전자세금계산서 매입/매출 내역의 요약 정보를 조회합니다.
+         * 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 전자세금계산서 매입/매출 내역의 요약 정보를 조회합니다.
+         * - 요약 정보 : 전자세금계산서 수집 건수, 공급가액 합계, 세액 합계, 합계 금액
          * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#Summary
          */
         public IActionResult Summary()
@@ -164,25 +183,37 @@ namespace HTTaxinvoiceExample.Controllers
             // 수집 요청(requestJob API)시 반환반은 작업아이디(jobID)
             string jobID = "018120517000000006";
 
-            // 문서형태 배열, N-일반 전자세금계산서, M-수정 전자세금계산서
+            // 문서형태 배열 ("N" 와 "M" 중 선택, 다중 선택 가능)
+            // └ N = 일반 , M = 수정
+            // - 미입력 시 전체조회
             string[] Type = {"N", "M"};
 
-            // 과세형태, T-과세, N-면세, Z-영세 
+            // 과세형태 배열 ("T" , "N" , "Z" 중 선택, 다중 선택 가능)
+            // └ T = 과세, N = 면세, Z = 영세
+            // - 미입력 시 전체조회
             string[] TaxType = {"T", "N", "Z"};
 
-            // 영수/청구, R-영수, C-청구, N-없음
+            // 발행목적 배열 ("R" , "C", "N" 중 선택, 다중 선택 가능)
+            // └ R = 영수, C = 청구, N = 없음
+            // - 미입력 시 전체조회
             string[] PurposeType = {"R", "C", "N"};
 
-            // 종사업장유무, 공백-전체조회 0-종사업장번호 없는 경우 조회, 1-종사업장번호 조건에 따라 조회
+            // 종사업장번호 유무 (null , "0" , "1" 중 택 1)
+            // - null = 전체조회 , 0 = 없음, 1 = 있음
             string TaxRegIDYN = "";
 
-            // 종사업장번호 사업자 유형, S-공급자, B-공급받는자, T-수탁자
+            // 종사업장번호의 주체 ("S" , "B" , "T" 중 택 1)
+            // - S = 공급자 , B = 공급받는자 , T = 수탁자
             string TaxRegIDType = "S";
 
-            // 종사업장번호, 콤마(",")로 구분하여 구성 ex) "0001,1234"
+            // 종사업장번호
+            // - 다수기재 시 콤마(",")로 구분. ex) "0001,0002"
+            // - 미입력 시 전체조회
             string TaxRegID = "";
 
-            // 조회검색어, 거래처명 또는 사업자번호 , like 검색 %keyworkd%
+            // 거래처 상호 / 사업자번호 (사업자) / 주민등록번호 (개인) / "9999999999999" (외국인) 중 검색하고자 하는 정보 입력
+            // - 사업자번호 / 주민등록번호는 하이픈('-')을 제외한 숫자만 입력
+            // - 미입력시 전체조회
             string SearchString = "";
 
             try
@@ -259,10 +290,10 @@ namespace HTTaxinvoiceExample.Controllers
         }
 
         /*
-        * 홈택스 전자세금계산서 인쇄 팝업 URL을 반환합니다.
-        * - 반환된 URL은 보안정책에 따라 30초의 유효시간을 갖습니다.
-        * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetPrintURL
-        */
+         * 수집된 전자세금계산서 1건의 상세내역을 인쇄하는 페이지의 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetPrintURL
+         */
         public IActionResult GetPrintURL()
         {
             // 조회할 전자세금계산서 국세청 승인번호
@@ -285,7 +316,6 @@ namespace HTTaxinvoiceExample.Controllers
 
         /*
          * 홈택스연동 인증정보를 관리하는 페이지의 팝업 URL을 반환합니다.
-         * - 인증방식에는 부서사용자/공인인증서 인증 방식이 있습니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetCertificatePopUpURL
          */
@@ -303,7 +333,7 @@ namespace HTTaxinvoiceExample.Controllers
         }
 
         /*
-         * 홈택스연동 인증을 위해 팝빌에 등록된 인증서 만료일자를 확인합니다.
+         * 팝빌에 등록된 인증서 만료일자를 확인합니다.
          * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetCertificateExpireDate
          */
         public IActionResult GetCertificateExpireDate()
@@ -311,7 +341,7 @@ namespace HTTaxinvoiceExample.Controllers
             try
             {
                 var result = _htTaxinvoiceService.GetCertificateExpireDate(corpNum, userID);
-                
+
                 return View("Result", result.ToString("yyyyMMddHHmmss"));
             }
             catch (PopbillException pe)
@@ -416,8 +446,43 @@ namespace HTTaxinvoiceExample.Controllers
         #region 포인트관리 / 정액제신청
 
         /*
+         * 홈택스연동 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetFlatRatePopUpURL
+         */
+        public IActionResult GetFlatRatePopUpURL()
+        {
+            try
+            {
+                var result = _htTaxinvoiceService.GetFlatRatePopUpURL(corpNum);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 홈택스연동 정액제 서비스 상태를 확인합니다.
+         * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetFlatRateState
+         */
+        public IActionResult GetFlatRateState()
+        {
+            try
+            {
+                var response = _htTaxinvoiceService.GetFlatRateState(corpNum);
+                return View("GetFlatRateState", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
          * 연동회원의 잔여포인트를 확인합니다.
-         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
+         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
          * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
@@ -443,45 +508,6 @@ namespace HTTaxinvoiceExample.Controllers
             try
             {
                 var result = _htTaxinvoiceService.GetChargeURL(corpNum, userID);
-                return View("Result", result);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 파트너의 잔여포인트를 확인합니다.
-         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
-         * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetPartnerBalance
-         */
-        public IActionResult GetPartnerBalance()
-        {
-            try
-            {
-                var result = _htTaxinvoiceService.GetPartnerBalance(corpNum);
-                return View("Result", result);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetPartnerURL
-         */
-        public IActionResult GetPartnerURL()
-        {
-            // CHRG 포인트충전 URL
-            string TOGO = "CHRG";
-
-            try
-            {
-                var result = _htTaxinvoiceService.GetPartnerURL(corpNum, TOGO);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -529,6 +555,45 @@ namespace HTTaxinvoiceExample.Controllers
         }
 
         /*
+         * 파트너의 잔여포인트를 확인합니다.
+         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
+         * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetPartnerBalance
+         */
+        public IActionResult GetPartnerBalance()
+        {
+            try
+            {
+                var result = _htTaxinvoiceService.GetPartnerBalance(corpNum);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetPartnerURL
+         */
+        public IActionResult GetPartnerURL()
+        {
+            // CHRG 포인트충전 URL
+            string TOGO = "CHRG";
+
+            try
+            {
+                var result = _htTaxinvoiceService.GetPartnerURL(corpNum, TOGO);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
          * 팝빌 홈택스연동(세금) API 서비스 과금정보를 확인합니다.
          * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetChargeInfo
          */
@@ -544,42 +609,6 @@ namespace HTTaxinvoiceExample.Controllers
                 return View("Exception", pe);
             }
         }
-
-        /*
-         * 홈택스연동 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetFlatRatePopUpURL
-         */
-        public IActionResult GetFlatRatePopUpURL()
-        {
-            try
-            {
-                var result = _htTaxinvoiceService.GetFlatRatePopUpURL(corpNum);
-                return View("Result", result);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 홈택스연동 정액제 서비스 상태를 확인합니다.
-         * - https://docs.popbill.com/httaxinvoice/dotnetcore/api#GetFlatRateState
-         */
-        public IActionResult GetFlatRateState()
-        {
-            try
-            {
-                var response = _htTaxinvoiceService.GetFlatRateState(corpNum);
-                return View("GetFlatRateState", response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
         #endregion
 
         #region 회원정보
@@ -663,16 +692,11 @@ namespace HTTaxinvoiceExample.Controllers
             joinInfo.ContactName = "담당자명";
 
             // 담당자 이메일주소 (최대 100자)
-            joinInfo.ContactEmail = "test@test.com";
+            joinInfo.ContactEmail = "";
 
             // 담당자 연락처 (최대 20자)
-            joinInfo.ContactTEL = "070-4304-2992";
+            joinInfo.ContactTEL = "";
 
-            // 담당자 휴대폰번호 (최대 20자)
-            joinInfo.ContactHP = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            joinInfo.ContactFAX = "02-111-222";
             try
             {
                 var response = _htTaxinvoiceService.JoinMember(joinInfo);
@@ -771,16 +795,10 @@ namespace HTTaxinvoiceExample.Controllers
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
-            contactInfo.tel = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            contactInfo.hp = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            contactInfo.fax = "02-111-222";
+            contactInfo.tel = "";
 
             // 담당자 이메일 (최대 100자)
-            contactInfo.email = "netcore@linkhub.co.kr";
+            contactInfo.email = "";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
@@ -848,16 +866,10 @@ namespace HTTaxinvoiceExample.Controllers
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
-            contactInfo.tel = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            contactInfo.hp = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            contactInfo.fax = "02-111-222";
+            contactInfo.tel = "";
 
             // 담당자 이메일 (최대 10자)
-            contactInfo.email = "netcore@linkhub.co.kr";
+            contactInfo.email = "";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;

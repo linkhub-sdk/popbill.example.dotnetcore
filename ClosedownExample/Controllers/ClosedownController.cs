@@ -77,11 +77,11 @@ namespace ClosedownExample.Controllers
 
         #endregion
 
-        #region 포인트관리 
+        #region 포인트관리
 
         /*
          * 연동회원의 잔여포인트를 확인합니다.
-         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
+         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
@@ -155,7 +155,7 @@ namespace ClosedownExample.Controllers
 
         /*
          * 파트너의 잔여포인트를 확인합니다.
-         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
@@ -172,8 +172,8 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 파트너의 잔여포인트를 확인합니다.
-         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+         * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/closedown/dotnetcore/api#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
@@ -309,16 +309,10 @@ namespace ClosedownExample.Controllers
             joinInfo.ContactName = "담당자명";
 
             // 담당자 이메일주소 (최대 100자)
-            joinInfo.ContactEmail = "test@test.com";
+            joinInfo.ContactEmail = "";
 
             // 담당자 연락처 (최대 20자)
-            joinInfo.ContactTEL = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            joinInfo.ContactHP = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            joinInfo.ContactFAX = "02-111-222";
+            joinInfo.ContactTEL = "";
 
             try
             {
@@ -400,16 +394,10 @@ namespace ClosedownExample.Controllers
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
-            contactInfo.tel = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            contactInfo.hp = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            contactInfo.fax = "02-111-222";
+            contactInfo.tel = "";
 
             // 담당자 이메일 (최대 100자)
-            contactInfo.email = "netcore@linkhub.co.kr";
+            contactInfo.email = "";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
@@ -477,16 +465,10 @@ namespace ClosedownExample.Controllers
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
-            contactInfo.tel = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            contactInfo.hp = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            contactInfo.fax = "02-111-222";
+            contactInfo.tel = "";
 
             // 담당자 이메일 (최대 10자)
-            contactInfo.email = "netcore@linkhub.co.kr";
+            contactInfo.email = "";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;

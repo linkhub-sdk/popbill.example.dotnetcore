@@ -30,7 +30,7 @@ namespace AccountCheckExample.Controllers
             return View();
         }
 
-
+        #region 예금주조회
 
         /*
          * 1건의 예금주성명을 조회합니다.
@@ -41,10 +41,10 @@ namespace AccountCheckExample.Controllers
             try
             {
                 // 기관코드
-                string bankCode = "0004";
+                string bankCode = "";
 
                 // 계좌번호
-                string accountNumber = "94322311758";
+                string accountNumber = "";
 
 
                 var response = _accountCheckService.CheckAccountInfo(corpNum, bankCode, accountNumber);
@@ -65,18 +65,19 @@ namespace AccountCheckExample.Controllers
             try
             {
                 // 기관코드
-                string bankCode = "0004";
+                string bankCode = "";
 
                 // 계좌번호
-                string accountNumber = "9432451323";
+                string accountNumber = "";
 
                 // 등록번호 유형, P-개인, B-사업자
                 string identityNumType = "P";
 
                 // 등록번호
-                // └ 등록번호 유형 값이 "B"인 경우 사업자번호(10 자리)입력 ('-' 제외)
+                // └ 등록번호 유형 값이 "B"인 경우 사업자번호(10 자리) 입력
                 // └ 등록번호 유형 값이 "P"인 경우 생년월일(6 자리) 입력 (형식 : YYMMDD)
-                string identityNum = "941219";
+                // 하이픈 '-' 제외하고 입력
+                string identityNum = "";
 
                 var response = _accountCheckService.CheckDepositorInfo(corpNum, bankCode, accountNumber, identityNumType, identityNum, userID);
                 return View("CheckDepositorInfo", response);
@@ -87,9 +88,13 @@ namespace AccountCheckExample.Controllers
             }
         }
 
+        #endregion
+
+        #region 포인트 관리
+
         /*
          * 연동회원의 잔여포인트를 확인합니다.
-         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
+         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
          * - https://docs.popbill.com/accountcheck/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
@@ -163,7 +168,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 파트너의 잔여포인트를 확인합니다.
-         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
          * - https://docs.popbill.com/accountcheck/dotnetcore/api#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
@@ -239,6 +244,10 @@ namespace AccountCheckExample.Controllers
                 return View("Exception", pe);
             }
         }
+
+        #endregion
+
+        #region 회원정보
 
         /*
          * 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
@@ -319,21 +328,34 @@ namespace AccountCheckExample.Controllers
             joinInfo.ContactName = "담당자명";
 
             // 담당자 이메일주소 (최대 100자)
-            joinInfo.ContactEmail = "test@test.com";
+            joinInfo.ContactEmail = "";
 
             // 담당자 연락처 (최대 20자)
-            joinInfo.ContactTEL = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            joinInfo.ContactHP = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            joinInfo.ContactFAX = "02-111-222";
+            joinInfo.ContactTEL = "";
 
             try
             {
                 var response = _accountCheckService.JoinMember(joinInfo);
                 return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+
+        /*
+         * 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/accountcheck/dotnetcore/api#GetAccessURL
+         */
+        public IActionResult GetAccessURL()
+        {
+            try
+            {
+                var result = _accountCheckService.GetAccessURL(corpNum, userID);
+                return View("Result", result);
             }
             catch (PopbillException pe)
             {
@@ -405,21 +427,15 @@ namespace AccountCheckExample.Controllers
 
             //// 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
             contactInfo.Password = "asdfasdf123!@#";
-            
+
             // 담당자명 (최대 100자)
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
-            contactInfo.tel = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            contactInfo.hp = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            contactInfo.fax = "02-111-222";
+            contactInfo.tel = "";
 
             // 담당자 이메일 (최대 100자)
-            contactInfo.email = "netcore@linkhub.co.kr";
+            contactInfo.email = "";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
@@ -488,16 +504,10 @@ namespace AccountCheckExample.Controllers
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
-            contactInfo.tel = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            contactInfo.hp = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            contactInfo.fax = "02-111-222";
+            contactInfo.tel = "";
 
             // 담당자 이메일 (최대 10자)
-            contactInfo.email = "netcore@linkhub.co.kr";
+            contactInfo.email = "";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
@@ -513,24 +523,6 @@ namespace AccountCheckExample.Controllers
             }
         }
 
-        /*
-         * 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/accountcheck/dotnetcore/api#GetAccessURL
-         */
-        public IActionResult GetAccessURL()
-        {
-            try
-            {
-                var result = _accountCheckService.GetAccessURL(corpNum, userID);
-                return View("Result", result);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-
+        #endregion
     }
 }

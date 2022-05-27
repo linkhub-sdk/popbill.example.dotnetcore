@@ -143,7 +143,6 @@ namespace KakaoExample.Controllers
 
         /*
          * 승인된 알림톡 템플릿 목록을 확인합니다.
-         * - 반환항목중 템플릿코드(templateCode)는 알림톡 전송시 사용됩니다.
          * - https://docs.popbill.com/kakao/dotnetcore/api#ListATSTemplate
          */
         public IActionResult ListATSTemplate()
@@ -166,18 +165,21 @@ namespace KakaoExample.Controllers
         /*
          * 승인된 템플릿의 내용을 작성하여 1건의 알림톡 전송을 팝빌에 접수합니다.
          * - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+         * - 전송실패 시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
          * - https://docs.popbill.com/kakao/dotnetcore/api#SendATS
          */
         public IActionResult SendATS_One()
         {
-            // 알림톡 템플릿 코드, ListATSTemplate API의 templateCode 확인
+            // 승인된 알림톡 템플릿코드
+            // └ 알림톡 템플릿 관리 팝업 URL(GetATSTemplateMgtURL API) 함수, 알림톡 템플릿 목록 확인(ListATStemplate API) 함수를 호출하거나
+            //   팝빌사이트에서 승인된 알림톡 템플릿 코드를  확인 가능.
             string templateCode = "019020000163";
 
             // 발신번호
-            string senderNum = "07043042991";
+            string senderNum = "";
 
             // 수신번호
-            string receiverNum = "010111222";
+            string receiverNum = "";
 
             // 수신자명
             string receiverName = "수신자명";
@@ -193,15 +195,17 @@ namespace KakaoExample.Controllers
             // 대체문자 메시지 내용 (최대 2000byte)
             string altContent = "대체문자 메시지 내용";
 
-            // 대체문자 유형, 공백-미전송, C-알림톡 내용, A-대체문자 내용
+            // 대체문자 유형 (null , "C" , "A" 중 택 1)
+            // null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             string altSendType = "A";
 
-            // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // 예약전송일시, yyyyMMddHHmmss
+            // - 분단위 전송, 미입력 시 즉시 전송
             DateTime? sndDT = null;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             // 알림톡 버튼정보를 템플릿 신청시 기재한 버튼정보와 동일하게 전송하는 경우 null 처리.
@@ -211,7 +215,7 @@ namespace KakaoExample.Controllers
             // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
             /*
             List<KakaoButton> buttons = new List<KakaoButton>();
-            
+
             KakaoButton btnInfo = new KakaoButton();
             // 버튼명
             btnInfo.n = "템플릿 안내";
@@ -239,11 +243,14 @@ namespace KakaoExample.Controllers
         /*
          * 승인된 템플릿의 내용을 작성하여 다수건의 알림톡 전송을 팝빌에 접수하며, 수신자 별로 개별 내용을 전송합니다. (최대 1,000건)
          * - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+         * - 전송실패 시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
          * - https://docs.popbill.com/kakao/dotnetcore/api#SendATS_Multi
          */
         public IActionResult SendATS_Multi()
         {
-            // 알림톡 템플릿 코드, ListATSTemplate API의 templateCode 확인
+            // 승인된 알림톡 템플릿코드
+            // └ 알림톡 템플릿 관리 팝업 URL(GetATSTemplateMgtURL API) 함수, 알림톡 템플릿 목록 확인(ListATStemplate API) 함수를 호출하거나
+            //   팝빌사이트에서 승인된 알림톡 템플릿 코드를  확인 가능.
             string templateCode = "019020000163";
 
             // 알림톡 템플릿 내용, 최대 1000자
@@ -255,7 +262,7 @@ namespace KakaoExample.Controllers
             content += "support@linkhub.co.kr".Replace("\n", Environment.NewLine);
 
             // 발신번호
-            string senderNum = "01043245117";
+            string senderNum = "";
 
             // 수신자정보 배열, 최대 1000건
             List<KakaoReceiver> receivers = new List<KakaoReceiver>();
@@ -281,15 +288,17 @@ namespace KakaoExample.Controllers
                 receivers.Add(receiverInfo);
             }
 
-            // 대체문자 유형, 공백-미전송, C-알림톡 내용, A-대체문자 내용
+            // 대체문자 유형 (null , "C" , "A" 중 택 1)
+            // null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             string altSendType = "A";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             // 알림톡 버튼정보를 템플릿 신청시 기재한 버튼정보와 동일하게 전송하는 경우 null 처리.
@@ -299,7 +308,7 @@ namespace KakaoExample.Controllers
             // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
             /*
             List<KakaoButton> buttons = new List<KakaoButton>();
-            
+
             KakaoButton btnInfo = new KakaoButton();
             // 버튼명
             btnInfo.n = "템플릿 안내";
@@ -327,11 +336,14 @@ namespace KakaoExample.Controllers
         /*
          * 승인된 템플릿 내용을 작성하여 다수건의 알림톡 전송을 팝빌에 접수하며, 모든 수신자에게 동일 내용을 전송합니다. (최대 1,000건)
          * - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
+         * - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
          * - https://docs.popbill.com/kakao/dotnetcore/api#SendATS_Same
          */
         public IActionResult SendATS_Same()
         {
-            // 알림톡 템플릿 코드, ListATSTemplate API의 templateCode 확인
+            // 승인된 알림톡 템플릿코드
+            // └ 알림톡 템플릿 관리 팝업 URL(GetATSTemplateMgtURL API) 함수, 알림톡 템플릿 목록 확인(ListATStemplate API) 함수를 호출하거나
+            //   팝빌사이트에서 승인된 알림톡 템플릿 코드를  확인 가능.
             string templateCode = "019020000163";
 
             // 알림톡 템플릿 내용, 최대 1000자
@@ -342,12 +354,13 @@ namespace KakaoExample.Controllers
             content += "팝빌 파트너센터 : 1600-8536\n";
             content += "support@linkhub.co.kr".Replace("\n", Environment.NewLine);
 
-            // (동보) 대체문자 메시지 내용 (최대 2000byte)
+            // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+            // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
             string altContent = "대체문자 메시지 내용";
 
             // 발신번호
             string senderNum = "07043042991";
-            
+
             // 수신자정보 배열, 최대 1000건
             List<KakaoReceiver> receivers = new List<KakaoReceiver>();
             for (int i = 0; i < 5; i++)
@@ -363,15 +376,17 @@ namespace KakaoExample.Controllers
                 receivers.Add(receiverInfo);
             }
 
-            // 대체문자 유형, 공백-미전송, C-알림톡 내용, A-대체문자 내용
+            // 대체문자 유형 (null , "C" , "A" 중 택 1)
+            // null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             string altSendType = "A";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             // 알림톡 버튼정보를 템플릿 신청시 기재한 버튼정보와 동일하게 전송하는 경우 null 처리.
@@ -381,7 +396,7 @@ namespace KakaoExample.Controllers
             // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
             /*
             List<KakaoButton> buttons = new List<KakaoButton>();
-            
+
             KakaoButton btnInfo = new KakaoButton();
             // 버튼명
             btnInfo.n = "템플릿 안내";
@@ -409,18 +424,19 @@ namespace KakaoExample.Controllers
         /*
          * 텍스트로 구성된 1건의 친구톡 전송을 팝빌에 접수합니다.
          * - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
+         * - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
          * - https://docs.popbill.com/kakao/dotnetcore/api#SendFTS
          */
         public IActionResult SendFTS_One()
         {
-            // 플러스친구 아이디, ListPlusFriendID API 의 plusFriendID 참고
+            // 팝빌에 등록된 카카오톡 검색용 아이디
             string plusFriendID = "@팝빌";
 
             // 발신번호
-            string senderNum = "07043042991";
+            string senderNum = "";
 
             // 수신번호
-            string receiverNum = "010111222";
+            string receiverNum = "";
 
             // 수신자명
             string receiverName = "수신자명";
@@ -428,7 +444,8 @@ namespace KakaoExample.Controllers
             // 친구톡 내용 (최대 1000자)
             string content = "친구톡 내용";
 
-            // 대체문자 메시지 내용 (최대 2000byte)
+            // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+            // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
             string altContent = "대체문자 내용";
 
             // 버튼배열, 최대 5개
@@ -442,18 +459,22 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
-            // 대체문자 유형, 공백-미전송, C-친구톡 내용, A-대체문자 내용
+            // 대체문자 유형 (null , "C" , "A" 중 택 1)
+            // null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             string altSendType = "A";
 
-            // 광고 전송여부
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -471,15 +492,16 @@ namespace KakaoExample.Controllers
         /*
          * 텍스트로 구성된 다수건의 친구톡 전송을 팝빌에 접수하며, 수신자 별로 개별 내용을 전송합니다. (최대 1,000건)
          * - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
+         * - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
          * - https://docs.popbill.com/kakao/dotnetcore/api#SendFTS_Multi
          */
         public IActionResult sendFTS_Multi()
         {
-            // 플러스친구 아이디, ListPlusFriendID API 의 plusFriendID 참고
+            // 팝빌에 등록된 카카오톡 검색용 아이디
             string plusFriendID = "@팝빌";
 
             // 발신번호
-            string senderNum = "07043042991";
+            string senderNum = "";
 
             // 수신자정보 배열, 최대 1000건
             List<KakaoReceiver> receivers = new List<KakaoReceiver>();
@@ -489,7 +511,7 @@ namespace KakaoExample.Controllers
                 KakaoReceiver receiverInfo = new KakaoReceiver();
 
                 // 수신번호
-                receiverInfo.rcv = "01011122" + i;
+                receiverInfo.rcv = "" + i;
 
                 // 수신자명
                 receiverInfo.rcvnm = "수신자명" + i;
@@ -514,18 +536,22 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
-            // 대체문자 유형, 공백-미전송, C-친구톡 내용, A-대체문자 내용
+            // 대체문자 유형 (null , "C" , "A" 중 택 1)
+            // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             string altSendType = "A";
 
-            // 광고 전송여부
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -543,15 +569,16 @@ namespace KakaoExample.Controllers
         /*
          * 텍스트로 구성된 다수건의 친구톡 전송을 팝빌에 접수하며, 모든 수신자에게 동일 내용을 전송합니다. (최대 1,000건)
          * - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
+         * - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
          * - https://docs.popbill.com/kakao/dotnetcore/api#SendFTS_Same
          */
         public IActionResult sendFTS_Same()
         {
-            // 플러스친구 아이디, ListPlusFriendID API 의 plusFriendID 참고
+            // 팝빌에 등록된 카카오톡 검색용 아이디
             string plusFriendID = "@팝빌";
 
             // 발신번호
-            string senderNum = "07043042991";
+            string senderNum = "";
 
             // (동보) 친구톡 내용 (최대 1000자)
             string content = "친구톡 내용 입니다.";
@@ -566,7 +593,7 @@ namespace KakaoExample.Controllers
                 KakaoReceiver receiverInfo = new KakaoReceiver();
 
                 // 수신번호
-                receiverInfo.rcv = "01011122" + i;
+                receiverInfo.rcv = "" + i;
 
                 // 수신자명
                 receiverInfo.rcvnm = "수신자명" + i;
@@ -585,18 +612,22 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
-            // 대체문자 유형, 공백-미전송, C-친구톡 내용, A-대체문자 내용
+            // 대체문자 유형 (null , "C" , "A" 중 택 1)
+            // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             string altSendType = "A";
 
-            // 광고 전송여부
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -614,19 +645,20 @@ namespace KakaoExample.Controllers
         /*
          * 이미지가 첨부된 1건의 친구톡 전송을 팝빌에 접수합니다.
          * - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
-         * - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
+         * - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+         * - 대체문자의 경우, 포토문자(MMS) 형식은 지원하고 있지 않습니다.
          * - https://docs.popbill.com/kakao/dotnetcore/api#SendFMS
          */
         public IActionResult SendFMS_One()
         {
-            // 플러스친구 아이디, ListPlusFriendID API 의 plusFriendID 참고
+            // 팝빌에 등록된 카카오톡 검색용 아이디
             string plusFriendID = "@팝빌";
 
             // 발신번호
-            string senderNum = "07043042991";
+            string senderNum = "";
 
             // 수신번호
-            string receiverNum = "010111222";
+            string receiverNum = "";
 
             // 수신자명
             string receiverName = "수신자명";
@@ -634,7 +666,8 @@ namespace KakaoExample.Controllers
             // 친구톡 내용 (최대 400자)
             string content = "친구톡(이미지) 내용은 최대 400자 입니다.";
 
-            // 대체문자 메시지 내용 (최대 2000byte)
+            // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+            // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
             string altContent = "대체문자 내용";
 
             // 버튼배열, 최대 5개
@@ -648,24 +681,31 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
-            // 대체문자 유형, 공백-미전송, C-친구톡 내용, A-대체문자 내용
+            // 대체문자 유형 (null , "C" , "A" 중 택 1)
+            // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             string altSendType = "A";
 
-            // 광고 전송여부
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 이미지 링크 URL, 링크는 http(s)://... 형식으로 입력되어야 합니다.
+            // 이미지 링크 URL
+            // └ 수신자가 친구톡 상단 이미지 클릭시 호출되는 URL
+            // - 미입력시 첨부된 이미지를 링크 기능 없이 표시
             string imageURL = "https://www.popbill.com";
 
-            // 이미지 파일경로
+            // 첨부이미지 파일 경로
+            // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
             string filePath = "C:\\popbill.example.dotnetcore\\KakaoExample\\wwwroot\\images\\image.jpg";
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -683,16 +723,17 @@ namespace KakaoExample.Controllers
         /*
          * 이미지가 첨부된 다수건의 친구톡 전송을 팝빌에 접수하며, 수신자 별로 개별 내용을 전송합니다. (최대 1,000건)
          * - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
-         * - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
+         * - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
+         * - 대체문자의 경우, 포토문자(MMS) 형식은 지원하고 있지 않습니다.
          * - https://docs.popbill.com/kakao/dotnetcore/api#SendFMS_Multi
          */
         public IActionResult SendFMS_Multi()
         {
-            // 플러스친구 아이디, ListPlusFriendID API 의 plusFriendID 참고
+            // 팝빌에 등록된 카카오톡 검색용 아이디
             string plusFriendID = "@팝빌";
 
             // 발신번호
-            string senderNum = "07043042991";
+            string senderNum = "";
 
             // 수신자정보 배열, 최대 1000건
             List<KakaoReceiver> receivers = new List<KakaoReceiver>();
@@ -702,7 +743,7 @@ namespace KakaoExample.Controllers
                 KakaoReceiver receiverInfo = new KakaoReceiver();
 
                 // 수신번호
-                receiverInfo.rcv = "01011122" + i;
+                receiverInfo.rcv = "" + i;
 
                 // 수신자명
                 receiverInfo.rcvnm = "수신자명" + i;
@@ -727,24 +768,31 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
-            // 대체문자 유형, 공백-미전송, C-친구톡 내용, A-대체문자 내용
+            // 대체문자 유형 (null , "C" , "A" 중 택 1)
+            // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             string altSendType = "A";
 
-            // 광고 전송여부
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 이미지 링크 URL, 링크는 http(s)://... 형식으로 입력되어야 합니다.
+            // 이미지 링크 URL
+            // └ 수신자가 친구톡 상단 이미지 클릭시 호출되는 URL
+            // - 미입력시 첨부된 이미지를 링크 기능 없이 표시
             string imageURL = "https://www.popbill.com";
 
-            // 이미지 파일경로
+            // 첨부이미지 파일 경로
+            // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
             string filePath = "C:\\popbill.example.dotnetcore\\KakaoExample\\wwwroot\\images\\image.jpg";
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -767,16 +815,17 @@ namespace KakaoExample.Controllers
          */
         public IActionResult SendFMS_Same()
         {
-            // 플러스친구 아이디, ListPlusFriendID API 의 plusFriendID 참고
+            // 팝빌에 등록된 카카오톡 검색용 아이디
             string plusFriendID = "@팝빌";
 
             // 발신번호
-            string senderNum = "07043042991";
+            string senderNum = "";
 
             // (동보) 친구톡 내용 (최대 400자)
             string content = "친구톡(이미지) 내용은 최대 400자 입니다.";
 
-            // (동보) 대체문자 메시지 내용 (최대 2000byte)
+            // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+            // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
             string altContent = "대체문자 메시지 내용";
 
             // 수신자정보 배열, 최대 1000건
@@ -805,24 +854,31 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
-            // 대체문자 유형, 공백-미전송, C-친구톡 내용, A-대체문자 내용
+            // 대체문자 유형 (null , "C" , "A" 중 택 1)
+            // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             string altSendType = "A";
 
-            // 광고 전송여부
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
-            
-            // 이미지 링크 URL, 링크는 http(s)://... 형식으로 입력되어야 합니다.
+
+            // 이미지 링크 URL
+            // └ 수신자가 친구톡 상단 이미지 클릭시 호출되는 URL
+            // - 미입력시 첨부된 이미지를 링크 기능 없이 표시
             string imageURL = "https://www.popbill.com";
 
-            // 이미지 파일경로
+            // 첨부이미지 파일 경로
+            // - 이미지 파일 규격: 전송 포맷 – JPG 파일 (.jpg, .jpeg), 용량 – 최대 500 Kbyte, 크기 – 가로 500px 이상, 가로 기준으로 세로 0.5~1.3배 비율 가능
             string filePath = "C:\\popbill.example.dotnetcore\\KakaoExample\\wwwroot\\images\\image.jpg";
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -864,7 +920,7 @@ namespace KakaoExample.Controllers
         public IActionResult CancelReserveRN()
         {
             // 알림톡/친구톡 전송요청시 할당한 요청번호
-            string requestNum = "20211201-001";
+            string requestNum = "";
 
             try
             {
@@ -908,7 +964,7 @@ namespace KakaoExample.Controllers
         public IActionResult GetMessagesRN()
         {
             // 알림톡/친구톡 전송요청시 할당한 요청번호
-            string requestNum = "20211201-001";
+            string requestNum = "";
 
             try
             {
@@ -920,7 +976,6 @@ namespace KakaoExample.Controllers
                 return View("Exception", pe);
             }
         }
-
 
         /*
          * 검색조건에 해당하는 카카오톡 전송내역을 조회합니다. (조회기간 단위 : 최대 2개월)
@@ -936,7 +991,9 @@ namespace KakaoExample.Controllers
             // 종료일자, 날자형식(yyyyMMdd)
             string EDate = "20211230";
 
-            // 전송상태 배열, 0-대기, 1-전송중, -2-성공, 3-대체, 4-실패, 5-취소
+            // 전송상태 배열 ("0" , "1" , "2" , "3" , "4" , "5" 중 선택, 다중 선택 가능)
+            // └ 0 = 전송대기 , 1 = 전송중 , 2 = 전송성공 , 3 = 대체문자 전송 , 4 = 전송실패 , 5 = 전송취소
+            // - 미입력 시 전체조회
             string[] State = new string[6];
             State[0] = "0";
             State[1] = "1";
@@ -945,28 +1002,36 @@ namespace KakaoExample.Controllers
             State[4] = "4";
             State[5] = "5";
 
-            // 검색대상 배열, ATS-알림톡, FTS-친구톡 텍스트, FMS-친구톡 이미지
+            // 검색대상 배열 ("ATS", "FTS", "FMS" 중 선택, 다중 선택 가능)
+            // └ ATS = 알림톡 , FTS = 친구톡(텍스트) , FMS = 친구톡(이미지)
+            // - 미입력 시 전체조회
             string[] Item = new string[3];
             Item[0] = "ATS";
             Item[1] = "FTS";
             Item[2] = "FMS";
 
-            // 예약여부, 공백-전체조회, 1-예약전송건 조회, 0-즉시전송 조회
+            // 전송유형별 조회 (null , "0" , "1" 중 택 1)
+            // └ null = 전체 , 0 = 즉시전송건 , 1 = 예약전송건
+            // - 미입력 시 전체조회
             string ReserveYN = "";
 
-            // 개인조회여부, true-개인조회, false-전체조회
+            // 사용자권한별 조회 (true / false 중 택 1)
+            // └ false = 접수한 카카오톡 전체 조회 (관리자권한)
+            // └ true = 해당 담당자 계정으로 접수한 카카오톡만 조회 (개인권한)
+            // - 미입력시 기본값 false 처리
             bool SenderYN = false;
 
             // 페이지 번호, 기본값 '1'
             int Page = 1;
 
-            // 페이지당 검색개수, 기본값 '500', 최대 '1000' 
+            // 페이지당 검색개수, 기본값 '500', 최대 '1000'
             int PerPage = 30;
 
             // 정렬방향, D-내림차순, A-오름차순
             string Order = "D";
 
-            // 조회 검색어, 카카오톡 전송시 기재한 수신자명 입력, 공백시 전체조회
+            // 조회하고자 하는 수신자명
+            // - 미입력시 전체조회
             string QString = "";
 
             try
@@ -1004,11 +1069,11 @@ namespace KakaoExample.Controllers
 
         #endregion
 
-        #region 포인트관리 
+        #region 포인트관리
 
         /*
          * 연동회원의 잔여포인트를 확인합니다.
-         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
+         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
          * - https://docs.popbill.com/kakao/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
@@ -1034,45 +1099,6 @@ namespace KakaoExample.Controllers
             try
             {
                 var result = _kakaoService.GetChargeURL(corpNum, userID);
-                return View("Result", result);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 파트너의 잔여포인트를 확인합니다.
-         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
-         * - https://docs.popbill.com/kakao/dotnetcore/api#GetPartnerBalance
-         */
-        public IActionResult GetPartnerBalance()
-        {
-            try
-            {
-                var result = _kakaoService.GetPartnerBalance(corpNum);
-                return View("Result", result);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/kakao/dotnetcore/api#GetPartnerURL
-         */
-        public IActionResult GetPartnerURL()
-        {
-            // CHRG 포인트충전 URL
-            string TOGO = "CHRG";
-
-            try
-            {
-                var result = _kakaoService.GetPartnerURL(corpNum, TOGO);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1111,6 +1137,45 @@ namespace KakaoExample.Controllers
             try
             {
                 var result = _kakaoService.GetUseHistoryURL(corpNum, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 파트너의 잔여포인트를 확인합니다.
+         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetPartnerBalance
+         */
+        public IActionResult GetPartnerBalance()
+        {
+            try
+            {
+                var result = _kakaoService.GetPartnerBalance(corpNum);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/kakao/dotnetcore/api#GetPartnerURL
+         */
+        public IActionResult GetPartnerURL()
+        {
+            // CHRG 포인트충전 URL
+            string TOGO = "CHRG";
+
+            try
+            {
+                var result = _kakaoService.GetPartnerURL(corpNum, TOGO);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1242,16 +1307,10 @@ namespace KakaoExample.Controllers
             joinInfo.ContactName = "담당자명";
 
             // 담당자 이메일주소 (최대 100자)
-            joinInfo.ContactEmail = "test@test.com";
+            joinInfo.ContactEmail = "";
 
             // 담당자 연락처 (최대 20자)
-            joinInfo.ContactTEL = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            joinInfo.ContactHP = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            joinInfo.ContactFAX = "02-111-222";
+            joinInfo.ContactTEL = "";
 
             try
             {
@@ -1321,7 +1380,7 @@ namespace KakaoExample.Controllers
 
             // 종목 (최대 100자)
             corpInfo.bizClass = "종목 수정";
-            
+
             try
             {
                 var response = _kakaoService.UpdateCorpInfo(corpNum, corpInfo, userID);
@@ -1351,16 +1410,10 @@ namespace KakaoExample.Controllers
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
-            contactInfo.tel = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            contactInfo.hp = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            contactInfo.fax = "02-111-222";
+            contactInfo.tel = "";
 
             // 담당자 이메일 (최대 100자)
-            contactInfo.email = "netcore@linkhub.co.kr";
+            contactInfo.email = "";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
@@ -1428,16 +1481,10 @@ namespace KakaoExample.Controllers
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
-            contactInfo.tel = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            contactInfo.hp = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            contactInfo.fax = "02-111-222";
+            contactInfo.tel = "";
 
             // 담당자 이메일 (최대 100자)
-            contactInfo.email = "netcore@linkhub.co.kr";
+            contactInfo.email = "";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;

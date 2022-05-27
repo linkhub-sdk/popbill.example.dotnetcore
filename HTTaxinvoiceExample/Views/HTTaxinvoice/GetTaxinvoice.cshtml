@@ -25,31 +25,6 @@
             <li> remark2 (비고2): @Model.remark2 </li>
             <li> remark3 (비고3): @Model.remark3 </li>
             <li> ntsconfirmNum (국세청승인번호) : @Model.ntsconfirmNum </li>
-            
-            <li> modifyCode (수정사유코드) : @Model.modifyCode </li>
-            <li> orgNTSConfirmNum (원본 전자세금계산서 국세청승인번호) : @Model.orgNTSConfirmNum </li>
-
-              @{
-                  int i = 0;
-                  foreach (var detailList in Model.detailList)
-                  {
-                      i++;
-                      <fieldset class="fieldset2">
-                          <legend>상세항목(품목) 정보 [ @i / @Model.detailList.Count ]</legend>
-                          <ul>
-                              <li> serialNum (일련번호) : @detailList.serialNum </li>
-                              <li> purchaseDT (거래일자) : @detailList.purchaseDT </li>
-                              <li> itemName (품명) : @detailList.itemName </li>
-                              <li> spec (규격) : @detailList.spec </li>
-                              <li> qty (수량) : @detailList.qty </li>
-                              <li> unitCost (단가) : @detailList.unitCost </li>
-                              <li> supplyCost (공급가액) : @detailList.supplyCost </li>
-                              <li> tax (세액) : @detailList.tax </li>
-                              <li> remark (비고) : @detailList.remark </li>
-                          </ul>
-                      </fieldset>
-                  }
-              }
 
             <li> invoicerCorpNum (공급자 사업자번호) : @Model.invoicerCorpNum </li>
             <li> invoicerMgtKey (공급자 문서번호) : @Model.invoicerMgtKey </li>
@@ -60,6 +35,7 @@
             <li> invoicerBizType (공급자 업태) : @Model.invoicerBizType </li>
             <li> invoicerBizClass (공급자 종목) : @Model.invoicerBizClass </li>
             <li> invoicerContactName (공급자 담당자명) : @Model.invoicerContactName </li>
+            <li> invoicerDeptName (공급자 부서명) : @Model.invoicerDeptName </li>
             <li> invoicerTEL (공급자 담당자 연락처) : @Model.invoicerTEL </li>
             <li> invoicerEmail (공급자 담당자 메일) : @Model.invoicerEmail </li>
               
@@ -85,9 +61,35 @@
             <li> trusteeAddr (수탁자 주소) : @Model.trusteeAddr </li>
             <li> trusteeBizType (수탁자 업태) : @Model.trusteeBizType </li>
             <li> trusteeBizClass (수탁자 종목) : @Model.trusteeBizClass </li>
-            <li> trusteeContactName (수탁자 담당자명) : @Model.trusteeContactName </li>
+            <li> trusteeContactName (수탁자 담당자 성명) : @Model.trusteeContactName </li>
+            <li> trusteeDeptName (수탁자 담당자 부서명) : @Model.trusteeDeptName </li>
             <li> trusteeTEL (수탁자 담당자 연락처) : @Model.trusteeTEL </li>
             <li> trusteeEmail (수탁자 담당자 메일) : @Model.trusteeEmail </li>
+
+            <li> modifyCode (수정사유코드) : @Model.modifyCode </li>
+            <li> orgNTSConfirmNum (원본 전자세금계산서 국세청승인번호) : @Model.orgNTSConfirmNum </li>
+
+              @{
+                  int i = 0;
+                  foreach (var detailList in Model.detailList)
+                  {
+                      i++;
+                      <fieldset class="fieldset2">
+                          <legend>상세항목(품목) 정보 [ @i / @Model.detailList.Count ]</legend>
+                          <ul>
+                              <li> serialNum (일련번호) : @detailList.serialNum </li>
+                              <li> purchaseDT (거래일자) : @detailList.purchaseDT </li>
+                              <li> itemName (품명) : @detailList.itemName </li>
+                              <li> spec (규격) : @detailList.spec </li>
+                              <li> qty (수량) : @detailList.qty </li>
+                              <li> unitCost (단가) : @detailList.unitCost </li>
+                              <li> supplyCost (공급가액) : @detailList.supplyCost </li>
+                              <li> tax (세액) : @detailList.tax </li>
+                              <li> remark (비고) : @detailList.remark </li>
+                          </ul>
+                      </fieldset>
+                  }
+              }
         </ul>
     </fieldset>
 </div>

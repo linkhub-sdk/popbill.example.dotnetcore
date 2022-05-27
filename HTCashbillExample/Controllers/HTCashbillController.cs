@@ -42,10 +42,10 @@ namespace HTCashbillExample.Controllers
             KeyType keyType = KeyType.SELL;
 
             // 시작일자, 표시형식(yyyyMMdd)
-            string SDate = "20211201";
+            string SDate = "20220501";
 
             // 종료일자, 표시형식(yyyyMMdd)
-            string EDate = "20211230";
+            string EDate = "20220527";
 
             try
             {
@@ -59,7 +59,13 @@ namespace HTCashbillExample.Controllers
         }
 
         /*
-         * 함수 RequestJob(수집 요청)를 통해 반환 받은 작업 아이디의 상태를 확인합니다.
+         *  수집 요청(RequestJob API) 함수를 통해 반환 받은 작업 아이디의 상태를 확인합니다.
+         * - 수집 결과 조회(Search API) 함수 또는 수집 결과 요약 정보 조회(Summary API) 함수를 사용하기 전에
+         *   수집 작업의 진행 상태, 수집 작업의 성공 여부를 확인해야 합니다.
+         * - 작업 상태(jobState) = 3(완료)이고 수집 결과 코드(errorCode) = 1(수집성공)이면
+         *   수집 결과 내역 조회(Search) 또는 수집 결과 요약 정보 조회(Summary)를 해야합니다.
+         * - 작업 상태(jobState)가 3(완료)이지만 수집 결과 코드(errorCode)가 1(수집성공)이 아닌 경우에는
+         *   오류메시지(errorReason)로 수집 실패에 대한 원인을 파악할 수 있습니다.
          * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetJobState
          */
         public IActionResult GetJobState()
@@ -109,16 +115,20 @@ namespace HTCashbillExample.Controllers
             // 수집 요청(requestJob API)시 반환반은 작업아이디(jobID)
             string jobID = "018112709000000001";
 
-            // 현금영수증 형태 배열, N-일반 현금영수증, C-취소 현금영수증
+            // 문서형태 배열 ("N" 와 "C" 중 선택, 다중 선택 가능)
+            // └ N = 일반 현금영수증 , C = 취소현금영수증
+            // - 미입력 시 전체조회
             string[] TradeType = {"N", "C"};
 
-            // 거래용도 배열, P-소득공제용, C-지출증빙용
+            // 거래구분 배열 ("P" 와 "C" 중 선택, 다중 선택 가능)
+            // └ P = 소득공제용 , C = 지출증빙용
+            // - 미입력 시 전체조회
             string[] TradeUsage = {"P", "C"};
 
             // 페이지 번호, 기본값 '1'
             int Page = 1;
 
-            // 페이지당 검색개수, 기본값 '500', 최대 '1000' 
+            // 페이지당 검색개수, 기본값 '500', 최대 '1000'
             int PerPage = 30;
 
             // 정렬방향, A-오름차순, D-내림차순
@@ -137,20 +147,25 @@ namespace HTCashbillExample.Controllers
         }
 
         /*
-         * 함수 GetJobState(수집 상태 확인)를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 현금영수증 매입/매출 내역의 요약 정보를 조회합니다.
+         * 수집 상태 확인(GetJobState API) 함수를 통해 상태 정보가 확인된 작업아이디를 활용하여 수집된 현금영수증 매입/매출 내역의 요약 정보를 조회합니다.
+         * - 요약 정보 : 현금영수증 수집 건수, 공급가액 합계, 세액 합계, 봉사료 합계, 합계 금액
          * - https://docs.popbill.com/htcashbill/dotnetcore/api#Summary
          */
         public IActionResult Summary()
         {
             // 수집 요청(requestJob API)시 반환반은 작업아이디(jobID)
             string jobID = "018112709000000001";
-            
-            // 현금영수증 형태 배열, N-일반 현금영수증, C-취소 현금영수증
+
+            // 문서형태 배열 ("N" 와 "C" 중 선택, 다중 선택 가능)
+            // └ N = 일반 현금영수증 , C = 취소현금영수증
+            // - 미입력 시 전체조회
             string[] TradeType = { "N", "C" };
 
-            // 거래용도 배열, P-소득공제용, C-지출증빙용
+            // 거래구분 배열 ("P" 와 "C" 중 선택, 다중 선택 가능)
+            // └ P = 소득공제용 , C = 지출증빙용
+            // - 미입력 시 전체조회
             string[] TradeUsage = { "P", "C" };
-            
+
             try
             {
                 var response = _htCashbillService.Summary(corpNum, jobID, TradeType, TradeUsage, userID);
@@ -230,7 +245,7 @@ namespace HTCashbillExample.Controllers
 
             // 홈택스에서 생성한 현금영수증 부서사용자 비밀번호
             string deptUserPWD = "passwd_test";
-            
+
             try
             {
                 var response = _htCashbillService.RegistDeptUser(corpNum, deptUserID, deptUserPWD, userID);
@@ -298,8 +313,43 @@ namespace HTCashbillExample.Controllers
         #region 포인트관리 / 정액제신청
 
         /*
+         * 홈택스연동 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetFlatRatePopUpURL
+         */
+        public IActionResult GetFlatRatePopUpURL()
+        {
+            try
+            {
+                var result = _htCashbillService.GetFlatRatePopUpURL(corpNum);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 홈택스연동 정액제 서비스 상태를 확인합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetFlatRateState
+         */
+        public IActionResult GetFlatRateState()
+        {
+            try
+            {
+                var response = _htCashbillService.GetFlatRateState(corpNum);
+                return View("GetFlatRateState", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
          * 연동회원의 잔여포인트를 확인합니다.
-         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
+         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
          * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
@@ -325,45 +375,6 @@ namespace HTCashbillExample.Controllers
             try
             {
                 var result = _htCashbillService.GetChargeURL(corpNum, userID);
-                return View("Result", result);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 파트너의 잔여포인트를 확인합니다.
-         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
-         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetPartnerBalance
-         */
-        public IActionResult GetPartnerBalance()
-        {
-            try
-            {
-                var result = _htCashbillService.GetPartnerBalance(corpNum);
-                return View("Result", result);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetPartnerURL
-         */
-        public IActionResult GetPartnerURL()
-        {
-            // CHRG 포인트충전 URL
-            string TOGO = "CHRG";
-
-            try
-            {
-                var result = _htCashbillService.GetPartnerURL(corpNum, TOGO);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -411,32 +422,15 @@ namespace HTCashbillExample.Controllers
         }
 
         /*
-         * 팝빌 홈택스연동(현금) API 서비스 과금정보를 확인합니다.
-         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetChargeInfo
+         * 파트너의 잔여포인트를 확인합니다.
+         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetPartnerBalance
          */
-        public IActionResult GetChargeInfo()
+        public IActionResult GetPartnerBalance()
         {
             try
             {
-                var response = _htCashbillService.GetChargeInfo(corpNum);
-                return View("GetChargeInfo", response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 홈택스연동 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetFlatRatePopUpURL
-         */
-        public IActionResult GetFlatRatePopUpURL()
-        {
-            try
-            {
-                var result = _htCashbillService.GetFlatRatePopUpURL(corpNum);
+                var result = _htCashbillService.GetPartnerBalance(corpNum);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -446,15 +440,36 @@ namespace HTCashbillExample.Controllers
         }
 
         /*
-         * 홈택스연동 정액제 서비스 상태를 확인합니다.
-         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetFlatRateState
+         * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetPartnerURL
          */
-        public IActionResult GetFlatRateState()
+        public IActionResult GetPartnerURL()
+        {
+            // CHRG 포인트충전 URL
+            string TOGO = "CHRG";
+
+            try
+            {
+                var result = _htCashbillService.GetPartnerURL(corpNum, TOGO);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 팝빌 홈택스연동(현금) API 서비스 과금정보를 확인합니다.
+         * - https://docs.popbill.com/htcashbill/dotnetcore/api#GetChargeInfo
+         */
+        public IActionResult GetChargeInfo()
         {
             try
             {
-                var response = _htCashbillService.GetFlatRateState(corpNum);
-                return View("GetFlatRateState", response);
+                var response = _htCashbillService.GetChargeInfo(corpNum);
+                return View("GetChargeInfo", response);
             }
             catch (PopbillException pe)
             {
@@ -545,16 +560,10 @@ namespace HTCashbillExample.Controllers
             joinInfo.ContactName = "담당자명";
 
             // 담당자 이메일주소 (최대 100자)
-            joinInfo.ContactEmail = "test@test.com";
+            joinInfo.ContactEmail = "";
 
             // 담당자 연락처 (최대 20자)
-            joinInfo.ContactTEL = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            joinInfo.ContactHP = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            joinInfo.ContactFAX = "02-111-222";
+            joinInfo.ContactTEL = "";
 
             try
             {
@@ -655,16 +664,10 @@ namespace HTCashbillExample.Controllers
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
-            contactInfo.tel = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            contactInfo.hp = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            contactInfo.fax = "02-111-222";
+            contactInfo.tel = "";
 
             // 담당자 이메일 (최대 100자)
-            contactInfo.email = "netcore@linkhub.co.kr";
+            contactInfo.email = "";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
@@ -732,16 +735,10 @@ namespace HTCashbillExample.Controllers
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
-            contactInfo.tel = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            contactInfo.hp = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            contactInfo.fax = "02-111-222";
+            contactInfo.tel = "";
 
             // 담당자 이메일 (최대 10자)
-            contactInfo.email = "netcore@linkhub.co.kr";
+            contactInfo.email = "";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;

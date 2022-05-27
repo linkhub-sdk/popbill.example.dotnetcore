@@ -77,31 +77,33 @@ namespace MessageExample.Controllers
          */
         public IActionResult SendSMS()
         {
-            // 발신번호 
-            string senderNum = "07043042992";
+            // 발신번호
+            string senderNum = "";
 
             // 발신자명
             string senderName = "발신자명";
 
             // 수신번호
-            string receiverNum = "010111222";
+            string receiverNum = "";
 
-            // 수신자명 
+            // 수신자명
             string receiverName = "수신자명";
 
-            // 메시지내용, 90byte초과된 내용은 삭제되어 전송됨. 
+            // 메시지내용, 90byte초과된 내용은 삭제되어 전송됨.
             string contents = "단문 문자 메시지 내용. 90byte 초과시 삭제되어 전송";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고문자여부 (기본값 false)
-            // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -123,8 +125,8 @@ namespace MessageExample.Controllers
          */
         public IActionResult SendSMS_Multi()
         {
-            // 발신번호 
-            string senderNum = "07043042992";
+            // 발신번호
+            string senderNum = "";
 
             // 메시지 구성, 최대 1000건
             List<Message> messages = new List<Message>();
@@ -137,12 +139,12 @@ namespace MessageExample.Controllers
                 msg.senderName = "발신자명";
 
                 // 수신번호
-                msg.receiveNum = "010111222";
+                msg.receiveNum = "";
 
                 // 수신자명
                 msg.receiveName = "수신자명칭_" + i;
 
-                // 메시지 내용, 90byte초과된 내용은 삭제되어 전송됨. 
+                // 메시지 내용, 90byte초과된 내용은 삭제되어 전송됨.
                 msg.content = "단문 문자메시지 내용, 각 메시지마다 개별설정 가능." + i;
 
                 messages.Add(msg);
@@ -152,12 +154,14 @@ namespace MessageExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고문자여부 (기본값 false)
-            // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -178,10 +182,10 @@ namespace MessageExample.Controllers
          */
         public IActionResult SendSMS_Same()
         {
-            // 발신번호 
-            string senderNum = "07043042992";
+            // 발신번호
+            string senderNum = "";
 
-            // (동보) 메시지내용, 90byte초과된 내용은 삭제되어 전송됨. 
+            // (동보) 메시지내용, 90byte초과된 내용은 삭제되어 전송됨.
             string contents = "단문 문자 메시지 내용. 90byte 초과시 삭제되어 전송";
 
             // 메시지 구성, 최대 1000건
@@ -195,7 +199,7 @@ namespace MessageExample.Controllers
                 msg.senderName = "발신자명";
 
                 // 수신번호
-                msg.receiveNum = "010111222";
+                msg.receiveNum = "";
 
                 // 수신자명
                 msg.receiveName = "수신자명칭_" + i;
@@ -207,12 +211,14 @@ namespace MessageExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고문자여부 (기본값 false)
-            // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -234,16 +240,16 @@ namespace MessageExample.Controllers
          */
         public IActionResult SendLMS()
         {
-            // 발신번호 
-            string senderNum = "07043042992";
+            // 발신번호
+            string senderNum = "";
 
             // 발신자명
             string senderName = "발신자명";
 
             // 수신번호
-            string receiverNum = "010111222";
+            string receiverNum = "";
 
-            // 수신자명 
+            // 수신자명
             string receiverName = "수신자명";
 
             // 메시지제목
@@ -256,12 +262,14 @@ namespace MessageExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고문자여부 (기본값 false)
-            // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -283,8 +291,8 @@ namespace MessageExample.Controllers
          */
         public IActionResult SendLMS_Multi()
         {
-            // 발신번호 
-            string senderNum = "07043042992";
+            // 발신번호
+            string senderNum = "";
 
             // 메시지 구성, 최대 1000건
             List<Message> messages = new List<Message>();
@@ -297,7 +305,7 @@ namespace MessageExample.Controllers
                 msg.senderName = "발신자명";
 
                 // 수신번호
-                msg.receiveNum = "010111222";
+                msg.receiveNum = "";
 
                 // 수신자명
                 msg.receiveName = "수신자명칭_" + i;
@@ -315,12 +323,14 @@ namespace MessageExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고문자여부 (기본값 false)
-            // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -342,8 +352,8 @@ namespace MessageExample.Controllers
          */
         public IActionResult SendLMS_Same()
         {
-            // 발신번호 
-            string senderNum = "07043042992";
+            // 발신번호
+            string senderNum = "";
 
             // 메시지제목
             string subject = "장문 문자 메시지 제목";
@@ -362,7 +372,7 @@ namespace MessageExample.Controllers
                 msg.senderName = "발신자명";
 
                 // 수신번호
-                msg.receiveNum = "010111222";
+                msg.receiveNum = "";
 
                 // 수신자명
                 msg.receiveName = "수신자명칭_" + i;
@@ -374,12 +384,14 @@ namespace MessageExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고문자여부 (기본값 false)
-            // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -402,16 +414,16 @@ namespace MessageExample.Controllers
          */
         public IActionResult SendMMS()
         {
-            // 발신번호 
-            string senderNum = "07043042992";
+            // 발신번호
+            string senderNum = "";
 
             // 발신자명
             string senderName = "발신자명";
 
             // 수신번호
-            string receiverNum = "010111222";
+            string receiverNum = "";
 
-            // 수신자명 
+            // 수신자명
             string receiverName = "수신자명";
 
             // 메시지제목
@@ -423,16 +435,18 @@ namespace MessageExample.Controllers
             // 첨부파일 경로
             string filePath = "C:\\popbill.example.dotnetcore\\MessageExample\\wwwroot\\images\\image.jpg";
 
-            // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
+            // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송sssssss
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고문자여부 (기본값 false)
-            // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -455,8 +469,8 @@ namespace MessageExample.Controllers
          */
         public IActionResult SendMMS_Multi()
         {
-            // 발신번호 
-            string senderNum = "07043042992";
+            // 발신번호
+            string senderNum = "";
 
             // 메시지 구성, 최대 1000건
             List<Message> messages = new List<Message>();
@@ -469,7 +483,7 @@ namespace MessageExample.Controllers
                 msg.senderName = "발신자명";
 
                 // 수신번호
-                msg.receiveNum = "010111222";
+                msg.receiveNum = "";
 
                 // 수신자명
                 msg.receiveName = "수신자명칭_" + i;
@@ -490,12 +504,14 @@ namespace MessageExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고문자여부 (기본값 false)
-            // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -518,8 +534,8 @@ namespace MessageExample.Controllers
          */
         public IActionResult SendMMS_Same()
         {
-            // 발신번호 
-            string senderNum = "07043042992";
+            // 발신번호
+            string senderNum = "";
 
             // 메시지제목
             string subject = "포토 문자 메시지 제목";
@@ -538,7 +554,7 @@ namespace MessageExample.Controllers
                 msg.senderName = "발신자명";
 
                 // 수신번호
-                msg.receiveNum = "010111222";
+                msg.receiveNum = "";
 
                 // 수신자명
                 msg.receiveName = "수신자명칭_" + i;
@@ -553,12 +569,14 @@ namespace MessageExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고문자여부 (기본값 false)
-            // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -579,16 +597,16 @@ namespace MessageExample.Controllers
          */
         public IActionResult SendXMS()
         {
-            // 발신번호 
-            string senderNum = "07043042992";
+            // 발신번호
+            string senderNum = "";
 
             // 발신자명
             string senderName = "발신자명";
 
             // 수신번호
-            string receiverNum = "010111222";
+            string receiverNum = "";
 
-            // 수신자명 
+            // 수신자명
             string receiverName = "수신자명";
 
             // 메시지제목
@@ -601,12 +619,14 @@ namespace MessageExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고문자여부 (기본값 false)
-            // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -628,8 +648,8 @@ namespace MessageExample.Controllers
          */
         public IActionResult SendXMS_Multi()
         {
-            // 발신번호 
-            string senderNum = "07043042992";
+            // 발신번호
+            string senderNum = "";
 
             // 메시지 구성, 최대 1000건
             List<Message> messages = new List<Message>();
@@ -642,7 +662,7 @@ namespace MessageExample.Controllers
                 msg.senderName = "발신자명";
 
                 // 수신번호
-                msg.receiveNum = "010111222";
+                msg.receiveNum = "";
 
                 // 수신자명
                 msg.receiveName = "수신자명칭_" + i;
@@ -660,12 +680,14 @@ namespace MessageExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고문자여부 (기본값 false)
-            // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -686,8 +708,8 @@ namespace MessageExample.Controllers
          */
         public IActionResult SendXMS_Same()
         {
-            // 발신번호 
-            string senderNum = "07043042992";
+            // 발신번호
+            string senderNum = "";
 
             // 메시지제목
             string subject = "단문/장문 문자 메시지 제목";
@@ -706,7 +728,7 @@ namespace MessageExample.Controllers
                 msg.senderName = "발신자명";
 
                 // 수신번호
-                msg.receiveNum = "010111222";
+                msg.receiveNum = "";
 
                 // 수신자명
                 msg.receiveName = "수신자명칭_" + i;
@@ -718,12 +740,14 @@ namespace MessageExample.Controllers
             // ex) DateTime sndDT = new DateTime(20181230120000);
             DateTime? sndDT = null;
 
-            // 광고문자여부 (기본값 false)
-            // [참고] "광고메시지 전송방법 안내” [ http://blog.linkhub.co.kr/2642/ ]
+            // 광고성 메시지 여부 ( true , false 중 택 1)
+            // └ true = 광고 , false = 일반
+            // - 미입력 시 기본값 false 처리
             bool adsYN = false;
 
-            // 전송요청번호, 파트너가 전송요청에 대한 관리번호를 직접 할당하여 관리하는 경우 기재
-            // 최대 36자리, 영문, 숫자, 언더바('_'), 하이픈('-')을 조합하여 사업자별로 중복되지 않도록 구성
+            // 전송요청번호
+            // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
+            // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
             try
@@ -765,7 +789,7 @@ namespace MessageExample.Controllers
         public IActionResult CancelReserveRN()
         {
             // 문자 전송요청시 할당한 요청번호
-            string requestNum = "20211201-001";
+            string requestNum = "";
 
             try
             {
@@ -809,34 +833,12 @@ namespace MessageExample.Controllers
         public IActionResult GetMessagesRN()
         {
             // 문자 전송요청시 할당한 요청번호
-            string requestNum = "20211201-001";
+            string requestNum = "";
 
             try
             {
                 var Response = _messageService.GetMessagesRN(corpNum, requestNum, userID);
                 return View("GetMessagesRN", Response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 문자전송에 대한 전송결과 요약정보를 확인합니다.
-         * - https://docs.popbill.com/message/dotnetcore/api#GetStates
-         */
-        public IActionResult GetStates()
-        {
-            // 요약정보 확인할 문자 접수번호 배열 (최대 1000건)
-            List<string> receiptNumList = new List<string>();
-            receiptNumList.Add("018090410000000416");
-            receiptNumList.Add("018090410000000395");
-
-            try
-            {
-                var response = _messageService.GetStates(corpNum, receiptNumList, userID);
-                return View("GetStates", response);
             }
             catch (PopbillException pe)
             {
@@ -853,40 +855,50 @@ namespace MessageExample.Controllers
         {
             // 최대 검색기간 : 6개월 이내
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20211201";
+            string SDate = "20220501";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20211230";
+            string EDate = "20220527";
 
-            // 전송상태 배열, 1-대기, 2-성공, 3-실패, 4-취소
+            // 전송상태 배열 ("1" , "2" , "3" , "4" 중 선택, 다중 선택 가능)
+            // └ 1 = 대기 , 2 = 성공 , 3 = 실패 , 4 = 취소
+            // - 미입력 시 전체조회
             string[] State = new string[4];
             State[0] = "1";
             State[1] = "2";
             State[2] = "3";
             State[3] = "4";
 
-            // 검색대상 배열, SMS, LMS, MMS
+            // 검색대상 배열 ("SMS" , "LMS" , "MMS" 중 선택, 다중 선택 가능)
+            // └ SMS = 단문 , LMS = 장문 , MMS = 포토문자
+            // - 미입력 시 전체조회
             string[] Item = new string[3];
             Item[0] = "SMS";
             Item[1] = "LMS";
             Item[2] = "MMS";
 
-            // 예약여부, true-예약전송건 조회, false-전체전송건 조회 
+            // 예약여부 (false , true 중 택 1)
+            // └ false = 전체조회, true = 예약전송건 조회
+            // - 미입력시 기본값 false 처리
             bool ReserveYN = false;
 
-            // 개인조회여부, true-개인조회, false-전체조회 
+            // 개인조회 여부 (false , true 중 택 1)
+            // └ false = 접수한 문자 전체 조회 (관리자권한)
+            // └ true = 해당 담당자 계정으로 접수한 문자만 조회 (개인권한)
+            // - 미입력시 기본값 false 처리
             bool SenderYN = false;
 
             // 페이지 번호, 기본값 '1'
             int Page = 1;
 
-            // 페이지당 검색개수, 기본값 '500', 최대 '1000' 
+            // 페이지당 검색개수, 기본값 '500', 최대 '1000'
             int PerPage = 30;
 
             // 정렬방향, D-내림차순, A-오름차순
             string Order = "D";
 
-            // 조회 검색어, 문자 전송시 기재한 수신자명 또는 발신자명 기재, 공백시 전체조회
+            // 조회하고자 하는 발신자명 또는 수신자명
+            // - 미입력시 전체조회
             string QString = "";
 
             try
@@ -903,7 +915,7 @@ namespace MessageExample.Controllers
 
 
         /*
-         * 팝빌 사이트와 동일한 문자 전송내역 확인 페이지의 팝업 URL을 반환합니다.
+         * 문자 전송내역 확인 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetSentListURL
          */
@@ -939,12 +951,12 @@ namespace MessageExample.Controllers
 
         #endregion
 
-        #region 포인트관리 
+        #region 포인트관리
 
         /*
          * 연동회원의 잔여포인트를 확인합니다.
-         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트(GetPartnerBalance API)를 통해 확인하시기 바랍니다.
-         * - https://docs.popbill.com/message/dotnetcore/api#GetBalance 
+         * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
+         * - https://docs.popbill.com/message/dotnetcore/api#GetBalance
          */
         public IActionResult GetBalance()
         {
@@ -978,8 +990,46 @@ namespace MessageExample.Controllers
         }
 
         /*
+         * 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/message/dotnetcore/api#GetPaymentURL
+         */
+        public IActionResult GetPaymentURL()
+        {
+
+            try
+            {
+                var result = _messageService.GetPaymentURL(corpNum, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
+         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://docs.popbill.com/message/dotnetcore/api#GetUseHistoryURL
+         */
+        public IActionResult GetUseHistoryURL()
+        {
+
+            try
+            {
+                var result = _messageService.GetUseHistoryURL(corpNum, userID);
+                return View("Result", result);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
          * 파트너의 잔여포인트를 확인합니다.
-         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트(GetBalance API)를 이용하시기 바랍니다.
+         * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
          * - https://docs.popbill.com/message/dotnetcore/api#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
@@ -1008,44 +1058,6 @@ namespace MessageExample.Controllers
             try
             {
                 var result = _messageService.GetPartnerURL(corpNum, TOGO);
-                return View("Result", result);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-       /*
-        * 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
-        * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-        * - https://docs.popbill.com/message/dotnetcore/api#GetPaymentURL
-        */
-        public IActionResult GetPaymentURL()
-        {
-
-            try
-            {
-                var result = _messageService.GetPaymentURL(corpNum, userID);
-                return View("Result", result);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/message/dotnetcore/api#GetUseHistoryURL
-         */
-        public IActionResult GetUseHistoryURL()
-        {
-
-            try
-            {
-                var result = _messageService.GetUseHistoryURL(corpNum, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1177,17 +1189,11 @@ namespace MessageExample.Controllers
             joinInfo.ContactName = "담당자명";
 
             // 담당자 이메일주소 (최대 100자)
-            joinInfo.ContactEmail = "test@test.com";
+            joinInfo.ContactEmail = "";
 
             // 담당자 연락처 (최대 20자)
-            joinInfo.ContactTEL = "070-4304-2992";
+            joinInfo.ContactTEL = "";
 
-            // 담당자 휴대폰번호 (최대 20자)
-            joinInfo.ContactHP = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            joinInfo.ContactFAX = "02-111-222";
-            
             try
             {
                 var response = _messageService.JoinMember(joinInfo);
@@ -1286,16 +1292,10 @@ namespace MessageExample.Controllers
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
-            contactInfo.tel = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            contactInfo.hp = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            contactInfo.fax = "02-111-222";
+            contactInfo.tel = "";
 
             // 담당자 이메일 (최대 100자)
-            contactInfo.email = "netcore@linkhub.co.kr";
+            contactInfo.email = "";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
@@ -1363,16 +1363,10 @@ namespace MessageExample.Controllers
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
-            contactInfo.tel = "070-4304-2992";
-
-            // 담당자 휴대폰번호 (최대 20자)
-            contactInfo.hp = "010-111-222";
-
-            // 담당자 팩스번호 (최대 20자)
-            contactInfo.fax = "02-111-222";
+            contactInfo.tel = "";
 
             // 담당자 이메일 (최대 10자)
-            contactInfo.email = "netcore@linkhub.co.kr";
+            contactInfo.email = "";
 
             // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
@@ -1389,5 +1383,26 @@ namespace MessageExample.Controllers
         }
 
         #endregion
+
+        /*
+         * 문자전송에 대한 전송결과 요약정보를 확인합니다.
+         */
+        public IActionResult GetStates()
+        {
+            // 요약정보 확인할 문자 접수번호 배열 (최대 1000건)
+            List<string> receiptNumList = new List<string>();
+            receiptNumList.Add("018090410000000416");
+            receiptNumList.Add("018090410000000395");
+
+            try
+            {
+                var response = _messageService.GetStates(corpNum, receiptNumList, userID);
+                return View("GetStates", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
     }
 }
