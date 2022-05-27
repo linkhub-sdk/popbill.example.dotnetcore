@@ -1707,6 +1707,29 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
+         * 세금계산서 1건의 상세정보를 XML로 반환합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetXML
+         */
+        public IActionResult GetXML()
+        {
+            // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
+            MgtKeyType mgtKeyType = MgtKeyType.SELL;
+
+            // 세금계산서 문서번호
+            string mgtKey = "20220527-002";
+
+            try
+            {
+                var response = _taxinvoiceService.GetXML(corpNum, mgtKeyType, mgtKey);
+                return View("GetXML", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
          * 검색조건에 해당하는 세금계산서를 조회합니다. (조회기간 단위 : 최대 6개월)
          * - https://docs.popbill.com/taxinvoice/dotnetcore/api#Search
          */
