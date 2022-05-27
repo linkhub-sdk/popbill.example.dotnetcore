@@ -2518,6 +2518,23 @@ namespace TaxinvoiceExample.Controllers
             }
         }
 
+        /*
+         * 팝빌 인증서버에 등록된 공동인증서의 정보를 확인합니다.
+         * - https://docs.popbill.com/taxinvoice/dotnetcore/api#GetTaxCertInfo
+         */
+        public IActionResult GetTaxCertInfo()
+        {
+            try
+            {
+                var response = _taxinvoiceService.GetTaxCertInfo(corpNum);
+                return View("GetTaxCertInfo", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
         #endregion
 
         #region 포인트 관리
