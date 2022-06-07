@@ -6,7 +6,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
-        <PackageReference Include="Popbill" Version="1.52.1" />
+        <PackageReference Include="Popbill" Version="1.53.0" />
         
     </ItemGroup>
 
