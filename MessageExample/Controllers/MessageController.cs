@@ -168,6 +168,9 @@ namespace MessageExample.Controllers
                 // 메시지 내용, 90byte초과된 내용은 삭제되어 전송됨.
                 msg.content = "단문 문자메시지 내용, 각 메시지마다 개별설정 가능." + i;
 
+                // 파트너 지정키, 대량전송시, 수신자 구별용 메모
+                msg.interOPRefKey = "2022527-" + i;
+
                 messages.Add(msg);
             }
 
@@ -224,6 +227,9 @@ namespace MessageExample.Controllers
 
                 // 수신자명
                 msg.receiveName = "수신자명칭_" + i;
+
+                // 파트너 지정키, 대량전송시, 수신자 구별용 메모
+                msg.interOPRefKey = "2022527-" + i;
 
                 messages.Add(msg);
             }
@@ -337,6 +343,9 @@ namespace MessageExample.Controllers
                 // 메시지내용, 최대 2000byte 초과된 내용은 삭제되어 전송됨.
                 msg.content = "장문 문자 메시지 내용. 최대 2000byte 초과된 내용은 삭제되어 전송." + i;
 
+                // 파트너 지정키, 대량전송시, 수신자 구별용 메모
+                msg.interOPRefKey = "2022527-" + i;
+
                 messages.Add(msg);
             }
 
@@ -397,6 +406,9 @@ namespace MessageExample.Controllers
 
                 // 수신자명
                 msg.receiveName = "수신자명칭_" + i;
+
+                // 파트너 지정키, 대량전송시, 수신자 구별용 메모
+                msg.interOPRefKey = "2022527-" + i;
 
                 messages.Add(msg);
             }
@@ -515,6 +527,9 @@ namespace MessageExample.Controllers
                 // 메시지내용, 최대 2000byte 초과된 내용은 삭제되어 전송됨.
                 msg.content = "포토 문자 메시지 내용. 최대 2000byte 초과된 내용은 삭제되어 전송." + i;
 
+                // 파트너 지정키, 대량전송시, 수신자 구별용 메모
+                msg.interOPRefKey = "2022527-" + i;
+
                 messages.Add(msg);
             }
 
@@ -579,6 +594,9 @@ namespace MessageExample.Controllers
 
                 // 수신자명
                 msg.receiveName = "수신자명칭_" + i;
+
+                // 파트너 지정키, 대량전송시, 수신자 구별용 메모
+                msg.interOPRefKey = "2022527-" + i;
 
                 messages.Add(msg);
             }
@@ -694,6 +712,9 @@ namespace MessageExample.Controllers
                 // 메시지내용, 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송됨.
                 msg.content = "단문/장문 문자 메시지 내용. 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송됨" + i;
 
+                // 파트너 지정키, 대량전송시, 수신자 구별용 메모
+                msg.interOPRefKey = "2022527-" + i;
+
                 messages.Add(msg);
             }
 
@@ -753,6 +774,9 @@ namespace MessageExample.Controllers
 
                 // 수신자명
                 msg.receiveName = "수신자명칭_" + i;
+
+                // 파트너 지정키, 대량전송시, 수신자 구별용 메모
+                msg.interOPRefKey = "2022527-" + i;
 
                 messages.Add(msg);
             }

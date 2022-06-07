@@ -167,6 +167,10 @@ namespace FaxExample.Controllers
 
                 // 수신자명
                 receiver.receiveName = "수신자명칭_" + i;
+
+                // 파트너 지정키, 대량전송시, 수신자 구별용 메모
+                receiver.interOPRefKey = "2022527-" + i;
+
                 receivers.Add(receiver);
             }
 
@@ -283,6 +287,10 @@ namespace FaxExample.Controllers
 
                 // 수신자명
                 receiver.receiveName = "수신자명칭_" + i;
+
+                // 파트너 지정키, 대량전송시, 수신자 구별용 메모
+                receiver.interOPRefKey = "2022527-" + i;
+
                 receivers.Add(receiver);
             }
 
@@ -393,6 +401,10 @@ namespace FaxExample.Controllers
 
                 // 수신자명
                 receiver.receiveName = "수신자명칭_" + i;
+
+                // 파트너 지정키, 대량전송시, 수신자 구별용 메모
+                receiver.interOPRefKey = "2022527-" + i;
+
                 receivers.Add(receiver);
             }
 
