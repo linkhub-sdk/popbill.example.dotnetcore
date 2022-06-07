@@ -742,7 +742,10 @@ namespace FaxExample.Controllers
         {
             try
             {
-                var result = _faxService.GetUnitCost(corpNum);
+                // 수신번호 유형, 일반 / 지능 중 택 1
+                string receiveNumType = "일반";
+
+                var result = _faxService.GetUnitCost(corpNum, receiveNumType);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -759,7 +762,10 @@ namespace FaxExample.Controllers
         {
             try
             {
-                var response = _faxService.GetChargeInfo(corpNum);
+                // 수신번호 유형, 일반 / 지능 중 택 1
+                string receiveNumType = "일반";
+
+                var response = _faxService.GetChargeInfo(corpNum, receiveNumType);
                 return View("GetChargeInfo", response);
             }
             catch (PopbillException pe)
