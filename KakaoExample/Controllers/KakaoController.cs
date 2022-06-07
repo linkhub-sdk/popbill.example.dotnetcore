@@ -213,7 +213,12 @@ namespace KakaoExample.Controllers
             content += "팝빌 파트너센터 : 1600-8536\n";
             content += "support@linkhub.co.kr".Replace("\n", Environment.NewLine);
 
-            // 대체문자 메시지 내용 (최대 2000byte)
+            // 대체문자 제목
+            // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+            string altSubject = "대체문자 제목";
+
+            // 대체문자 유형(altSendType)이 "A"일 경우, 대체문자로 전송할 내용 (최대 2000byte)
+            // └ 팝빌이 메시지 길이에 따라 단문(90byte 이하) 또는 장문(90byte 초과)으로 전송처리
             string altContent = "대체문자 메시지 내용";
 
             // 대체문자 유형 (null , "C" , "A" 중 택 1)
@@ -252,7 +257,7 @@ namespace KakaoExample.Controllers
             try
             {
                 var receiptNum = _kakaoService.SendATS(corpNum, templateCode, senderNum, receiverNum, receiverName,
-                    content, altContent, altSendType, sndDT, requestNum, userID, buttons);
+                    content, altContent, altSendType, sndDT, requestNum, userID, buttons, altSubject);
                 return View("ReceiptNum", receiptNum);
             }
             catch (PopbillException pe)
@@ -299,6 +304,9 @@ namespace KakaoExample.Controllers
 
                 // 알림톡 템플릿 내용 (최대 1000자)
                 receiverInfo.msg = content;
+
+                // 대체문자 제목
+                receiverInfo.altsjt = "대체문자 제목입니다." + i;
 
                 // 대체문자 내용 (최대 2000byte)
                 receiverInfo.altmsg = "대체문자 내용입니다" + i;
@@ -397,6 +405,12 @@ namespace KakaoExample.Controllers
                 receivers.Add(receiverInfo);
             }
 
+            // 대체문자 제목
+            // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+            // - 수신정보 배열에 대체문자 제목이 입력되지 않은 경우 적용.
+            // - 모든 수신자에게 다른 제목을 보낼 경우 464번 라인에 있는 altsjt 를 이용.
+            string altSubject = "";
+
             // 대체문자 유형 (null , "C" , "A" 중 택 1)
             // null = 미전송, C = 알림톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             string altSendType = "A";
@@ -433,7 +447,7 @@ namespace KakaoExample.Controllers
             try
             {
                 var receiptNum = _kakaoService.SendATS(corpNum, templateCode, senderNum, content, altContent, receivers,
-                    altSendType, sndDT, requestNum, userID, buttons);
+                    altSendType, sndDT, requestNum, userID, buttons, altSubject);
                 return View("ReceiptNum", receiptNum);
             }
             catch (PopbillException pe)
@@ -498,10 +512,19 @@ namespace KakaoExample.Controllers
             // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
+            // 팝빌 회원 아이디
+            string userID = "";
+
+            // 대체문자 제목
+            // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+            // - 수신정보 배열에 대체문자 제목이 입력되지 않은 경우 적용.
+            // - 모든 수신자에게 다른 제목을 보낼 경우 464번 라인에 있는 altsjt 를 이용.
+            string altSubject = "";
+
             try
             {
                 var receiptNum = _kakaoService.SendFTS(corpNum, plusFriendID, senderNum, receiverNum, receiverName,
-                    content, altContent, buttons, altSendType, adsYN, sndDT, requestNum);
+                    content, altContent, buttons, altSendType, adsYN, sndDT, requestNum, userID, altSubject);
                 return View("ReceiptNum", receiptNum);
             }
             catch (PopbillException pe)
@@ -539,6 +562,9 @@ namespace KakaoExample.Controllers
 
                 // 친구톡 내용 (최대 1000자)
                 receiverInfo.msg = "친구톡 내용입니다." + i;
+
+                // 대체문자 제목
+                receiverInfo.altsjt = "대체문자 제목입니다." + i;
 
                 // 대체문자 내용 (최대 2000byte)
                 receiverInfo.altmsg = "대체문자 내용입니다" + i;
@@ -633,6 +659,12 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
+            // 대체문자 제목
+            // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+            // - 수신정보 배열에 대체문자 제목이 입력되지 않은 경우 적용.
+            // - 모든 수신자에게 다른 제목을 보낼 경우 464번 라인에 있는 altsjt 를 이용.
+            string altSubject = "";
+
             // 대체문자 유형 (null , "C" , "A" 중 택 1)
             // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             string altSendType = "A";
@@ -654,7 +686,7 @@ namespace KakaoExample.Controllers
             try
             {
                 var receiptNum = _kakaoService.SendFTS(corpNum, plusFriendID, senderNum, content, altContent, receivers,
-                    buttons, altSendType, adsYN, sndDT, requestNum);
+                    buttons, altSendType, adsYN, sndDT, requestNum, altSubject);
                 return View("ReceiptNum", receiptNum);
             }
             catch (PopbillException pe)
@@ -702,6 +734,12 @@ namespace KakaoExample.Controllers
             };
             buttons.Add(btnInfo);
 
+            // 대체문자 제목
+            // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+            // - 수신정보 배열에 대체문자 제목이 입력되지 않은 경우 적용.
+            // - 모든 수신자에게 다른 제목을 보낼 경우 464번 라인에 있는 altsjt 를 이용.
+            string altSubject = "";
+
             // 대체문자 유형 (null , "C" , "A" 중 택 1)
             // null = 미전송, C = 친구톡과 동일 내용 전송 , A = 대체문자 내용(altContent)에 입력한 내용 전송
             string altSendType = "A";
@@ -732,7 +770,7 @@ namespace KakaoExample.Controllers
             try
             {
                 var receiptNum = _kakaoService.SendFMS(corpNum, plusFriendID, senderNum, receiverNum, receiverName,
-                    content, altContent, buttons, altSendType, adsYN, sndDT, imageURL, filePath, requestNum);
+                    content, altContent, buttons, altSendType, adsYN, sndDT, imageURL, filePath, requestNum, altSubject);
                 return View("ReceiptNum", receiptNum);
             }
             catch (PopbillException pe)
@@ -771,6 +809,9 @@ namespace KakaoExample.Controllers
 
                 // 친구톡 내용 (최대 400자)
                 receiverInfo.msg = "친구톡(이미지) 내용은 최대 400자 입니다." + i;
+
+                // 대체문자 제목
+                receiverInfo.altsjt = "대체문자 제목입니다." + i;
 
                 // 대체문자 내용 (최대 2000byte)
                 receiverInfo.altmsg = "대체문자 내용 입니다" + i;
@@ -902,10 +943,19 @@ namespace KakaoExample.Controllers
             // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
+            // 팝빌 회원 아이디
+            string userID = "";
+
+            // 대체문자 제목
+            // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
+            // - 수신정보 배열에 대체문자 제목이 입력되지 않은 경우 적용.
+            // - 모든 수신자에게 다른 제목을 보낼 경우 464번 라인에 있는 altsjt 를 이용.
+            string altSubject = "";
+
             try
             {
                 var receiptNum = _kakaoService.SendFMS(corpNum, plusFriendID, senderNum, content, altContent, receivers,
-                    buttons, altSendType, adsYN, sndDT, imageURL, filePath, requestNum);
+                    buttons, altSendType, adsYN, sndDT, imageURL, filePath, requestNum, userID, altSubject);
                 return View("ReceiptNum", receiptNum);
             }
             catch (PopbillException pe)
