@@ -528,10 +528,10 @@ namespace FaxExample.Controllers
         {
             // 최대 검색기간 : 6개월 이내
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20211201";
+            string SDate = "20220501";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20211230";
+            string EDate = "20220531";
 
             // 전송상태 배열 ("1" , "2" , "3" , "4" 중 선택, 다중 선택 가능)
             // └ 1 = 대기 , 2 = 성공 , 3 = 실패 , 4 = 취소
@@ -745,7 +745,7 @@ namespace FaxExample.Controllers
                 // 수신번호 유형, 일반 / 지능 중 택 1
                 string receiveNumType = "일반";
 
-                var result = _faxService.GetUnitCost(corpNum, receiveNumType);
+                var result = _faxService.GetUnitCost(corpNum, userID, receiveNumType);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -765,7 +765,7 @@ namespace FaxExample.Controllers
                 // 수신번호 유형, 일반 / 지능 중 택 1
                 string receiveNumType = "일반";
 
-                var response = _faxService.GetChargeInfo(corpNum, receiveNumType);
+                var response = _faxService.GetChargeInfo(corpNum, userID, receiveNumType);
                 return View("GetChargeInfo", response);
             }
             catch (PopbillException pe)

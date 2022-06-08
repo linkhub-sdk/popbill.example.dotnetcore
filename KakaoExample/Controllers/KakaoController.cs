@@ -1051,10 +1051,10 @@ namespace KakaoExample.Controllers
         {
             // 최대 검색기한 : 6개월 이내
             // 시작일자, 날자형식(yyyyMMdd)
-            string SDate = "20211201";
+            string SDate = "20220501";
 
             // 종료일자, 날자형식(yyyyMMdd)
-            string EDate = "20211230";
+            string EDate = "20220531";
 
             // 전송상태 배열 ("0" , "1" , "2" , "3" , "4" , "5" 중 선택, 다중 선택 가능)
             // └ 0 = 전송대기 , 1 = 전송중 , 2 = 전송성공 , 3 = 대체문자 전송 , 4 = 전송실패 , 5 = 전송취소

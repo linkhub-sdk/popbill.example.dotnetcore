@@ -1400,10 +1400,10 @@ namespace CashbillExample.Controllers
             cashbill.email = "";
 
             // 주문자 휴대폰
-            cashbill.hp = "010-111-222";
+            cashbill.hp = "";
 
             // 주문자 팩스번호
-            cashbill.fax = "02-6442-9700";
+            cashbill.fax = "";
 
             // 발행시 알림문자 전송여부
             cashbill.smssendYN = false;
@@ -1500,10 +1500,10 @@ namespace CashbillExample.Controllers
             cashbill.email = "";
 
             // 주문자 휴대폰
-            cashbill.hp = "010-111-222";
+            cashbill.hp = "";
 
             // 주문자 팩스번호
-            cashbill.fax = "02-6442-9700";
+            cashbill.fax = "";
 
             // 발행시 알림문자 전송여부
             cashbill.smssendYN = false;
