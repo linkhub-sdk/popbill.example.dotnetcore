@@ -79,7 +79,7 @@ namespace AccountCheckExample.Controllers
                 // 하이픈 '-' 제외하고 입력
                 string identityNum = "";
 
-                var response = _accountCheckService.CheckDepositorInfo(corpNum, bankCode, accountNumber, identityNumType, identityNum, userID);
+                var response = _accountCheckService.CheckDepositorInfo(corpNum, bankCode, accountNumber, identityNumType, identityNum);
                 return View("CheckDepositorInfo", response);
             }
             catch (PopbillException pe)
@@ -216,7 +216,7 @@ namespace AccountCheckExample.Controllers
 
             try
             {
-                var result = _accountCheckService.GetUnitCost(corpNum, serviceType, userID);
+                var result = _accountCheckService.GetUnitCost(corpNum, serviceType);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -371,7 +371,7 @@ namespace AccountCheckExample.Controllers
         {
             try
             {
-                var response = _accountCheckService.GetCorpInfo(corpNum, userID);
+                var response = _accountCheckService.GetCorpInfo(corpNum);
                 return View("GetCorpInfo", response);
             }
             catch (PopbillException pe)
@@ -405,7 +405,7 @@ namespace AccountCheckExample.Controllers
 
             try
             {
-                var response = _accountCheckService.UpdateCorpInfo(corpNum, corpInfo, userID);
+                var response = _accountCheckService.UpdateCorpInfo(corpNum, corpInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -443,7 +443,7 @@ namespace AccountCheckExample.Controllers
 
             try
             {
-                var response = _accountCheckService.RegistContact(corpNum, contactInfo, userID);
+                var response = _accountCheckService.RegistContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -463,7 +463,7 @@ namespace AccountCheckExample.Controllers
 
             try
             {
-                var contactInfo = _accountCheckService.GetContactInfo(corpNum, contactID, userID);
+                var contactInfo = _accountCheckService.GetContactInfo(corpNum, contactID);
                 return View("GetContactInfo", contactInfo);
             }
             catch (PopbillException pe)
@@ -480,7 +480,7 @@ namespace AccountCheckExample.Controllers
         {
             try
             {
-                var response = _accountCheckService.ListContact(corpNum, userID);
+                var response = _accountCheckService.ListContact(corpNum);
                 return View("ListContact", response);
             }
             catch (PopbillException pe)
@@ -514,7 +514,7 @@ namespace AccountCheckExample.Controllers
 
             try
             {
-                var response = _accountCheckService.UpdateContact(corpNum, contactInfo, userID);
+                var response = _accountCheckService.UpdateContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)

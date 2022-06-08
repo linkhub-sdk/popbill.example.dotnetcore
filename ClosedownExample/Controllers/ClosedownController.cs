@@ -43,7 +43,7 @@ namespace ClosedownExample.Controllers
                 //조회할 사업자번호
                 string targetCorpNum = "6798700433";
 
-                var response = _closedownService.checkCorpNum(corpNum, targetCorpNum, userID);
+                var response = _closedownService.checkCorpNum(corpNum, targetCorpNum);
                 return View("CheckCorpNum", response);
             }
             catch (PopbillException pe)
@@ -66,7 +66,7 @@ namespace ClosedownExample.Controllers
                 targetCorpNums.Add("6798700433");
                 targetCorpNums.Add("401-03-94930");
 
-                var response = _closedownService.checkCorpNums(corpNum, targetCorpNums, userID);
+                var response = _closedownService.checkCorpNums(corpNum, targetCorpNums);
                 return View("CheckCorpNums", response);
             }
             catch (PopbillException pe)
@@ -367,7 +367,7 @@ namespace ClosedownExample.Controllers
 
             try
             {
-                var response = _closedownService.UpdateCorpInfo(corpNum, corpInfo, userID);
+                var response = _closedownService.UpdateCorpInfo(corpNum, corpInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -404,7 +404,7 @@ namespace ClosedownExample.Controllers
 
             try
             {
-                var response = _closedownService.RegistContact(corpNum, contactInfo, userID);
+                var response = _closedownService.RegistContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -424,7 +424,7 @@ namespace ClosedownExample.Controllers
 
             try
             {
-                var contactInfo = _closedownService.GetContactInfo(corpNum, contactID, userID);
+                var contactInfo = _closedownService.GetContactInfo(corpNum, contactID);
                 return View("GetContactInfo", contactInfo);
             }
             catch (PopbillException pe)
@@ -441,7 +441,7 @@ namespace ClosedownExample.Controllers
         {
             try
             {
-                var response = _closedownService.ListContact(corpNum, userID);
+                var response = _closedownService.ListContact(corpNum);
                 return View("ListContact", response);
             }
             catch (PopbillException pe)
@@ -475,7 +475,7 @@ namespace ClosedownExample.Controllers
 
             try
             {
-                var response = _closedownService.UpdateContact(corpNum, contactInfo, userID);
+                var response = _closedownService.UpdateContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)

@@ -44,7 +44,7 @@ namespace FaxExample.Controllers
 
             try
             {
-                var Response = _faxService.CheckSenderNumber(corpNum, senderNumber, userID);
+                var Response = _faxService.CheckSenderNumber(corpNum, senderNumber);
                 return View("Response", Response);
             }
             catch (PopbillException pe)
@@ -79,7 +79,7 @@ namespace FaxExample.Controllers
         {
             try
             {
-                var response = _faxService.GetSenderNumberList(corpNum, userID);
+                var response = _faxService.GetSenderNumberList(corpNum);
                 return View("GetSenderNumberList", response);
             }
             catch (PopbillException pe)
@@ -446,7 +446,7 @@ namespace FaxExample.Controllers
 
             try
             {
-                var Response = _faxService.CancelReserve(corpNum, receiptNum, userID);
+                var Response = _faxService.CancelReserve(corpNum, receiptNum);
                 return View("Response", Response);
             }
             catch (PopbillException pe)
@@ -466,7 +466,7 @@ namespace FaxExample.Controllers
 
             try
             {
-                var Response = _faxService.CancelReserveRN(corpNum, requestNum, userID);
+                var Response = _faxService.CancelReserveRN(corpNum, requestNum);
                 return View("Response", Response);
             }
             catch (PopbillException pe)
@@ -490,7 +490,7 @@ namespace FaxExample.Controllers
 
             try
             {
-                var Response = _faxService.GetFaxDetail(corpNum, receiptNum, userID);
+                var Response = _faxService.GetFaxDetail(corpNum, receiptNum);
                 return View("GetFaxDetail", Response);
             }
             catch (PopbillException pe)
@@ -510,7 +510,7 @@ namespace FaxExample.Controllers
 
             try
             {
-                var Response = _faxService.GetFaxDetailRN(corpNum, requestNum, userID);
+                var Response = _faxService.GetFaxDetailRN(corpNum, requestNum);
                 return View("GetFaxDetailRN", Response);
             }
             catch (PopbillException pe)
@@ -569,7 +569,7 @@ namespace FaxExample.Controllers
             try
             {
                 var response = _faxService.Search(corpNum, SDate, EDate, State, ReserveYN, SenderOnly, Page, PerPage,
-                    Order, QString, userID);
+                    Order, QString);
                 return View("Search", response);
             }
             catch (PopbillException pe)
@@ -899,7 +899,7 @@ namespace FaxExample.Controllers
         {
             try
             {
-                var response = _faxService.GetCorpInfo(corpNum, userID);
+                var response = _faxService.GetCorpInfo(corpNum);
                 return View("GetCorpInfo", response);
             }
             catch (PopbillException pe)
@@ -933,7 +933,7 @@ namespace FaxExample.Controllers
 
             try
             {
-                var response = _faxService.UpdateCorpInfo(corpNum, corpInfo, userID);
+                var response = _faxService.UpdateCorpInfo(corpNum, corpInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -970,7 +970,7 @@ namespace FaxExample.Controllers
 
             try
             {
-                var response = _faxService.RegistContact(corpNum, contactInfo, userID);
+                var response = _faxService.RegistContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -990,7 +990,7 @@ namespace FaxExample.Controllers
 
             try
             {
-                var contactInfo = _faxService.GetContactInfo(corpNum, contactID, userID);
+                var contactInfo = _faxService.GetContactInfo(corpNum, contactID);
                 return View("GetContactInfo", contactInfo);
             }
             catch (PopbillException pe)
@@ -1007,7 +1007,7 @@ namespace FaxExample.Controllers
         {
             try
             {
-                var response = _faxService.ListContact(corpNum, userID);
+                var response = _faxService.ListContact(corpNum);
                 return View("ListContact", response);
             }
             catch (PopbillException pe)
@@ -1041,7 +1041,7 @@ namespace FaxExample.Controllers
 
             try
             {
-                var response = _faxService.UpdateContact(corpNum, contactInfo, userID);
+                var response = _faxService.UpdateContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)

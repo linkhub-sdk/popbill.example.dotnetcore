@@ -495,7 +495,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.Register(corpNum, statement, userID);
+                var response = _statementService.Register(corpNum, statement);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -715,7 +715,7 @@ namespace StatementExample.Controllers
             statement.propertyBag.Add("CBalance", "20000"); // 현잔액
             try
             {
-                var response = _statementService.Update(corpNum, itemCode, mgtKey, statement, userID);
+                var response = _statementService.Update(corpNum, itemCode, mgtKey, statement);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -743,7 +743,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.Issue(corpNum, itemCode, mgtKey, memo, userID);
+                var response = _statementService.Issue(corpNum, itemCode, mgtKey, memo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -769,7 +769,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.Cancel(corpNum, itemCode, mgtKey, memo, userID);
+                var response = _statementService.Cancel(corpNum, itemCode, mgtKey, memo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -794,7 +794,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.Delete(corpNum, itemCode, mgtKey, userID);
+                var response = _statementService.Delete(corpNum, itemCode, mgtKey);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -822,7 +822,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.GetInfo(corpNum, itemCode, mgtKey, userID);
+                var response = _statementService.GetInfo(corpNum, itemCode, mgtKey);
                 return View("GetInfo", response);
             }
             catch (PopbillException pe)
@@ -847,7 +847,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.GetInfos(corpNum, itemCode, mgtKeyList, userID);
+                var response = _statementService.GetInfos(corpNum, itemCode, mgtKeyList);
                 return View("GetInfos", response);
             }
             catch (PopbillException pe)
@@ -870,7 +870,7 @@ namespace StatementExample.Controllers
             string mgtKey = "20220527-001";
             try
             {
-                var response = _statementService.GetDetailInfo(corpNum, itemCode, mgtKey, userID);
+                var response = _statementService.GetDetailInfo(corpNum, itemCode, mgtKey);
                 return View("GetDetailInfo", response);
             }
             catch (PopbillException pe)
@@ -922,7 +922,7 @@ namespace StatementExample.Controllers
             try
             {
                 var response = _statementService.Search(corpNum, DType, SDate, EDate, State, itemCode, Page, PerPage,
-                    Order, QString, userID);
+                    Order, QString);
                 return View("Search", response);
             }
             catch (PopbillException pe)
@@ -945,7 +945,7 @@ namespace StatementExample.Controllers
             string mgtKey = "20220527-001";
             try
             {
-                var response = _statementService.GetLogs(corpNum, itemCode, mgtKey, userID);
+                var response = _statementService.GetLogs(corpNum, itemCode, mgtKey);
                 return View("GetLogs", response);
             }
             catch (PopbillException pe)
@@ -1190,7 +1190,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.AttachFile(corpNum, itemCode, mgtKey, filePath, userID);
+                var response = _statementService.AttachFile(corpNum, itemCode, mgtKey, filePath);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1218,7 +1218,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.DeleteFile(corpNum, itemCode, mgtKey, fileID, userID);
+                var response = _statementService.DeleteFile(corpNum, itemCode, mgtKey, fileID);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1243,7 +1243,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.GetFiles(corpNum, itemCode, mgtKey, userID);
+                var response = _statementService.GetFiles(corpNum, itemCode, mgtKey);
                 return View("GetFiles", response);
             }
             catch (PopbillException pe)
@@ -1270,7 +1270,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.SendEmail(corpNum, itemCode, mgtKey, receiver, userID);
+                var response = _statementService.SendEmail(corpNum, itemCode, mgtKey, receiver);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1305,7 +1305,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.SendSMS(corpNum, itemCode, mgtKey, sender, receiver, contents, userID);
+                var response = _statementService.SendSMS(corpNum, itemCode, mgtKey, sender, receiver, contents);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1336,7 +1336,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.SendFAX(corpNum, itemCode, mgtKey, sender, receiver, userID);
+                var response = _statementService.SendFAX(corpNum, itemCode, mgtKey, sender, receiver);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1566,7 +1566,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var result = _statementService.FAXSend(corpNum, statement, sendNum, receiveNum, userID);
+                var result = _statementService.FAXSend(corpNum, statement, sendNum, receiveNum);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -1597,7 +1597,7 @@ namespace StatementExample.Controllers
             try
             {
                 var response =
-                    _statementService.AttachStatement(corpNum, itemCode, mgtKey, subItemCode, subMgtKey, userID);
+                    _statementService.AttachStatement(corpNum, itemCode, mgtKey, subItemCode, subMgtKey);
                 return View("response", response);
             }
             catch (PopbillException pe)
@@ -1628,7 +1628,7 @@ namespace StatementExample.Controllers
             try
             {
                 var response =
-                    _statementService.DetachStatement(corpNum, itemCode, mgtKey, subItemCode, subMgtKey, userID);
+                    _statementService.DetachStatement(corpNum, itemCode, mgtKey, subItemCode, subMgtKey);
                 return View("response", response);
             }
             catch (PopbillException pe)
@@ -1645,7 +1645,7 @@ namespace StatementExample.Controllers
         {
             try
             {
-                var result = _statementService.ListEmailConfig(corpNum, userID);
+                var result = _statementService.ListEmailConfig(corpNum);
                 return View("ListEmailConfig", result);
             }
             catch (PopbillException pe)
@@ -1675,7 +1675,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.UpdateEmailConfig(corpNum, emailType, sendYN, userID);
+                var response = _statementService.UpdateEmailConfig(corpNum, emailType, sendYN);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1948,7 +1948,7 @@ namespace StatementExample.Controllers
         {
             try
             {
-                var response = _statementService.GetCorpInfo(corpNum, userID);
+                var response = _statementService.GetCorpInfo(corpNum);
                 return View("GetCorpInfo", response);
             }
             catch (PopbillException pe)
@@ -1982,7 +1982,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.UpdateCorpInfo(corpNum, corpInfo, userID);
+                var response = _statementService.UpdateCorpInfo(corpNum, corpInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -2019,7 +2019,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.RegistContact(corpNum, contactInfo, userID);
+                var response = _statementService.RegistContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -2039,7 +2039,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var contactInfo = _statementService.GetContactInfo(corpNum, contactID, userID);
+                var contactInfo = _statementService.GetContactInfo(corpNum, contactID);
                 return View("GetContactInfo", contactInfo);
             }
             catch (PopbillException pe)
@@ -2056,7 +2056,7 @@ namespace StatementExample.Controllers
         {
             try
             {
-                var response = _statementService.ListContact(corpNum, userID);
+                var response = _statementService.ListContact(corpNum);
                 return View("ListContact", response);
             }
             catch (PopbillException pe)
@@ -2090,7 +2090,7 @@ namespace StatementExample.Controllers
 
             try
             {
-                var response = _statementService.UpdateContact(corpNum, contactInfo, userID);
+                var response = _statementService.UpdateContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)

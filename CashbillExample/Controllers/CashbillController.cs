@@ -260,7 +260,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var bulkResponse = _cashbillService.BulkSubmit(corpNum, submitID, cashbillList, userID);
+                var bulkResponse = _cashbillService.BulkSubmit(corpNum, submitID, cashbillList);
                 return View("BulkResponse", bulkResponse);
             }
             catch (PopbillException pe)
@@ -282,7 +282,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var bulkCashbillResult = _cashbillService.GetBulkResult(corpNum, submitID, userID);
+                var bulkCashbillResult = _cashbillService.GetBulkResult(corpNum, submitID);
                 return View("BulkCashbillResult", bulkCashbillResult);
             }
             catch (PopbillException pe)
@@ -306,7 +306,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.CancelIssue(corpNum, mgtKey, memo, userID);
+                var response = _cashbillService.CancelIssue(corpNum, mgtKey, memo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -328,7 +328,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.Delete(corpNum, mgtKey, userID);
+                var response = _cashbillService.Delete(corpNum, mgtKey);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -410,7 +410,7 @@ namespace CashbillExample.Controllers
             try
             {
                 var response = _cashbillService.RevokeRegistIssue(corpNum, mgtKey, orgConfirmNum, orgTradeDate,
-                    smssendYN, memo, isPartCancel, cancelType, totalAmount, supplyCost, tax, serviceFee, userID);
+                    smssendYN, memo, isPartCancel, cancelType, totalAmount, supplyCost, tax, serviceFee);
                 return View("IssueResponse", response);
             }
             catch (PopbillException pe)
@@ -434,7 +434,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.GetInfo(corpNum, mgtKey, userID);
+                var response = _cashbillService.GetInfo(corpNum, mgtKey);
                 return View("GetInfo", response);
             }
             catch (PopbillException pe)
@@ -456,7 +456,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.GetInfos(corpNum, mgtKeyList, userID);
+                var response = _cashbillService.GetInfos(corpNum, mgtKeyList);
                 return View("GetInfos", response);
             }
             catch (PopbillException pe)
@@ -476,7 +476,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.GetDetailInfo(corpNum, mgtKey, userID);
+                var response = _cashbillService.GetDetailInfo(corpNum, mgtKey);
                 return View("GetDetailInfo", response);
             }
             catch (PopbillException pe)
@@ -577,7 +577,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.GetLogs(corpNum, mgtKey, userID);
+                var response = _cashbillService.GetLogs(corpNum, mgtKey);
                 return View("GetLogs", response);
             }
             catch (PopbillException pe)
@@ -773,7 +773,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.SendEmail(corpNum, mgtKey, receiveEmail, userID);
+                var response = _cashbillService.SendEmail(corpNum, mgtKey, receiveEmail);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -804,7 +804,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.SendSMS(corpNum, mgtKey, sender, receiver, contents, userID);
+                var response = _cashbillService.SendSMS(corpNum, mgtKey, sender, receiver, contents);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -831,7 +831,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.SendFAX(corpNum, mgtKey, sender, receiver, userID);
+                var response = _cashbillService.SendFAX(corpNum, mgtKey, sender, receiver);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -873,7 +873,7 @@ namespace CashbillExample.Controllers
         {
             try
             {
-                var result = _cashbillService.ListEmailConfig(corpNum, userID);
+                var result = _cashbillService.ListEmailConfig(corpNum);
                 return View("ListEmailConfig", result);
             }
             catch (PopbillException pe)
@@ -898,7 +898,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.UpdateEmailConfig(corpNum, emailType, sendYN, userID);
+                var response = _cashbillService.UpdateEmailConfig(corpNum, emailType, sendYN);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1165,7 +1165,7 @@ namespace CashbillExample.Controllers
         {
             try
             {
-                var response = _cashbillService.GetCorpInfo(corpNum, userID);
+                var response = _cashbillService.GetCorpInfo(corpNum);
                 return View("GetCorpInfo", response);
             }
             catch (PopbillException pe)
@@ -1199,7 +1199,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.UpdateCorpInfo(corpNum, corpInfo, userID);
+                var response = _cashbillService.UpdateCorpInfo(corpNum, corpInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1236,7 +1236,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.RegistContact(corpNum, contactInfo, userID);
+                var response = _cashbillService.RegistContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1256,7 +1256,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var contactInfo = _cashbillService.GetContactInfo(corpNum, contactID, userID);
+                var contactInfo = _cashbillService.GetContactInfo(corpNum, contactID);
                 return View("GetContactInfo", contactInfo);
             }
             catch (PopbillException pe)
@@ -1273,7 +1273,7 @@ namespace CashbillExample.Controllers
         {
             try
             {
-                var response = _cashbillService.ListContact(corpNum, userID);
+                var response = _cashbillService.ListContact(corpNum);
                 return View("ListContact", response);
             }
             catch (PopbillException pe)
@@ -1307,7 +1307,7 @@ namespace CashbillExample.Controllers
 
             try
             {
-                var response = _cashbillService.UpdateContact(corpNum, contactInfo, userID);
+                var response = _cashbillService.UpdateContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)

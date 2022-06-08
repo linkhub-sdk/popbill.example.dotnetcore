@@ -171,7 +171,7 @@ namespace EasyFinBankExample.Controllers
         {
             try
             {
-                var response = _easyFinBankService.ListBankAccount(corpNum, userID);
+                var response = _easyFinBankService.ListBankAccount(corpNum);
                 return View("ListBankAccount", response);
             }
             catch (PopbillException pe)
@@ -317,7 +317,7 @@ namespace EasyFinBankExample.Controllers
 
             try
             {
-                var result = _easyFinBankService.RequestJob(corpNum, BankCode, AccountNumber, SDate, EDate, userID);
+                var result = _easyFinBankService.RequestJob(corpNum, BankCode, AccountNumber, SDate, EDate);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -343,7 +343,7 @@ namespace EasyFinBankExample.Controllers
 
             try
             {
-                var response = _easyFinBankService.GetJobState(corpNum, jobID, userID);
+                var response = _easyFinBankService.GetJobState(corpNum, jobID);
                 return View("GetJobState", response);
             }
             catch (PopbillException pe)
@@ -405,7 +405,7 @@ namespace EasyFinBankExample.Controllers
 
             try
             {
-                var response = _easyFinBankService.Search(corpNum, jobID, TradeType, SearchString, Page, PerPage, Order, userID);
+                var response = _easyFinBankService.Search(corpNum, jobID, TradeType, SearchString, Page, PerPage, Order);
                 return View("Search", response);
             }
             catch (PopbillException pe)
@@ -437,7 +437,7 @@ namespace EasyFinBankExample.Controllers
 
             try
             {
-                var response = _easyFinBankService.Summary(corpNum, jobID, TradeType, SearchString, userID);
+                var response = _easyFinBankService.Summary(corpNum, jobID, TradeType, SearchString);
                 return View("Summary", response);
             }
             catch (PopbillException pe)
@@ -458,7 +458,7 @@ namespace EasyFinBankExample.Controllers
 
             try
             {
-                var response = _easyFinBankService.SaveMemo(corpNum, tid, memo, userID);
+                var response = _easyFinBankService.SaveMemo(corpNum, tid, memo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -480,7 +480,7 @@ namespace EasyFinBankExample.Controllers
         {
             try
             {
-                var result = _easyFinBankService.GetFlatRatePopUpURL(corpNum);
+                var result = _easyFinBankService.GetFlatRatePopUpURL(corpNum, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -768,7 +768,7 @@ namespace EasyFinBankExample.Controllers
         {
             try
             {
-                var response = _easyFinBankService.GetCorpInfo(corpNum, userID);
+                var response = _easyFinBankService.GetCorpInfo(corpNum);
                 return View("GetCorpInfo", response);
             }
             catch (PopbillException pe)
@@ -802,7 +802,7 @@ namespace EasyFinBankExample.Controllers
 
             try
             {
-                var response = _easyFinBankService.UpdateCorpInfo(corpNum, corpInfo, userID);
+                var response = _easyFinBankService.UpdateCorpInfo(corpNum, corpInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -839,7 +839,7 @@ namespace EasyFinBankExample.Controllers
 
             try
             {
-                var response = _easyFinBankService.RegistContact(corpNum, contactInfo, userID);
+                var response = _easyFinBankService.RegistContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -859,7 +859,7 @@ namespace EasyFinBankExample.Controllers
 
             try
             {
-                var contactInfo = _easyFinBankService.GetContactInfo(corpNum, contactID, userID);
+                var contactInfo = _easyFinBankService.GetContactInfo(corpNum, contactID);
                 return View("GetContactInfo", contactInfo);
             }
             catch (PopbillException pe)
@@ -876,7 +876,7 @@ namespace EasyFinBankExample.Controllers
         {
             try
             {
-                var response = _easyFinBankService.ListContact(corpNum, userID);
+                var response = _easyFinBankService.ListContact(corpNum);
                 return View("ListContact", response);
             }
             catch (PopbillException pe)
@@ -910,7 +910,7 @@ namespace EasyFinBankExample.Controllers
 
             try
             {
-                var response = _easyFinBankService.UpdateContact(corpNum, contactInfo, userID);
+                var response = _easyFinBankService.UpdateContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)

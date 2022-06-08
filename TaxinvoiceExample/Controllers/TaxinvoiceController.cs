@@ -2816,7 +2816,7 @@ namespace TaxinvoiceExample.Controllers
         {
             try
             {
-                var response = _taxinvoiceService.GetCorpInfo(corpNum, userID);
+                var response = _taxinvoiceService.GetCorpInfo(corpNum);
                 return View("GetCorpInfo", response);
             }
             catch (PopbillException pe)
@@ -2850,7 +2850,7 @@ namespace TaxinvoiceExample.Controllers
 
             try
             {
-                var response = _taxinvoiceService.UpdateCorpInfo(corpNum, corpInfo, userID);
+                var response = _taxinvoiceService.UpdateCorpInfo(corpNum, corpInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -2887,7 +2887,7 @@ namespace TaxinvoiceExample.Controllers
 
             try
             {
-                var response = _taxinvoiceService.RegistContact(corpNum, contactInfo, userID);
+                var response = _taxinvoiceService.RegistContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -2907,7 +2907,7 @@ namespace TaxinvoiceExample.Controllers
 
             try
             {
-                var contactInfo = _taxinvoiceService.GetContactInfo(corpNum, contactID, userID);
+                var contactInfo = _taxinvoiceService.GetContactInfo(corpNum, contactID);
                 return View("GetContactInfo", contactInfo);
             }
             catch (PopbillException pe)
@@ -2924,7 +2924,7 @@ namespace TaxinvoiceExample.Controllers
         {
             try
             {
-                var response = _taxinvoiceService.ListContact(corpNum, userID);
+                var response = _taxinvoiceService.ListContact(corpNum);
                 return View("ListContact", response);
             }
             catch (PopbillException pe)
@@ -2958,7 +2958,7 @@ namespace TaxinvoiceExample.Controllers
 
             try
             {
-                var response = _taxinvoiceService.UpdateContact(corpNum, contactInfo, userID);
+                var response = _taxinvoiceService.UpdateContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)

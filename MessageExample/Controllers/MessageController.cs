@@ -44,7 +44,7 @@ namespace MessageExample.Controllers
 
             try
             {
-                var Response = _messageService.CheckSenderNumber(corpNum, senderNumber, userID);
+                var Response = _messageService.CheckSenderNumber(corpNum, senderNumber);
                 return View("Response", Response);
             }
             catch (PopbillException pe)
@@ -79,7 +79,7 @@ namespace MessageExample.Controllers
         {
             try
             {
-                var response = _messageService.GetSenderNumberList(corpNum, userID);
+                var response = _messageService.GetSenderNumberList(corpNum);
                 return View("GetSenderNumberList", response);
             }
             catch (PopbillException pe)
@@ -818,7 +818,7 @@ namespace MessageExample.Controllers
 
             try
             {
-                var Response = _messageService.CancelReserve(corpNum, receiptNum, userID);
+                var Response = _messageService.CancelReserve(corpNum, receiptNum);
                 return View("Response", Response);
             }
             catch (PopbillException pe)
@@ -838,7 +838,7 @@ namespace MessageExample.Controllers
 
             try
             {
-                var Response = _messageService.CancelReserveRN(corpNum, requestNum, userID);
+                var Response = _messageService.CancelReserveRN(corpNum, requestNum);
                 return View("Response", Response);
             }
             catch (PopbillException pe)
@@ -862,7 +862,7 @@ namespace MessageExample.Controllers
 
             try
             {
-                var Response = _messageService.GetMessages(corpNum, receiptNum, userID);
+                var Response = _messageService.GetMessages(corpNum, receiptNum);
                 return View("GetMessages", Response);
             }
             catch (PopbillException pe)
@@ -882,7 +882,7 @@ namespace MessageExample.Controllers
 
             try
             {
-                var Response = _messageService.GetMessagesRN(corpNum, requestNum, userID);
+                var Response = _messageService.GetMessagesRN(corpNum, requestNum);
                 return View("GetMessagesRN", Response);
             }
             catch (PopbillException pe)
@@ -949,7 +949,7 @@ namespace MessageExample.Controllers
             try
             {
                 var response = _messageService.Search(corpNum, SDate, EDate, State, Item, ReserveYN, SenderYN, Page,
-                    PerPage, Order, QString, userID);
+                    PerPage, Order, QString);
                 return View("Search", response);
             }
             catch (PopbillException pe)
@@ -985,7 +985,7 @@ namespace MessageExample.Controllers
         {
             try
             {
-                var Response = _messageService.GetAutoDenyList(corpNum, userID);
+                var Response = _messageService.GetAutoDenyList(corpNum);
                 return View("GetAutoDenyList", Response);
             }
             catch (PopbillException pe)
@@ -1276,7 +1276,7 @@ namespace MessageExample.Controllers
         {
             try
             {
-                var response = _messageService.GetCorpInfo(corpNum, userID);
+                var response = _messageService.GetCorpInfo(corpNum);
                 return View("GetCorpInfo", response);
             }
             catch (PopbillException pe)
@@ -1310,7 +1310,7 @@ namespace MessageExample.Controllers
 
             try
             {
-                var response = _messageService.UpdateCorpInfo(corpNum, corpInfo, userID);
+                var response = _messageService.UpdateCorpInfo(corpNum, corpInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1347,7 +1347,7 @@ namespace MessageExample.Controllers
 
             try
             {
-                var response = _messageService.RegistContact(corpNum, contactInfo, userID);
+                var response = _messageService.RegistContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1367,7 +1367,7 @@ namespace MessageExample.Controllers
 
             try
             {
-                var contactInfo = _messageService.GetContactInfo(corpNum, contactID, userID);
+                var contactInfo = _messageService.GetContactInfo(corpNum, contactID);
                 return View("GetContactInfo", contactInfo);
             }
             catch (PopbillException pe)
@@ -1384,7 +1384,7 @@ namespace MessageExample.Controllers
         {
             try
             {
-                var response = _messageService.ListContact(corpNum, userID);
+                var response = _messageService.ListContact(corpNum);
                 return View("ListContact", response);
             }
             catch (PopbillException pe)
@@ -1418,7 +1418,7 @@ namespace MessageExample.Controllers
 
             try
             {
-                var response = _messageService.UpdateContact(corpNum, contactInfo, userID);
+                var response = _messageService.UpdateContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)

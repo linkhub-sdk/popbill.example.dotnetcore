@@ -49,7 +49,7 @@ namespace HTCashbillExample.Controllers
 
             try
             {
-                var result = _htCashbillService.RequestJob(corpNum, keyType, SDate, EDate, userID);
+                var result = _htCashbillService.RequestJob(corpNum, keyType, SDate, EDate);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -75,7 +75,7 @@ namespace HTCashbillExample.Controllers
 
             try
             {
-                var response = _htCashbillService.GetJobState(corpNum, jobID, userID);
+                var response = _htCashbillService.GetJobState(corpNum, jobID);
                 return View("GetJobState", response);
             }
             catch (PopbillException pe)
@@ -93,7 +93,7 @@ namespace HTCashbillExample.Controllers
         {
             try
             {
-                var response = _htCashbillService.ListActiveJob(corpNum, userID);
+                var response = _htCashbillService.ListActiveJob(corpNum);
                 return View("ListActiveJob", response);
             }
             catch (PopbillException pe)
@@ -136,8 +136,7 @@ namespace HTCashbillExample.Controllers
 
             try
             {
-                var response = _htCashbillService.Search(corpNum, jobID, TradeType, TradeUsage, Page, PerPage, Order,
-                    userID);
+                var response = _htCashbillService.Search(corpNum, jobID, TradeType, TradeUsage, Page, PerPage, Order);
                 return View("Search", response);
             }
             catch (PopbillException pe)
@@ -168,7 +167,7 @@ namespace HTCashbillExample.Controllers
 
             try
             {
-                var response = _htCashbillService.Summary(corpNum, jobID, TradeType, TradeUsage, userID);
+                var response = _htCashbillService.Summary(corpNum, jobID, TradeType, TradeUsage);
                 return View("Summary", response);
             }
             catch (PopbillException pe)
@@ -208,7 +207,7 @@ namespace HTCashbillExample.Controllers
         {
             try
             {
-                var result = _htCashbillService.GetCertificateExpireDate(corpNum, userID);
+                var result = _htCashbillService.GetCertificateExpireDate(corpNum);
                 return View("Result", result.ToString("yyyyMMddHHmmss"));
             }
             catch (PopbillException pe)
@@ -225,7 +224,7 @@ namespace HTCashbillExample.Controllers
         {
             try
             {
-                var response = _htCashbillService.CheckCertValidation(corpNum, userID);
+                var response = _htCashbillService.CheckCertValidation(corpNum);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -248,7 +247,7 @@ namespace HTCashbillExample.Controllers
 
             try
             {
-                var response = _htCashbillService.RegistDeptUser(corpNum, deptUserID, deptUserPWD, userID);
+                var response = _htCashbillService.RegistDeptUser(corpNum, deptUserID, deptUserPWD);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -265,7 +264,7 @@ namespace HTCashbillExample.Controllers
         {
             try
             {
-                var response = _htCashbillService.CheckDeptUser(corpNum, userID);
+                var response = _htCashbillService.CheckDeptUser(corpNum);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -282,7 +281,7 @@ namespace HTCashbillExample.Controllers
         {
             try
             {
-                var response = _htCashbillService.CheckLoginDeptUser(corpNum, userID);
+                var response = _htCashbillService.CheckLoginDeptUser(corpNum);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -299,7 +298,7 @@ namespace HTCashbillExample.Controllers
         {
             try
             {
-                var response = _htCashbillService.DeleteDeptUser(corpNum, userID);
+                var response = _htCashbillService.DeleteDeptUser(corpNum);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -321,7 +320,7 @@ namespace HTCashbillExample.Controllers
         {
             try
             {
-                var result = _htCashbillService.GetFlatRatePopUpURL(corpNum);
+                var result = _htCashbillService.GetFlatRatePopUpURL(corpNum, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -603,7 +602,7 @@ namespace HTCashbillExample.Controllers
         {
             try
             {
-                var response = _htCashbillService.GetCorpInfo(corpNum, userID);
+                var response = _htCashbillService.GetCorpInfo(corpNum);
                 return View("GetCorpInfo", response);
             }
             catch (PopbillException pe)
@@ -637,7 +636,7 @@ namespace HTCashbillExample.Controllers
 
             try
             {
-                var response = _htCashbillService.UpdateCorpInfo(corpNum, corpInfo, userID);
+                var response = _htCashbillService.UpdateCorpInfo(corpNum, corpInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -674,7 +673,7 @@ namespace HTCashbillExample.Controllers
 
             try
             {
-                var response = _htCashbillService.RegistContact(corpNum, contactInfo, userID);
+                var response = _htCashbillService.RegistContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -694,7 +693,7 @@ namespace HTCashbillExample.Controllers
 
             try
             {
-                var contactInfo = _htCashbillService.GetContactInfo(corpNum, contactID, userID);
+                var contactInfo = _htCashbillService.GetContactInfo(corpNum, contactID);
                 return View("GetContactInfo", contactInfo);
             }
             catch (PopbillException pe)
@@ -711,7 +710,7 @@ namespace HTCashbillExample.Controllers
         {
             try
             {
-                var response = _htCashbillService.ListContact(corpNum, userID);
+                var response = _htCashbillService.ListContact(corpNum);
                 return View("ListContact", response);
             }
             catch (PopbillException pe)
@@ -745,7 +744,7 @@ namespace HTCashbillExample.Controllers
 
             try
             {
-                var response = _htCashbillService.UpdateContact(corpNum, contactInfo, userID);
+                var response = _htCashbillService.UpdateContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)

@@ -59,7 +59,7 @@ namespace KakaoExample.Controllers
         {
             try
             {
-                var response = _kakaoService.ListPlusFriendID(corpNum, userID);
+                var response = _kakaoService.ListPlusFriendID(corpNum);
                 return View("ListPlusFriendID", response);
             }
             catch (PopbillException pe)
@@ -80,7 +80,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var Response = _kakaoService.CheckSenderNumber(corpNum, senderNumber, userID);
+                var Response = _kakaoService.CheckSenderNumber(corpNum, senderNumber);
                 return View("Response", Response);
             }
             catch (PopbillException pe)
@@ -115,7 +115,7 @@ namespace KakaoExample.Controllers
         {
             try
             {
-                var response = _kakaoService.GetSenderNumberList(corpNum, userID);
+                var response = _kakaoService.GetSenderNumberList(corpNum);
                 return View("GetSenderNumberList", response);
             }
             catch (PopbillException pe)
@@ -153,7 +153,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var templateInfo = _kakaoService.GetATSTemplate(corpNum, templateCdoe, userID);
+                var templateInfo = _kakaoService.GetATSTemplate(corpNum, templateCdoe);
                 return View("GetATSTemplate", templateInfo);
              }
             catch (PopbillException pe)
@@ -170,7 +170,7 @@ namespace KakaoExample.Controllers
         {
             try
             {
-                var response = _kakaoService.ListATSTemplate(corpNum, userID);
+                var response = _kakaoService.ListATSTemplate(corpNum);
                 return View("ListATSTemplate", response);
             }
             catch (PopbillException pe)
@@ -511,9 +511,6 @@ namespace KakaoExample.Controllers
             // 팝빌이 접수 단위를 식별할 수 있도록 파트너가 부여하는 식별번호.
             // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
-
-            // 팝빌 회원 아이디
-            string userID = "";
 
             // 대체문자 제목
             // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
@@ -943,9 +940,6 @@ namespace KakaoExample.Controllers
             // 1~36자리로 구성. 영문, 숫자, 하이픈(-), 언더바(_)를 조합하여 팝빌 회원별로 중복되지 않도록 할당.
             string requestNum = "";
 
-            // 팝빌 회원 아이디
-            string userID = "";
-
             // 대체문자 제목
             // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
             // - 수신정보 배열에 대체문자 제목이 입력되지 않은 경우 적용.
@@ -975,7 +969,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var Response = _kakaoService.CancelReserve(corpNum, receiptNum, userID);
+                var Response = _kakaoService.CancelReserve(corpNum, receiptNum);
                 return View("Response", Response);
             }
             catch (PopbillException pe)
@@ -995,7 +989,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var Response = _kakaoService.CancelReserveRN(corpNum, requestNum, userID);
+                var Response = _kakaoService.CancelReserveRN(corpNum, requestNum);
                 return View("Response", Response);
             }
             catch (PopbillException pe)
@@ -1019,7 +1013,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var Response = _kakaoService.GetMessages(corpNum, receiptNum, userID);
+                var Response = _kakaoService.GetMessages(corpNum, receiptNum);
                 return View("GetMessages", Response);
             }
             catch (PopbillException pe)
@@ -1039,7 +1033,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var Response = _kakaoService.GetMessagesRN(corpNum, requestNum, userID);
+                var Response = _kakaoService.GetMessagesRN(corpNum, requestNum);
                 return View("GetMessagesRN", Response);
             }
             catch (PopbillException pe)
@@ -1108,7 +1102,7 @@ namespace KakaoExample.Controllers
             try
             {
                 var response = _kakaoService.Search(corpNum, SDate, EDate, State, Item, ReserveYN, SenderYN, Page,
-                    PerPage, Order, QString, userID);
+                    PerPage, Order, QString);
                 return View("Search", response);
             }
             catch (PopbillException pe)
@@ -1420,7 +1414,7 @@ namespace KakaoExample.Controllers
         {
             try
             {
-                var response = _kakaoService.GetCorpInfo(corpNum, userID);
+                var response = _kakaoService.GetCorpInfo(corpNum);
                 return View("GetCorpInfo", response);
             }
             catch (PopbillException pe)
@@ -1454,7 +1448,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var response = _kakaoService.UpdateCorpInfo(corpNum, corpInfo, userID);
+                var response = _kakaoService.UpdateCorpInfo(corpNum, corpInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1491,7 +1485,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var response = _kakaoService.RegistContact(corpNum, contactInfo, userID);
+                var response = _kakaoService.RegistContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1511,7 +1505,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var contactInfo = _kakaoService.GetContactInfo(corpNum, contactID, userID);
+                var contactInfo = _kakaoService.GetContactInfo(corpNum, contactID);
                 return View("GetContactInfo", contactInfo);
             }
             catch (PopbillException pe)
@@ -1528,7 +1522,7 @@ namespace KakaoExample.Controllers
         {
             try
             {
-                var response = _kakaoService.ListContact(corpNum, userID);
+                var response = _kakaoService.ListContact(corpNum);
                 return View("ListContact", response);
             }
             catch (PopbillException pe)
@@ -1562,7 +1556,7 @@ namespace KakaoExample.Controllers
 
             try
             {
-                var response = _kakaoService.UpdateContact(corpNum, contactInfo, userID);
+                var response = _kakaoService.UpdateContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)

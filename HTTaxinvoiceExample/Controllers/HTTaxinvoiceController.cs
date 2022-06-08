@@ -53,7 +53,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var result = _htTaxinvoiceService.RequestJob(corpNum, keyType, DType, SDate, EDate, userID);
+                var result = _htTaxinvoiceService.RequestJob(corpNum, keyType, DType, SDate, EDate);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -79,7 +79,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var response = _htTaxinvoiceService.GetJobState(corpNum, jobID, userID);
+                var response = _htTaxinvoiceService.GetJobState(corpNum, jobID);
                 return View("GetJobState", response);
             }
             catch (PopbillException pe)
@@ -97,7 +97,7 @@ namespace HTTaxinvoiceExample.Controllers
         {
             try
             {
-                var response = _htTaxinvoiceService.ListActiveJob(corpNum, userID);
+                var response = _htTaxinvoiceService.ListActiveJob(corpNum);
                 return View("ListActiveJob", response);
             }
             catch (PopbillException pe)
@@ -239,7 +239,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var response = _htTaxinvoiceService.GetTaxinvoice(corpNum, ntsConfirmNum, userID);
+                var response = _htTaxinvoiceService.GetTaxinvoice(corpNum, ntsConfirmNum);
                 return View("GetTaxinvoice", response);
             }
             catch (PopbillException pe)
@@ -259,7 +259,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var response = _htTaxinvoiceService.GetXML(corpNum, ntsConfirmNum, userID);
+                var response = _htTaxinvoiceService.GetXML(corpNum, ntsConfirmNum);
                 return View("GetXML", response);
             }
             catch (PopbillException pe)
@@ -340,7 +340,7 @@ namespace HTTaxinvoiceExample.Controllers
         {
             try
             {
-                var result = _htTaxinvoiceService.GetCertificateExpireDate(corpNum, userID);
+                var result = _htTaxinvoiceService.GetCertificateExpireDate(corpNum);
 
                 return View("Result", result.ToString("yyyyMMddHHmmss"));
             }
@@ -358,7 +358,7 @@ namespace HTTaxinvoiceExample.Controllers
         {
             try
             {
-                var response = _htTaxinvoiceService.CheckCertValidation(corpNum, userID);
+                var response = _htTaxinvoiceService.CheckCertValidation(corpNum);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -381,7 +381,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var response = _htTaxinvoiceService.RegistDeptUser(corpNum, deptUserID, deptUserPWD, userID);
+                var response = _htTaxinvoiceService.RegistDeptUser(corpNum, deptUserID, deptUserPWD);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -398,7 +398,7 @@ namespace HTTaxinvoiceExample.Controllers
         {
             try
             {
-                var response = _htTaxinvoiceService.CheckDeptUser(corpNum, userID);
+                var response = _htTaxinvoiceService.CheckDeptUser(corpNum);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -415,7 +415,7 @@ namespace HTTaxinvoiceExample.Controllers
         {
             try
             {
-                var response = _htTaxinvoiceService.CheckLoginDeptUser(corpNum, userID);
+                var response = _htTaxinvoiceService.CheckLoginDeptUser(corpNum);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -432,7 +432,7 @@ namespace HTTaxinvoiceExample.Controllers
         {
             try
             {
-                var response = _htTaxinvoiceService.DeleteDeptUser(corpNum, userID);
+                var response = _htTaxinvoiceService.DeleteDeptUser(corpNum);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -454,7 +454,7 @@ namespace HTTaxinvoiceExample.Controllers
         {
             try
             {
-                var result = _htTaxinvoiceService.GetFlatRatePopUpURL(corpNum);
+                var result = _htTaxinvoiceService.GetFlatRatePopUpURL(corpNum, userID);
                 return View("Result", result);
             }
             catch (PopbillException pe)
@@ -734,7 +734,7 @@ namespace HTTaxinvoiceExample.Controllers
         {
             try
             {
-                var response = _htTaxinvoiceService.GetCorpInfo(corpNum, userID);
+                var response = _htTaxinvoiceService.GetCorpInfo(corpNum);
                 return View("GetCorpInfo", response);
             }
             catch (PopbillException pe)
@@ -768,7 +768,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var response = _htTaxinvoiceService.UpdateCorpInfo(corpNum, corpInfo, userID);
+                var response = _htTaxinvoiceService.UpdateCorpInfo(corpNum, corpInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -805,7 +805,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var response = _htTaxinvoiceService.RegistContact(corpNum, contactInfo, userID);
+                var response = _htTaxinvoiceService.RegistContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -825,7 +825,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var contactInfo = _htTaxinvoiceService.GetContactInfo(corpNum, contactID, userID);
+                var contactInfo = _htTaxinvoiceService.GetContactInfo(corpNum, contactID);
                 return View("GetContactInfo", contactInfo);
             }
             catch (PopbillException pe)
@@ -842,7 +842,7 @@ namespace HTTaxinvoiceExample.Controllers
         {
             try
             {
-                var response = _htTaxinvoiceService.ListContact(corpNum, userID);
+                var response = _htTaxinvoiceService.ListContact(corpNum);
                 return View("ListContact", response);
             }
             catch (PopbillException pe)
@@ -876,7 +876,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var response = _htTaxinvoiceService.UpdateContact(corpNum, contactInfo, userID);
+                var response = _htTaxinvoiceService.UpdateContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
