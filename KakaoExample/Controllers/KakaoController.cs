@@ -206,7 +206,7 @@ namespace KakaoExample.Controllers
             string receiverName = "수신자명";
 
             // 알림톡 템플릿 내용, 최대 1000자
-            String content = "[ 팝빌 ]\n";
+            string content = "[ 팝빌 ]\n";
             content += "신청하신 #{템플릿코드}에 대한 심사가 완료되어 승인 처리되었습니다.\n";
             content += "해당 템플릿으로 전송 가능합니다.\n\n";
             content += "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다.\n\n";
@@ -280,7 +280,7 @@ namespace KakaoExample.Controllers
             string templateCode = "019020000163";
 
             // 알림톡 템플릿 내용, 최대 1000자
-            String content = "[ 팝빌 ]\n";
+            string content = "[ 팝빌 ]\n";
             content += "신청하신 #{템플릿코드}에 대한 심사가 완료되어 승인 처리되었습니다.\n";
             content += "해당 템플릿으로 전송 가능합니다.\n\n";
             content += "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다.\n\n";
@@ -376,7 +376,7 @@ namespace KakaoExample.Controllers
             string templateCode = "019020000163";
 
             // 알림톡 템플릿 내용, 최대 1000자
-            String content = "[ 팝빌 ]\n";
+            string content = "[ 팝빌 ]\n";
             content += "신청하신 #{템플릿코드}에 대한 심사가 완료되어 승인 처리되었습니다.\n";
             content += "해당 템플릿으로 전송 가능합니다.\n\n";
             content += "문의사항 있으시면 파트너센터로 편하게 연락주시기 바랍니다.\n\n";
@@ -514,8 +514,6 @@ namespace KakaoExample.Controllers
 
             // 대체문자 제목
             // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
-            // - 수신정보 배열에 대체문자 제목이 입력되지 않은 경우 적용.
-            // - 모든 수신자에게 다른 제목을 보낼 경우 464번 라인에 있는 altsjt 를 이용.
             string altSubject = "";
 
             try
@@ -658,8 +656,6 @@ namespace KakaoExample.Controllers
 
             // 대체문자 제목
             // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
-            // - 수신정보 배열에 대체문자 제목이 입력되지 않은 경우 적용.
-            // - 모든 수신자에게 다른 제목을 보낼 경우 464번 라인에 있는 altsjt 를 이용.
             string altSubject = "";
 
             // 대체문자 유형 (null , "C" , "A" 중 택 1)
@@ -733,8 +729,6 @@ namespace KakaoExample.Controllers
 
             // 대체문자 제목
             // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
-            // - 수신정보 배열에 대체문자 제목이 입력되지 않은 경우 적용.
-            // - 모든 수신자에게 다른 제목을 보낼 경우 464번 라인에 있는 altsjt 를 이용.
             string altSubject = "";
 
             // 대체문자 유형 (null , "C" , "A" 중 택 1)
@@ -942,8 +936,6 @@ namespace KakaoExample.Controllers
 
             // 대체문자 제목
             // - 메시지 길이(90byte)에 따라 장문(LMS)인 경우에만 적용.
-            // - 수신정보 배열에 대체문자 제목이 입력되지 않은 경우 적용.
-            // - 모든 수신자에게 다른 제목을 보낼 경우 464번 라인에 있는 altsjt 를 이용.
             string altSubject = "";
 
             try
