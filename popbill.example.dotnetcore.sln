@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxinvoiceExample", "TaxinvoiceExample\TaxinvoiceExample.csproj", "{0B6E9F62-EF9B-4C06-AAC0-DEDDEE463663}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyFinBankExample", "EasyFinBankExample\EasyFinBankExample.csproj", "{8DCB1DB1-903E-4627-9195-984F7F3405ED}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountCheckExample", "AccountCheckExample\AccountCheckExample.csproj", "{6E3FF8F2-CA9C-472F-8E44-D80A3009F4F8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BizInfoCheckExample", "BizInfoCheckExample\BizInfoCheckExample.csproj", "{C2CA5C48-CDF3-4D51-9D8E-8150D64DEC56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{6E3FF8F2-CA9C-472F-8E44-D80A3009F4F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E3FF8F2-CA9C-472F-8E44-D80A3009F4F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E3FF8F2-CA9C-472F-8E44-D80A3009F4F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2CA5C48-CDF3-4D51-9D8E-8150D64DEC56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2CA5C48-CDF3-4D51-9D8E-8150D64DEC56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2CA5C48-CDF3-4D51-9D8E-8150D64DEC56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2CA5C48-CDF3-4D51-9D8E-8150D64DEC56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

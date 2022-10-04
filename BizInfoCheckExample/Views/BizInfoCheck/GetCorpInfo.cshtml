@@ -1,0 +1,18 @@
+@{
+    ViewBag.Title = "GetCorpInfo (회사정보 확인)";
+}
+
+<div id="content">
+    <p class="heading1">Response</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>ceoname(대표자성명) : @Model.ceoname</li>
+            <li>corpName(상호) : @Model.corpName</li>
+            <li>addr(주소) : @Model.addr</li>
+            <li>bizType(업태) : @Model.bizType</li>
+            <li>bizClass(종목) : @Model.bizClass</li>
+        </ul>
+    </fieldset>
+</div>

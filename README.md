@@ -5,22 +5,23 @@
 
 
 #### install .NET CLI
-    $ dotnet add package Popbill --version 1.53.0
+    $ dotnet add package Popbill --version 1.55.0
 
 
 연동 API 목차 및 연동가이드
 -----------------
 * 전자세금계산서 API 연동가이드 <https://linkhub.tistory.com/176>
-* 전자명세서 API
 * 현금영수증 API
-* 문자메시지 API
-* 팩스 API
-* 카카오톡 API
+* 전자명세서 API
 * 홈택스(전자세금계산서) 연동 API
 * 홈택스(현금영수증) 연동 API
 * 휴폐업조회 API
+* 기업정보조회 API
 * 계좌조회 API
 * 예금주조회 API
+* 문자메시지 API
+* 카카오톡 API
+* 팩스 API
 
 사이트
 -------------------------------
