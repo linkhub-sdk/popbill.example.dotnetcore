@@ -15,7 +15,7 @@ public class BizInfoCheckInstance
 
     public BizInfoCheckInstance()
     {
-        //휴폐업조회 서비스 객체 초기화
+        //기업정보조회 서비스 객체 초기화
         bizInfoCheckService = new BizInfoCheckService(linkID, secretKey);
 
         //연동환경 설정값, 개발용(true), 상업용(false)
@@ -48,7 +48,7 @@ namespace BizInfoCheckExample
         {
             services.AddMvc();
 
-            //휴폐업조회 서비스 객체 의존성 주입
+            //기업정보조회 서비스 객체 의존성 주입
             services.AddSingleton<BizInfoCheckInstance>();
         }
 
