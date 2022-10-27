@@ -846,6 +846,52 @@ namespace MessageExample.Controllers
                 return View("Exception", pe);
             }
         }
+        /*
+         * 팝빌에서 반환받은 접수번호와 수신번호를 통해 예약접수된 문자 메시지 전송을 취소합니다. (예약시간 10분 전까지 가능)
+         * - https://docs.popbill.com/message/dotnetcore/api#CancelReservebyRCV
+         */
+        public IActionResult CancelReservebyRCV()
+        {
+            // 문자 전송요청시 발급받은 접수번호
+            string receiptNum = "";
+
+            // 문자 전송요청시 요청한 수신번호
+            string receiveNum = "";
+
+            try
+            {
+                var Response = _messageService.CancelReservebyRCV(corpNum, receiptNum, receiveNum);
+                return View("Response", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 파트너가 할당한 전송요청 번호와 수신번호를 통해 예약접수된 문자 전송을 취소합니다. (예약시간 10분 전까지 가능)
+         * - https://docs.popbill.com/message/dotnetcore/api#CancelReserveRNbyRCV
+         */
+        public IActionResult CancelReserveRNbyRCV()
+        {
+            // 문자 전송요청시 할당한 요청번호
+            string requestNum = "";
+
+            // 문자 전송요청시 요청한 수신번호
+            string receiveNum = "";
+
+            try
+            {
+                var Response = _messageService.CancelReserveRNbyRCV(corpNum, requestNum, receiveNum);
+                return View("Response", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
 
         #endregion
 
