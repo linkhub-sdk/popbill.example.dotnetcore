@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
 using Popbill.Cashbill;
+using Popbill.HomeTax;
 
 namespace CashbillExample.Controllers
 {
@@ -140,6 +141,10 @@ namespace CashbillExample.Controllers
             // 발행시 알림문자 전송여부
             cashbill.smssendYN = false;
 
+            // 거래일시, 날짜(yyyyMMddHHmmss)
+            // 당일, 전일만 가능 미입력시 기본값 발행일시 처리
+            cashbill.tradeDT = "20221108000000";
+
             // 현금영수증 발행 메모
             string memo = "현금영수증 즉시발행 메모";
 
@@ -164,12 +169,12 @@ namespace CashbillExample.Controllers
         public IActionResult BulkSubmit()
         {
             // 제출아이디
-            string submitID = "20220527-BULK";
+            string submitID = "20221109-BULK";
 
             // 현금영수증 객체정보 목록
             List<Cashbill> cashbillList = new List<Cashbill>();
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Cashbill cashbill = new Cashbill();
 
@@ -254,6 +259,10 @@ namespace CashbillExample.Controllers
                 // 발행시 알림문자 전송여부
                 cashbill.smssendYN = false;
 
+                // 거래일시, 날짜(yyyyMMddHHmmss)
+                // 당일, 전일만 가능 미입력시 기본값 발행일시 처리
+                cashbill.tradeDT = "20221108000000";
+
                 cashbillList.Add(cashbill);
             }
 
@@ -277,7 +286,7 @@ namespace CashbillExample.Controllers
         {
             // 초대량 발행 접수시 기재한 제출아이디
             // 최대 36자리 영문, 숫자, '-'조합
-            string submitID = "20220527-BULK";
+            string submitID = "20221109-BULK";
 
             try
             {
@@ -353,10 +362,10 @@ namespace CashbillExample.Controllers
             string mgtKey = "20220527-003";
 
             // 원본 현금영수증 국세청승인번호
-            string orgConfirmNum = "TB0000015";
+            string orgConfirmNum = "TB0000104";
 
             // 원본현금영수증 거래일자 (날짜형식yyyyMMdd)
-            string orgTradeDate = "20220501";
+            string orgTradeDate = "20221108";
 
             // 발행 안내문자 전송여부
             bool smssendYN = false;
@@ -382,10 +391,17 @@ namespace CashbillExample.Controllers
             // [취소] 봉사료
             string serviceFee = "";
 
+            // 안내메일 제목, 공백처리시 기본양식으로 전송
+            string emailSubject = "메일제목 테스트";
+
+            // 거래일시, 날짜(yyyyMMddHHmmss)
+            // 당일, 전일만 가능 미입력시 기본값 발행일시 처리
+            string tradeDT = "20221108000000";
+
             try
             {
                 var response = _cashbillService.RevokeRegistIssue(corpNum, mgtKey, orgConfirmNum, orgTradeDate,
-                    smssendYN, memo, isPartCancel, cancelType, totalAmount, supplyCost, tax, serviceFee);
+                    smssendYN, memo, isPartCancel, cancelType, totalAmount, supplyCost, tax, serviceFee, userID, emailSubject, tradeDT);
                 return View("IssueResponse", response);
             }
             catch (PopbillException pe)
