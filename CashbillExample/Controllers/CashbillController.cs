@@ -36,7 +36,7 @@ namespace CashbillExample.Controllers
         /*
          * 파트너가 현금영수증 관리 목적으로 할당하는 문서번호 사용여부를 확인합니다.
          * - 이미 사용 중인 문서번호는 중복 사용이 불가하고, 현금영수증이 삭제된 경우에만 문서번호의 재사용이 가능합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#CheckMgtKeyInUse
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/info#CheckMgtKeyInUse
          */
         public IActionResult CheckMgtKeyInUse()
         {
@@ -57,8 +57,8 @@ namespace CashbillExample.Controllers
 
         /*
          * 작성된 현금영수증 데이터를 팝빌에 저장과 동시에 발행하여 "발행완료" 상태로 처리합니다.
-         * - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnetcore
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#RegistIssue
+         * - 현금영수증 국세청 전송 정책 : https://developers.popbill.com/guide/cashbill/dotnetcore/introduction/policy-of-send-to-nts
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/issue#RegistIssue
          */
         public IActionResult RegistIssue()
         {
@@ -164,7 +164,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 최대 100건의 현금영수증 발행을 한번의 요청으로 접수합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#BulkSubmit
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/issue#BulkSubmit
          */
         public IActionResult BulkSubmit()
         {
@@ -280,7 +280,7 @@ namespace CashbillExample.Controllers
         /*
          * 접수시 기재한 SubmitID를 사용하여 현금영수증 접수결과를 확인합니다.
          * - 개별 현금영수증 처리상태는 접수상태(txState)가 완료(2) 시 반환됩니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetBulkResult
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/issue#GetBulkResult
          */
         public IActionResult GetBulkResult()
         {
@@ -303,7 +303,7 @@ namespace CashbillExample.Controllers
          * 삭제 가능한 상태의 현금영수증을 삭제합니다.
          * - 삭제 가능한 상태: "전송실패"
          * - 현금영수증을 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#Delete
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/issue#Delete
          */
         public IActionResult Delete()
         {
@@ -323,8 +323,8 @@ namespace CashbillExample.Controllers
 
         /*
          * 취소 현금영수증 데이터를 팝빌에 저장과 동시에 발행하여 "발행완료" 상태로 처리합니다.
-         * - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnetcore
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#RevokeRegistIssue
+         * - 현금영수증 국세청 전송 정책 : https://developers.popbill.com/guide/cashbill/dotnetcore/introduction/policy-of-send-to-nts
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/issue#RevokeRegistIssue
          */
         public IActionResult RevokeRegistIssue()
         {
@@ -352,8 +352,8 @@ namespace CashbillExample.Controllers
         /*
          * 작성된 (부분)취소 현금영수증 데이터를 팝빌에 저장과 동시에 발행하여 "발행완료" 상태로 처리합니다.
          * - 취소 현금영수증의 금액은 원본 금액을 넘을 수 없습니다.
-         * - 현금영수증 국세청 전송 정책 : https://docs.popbill.com/cashbill/ntsSendPolicy?lang=dotnetcore
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#RevokeRegistIssue
+         * - 현금영수증 국세청 전송 정책 : https://developers.popbill.com/guide/cashbill/dotnetcore/introduction/policy-of-send-to-nts
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/issue#RevokeRegistIssue
          */
         public IActionResult RevokeRegistIssue_part()
         {
@@ -416,7 +416,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 현금영수증 1건의 상태 및 요약정보를 확인합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetInfo
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/info#GetInfo
          */
         public IActionResult GetInfo()
         {
@@ -436,7 +436,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 다수건의 현금영수증 상태 및 요약 정보를 확인합니다. (1회 호출 시 최대 1,000건 확인 가능)
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetInfos
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/info#GetInfos
          */
         public IActionResult GetInfos()
         {
@@ -458,7 +458,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 현금영수증 1건의 상세정보를 확인합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetDetailInfo
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/info#GetDetailInfo
          */
         public IActionResult GetDetailInfo()
         {
@@ -478,7 +478,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 검색조건에 해당하는 현금영수증을 조회합니다. (조회기간 단위 : 최대 6개월)
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#Search
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/info#Search
          */
         public IActionResult Search()
         {
@@ -556,29 +556,9 @@ namespace CashbillExample.Controllers
         }
 
         /*
-         * 현금영수증의 상태에 대한 변경이력을 확인합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetLogs
-         */
-        public IActionResult GetLogs()
-        {
-            // 현금영수증 문서번호
-            string mgtKey = "20220527-001";
-
-            try
-            {
-                var response = _cashbillService.GetLogs(corpNum, mgtKey);
-                return View("GetLogs", response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
          * 로그인 상태로 팝빌 사이트의 현금영수증 문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetURL
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/info#GetURL
          */
         public IActionResult GetURL()
         {
@@ -603,7 +583,7 @@ namespace CashbillExample.Controllers
         /*
          * 현금영수증 1건의 상세 정보 페이지의 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetPopUpURL
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/view#GetPopUpURL
          */
         public IActionResult GetPopUpURL()
         {
@@ -624,7 +604,7 @@ namespace CashbillExample.Controllers
         /*
          * 현금영수증 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetViewURL
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/view#GetViewURL
          */
         public IActionResult GetViewURL()
         {
@@ -645,7 +625,7 @@ namespace CashbillExample.Controllers
         /*
          * 현금영수증 PDF 파일을 다운 받을 수 있는 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetPDFURL
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/view#GetPDFURL
          */
         public IActionResult GetPDFURL()
         {
@@ -665,7 +645,7 @@ namespace CashbillExample.Controllers
         /*
          * 현금영수증 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetPrintURL
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/view#GetPrintURL
          */
         public IActionResult GetPrintURL()
         {
@@ -685,7 +665,7 @@ namespace CashbillExample.Controllers
         /*
          * 다수건의 현금영수증을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다. (최대 100건)
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetMassPrintURL
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/view#GetMassPrintURL
          */
         public IActionResult GetMassPrintURL()
         {
@@ -708,7 +688,7 @@ namespace CashbillExample.Controllers
         /*
          * 구매자가 수신하는 현금영수증 안내 메일의 하단에 버튼 URL 주소를 반환합니다.
          * - 함수 호출로 반환 받은 URL에는 유효시간이 없습니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetMailURL
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/view#GetMailURL
          */
         public IActionResult GetMailURL()
         {
@@ -733,7 +713,7 @@ namespace CashbillExample.Controllers
         /*
          * 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetAccessURL
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/member#GetAccessURL
          */
         public IActionResult GetAccessURL()
         {
@@ -750,7 +730,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 현금영수증과 관련된 안내 메일을 재전송 합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#SendEmail
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/etc#SendEmail
          */
         public IActionResult SendEmail()
         {
@@ -775,7 +755,7 @@ namespace CashbillExample.Controllers
          * 현금영수증과 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자·팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
          * - 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자)
          * - 함수 호출 시 포인트가 과금됩니다. (전송실패시 환불처리)
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#SendSMS
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/etc#SendSMS
          */
         public IActionResult SendSMS()
         {
@@ -805,7 +785,7 @@ namespace CashbillExample.Controllers
         /*
          * 현금영수증을 팩스로 전송하는 함수로, 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
          * - 함수 호출 시 포인트가 과금됩니다. (전송실패시 환불처리
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#SendFAX
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/etc#SendFAX
          */
         public IActionResult SendFAX()
         {
@@ -831,7 +811,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 팝빌 사이트를 통해 발행하였지만 문서번호가 존재하지 않는 현금영수증에 문서번호를 할당합니다.
-         * * - https://docs.popbill.com/cashbill/dotnetcore/api#AssignMgtKey
+         * * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/etc#AssignMgtKey
          */
         public IActionResult AssignMgtKey()
         {
@@ -856,7 +836,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 현금영수증 관련 메일 항목에 대한 발송설정을 확인합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#ListEmailConfig
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/etc#ListEmailConfig
          */
         public IActionResult ListEmailConfig()
         {
@@ -873,7 +853,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 현금영수증 관련 메일 항목에 대한 발송설정을 수정합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#UpdateEmailConfig
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/etc#UpdateEmailConfig
          */
         public IActionResult UpdateEmailConfig()
         {
@@ -903,7 +883,7 @@ namespace CashbillExample.Controllers
         /*
          * 연동회원의 잔여포인트를 확인합니다.
          * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetBalance
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/point#GetBalance
          */
         public IActionResult GetBalance()
         {
@@ -921,7 +901,7 @@ namespace CashbillExample.Controllers
         /*
          * 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetChargeURL
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/point#GetChargeURL
          */
         public IActionResult GetChargeURL()
         {
@@ -939,7 +919,7 @@ namespace CashbillExample.Controllers
         /*
          * 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetPaymentURL
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/point#GetPaymentURL
          */
         public IActionResult GetPaymentURL()
         {
@@ -958,7 +938,7 @@ namespace CashbillExample.Controllers
         /*
          * 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetUseHistoryURL
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/point#GetUseHistoryURL
          */
         public IActionResult GetUseHistoryURL()
         {
@@ -977,7 +957,7 @@ namespace CashbillExample.Controllers
         /*
          * 파트너의 잔여포인트를 확인합니다.
          * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetPartnerBalance
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/point#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
         {
@@ -995,7 +975,7 @@ namespace CashbillExample.Controllers
         /*
          * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetPartnerURL
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/point#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
         {
@@ -1015,7 +995,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 현금영수증 발행시 과금되는 포인트 단가를 확인합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetUnitCost
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/point#GetUnitCost
          */
         public IActionResult GetUnitCost()
         {
@@ -1032,7 +1012,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 팝빌 현금영수증 API 서비스 과금정보를 확인합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetChargeInfo
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/point#GetChargeInfo
          */
         public IActionResult GetChargeInfo()
         {
@@ -1053,7 +1033,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#CheckIsMember
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/member#CheckIsMember
          */
         public IActionResult CheckIsMember()
         {
@@ -1073,7 +1053,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 사용하고자 하는 아이디의 중복여부를 확인합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#CheckID
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/member#CheckID
          */
         public IActionResult CheckID()
         {
@@ -1093,7 +1073,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 사용자를 연동회원으로 가입처리합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#JoinMember
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/member#JoinMember
          */
         public IActionResult JoinMember()
         {
@@ -1148,7 +1128,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 연동회원의 회사정보를 확인합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#GetCorpInfo
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/member#GetCorpInfo
          */
         public IActionResult GetCorpInfo()
         {
@@ -1165,7 +1145,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 연동회원의 회사정보를 수정합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#UpdateCorpInfo
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/member#UpdateCorpInfo
          */
         public IActionResult UpdateCorpInfo()
         {
@@ -1199,7 +1179,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#RegistContact
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/member#RegistContact
          */
         public IActionResult RegistContact()
         {
@@ -1236,7 +1216,7 @@ namespace CashbillExample.Controllers
 
         /*
         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-        * - https://docs.popbill.com/cashbill/dotnetcore/api#GetContactInfo
+        * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/member#GetContactInfo
         */
         public IActionResult GetContactInfo()
         {
@@ -1256,7 +1236,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#ListContact
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/member#ListContact
          */
         public IActionResult ListContact()
         {
@@ -1273,7 +1253,7 @@ namespace CashbillExample.Controllers
 
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-         * - https://docs.popbill.com/cashbill/dotnetcore/api#UpdateContact
+         * - https://developers.popbill.com/reference/cashbill/dotnetcore/api/member#UpdateContact
          */
         public IActionResult UpdateContact()
         {

@@ -35,7 +35,7 @@ namespace StatementExample.Controllers
         /*
          * 파트너가 전자명세서 관리 목적으로 할당하는 문서번호의 사용여부를 확인합니다.
          * - 이미 사용 중인 문서번호는 중복 사용이 불가하고, 전자명세서가 삭제된 경우에만 문서번호의 재사용이 가능합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#CheckMgtKeyInUse
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/info#CheckMgtKeyInUse
          */
         public IActionResult CheckMgtKeyInUse()
         {
@@ -60,7 +60,7 @@ namespace StatementExample.Controllers
         /*
          * 작성된 전자명세서 데이터를 팝빌에 저장과 동시에 발행하여, "발행완료" 상태로 처리합니다.
          * - 팝빌 사이트 [전자명세서] > [환경설정] > [전자명세서 관리] 메뉴의 발행시 자동승인 옵션 설정을 통해 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#RegistIssue
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/issue#RegistIssue
          */
         public IActionResult RegistIssue()
         {
@@ -256,9 +256,7 @@ namespace StatementExample.Controllers
 
             /************************************************************
              * 전자명세서 추가속성
-             * - 추가속성에 관한 자세한 사항은 "[전자명세서 API 연동매뉴얼] >
-             *   기본양식 추가속성 테이블"을 참조하시기 바랍니다.
-             * [https://docs.popbill.com/statement/propertyBag?lang=dotnetcore]
+             * [https://developers.popbill.com/guide/statement/dotnetcore/introduction/statement-form#propertybag-table]
              ************************************************************/
             statement.propertyBag = new propertyBag();
 
@@ -286,7 +284,7 @@ namespace StatementExample.Controllers
 
         /*
          * 작성된 전자명세서 데이터를 팝빌에 저장합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#Register
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/issue#Register
          */
         public IActionResult Register()
         {
@@ -483,9 +481,7 @@ namespace StatementExample.Controllers
 
             /************************************************************
              * 전자명세서 추가속성
-             * - 추가속성에 관한 자세한 사항은 "[전자명세서 API 연동매뉴얼] >
-             *   기본양식 추가속성 테이블"을 참조하시기 바랍니다.
-             * [https://docs.popbill.com/statement/propertyBag?lang=dotnetcore]
+             * [https://developers.popbill.com/guide/statement/dotnetcore/introduction/statement-form#propertybag-table]
              ************************************************************/
             statement.propertyBag = new propertyBag();
 
@@ -506,7 +502,7 @@ namespace StatementExample.Controllers
 
         /*
          * "임시저장" 상태의 전자명세서를 수정합니다.건의 전자명세서를 [수정]합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#Update
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/issue#Update
          */
         public IActionResult Update()
         {
@@ -704,9 +700,7 @@ namespace StatementExample.Controllers
 
             /************************************************************
              * 전자명세서 추가속성
-             * - 추가속성에 관한 자세한 사항은 "[전자명세서 API 연동매뉴얼] >
-             *   기본양식 추가속성 테이블"을 참조하시기 바랍니다.
-             * [https://docs.popbill.com/statement/propertyBag?lang=dotnetcore]
+             * [https://developers.popbill.com/guide/statement/dotnetcore/introduction/statement-form#propertybag-table]
              ************************************************************/
             statement.propertyBag = new propertyBag();
 
@@ -728,7 +722,7 @@ namespace StatementExample.Controllers
          * "임시저장" 상태의 전자명세서를 발행하여, "발행완료" 상태로 처리합니다.
          * - 팝빌 사이트 [전자명세서] > [환경설정] > [전자명세서 관리] 메뉴의 발행시 자동승인 옵션 설정을 통해 전자명세서를 "발행완료" 상태가 아닌 "승인대기" 상태로 발행 처리 할 수 있습니다.
          * - 전자명세서 발행 함수 호출시 포인트가 과금되며, 수신자에게 발행 안내 메일이 발송됩니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#StmIssue
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/issue#Issue
          */
         public IActionResult Issue()
         {
@@ -754,7 +748,7 @@ namespace StatementExample.Controllers
 
         /*
          * 발신자가 발행한 전자명세서를 발행취소합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#Cancel
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/issue#Cancel
          */
         public IActionResult Cancel()
         {
@@ -782,7 +776,7 @@ namespace StatementExample.Controllers
          * 삭제 가능한 상태의 전자명세서를 삭제합니다.
          * - 삭제 가능한 상태: "임시저장", "취소", "승인거부", "발행취소"
          * - 전자명세서를 삭제하면 사용된 문서번호(mgtKey)를 재사용할 수 있습니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#Delete
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/issue#Delete
          */
         public IActionResult Delete()
         {
@@ -809,7 +803,7 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서의 1건의 상태 및 요약정보 확인합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetInfo
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/info#GetInfo
          */
         public IActionResult GetInfo()
         {
@@ -833,7 +827,7 @@ namespace StatementExample.Controllers
 
         /*
          * 다수건의 전자명세서 상태/요약 정보를 확인합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetInfos
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/info#GetInfos
          */
         public IActionResult GetInfos()
         {
@@ -858,7 +852,7 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서 1건의 상세정보 확인합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetDetailInfo
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/info#GetDetailInfo
          */
         public IActionResult GetDetailInfo()
         {
@@ -881,7 +875,7 @@ namespace StatementExample.Controllers
 
         /*
          * 검색조건에 해당하는 전자명세서를 조회합니다. (조회기간 단위 : 최대 6개월)
-         * - https://docs.popbill.com/statement/dotnetcore/api#Search
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/info#Search
          */
         public IActionResult Search()
         {
@@ -933,7 +927,7 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서의 상태에 대한 변경이력을 확인합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetLogs
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/info#GetLogs
          */
         public IActionResult GetLogs()
         {
@@ -957,7 +951,7 @@ namespace StatementExample.Controllers
         /*
          * 로그인 상태로 팝빌 사이트의 전자명세서 문서함 메뉴에 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetURL
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/info#GetURL
          */
         public IActionResult GetURL()
         {
@@ -982,7 +976,7 @@ namespace StatementExample.Controllers
         /*
          * 팝빌 사이트와 동일한 전자명세서 1건의 상세 정보 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetPopUpURL
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/view#GetPopUpURL
          */
         public IActionResult GetPopUpURL()
         {
@@ -1007,6 +1001,7 @@ namespace StatementExample.Controllers
         /*
          * 팝빌 사이트와 동일한 전자명세서 1건의 상세 정보 페이지(사이트 상단, 좌측 메뉴 및 버튼 제외)의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/view#GetViewURL
          */
         public IActionResult GetViewURL()
         {
@@ -1033,7 +1028,7 @@ namespace StatementExample.Controllers
          * 전자명세서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환하며, 페이지내에서 인쇄 설정값을 "공급자" / "공급받는자" / "공급자+공급받는자"용 중 하나로 지정할 수 있습니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - 전자명세서의 공급자는 "발신자", 공급받는자는 "수신자"를 나타내는 용어입니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetPrintURL
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/view#GetPrintURL
          */
         public IActionResult GetPrintURL()
         {
@@ -1059,7 +1054,7 @@ namespace StatementExample.Controllers
          * "공급받는자" 용 전자명세서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
          * - 전자명세서의 공급받는자는 "수신자"를 나타내는 용어입니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetEPrintURL
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/view#GetEPrintURL
          */
         public IActionResult GetEPrintURL()
         {
@@ -1084,7 +1079,7 @@ namespace StatementExample.Controllers
         /*
          * 다수건의 전자명세서를 인쇄하기 위한 페이지의 팝업 URL을 반환합니다. (최대 100건)
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetMassPrintURL
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/view#GetMassPrintURL
          */
         public IActionResult GetMassPrintURL()
         {
@@ -1110,7 +1105,7 @@ namespace StatementExample.Controllers
         /*
          * 전자명세서 안내메일의 상세보기 링크 URL을 반환합니다.
          * - 함수 호출로 반환 받은 URL에는 유효시간이 없습니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetMailURL
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/view#GetMailURL
          */
         public IActionResult GetMailURL()
         {
@@ -1139,7 +1134,7 @@ namespace StatementExample.Controllers
         /*
          * 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetAccessURL
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/member#GetAccessURL
          */
         public IActionResult GetAccessURL()
         {
@@ -1157,7 +1152,7 @@ namespace StatementExample.Controllers
         /*
          * 전자명세서에 첨부할 인감, 사업자등록증, 통장사본을 등록하는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetSealURL
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#GetSealURL
          */
         public IActionResult GetSealURL()
         {
@@ -1174,7 +1169,7 @@ namespace StatementExample.Controllers
 
         /*
          * "임시저장" 상태의 명세서에 1개의 파일을 첨부합니다. (최대 5개)
-         * - https://docs.popbill.com/statement/dotnetcore/api#AttachFile
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#AttachFile
          */
         public IActionResult AttachFile()
         {
@@ -1202,7 +1197,7 @@ namespace StatementExample.Controllers
         /*
          * "임시저장" 상태의 전자명세서에 첨부된 1개의 파일을 삭제합니다.
          * - 파일을 식별하는 파일아이디는 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값을 통해 확인할 수 있습니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#DeleteFile
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#DeleteFile
          */
         public IActionResult DeleteFile()
         {
@@ -1230,7 +1225,7 @@ namespace StatementExample.Controllers
         /*
          * 전자명세서에 첨부된 파일목록을 확인합니다.
          * - 응답항목 중 파일아이디(AttachedFile) 항목은 파일삭제(DeleteFile API) 호출시 이용할 수 있습니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetFiles
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#GetFiles
          */
         public IActionResult GetFiles()
         {
@@ -1254,7 +1249,7 @@ namespace StatementExample.Controllers
 
         /*
          * "승인대기", "발행완료" 상태의 전자명세서와 관련된 발행 안내 메일을 재전송 합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#SendEmail
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#SendEmail
          */
         public IActionResult SendEmail()
         {
@@ -1283,7 +1278,7 @@ namespace StatementExample.Controllers
          * 전자명세서와 관련된 안내 SMS(단문) 문자를 재전송하는 함수로, 팝빌 사이트 [문자·팩스] > [문자] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
          * - 메시지는 최대 90byte까지 입력 가능하고, 초과한 내용은 자동으로 삭제되어 전송합니다. (한글 최대 45자)
          * - 함수 호출시 포인트가 과금됩니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#SendSMS
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#SendSMS
          */
         public IActionResult SendSMS()
         {
@@ -1317,7 +1312,7 @@ namespace StatementExample.Controllers
         /*
          * 전자명세서를 팩스로 전송하는 함수로, 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
          * - 함수 호출시 포인트가 과금됩니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#SendFAX
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#SendFAX
          */
         public IActionResult SendFAX()
         {
@@ -1351,7 +1346,7 @@ namespace StatementExample.Controllers
          * - 함수 호출시 포인트가 과금됩니다.
          * - 팩스 발행 요청시 작성한 문서번호는 팩스전송 파일명으로 사용됩니다.
          * - 팩스 전송결과를 확인하기 위해서는 선팩스 전송 요청 시 반환받은 접수번호를 이용하여 팩스 API의 전송결과 확인 (GetFaxResult) API를 이용하면 됩니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#FAXSend
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#FAXSend
          */
         public IActionResult FAXSend()
         {
@@ -1548,9 +1543,7 @@ namespace StatementExample.Controllers
 
             /************************************************************
              * 전자명세서 추가속성
-             * - 추가속성에 관한 자세한 사항은 "[전자명세서 API 연동매뉴얼] >
-             *   기본양식 추가속성 테이블"을 참조하시기 바랍니다.
-             * [https://docs.popbill.com/statement/propertyBag?lang=dotnetcore]
+             * [https://developers.popbill.com/guide/statement/dotnetcore/introduction/statement-form#propertybag-table]
              ************************************************************/
             statement.propertyBag = new propertyBag();
 
@@ -1577,7 +1570,7 @@ namespace StatementExample.Controllers
 
         /*
          * 하나의 전자명세서에 다른 전자명세서를 첨부합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#AttachStatement
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#AttachStatement
          */
         public IActionResult AttachStatement()
         {
@@ -1608,7 +1601,7 @@ namespace StatementExample.Controllers
 
         /*
          * 하나의 전자명세서에 첨부된 다른 전자명세서를 해제합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#DetachStatement
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#DetachStatement
          */
         public IActionResult DetachStatement()
         {
@@ -1639,7 +1632,7 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서 관련 메일 항목에 대한 발송설정을 확인합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#ListEmailConfig
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#ListEmailConfig
          */
         public IActionResult ListEmailConfig()
         {
@@ -1656,7 +1649,7 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서 관련 메일 항목에 대한 발송설정을 수정합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#UpdateEmailConfig
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#UpdateEmailConfig
          *
          * 메일전송유형
          * SMT_ISSUE : 수신자에게 전자명세서가 발행 되었음을 알려주는 메일입니다.
@@ -1691,7 +1684,7 @@ namespace StatementExample.Controllers
         /*
          * 연동회원의 잔여포인트를 확인합니다.
          * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetBalance
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/point#GetBalance
          */
         public IActionResult GetBalance()
         {
@@ -1709,7 +1702,7 @@ namespace StatementExample.Controllers
         /*
          * 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetChargeURL
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/point#GetChargeURL
          */
         public IActionResult GetChargeURL()
         {
@@ -1727,7 +1720,7 @@ namespace StatementExample.Controllers
         /*
          * 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetPaymentURL
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/point#GetPaymentURL
          */
         public IActionResult GetPaymentURL()
         {
@@ -1746,7 +1739,7 @@ namespace StatementExample.Controllers
         /*
          * 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetUseHistoryURL
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/point#GetUseHistoryURL
          */
         public IActionResult GetUseHistoryURL()
         {
@@ -1765,7 +1758,7 @@ namespace StatementExample.Controllers
         /*
          * 파트너의 잔여포인트를 확인합니다.
          * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetPartnerBalance
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/point#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
         {
@@ -1783,7 +1776,7 @@ namespace StatementExample.Controllers
         /*
          * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetPartnerURL
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/point#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
         {
@@ -1803,7 +1796,7 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서 발행시 과금되는 포인트 단가를 확인합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetUnitCost
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/point#GetUnitCost
          */
         public IActionResult GetUnitCost()
         {
@@ -1823,7 +1816,7 @@ namespace StatementExample.Controllers
 
         /*
          * 팝빌 전자명세서 API 서비스 과금정보를 확인합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetChargeInfo
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/point#GetChargeInfo
          */
         public IActionResult GetChargeInfo()
         {
@@ -1847,7 +1840,7 @@ namespace StatementExample.Controllers
 
         /*
          * 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#CheckIsMember
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/member#CheckIsMember
          */
         public IActionResult CheckIsMember()
         {
@@ -1867,7 +1860,7 @@ namespace StatementExample.Controllers
 
         /*
          * 사용하고자 하는 아이디의 중복여부를 확인합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#CheckID
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/member#CheckID
          */
         public IActionResult CheckID()
         {
@@ -1887,7 +1880,7 @@ namespace StatementExample.Controllers
 
         /*
          * 사용자를 연동회원으로 가입처리합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#JoinMember
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/member#JoinMember
          */
         public IActionResult JoinMember()
         {
@@ -1942,7 +1935,7 @@ namespace StatementExample.Controllers
 
         /*
          * 연동회원의 회사정보를 확인합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetCorpInfo
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/member#GetCorpInfo
          */
         public IActionResult GetCorpInfo()
         {
@@ -1959,7 +1952,7 @@ namespace StatementExample.Controllers
 
         /*
          * 연동회원의 회사정보를 수정합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#UpdateCorpInfo
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/member#UpdateCorpInfo
          */
         public IActionResult UpdateCorpInfo()
         {
@@ -1993,7 +1986,7 @@ namespace StatementExample.Controllers
 
         /*
          * 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#RegistContact
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/member#RegistContact
          */
         public IActionResult RegistContact()
         {
@@ -2030,7 +2023,7 @@ namespace StatementExample.Controllers
 
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#GetContactInfo
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/member#GetContactInfo
          */
         public IActionResult GetContactInfo()
         {
@@ -2050,7 +2043,7 @@ namespace StatementExample.Controllers
 
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#ListContact
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/member#ListContact
          */
         public IActionResult ListContact()
         {
@@ -2067,7 +2060,7 @@ namespace StatementExample.Controllers
 
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-         * - https://docs.popbill.com/statement/dotnetcore/api#UpdateContact
+         * - https://developers.popbill.com/reference/statement/dotnetcore/api/member#UpdateContact
          */
         public IActionResult UpdateContact()
         {

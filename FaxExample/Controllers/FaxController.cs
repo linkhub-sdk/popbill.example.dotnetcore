@@ -35,7 +35,7 @@ namespace FaxExample.Controllers
         /*
          * 팩스 발신번호 등록여부를 확인합니다.
          * - 발신번호 상태가 '승인'인 경우에만 리턴값 'Response'의 변수 'code'가 1로 반환됩니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#CheckSenderNumber
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/sendnum#CheckSenderNumber
          */
         public IActionResult CheckSenderNumber()
         {
@@ -56,7 +56,7 @@ namespace FaxExample.Controllers
         /*
          * 발신번호를 등록하고 내역을 확인하는 팩스 발신번호 관리 페이지 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetSenderNumberMgtURL
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/sendnum#GetSenderNumberMgtURL
          */
         public IActionResult GetSenderNumberMgtURL()
         {
@@ -73,7 +73,7 @@ namespace FaxExample.Controllers
 
         /*
          * 팝빌에 등록한 연동회원의 팩스 발신번호 목록을 확인합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetSenderNumberList
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/sendnum#GetSenderNumberList
          */
         public IActionResult GetSenderNumberList()
         {
@@ -94,7 +94,7 @@ namespace FaxExample.Controllers
 
         /*
          * 팩스 1건을 전송합니다. (최대 전송파일 개수: 20개)
-         * - https://docs.popbill.com/fax/dotnetcore/api#SendFAX
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/send#SendFAX
          */
         public IActionResult SendFAX()
         {
@@ -145,7 +145,7 @@ namespace FaxExample.Controllers
 
         /*
          * 동일한 팩스파일을 다수의 수신자에게 전송하기 위해 팝빌에 접수합니다. (최대 전송파일 개수 : 20개) (최대 1,000건)
-         * - https://docs.popbill.com/fax/dotnetcore/api#SendFAX_Same
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/send#SendFAXSame
          */
         public IActionResult SendFAX_Multi()
         {
@@ -214,7 +214,7 @@ namespace FaxExample.Controllers
          * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
          * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#ResendFAX
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/send#ResendFAX
          */
         public IActionResult ResendFAX()
         {
@@ -262,7 +262,7 @@ namespace FaxExample.Controllers
          * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
          * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#ResendFAX_Same
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/send#ResendFAXSame
          */
         public IActionResult ResendFAX_Multi()
         {
@@ -328,7 +328,7 @@ namespace FaxExample.Controllers
          * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
          * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#ResendFAXRN
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/send#ResendFAXRN
          */
         public IActionResult ResendFAXRN()
         {
@@ -376,7 +376,7 @@ namespace FaxExample.Controllers
          * - 발신/수신 정보 미입력시 기존과 동일한 정보로 팩스가 전송되고, 접수일 기준 최대 60일이 경과되지 않는 건만 재전송이 가능합니다.
          * - 팩스 재전송 요청시 포인트가 차감됩니다. (전송실패시 환불처리)
          * - 변환실패 사유로 전송실패한 팩스 접수건은 재전송이 불가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#ResendFAXRN_Same
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/send#ResendFAXRNSame
          */
         public IActionResult ResendFAXRN_multi()
         {
@@ -437,7 +437,7 @@ namespace FaxExample.Controllers
 
         /*
          * 팝빌에서 반환받은 접수번호를 통해 예약접수된 팩스 전송을 취소합니다. (예약시간 10분 전까지 가능)
-         * - https://docs.popbill.com/fax/dotnetcore/api#CancelReserve
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/send#CancelReserve
          */
         public IActionResult CancelReserve()
         {
@@ -457,7 +457,7 @@ namespace FaxExample.Controllers
 
         /*
          * 파트너가 할당한 전송요청 번호를 통해 예약접수된 팩스 전송을 취소합니다. (예약시간 10분 전까지 가능)
-         * - https://docs.popbill.com/fax/dotnetcore/api#CancelReserveRN
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/send#CancelReserveRN
          */
         public IActionResult CancelReserveRN()
         {
@@ -481,7 +481,7 @@ namespace FaxExample.Controllers
 
         /*
          * 팝빌에서 반환 받은 접수번호를 통해 팩스 전송상태 및 결과를 확인합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetFaxDetail
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/info#GetFaxDetail
          */
         public IActionResult GetFaxDetail()
         {
@@ -501,7 +501,7 @@ namespace FaxExample.Controllers
 
         /*
          * 파트너가 할당한 전송요청 번호를 통해 팩스 전송상태 및 결과를 확인합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetFaxDetailRN
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/info#GetFaxDetailRN
          */
         public IActionResult GetFaxDetailRN()
         {
@@ -522,7 +522,7 @@ namespace FaxExample.Controllers
         /*
          * 검색조건에 해당하는 팩스 전송내역 목록을 조회합니다. (조회기간 단위 : 최대 2개월)
          * - 팩스 접수일시로부터 2개월 이내 접수건만 조회할 수 있습니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#Search
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/info#Search
          */
         public IActionResult Search()
         {
@@ -581,7 +581,7 @@ namespace FaxExample.Controllers
         /*
          * 팝빌 사이트와 동일한 팩스 전송내역 확인 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetSentListURL
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/info#GetSentListURL
          */
         public IActionResult GetSentListURL()
         {
@@ -599,7 +599,7 @@ namespace FaxExample.Controllers
         /*
          * 팩스 미리보기 팝업 URL을 반환하며, 팩스전송을 위한 TIF 포맷 변환 완료 후 호출 할 수 있습니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetPreviewURL
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/info#GetPreviewURL
          */
         public IActionResult GetPreviewURL()
         {
@@ -624,7 +624,7 @@ namespace FaxExample.Controllers
         /*
          * 연동회원의 잔여포인트를 확인합니다.
          * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetBalance
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/point#GetBalance
          */
         public IActionResult GetBalance()
         {
@@ -642,7 +642,7 @@ namespace FaxExample.Controllers
         /*
          * 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetChargeURL
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/point#GetChargeURL
          */
         public IActionResult GetChargeURL()
         {
@@ -660,7 +660,7 @@ namespace FaxExample.Controllers
         /*
          * 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetPaymentURL
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/point#GetPaymentURL
          */
         public IActionResult GetPaymentURL()
         {
@@ -679,7 +679,7 @@ namespace FaxExample.Controllers
         /*
          * 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetUseHistoryURL
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/point#GetUseHistoryURL
          */
         public IActionResult GetUseHistoryURL()
         {
@@ -698,7 +698,7 @@ namespace FaxExample.Controllers
         /*
          * 파트너의 잔여포인트를 확인합니다.
          * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetPartnerBalance
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/point#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
         {
@@ -716,7 +716,7 @@ namespace FaxExample.Controllers
         /*
          * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetPartnerURL
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/point#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
         {
@@ -736,7 +736,7 @@ namespace FaxExample.Controllers
 
         /*
          * 팩스 전송시 과금되는 포인트 단가를 확인합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetUnitCost
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/point#GetUnitCost
          */
         public IActionResult GetUnitCost()
         {
@@ -756,7 +756,7 @@ namespace FaxExample.Controllers
 
         /*
          * 팝빌 팩스 API 서비스 과금정보를 확인합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetChargeInfo
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/point#GetChargeInfo
          */
         public IActionResult GetChargeInfo()
         {
@@ -780,7 +780,7 @@ namespace FaxExample.Controllers
 
         /*
          * 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#CheckIsMember
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/member#CheckIsMember
          */
         public IActionResult CheckIsMember()
         {
@@ -800,7 +800,7 @@ namespace FaxExample.Controllers
 
         /*
          * 사용하고자 하는 아이디의 중복여부를 확인합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#CheckID
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/member#CheckID
          */
         public IActionResult CheckID()
         {
@@ -820,7 +820,7 @@ namespace FaxExample.Controllers
 
         /*
          * 사용자를 연동회원으로 가입처리합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#JoinMember
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/member#JoinMember
          */
         public IActionResult JoinMember()
         {
@@ -876,7 +876,7 @@ namespace FaxExample.Controllers
         /*
          * 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetAccessURL
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/member#GetAccessURL
          */
         public IActionResult GetAccessURL()
         {
@@ -893,7 +893,7 @@ namespace FaxExample.Controllers
 
         /*
          * 연동회원의 회사정보를 확인합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetCorpInfo
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/member#GetCorpInfo
          */
         public IActionResult GetCorpInfo()
         {
@@ -910,7 +910,7 @@ namespace FaxExample.Controllers
 
         /*
          * 연동회원의 회사정보를 수정합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#UpdateCorpInfo
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/member#UpdateCorpInfo
          */
         public IActionResult UpdateCorpInfo()
         {
@@ -944,7 +944,7 @@ namespace FaxExample.Controllers
 
         /*
          * 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#RegistContact
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/member#RegistContact
          */
         public IActionResult RegistContact()
         {
@@ -981,7 +981,7 @@ namespace FaxExample.Controllers
 
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#GetContactInfo
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/member#GetContactInfo
          */
         public IActionResult GetContactInfo()
         {
@@ -1001,7 +1001,7 @@ namespace FaxExample.Controllers
 
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#ListContact
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/member#ListContact
          */
         public IActionResult ListContact()
         {
@@ -1018,7 +1018,7 @@ namespace FaxExample.Controllers
 
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-         * - https://docs.popbill.com/fax/dotnetcore/api#UpdateContact
+         * - https://developers.popbill.com/reference/fax/dotnetcore/api/member#UpdateContact
          */
         public IActionResult UpdateContact()
         {
