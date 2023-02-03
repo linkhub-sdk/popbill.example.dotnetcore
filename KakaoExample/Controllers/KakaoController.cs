@@ -187,7 +187,7 @@ namespace KakaoExample.Controllers
          * 승인된 템플릿의 내용을 작성하여 1건의 알림톡 전송을 팝빌에 접수합니다.
          * - 사전에 승인된 템플릿의 내용과 알림톡 전송내용(content)이 다를 경우 전송실패 처리됩니다.
          * - 전송실패 시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
-         * - https://developers.popbill.com/reference/kakaotalk/dotnetcore/api/send#SendATS
+         * - https://developers.popbill.com/reference/kakaotalk/dotnetcore/api/send#SendATSOne
          */
         public IActionResult SendATS_One()
         {
@@ -460,7 +460,7 @@ namespace KakaoExample.Controllers
          * 텍스트로 구성된 1건의 친구톡 전송을 팝빌에 접수합니다.
          * - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
          * - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
-         * - https://developers.popbill.com/reference/kakaotalk/dotnetcore/api/send#SendFTS
+         * - https://developers.popbill.com/reference/kakaotalk/dotnetcore/api/send#SendFTSOne
          */
         public IActionResult SendFTS_One()
         {
@@ -693,7 +693,7 @@ namespace KakaoExample.Controllers
          * - 친구톡의 경우 야간 전송은 제한됩니다. (20:00 ~ 익일 08:00)
          * - 전송실패시 사전에 지정한 변수 'altSendType' 값으로 대체문자를 전송할 수 있고, 이 경우 문자(SMS/LMS) 요금이 과금됩니다.
          * - 대체문자의 경우, 포토문자(MMS) 형식은 지원하고 있지 않습니다.
-         * - https://developers.popbill.com/reference/kakaotalk/dotnetcore/api/send#SendFMS
+         * - https://developers.popbill.com/reference/kakaotalk/dotnetcore/api/send#SendFMSOne
          */
         public IActionResult SendFMS_One()
         {

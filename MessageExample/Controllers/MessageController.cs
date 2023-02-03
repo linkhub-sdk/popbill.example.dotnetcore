@@ -94,7 +94,7 @@ namespace MessageExample.Controllers
 
         /*
          * 최대 90byte의 단문(SMS) 메시지 1건 전송을 팝빌에 접수합니다.
-         * - https://developers.popbill.com/reference/sms/dotnetcore/api/send#SendSMS
+         * - https://developers.popbill.com/reference/sms/dotnetcore/api/send#SendSMSOne
          */
         public IActionResult SendSMS()
         {
@@ -263,7 +263,7 @@ namespace MessageExample.Controllers
 
         /*
          * 최대 2,000byte의 장문(LMS) 메시지 1건 전송을 팝빌에 접수합니다.
-         * - https://developers.popbill.com/reference/sms/dotnetcore/api/send#SendLMS
+         * - https://developers.popbill.com/reference/sms/dotnetcore/api/send#SendLMSOne
          */
         public IActionResult SendLMS()
         {
@@ -443,7 +443,7 @@ namespace MessageExample.Controllers
         /*
          * 최대 2,000byte의 메시지와 이미지로 구성된 포토문자(MMS) 1건 전송을 팝빌에 접수합니다.
          * - 이미지 파일 포맷/규격 : 최대 300Kbyte(JPEG, JPG), 가로/세로 1,000px 이하 권장
-         * - https://developers.popbill.com/reference/sms/dotnetcore/api/send#SendMMS
+         * - https://developers.popbill.com/reference/sms/dotnetcore/api/send#SendMMSOne
          */
         public IActionResult SendMMS()
         {
@@ -632,7 +632,7 @@ namespace MessageExample.Controllers
 
         /*
          * 메시지 크기(90byte)에 따라 단문/장문(SMS/LMS)을 자동으로 인식하여 1건의 메시지를 전송을 팝빌에 접수합니다.
-         * - https://developers.popbill.com/reference/sms/dotnetcore/api/send#SendXMS
+         * - https://developers.popbill.com/reference/sms/dotnetcore/api/send#SendXMSOne
          */
         public IActionResult SendXMS()
         {

@@ -1634,7 +1634,7 @@ namespace TaxinvoiceExample.Controllers
         /*
          * 세금계산서 1건의 상태 및 요약정보를 확인합니다.
          * 리턴값 'TaxinvoiceInfo'의 변수 'stateCode'를 통해 세금계산서의 상태코드를 확인합니다.
-         * 세금계산서 상태코드 [https://developers.popbill.com/reference/taxinvoice/dotnetcore/response-code]
+         * 세금계산서 상태코드 [https://developers.popbill.com/reference/taxinvoice/dotnetcore/response-code#state-code]
          * - https://developers.popbill.com/reference/taxinvoice/dotnetcore/api/info#GetInfo
          */
         public IActionResult GetInfo()
@@ -1659,7 +1659,7 @@ namespace TaxinvoiceExample.Controllers
         /*
      * 다수건의 세금계산서 상태 및 요약 정보를 확인합니다. (1회 호출 시 최대 1,000건 확인 가능)
      * 리턴값 'TaxinvoiceInfo'의 변수 'stateCode'를 통해 세금계산서의 상태코드를 확인합니다.
-     * 세금계산서 상태코드 [https://developers.popbill.com/reference/taxinvoice/dotnetcore/response-code]
+     * 세금계산서 상태코드 [https://developers.popbill.com/reference/taxinvoice/dotnetcore/response-code#state-code]
          * - https://developers.popbill.com/reference/taxinvoice/dotnetcore/api/info#GetInfos
          */
         public IActionResult GetInfos()
