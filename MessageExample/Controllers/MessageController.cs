@@ -1474,26 +1474,5 @@ namespace MessageExample.Controllers
         }
 
         #endregion
-
-        /*
-         * 문자전송에 대한 전송결과 요약정보를 확인합니다.
-         */
-        public IActionResult GetStates()
-        {
-            // 요약정보 확인할 문자 접수번호 배열 (최대 1000건)
-            List<string> receiptNumList = new List<string>();
-            receiptNumList.Add("018090410000000416");
-            receiptNumList.Add("018090410000000395");
-
-            try
-            {
-                var response = _messageService.GetStates(corpNum, receiptNumList, userID);
-                return View("GetStates", response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
     }
 }
