@@ -2358,23 +2358,6 @@ namespace TaxinvoiceExample.Controllers
         }
 
         /*
-         * 전자세금계산서 유통사업자의 메일 목록을 확인합니다.
-         * - https://developers.popbill.com/reference/taxinvoice/dotnetcore/api/etc#GetEmailPublicKeys
-         */
-        public IActionResult GetEmailPublicKeys()
-        {
-            try
-            {
-                var response = _taxinvoiceService.GetEmailPublicKeys(corpNum);
-                return View("GetEmailPublicKeys", response);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
          * 팝빌 사이트를 통해 발행하였지만 문서번호가 존재하지 않는 세금계산서에 문서번호를 할당합니다.
          * - https://developers.popbill.com/reference/taxinvoice/dotnetcore/api/etc#AssignMgtKey
          */
