@@ -1877,7 +1877,8 @@ namespace TaxinvoiceExample.Controllers
          */
         public IActionResult GetURL()
         {
-            // TOGO - TBOX(임시문서함), SBOX(매출문서함), PBOX(매입문서함), WRITE(매출문서작성)
+            // TBOX (임시문서함) , SBOX (매출문서함) , PBOX (매입문서함) ,
+            // SWBOX (매출발행 대기함) , PWBOX (매입발행 대기함) , WRITE (정발행 작성)
             string TOGO = "SBOX";
 
             try
