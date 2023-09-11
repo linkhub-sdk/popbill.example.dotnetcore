@@ -1040,6 +1040,23 @@ namespace MessageExample.Controllers
             }
         }
 
+        /*
+         * 팝빌회원에 등록된 080 수신거부 번호 정보를 확인합니다.
+         * - https://developers.popbill.com/reference/sms/dotnetcore/api/info#CheckAutoDenyNumber
+         */
+        public IActionResult CheckAutoDenyNumber()
+        {
+            try
+            {
+                var Response = _messageService.CheckAutoDenyNumber(corpNum);
+                return View("CheckAutoDenyNumber ", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
         #endregion
 
         #region 포인트관리
