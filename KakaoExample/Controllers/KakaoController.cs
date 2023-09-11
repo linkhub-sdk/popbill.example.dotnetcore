@@ -197,6 +197,7 @@ namespace KakaoExample.Controllers
             string templateCode = "019020000163";
 
             // 발신번호
+            // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
             string senderNum = "";
 
             // 수신번호
@@ -288,6 +289,7 @@ namespace KakaoExample.Controllers
             content += "support@linkhub.co.kr".Replace("\n", Environment.NewLine);
 
             // 발신번호
+            // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
             string senderNum = "";
 
             // 수신자정보 배열, 최대 1000건
@@ -388,6 +390,7 @@ namespace KakaoExample.Controllers
             string altContent = "대체문자 메시지 내용";
 
             // 발신번호
+            // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
             string senderNum = "07043042991";
 
             // 수신자정보 배열, 최대 1000건
@@ -468,6 +471,7 @@ namespace KakaoExample.Controllers
             string plusFriendID = "@팝빌";
 
             // 발신번호
+            // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
             string senderNum = "";
 
             // 수신번호
@@ -540,6 +544,7 @@ namespace KakaoExample.Controllers
             string plusFriendID = "@팝빌";
 
             // 발신번호
+            // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
             string senderNum = "";
 
             // 수신자정보 배열, 최대 1000건
@@ -620,6 +625,7 @@ namespace KakaoExample.Controllers
             string plusFriendID = "@팝빌";
 
             // 발신번호
+            // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
             string senderNum = "";
 
             // (동보) 친구톡 내용 (최대 1000자)
@@ -701,6 +707,7 @@ namespace KakaoExample.Controllers
             string plusFriendID = "@팝빌";
 
             // 발신번호
+            // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
             string senderNum = "";
 
             // 수신번호
@@ -783,6 +790,7 @@ namespace KakaoExample.Controllers
             string plusFriendID = "@팝빌";
 
             // 발신번호
+            // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
             string senderNum = "";
 
             // 수신자정보 배열, 최대 1000건
@@ -872,6 +880,7 @@ namespace KakaoExample.Controllers
             string plusFriendID = "@팝빌";
 
             // 발신번호
+            // ※ 대체문자를 전송하는 경우에는 사전에 등록된 발신번호 입력 필수
             string senderNum = "";
 
             // (동보) 친구톡 내용 (최대 400자)
