@@ -999,6 +999,53 @@ namespace KakaoExample.Controllers
             }
         }
 
+
+        /*
+         * 팝빌에서 반환받은 접수번호로 접수 건을 식별하여 수신번호에 예약된 카카오톡을 전송 취소합니다. (예약시간 10분 전까지 가능)
+         * - https://developers.popbill.com/reference/kakaotalk/dotnetcore/api/send#CancelReservebyRCV
+         */
+        public IActionResult CancelReservebyRCV()
+        {
+          // 카카오톡 예약전송 접수시 팝빌로부터 반환 받은 접수번호
+            string receiptNum = "";
+
+            // 카카오톡 예약전송 접수시 팝빌로 요청한 수신번호
+            string receiveNum = "";
+
+            try
+            {
+                var Response = _kakaoService.CancelReservebyRCV(corpNum, receiptNum, receiveNum);
+                return View("Response", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 파트너가 할당한 전송 요청번호로 접수 건을 식별하여 수신번호에 예약된 카카오톡을 전송 취소합니다. (예약시간 10분 전까지 가능)
+         * - https://developers.popbill.com/reference/kakaotalk/dotnetcore/api/send#CancelReserveRNbyRCV
+         */
+        public IActionResult CancelReserveRNbyRCV()
+        {
+            // 카카오톡 예약전송 접수시 파트너가 할당한 전송 요청번호
+            string requestNum = "";
+
+            // 카카오톡 예약전송 접수시 팝빌로 요청한 수신번호
+            string receiveNum = "";
+
+            try
+            {
+                var Response = _kakaoService.CancelReserveRNbyRCV(corpNum, requestNum, receiveNum);
+                return View("Response", Response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
         #endregion
 
         #region 정보확인
