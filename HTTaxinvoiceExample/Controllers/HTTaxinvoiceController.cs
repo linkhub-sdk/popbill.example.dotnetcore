@@ -641,7 +641,7 @@ namespace HTTaxinvoiceExample.Controllers
                 // 환불사유
                 refundForm.setReason("환불사유");
 
-                var response = _hthttaxinvoiceService.Refund(corpNum, refundForm);
+                var response = _htTaxinvoiceService.Refund(corpNum, refundForm);
                 return View("RefundResponse", response);
             }
             catch (PopbillException pe)
@@ -676,7 +676,7 @@ namespace HTTaxinvoiceExample.Controllers
                 // 결제금액
                 paymentForm.setSettleCost("11000");
 
-                var response = _hthttaxinvoiceService.paymentRequest(corpNum, paymentForm);
+                var response = _htTaxinvoiceService.paymentRequest(corpNum, paymentForm);
                 return View("PaymentResponse", response);
             }
             catch (PopbillException pe)
@@ -696,7 +696,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var paymentHistory = _hthttaxinvoiceService.getSettleResult(corpNum, settleCode);
+                var paymentHistory = _htTaxinvoiceService.getSettleResult(corpNum, settleCode);
 
                 return View("PaymentHistory", paymentHistory);
             }
@@ -732,7 +732,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var useHistoryResult = _hthttaxinvoiceService.getUseHistory(corpNum, SDate, EDate, Page,
+                var useHistoryResult = _htTaxinvoiceService.getUseHistory(corpNum, SDate, EDate, Page,
                     PerPage, Order);
 
                 return View("UseHistoryResult", useHistoryResult);
@@ -763,7 +763,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var paymentHistoryResult = _hthttaxinvoiceService.getPaymentHistory(corpNum, SDate, EDate,
+                var paymentHistoryResult = _htTaxinvoiceService.getPaymentHistory(corpNum, SDate, EDate,
                     Page, PerPage);
 
                 return View("PaymentHistoryResult", paymentHistoryResult);
@@ -788,7 +788,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var refundHistoryResult = _hthttaxinvoiceService.getRefundHistory(corpNum, Page, PerPage);
+                var refundHistoryResult = _htTaxinvoiceService.getRefundHistory(corpNum, Page, PerPage);
 
                 return View("RefundHistoryResult", refundHistoryResult);
             }
@@ -810,7 +810,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var response = _hthttaxinvoiceService.getRefundInfo(corpNum, refundCode);
+                var response = _htTaxinvoiceService.getRefundInfo(corpNum, refundCode);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -828,7 +828,7 @@ namespace HTTaxinvoiceExample.Controllers
         {
             try
             {
-                var refundableBalance = _hthttaxinvoiceService.getRefundableBalance(corpNum);
+                var refundableBalance = _htTaxinvoiceService.getRefundableBalance(corpNum);
                 return View("RefundableBalance", refundableBalance);
             }
             catch (PopbillException pe)
@@ -1103,7 +1103,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var response = _httaxinvoiceService.UpdateContact(corpNum, contactInfo);
+                var response = _htTaxinvoiceService.UpdateContact(corpNum, contactInfo);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -1126,7 +1126,7 @@ namespace HTTaxinvoiceExample.Controllers
 
             try
             {
-                var response = _hthttaxinvoiceService.quitMember(corpNum, quitReason);
+                var response = _htTaxinvoiceService.quitMember(corpNum, quitReason);
                 return View("Response", response);
             }
             catch (PopbillException pe)
