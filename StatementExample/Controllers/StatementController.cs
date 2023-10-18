@@ -1183,9 +1183,12 @@ namespace StatementExample.Controllers
             // 파일경로
             string filePath = "C:/popbill.example.dotnetcore/StatementExample/wwwroot/images/tax_image.png";
 
+            // 첨부파일명
+            string displayName = "DisplayName.png";
+
             try
             {
-                var response = _statementService.AttachFile(corpNum, itemCode, mgtKey, filePath);
+                var response = _statementService.AttachFile(corpNum, itemCode, mgtKey, filePath, null, displayName);
                 return View("Response", response);
             }
             catch (PopbillException pe)

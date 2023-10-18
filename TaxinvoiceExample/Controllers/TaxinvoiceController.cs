@@ -2147,9 +2147,12 @@ namespace TaxinvoiceExample.Controllers
             // 파일경로
             string filePath = "C:/popbill.example.dotnetcore/TaxinvoiceExample/wwwroot/images/tax_image.png";
 
+            // 첨부파일명
+            string displayName = "DisplayName.png";
+
             try
             {
-                var response = _taxinvoiceService.AttachFile(corpNum, mgtKeyType, mgtKey, filePath);
+                var response = _taxinvoiceService.AttachFile(corpNum, mgtKeyType, mgtKey, filePath, null, displayName);
                 return View("Response", response);
             }
             catch (PopbillException pe)
