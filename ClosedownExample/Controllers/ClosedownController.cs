@@ -226,6 +226,233 @@ namespace ClosedownExample.Controllers
             }
         }
 
+                /*
+         * 연동회원 포인트를 환불 신청합니다.
+         * - https://developers.popbill.com/reference/closedown/dotnetcore/api/point#Refund
+         */
+        public IActionResult Refund()
+        {
+            try
+            {
+                var refundForm = new RefundForm();
+
+                // 담당자명
+                refundForm.setContactName("담당자명");
+
+                // 담당자 연락처
+                refundForm.setTel("01077777777");
+
+                // 환불 신청 포인트
+                refundForm.setRequestPoint("10");
+
+                // 은행명
+                refundForm.setAccountBank("국민");
+
+                // 계좌번호
+                refundForm.setAccountNum("123123123-123");
+
+                // 예금주명
+                refundForm.setAccountName("예금주명");
+
+                // 환불사유
+                refundForm.setReason("환불사유");
+
+                var response = _closedownService.Refund(corpNum, refundForm);
+                return View("RefundResponse", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 연동회원 포인트를 환불 신청합니다.
+         * - https://developers.popbill.com/reference/closedown/dotnetcore/api/point#PaymentRequest
+         */
+        public IActionResult PaymentRequest()
+        {
+            try
+            {
+                var paymentForm = new PaymentForm();
+
+                // 담당자명
+                paymentForm.setSettlerName("담당자명");
+
+                // 담당자 이메일
+                paymentForm.setSettlerEmail("test@test.com");
+
+                // 담당자 휴대폰
+                // └ 무통장 입금 승인 알림톡이 전송될 번호
+                paymentForm.setNotifyHP("01012341234");
+
+                // 입금자명
+                paymentForm.setPaymentName("입금자명");
+
+                // 결제금액
+                paymentForm.setSettleCost("11000");
+
+                var response = _closedownService.paymentRequest(corpNum, paymentForm);
+                return View("PaymentResponse", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 연동회원 포인트 무통장 입금신청내역 1건을 확인합니다.
+         *  - https://developers.popbill.com/reference/closedown/dotnetcore/api/point#GetSettleResult
+         */
+        public IActionResult GetSettleResult()
+        {
+            // 정산코드
+            var settleCode = "202301130000000026";
+
+            try
+            {
+                var paymentHistory = _closedownService.getSettleResult(corpNum, settleCode);
+
+                return View("PaymentHistory", paymentHistory);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 연동회원의 포인트 사용내역을 확인합니다.
+         * - https://developers.popbill.com/reference/closedown/dotnetcore/api/point#GetUseHistory
+         */
+        public IActionResult GetUseHistory()
+        {
+            // 조회 기간의 시작일자 (형식 : yyyyMMdd)
+            var SDate = "20230102";
+
+            // 조회 기간의 종료일자 (형식 : yyyyMMdd)
+            var EDate = "20230131";
+
+            // 목록 페이지번호 (기본값 1)
+            var Page = 1;
+
+            // 페이지당 표시할 목록 개수 (기본값 500, 최대 1,000)
+            var PerPage = 100;
+
+            // 거래일자를 기준으로 하는 목록 정렬 방향 : "D" / "A" 중 택 1
+            // └ "D" : 내림차순
+            // └ "A" : 오름차순
+            // ※ 미입력시 기본값 "D" 처리
+            var Order = "D";
+
+            try
+            {
+                var useHistoryResult = _closedownService.getUseHistory(corpNum, SDate, EDate, Page,
+                    PerPage, Order);
+
+                return View("UseHistoryResult", useHistoryResult);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 연동회원의 포인트 결제내역을 확인합니다.
+         * - https://developers.popbill.com/reference/closedown/dotnetcore/api/point#GetPaymentHistory
+         */
+        public IActionResult GetPaymentHistory()
+        {
+            // 조회 기간의 시작일자 (형식 : yyyyMMdd)
+            var SDate = "20230102";
+
+            // 조회 기간의 종료일자 (형식 : yyyyMMdd)
+            var EDate = "20230131";
+
+            // 목록 페이지번호 (기본값 1)
+            var Page = 1;
+
+            // 페이지당 표시할 목록 개수 (기본값 500, 최대 1,000)
+            var PerPage = 100;
+
+            try
+            {
+                var paymentHistoryResult = _closedownService.getPaymentHistory(corpNum, SDate, EDate,
+                    Page, PerPage);
+
+                return View("PaymentHistoryResult", paymentHistoryResult);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 연동회원의 포인트 환불신청내역을 확인합니다.
+         * - https://developers.popbill.com/reference/closedown/dotnetcore/api/point#GetRefundHistory
+         */
+        public IActionResult GetRefundHistory()
+        {
+            // 목록 페이지번호 (기본값 1)
+            var Page = 1;
+
+            // 페이지당 표시할 목록 개수 (기본값 500, 최대 1,000)
+            var PerPage = 100;
+
+            try
+            {
+                var refundHistoryResult = _closedownService.getRefundHistory(corpNum, Page, PerPage);
+
+                return View("RefundHistoryResult", refundHistoryResult);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+
+        /*
+         * 포인트 환불에 대한 상세정보 1건을 확인합니다.
+         * - https://developers.popbill.com/reference/closedown/dotnetcore/api/point#GetRefundInfo
+         */
+        public IActionResult GetRefundInfo()
+        {
+            // 환불 코드
+            var refundCode = "023040000017";
+
+            try
+            {
+                var response = _closedownService.getRefundInfo(corpNum, refundCode);
+                return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+
+        /*
+         * 환불 가능한 포인트를 확인합니다. (보너스 포인트는 환불가능포인트에서 제외됩니다.)
+         * - https://developers.popbill.com/reference/closedown/dotnetcore/api/point#GetRefundableBalance
+         */
+        public IActionResult GetRefundableBalance()
+        {
+            try
+            {
+                var refundableBalance = _closedownService.getRefundableBalance(corpNum);
+                return View("RefundableBalance", refundableBalance);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
         #endregion
 
         #region 회원정보
@@ -502,6 +729,28 @@ namespace ClosedownExample.Controllers
             }
         }
 
+        /*
+         * 가입된 연동회원의 탈퇴를 요청합니다.
+         *  - 회원탈퇴 신청과 동시에 팝빌의 모든 서비스 이용이 불가하며, 관리자를 포함한 모든 담당자 계정도 일괄탈퇴 됩니다.
+         *  - 회원탈퇴로 삭제된 데이터는 복원이 불가능합니다.
+         *  - 관리자 계정만 사용 가능합니다.
+         *  - https://developers.popbill.com/reference/closedown/dotnetcore/api/member#QuitMember
+         */
+        public IActionResult QuitMember()
+        {
+            // 탈퇴 사유
+            var quitReason = "탈퇴사유";
+
+            try
+            {
+                var response = _closedownService.quitMember(corpNum, quitReason);
+                return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
         #endregion
     }
 }

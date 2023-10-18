@@ -1,0 +1,41 @@
+@{
+    ViewBag.Title = "PaymentHistoryResult";
+}
+
+<div id="content">
+    <p class="heading1">PaymentHistoryResult</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>code (응답코드) : @Model.code</li>
+            <li>total (전체 검색개수) : @Model.total</li>
+            <li>perPage (페이지당 목록개수) : @Model.perPage</li>
+            <li>pageNum (페이지 번호) : @Model.pageNum</li>
+            <li>pageCount (페이지 개수) : @Model.pageCount</li>
+            <li>pageCount (페이지 개수) : @Model.pageCount</li>
+        </ul>
+        @{
+            int i = 0;
+            foreach (var list in Model.list)
+            {
+                i++;
+                <fieldset class="fieldset2">
+                    <legend>세금계산서 상태/요약정보 확인 [ @i / @Model.list.Count ]</legend>
+                    <ul>
+                        <li>productType (결제 내용) : @list.productType</li>
+                        <li>productName (결제 상품명) : @list.productName</li>
+                        <li>settleType (결제유형) : @list.settleType</li>
+                        <li>settlerName (담당자명) : @list.settlerName</li>
+                        <li>settlerEmail (담당자메일) : @list.settlerEmail</li>
+                        <li>settleCost (결제금액) : @list.settleCost</li>
+                        <li>settlePoint (충전포인트) : @list.settlePoint</li>
+                        <li>settleState (결제상태) : @list.settleState</li>
+                        <li>regDT (등록일시) : @list.regDT</li>
+                        <li>stateDT (상태일시) : @list.stateDT</li>
+                    </ul>
+                </fieldset>
+            }
+        }
+    </fieldset>
+</div>

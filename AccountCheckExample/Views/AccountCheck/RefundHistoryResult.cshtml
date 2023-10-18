@@ -1,0 +1,37 @@
+@{
+    ViewBag.Title = "RefundHistoryResult";
+}
+
+<div id="content">
+    <p class="heading1">RefundHistoryResult</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>code (응답코드) : @Model.code</li>
+            <li>total (전체 검색개수) : @Model.total</li>
+            <li>perPage (페이지당 목록개수) : @Model.perPage</li>
+            <li>pageNum (페이지번호) : @Model.pageNum</li>
+            <li>pageCount (페이지수) : @Model.pageCount</li>
+        </ul>
+        @{
+            int i = 0;
+            foreach (var list in Model.list)
+            {
+                i++;
+                <fieldset class="fieldset2">
+                    <legend>세금계산서 상태/요약정보 확인 [ @i / @Model.list.Count ]</legend>
+                    <ul>
+                        <li>reqDT (신청일자) : @list.reqDT</li>
+                        <li>requestPoint (환불 신청포인트) : @list.requestPoint</li>
+                        <li>accountBank (환불계좌 은행명) : @list.accountBank</li>
+                        <li>accountNum (환불계좌번호) : @list.accountNum</li>
+                        <li>accountName (환불계좌 예금주명) : @list.accountName</li>
+                        <li>state (상태) : @list.state</li>
+                        <li>reason (환불사유) : @list.reason</li>
+                    </ul>
+                </fieldset>
+            }
+        }
+    </fieldset>
+</div>

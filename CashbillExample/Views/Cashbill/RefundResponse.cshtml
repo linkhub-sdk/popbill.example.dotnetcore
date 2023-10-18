@@ -1,0 +1,16 @@
+@{
+    ViewBag.Title = "RefundResponse";
+}
+
+<div id="content">
+    <p class="heading1">RefundResponse</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>code (응답코드) : @Model.code</li>
+            <li>message (응답메시지) : @Model.message</li>
+            <li>refundCode (환불코드) : @Model.refundCode</li>
+        </ul>
+    </fieldset>
+</div>

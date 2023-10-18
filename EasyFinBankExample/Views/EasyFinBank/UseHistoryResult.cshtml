@@ -1,0 +1,39 @@
+@{
+    ViewBag.Title = "UseHistoryResult";
+}
+
+<div id="content">
+    <p class="heading1">UseHistoryResult</p>
+    <br/>
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>code (응답코드) : @Model.code</li>
+            <li>total (전체 검색개수) : @Model.total</li>
+            <li>perPage (페이지당 목록개수) : @Model.perPage</li>
+            <li>pageNum (페이지 번호) : @Model.pageNum</li>
+            <li>pageCount (페이지 개수) : @Model.pageCount</li>
+            <li>pageCount (페이지 개수) : @Model.pageCount</li>
+        </ul>
+
+        @{
+            int i = 0;
+            foreach (var list in Model.list)
+            {
+                i++;
+                <fieldset class="fieldset2">
+                    <legend>세금계산서 상태/요약정보 확인 [ @i / @Model.list.Count ]</legend>
+                    <ul>
+                        <li>itemCode (서비스 코드) : @list.itemCode</li>
+                        <li>txType (포인트 증감 유형) : @list.txType</li>
+                        <li>txPoint (증감 포인트) : @list.txPoint</li>
+                        <li>balance (잔여포인트) : @list.balance</li>
+                        <li>txDT (포인트 증감 일시) : @list.txDT</li>
+                        <li>userID (담당자 아이디) : @list.userID</li>
+                        <li>userName (담당자명) : @list.userName</li>
+                    </ul>
+                </fieldset>
+            }
+        }
+    </fieldset>
+</div>
