@@ -235,27 +235,27 @@ namespace ClosedownExample.Controllers
             try
             {
                 var refundForm = new RefundForm();
-
+                
                 // 담당자명
-                refundForm.setContactName("담당자명");
+                refundForm.contactName= "담당자명";
 
                 // 담당자 연락처
-                refundForm.setTel("01077777777");
+                refundForm.tel="01077777777";
 
                 // 환불 신청 포인트
-                refundForm.setRequestPoint("10");
+                refundForm.requestPoint = "10";
 
                 // 은행명
-                refundForm.setAccountBank("국민");
+                refundForm.accountBank ="국민";
 
                 // 계좌번호
-                refundForm.setAccountNum("123123123-123");
+                refundForm.accountNum ="123123123-123" ;
 
                 // 예금주명
-                refundForm.setAccountName("예금주명");
+                refundForm.accountName = "예금주명";
 
                 // 환불사유
-                refundForm.setReason("환불사유");
+                refundForm.reason = "환불사유";
 
                 var response = _closedownService.Refund(corpNum, refundForm);
                 return View("RefundResponse", response);
@@ -277,22 +277,22 @@ namespace ClosedownExample.Controllers
                 var paymentForm = new PaymentForm();
 
                 // 담당자명
-                paymentForm.setSettlerName("담당자명");
+                paymentForm.settlerName = "담당자명";
 
                 // 담당자 이메일
-                paymentForm.setSettlerEmail("test@test.com");
+                paymentForm.settlerEmail = "test@test.com";
 
                 // 담당자 휴대폰
                 // └ 무통장 입금 승인 알림톡이 전송될 번호
-                paymentForm.setNotifyHP("01012341234");
+                paymentForm.notifyHP = "01012341234";
 
                 // 입금자명
-                paymentForm.setPaymentName("입금자명");
+                paymentForm.paymentName = "입금자명";
 
                 // 결제금액
-                paymentForm.setSettleCost("11000");
+                paymentForm.settleCost = "11000";
 
-                var response = _closedownService.paymentRequest(corpNum, paymentForm);
+                var response = _closedownService.PaymentRequest(corpNum, paymentForm);
                 return View("PaymentResponse", response);
             }
             catch (PopbillException pe)
@@ -312,9 +312,9 @@ namespace ClosedownExample.Controllers
 
             try
             {
-                var paymentHistory = _closedownService.getSettleResult(corpNum, settleCode);
+                var paymentHistory = _closedownService.GetSettleResult(corpNum, settleCode);
 
-                return View("PaymentHistory", paymentHistory);
+                return View("PaymentHistoryResult", paymentHistory);
             }
             catch (PopbillException pe)
             {
@@ -348,7 +348,7 @@ namespace ClosedownExample.Controllers
 
             try
             {
-                var useHistoryResult = _closedownService.getUseHistory(corpNum, SDate, EDate, Page,
+                var useHistoryResult = _closedownService.GetUseHistory(corpNum, SDate, EDate, Page,
                     PerPage, Order);
 
                 return View("UseHistoryResult", useHistoryResult);
@@ -379,7 +379,7 @@ namespace ClosedownExample.Controllers
 
             try
             {
-                var paymentHistoryResult = _closedownService.getPaymentHistory(corpNum, SDate, EDate,
+                var paymentHistoryResult = _closedownService.GetPaymentHistory(corpNum, SDate, EDate,
                     Page, PerPage);
 
                 return View("PaymentHistoryResult", paymentHistoryResult);
@@ -404,7 +404,7 @@ namespace ClosedownExample.Controllers
 
             try
             {
-                var refundHistoryResult = _closedownService.getRefundHistory(corpNum, Page, PerPage);
+                var refundHistoryResult = _closedownService.GetRefundHistory(corpNum, Page, PerPage);
 
                 return View("RefundHistoryResult", refundHistoryResult);
             }
@@ -426,7 +426,7 @@ namespace ClosedownExample.Controllers
 
             try
             {
-                var response = _closedownService.getRefundInfo(corpNum, refundCode);
+                var response = _closedownService.GetRefundInfo(corpNum, refundCode);
                 return View("Response", response);
             }
             catch (PopbillException pe)
@@ -444,7 +444,7 @@ namespace ClosedownExample.Controllers
         {
             try
             {
-                var refundableBalance = _closedownService.getRefundableBalance(corpNum);
+                var refundableBalance = _closedownService.GetRefundableBalance(corpNum);
                 return View("RefundableBalance", refundableBalance);
             }
             catch (PopbillException pe)
@@ -743,7 +743,7 @@ namespace ClosedownExample.Controllers
 
             try
             {
-                var response = _closedownService.quitMember(corpNum, quitReason);
+                var response = _closedownService.QuitMember(corpNum, quitReason);
                 return View("Response", response);
             }
             catch (PopbillException pe)
