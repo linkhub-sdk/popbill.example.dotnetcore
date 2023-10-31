@@ -247,7 +247,7 @@ namespace AccountCheckExample.Controllers
 
                 /*
          * 연동회원 포인트를 환불 신청합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#Refund
+         * - https://developers.popbill.com/reference/accountcheck/dotnetcore/api/point#Refund
          */
         public IActionResult Refund()
         {
@@ -287,7 +287,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 연동회원 포인트를 환불 신청합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#PaymentRequest
+         * - https://developers.popbill.com/reference/accountcheck/dotnetcore/api/point#PaymentRequest
          */
         public IActionResult PaymentRequest()
         {
@@ -322,7 +322,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 연동회원 포인트 무통장 입금신청내역 1건을 확인합니다.
-         *  - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetSettleResult
+         *  - https://developers.popbill.com/reference/accountcheck/dotnetcore/api/point#GetSettleResult
          */
         public IActionResult GetSettleResult()
         {
@@ -343,7 +343,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 연동회원의 포인트 사용내역을 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetUseHistory
+         * - https://developers.popbill.com/reference/accountcheck/dotnetcore/api/point#GetUseHistory
          */
         public IActionResult GetUseHistory()
         {
@@ -380,7 +380,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 연동회원의 포인트 결제내역을 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetPaymentHistory
+         * - https://developers.popbill.com/reference/accountcheck/dotnetcore/api/point#GetPaymentHistory
          */
         public IActionResult GetPaymentHistory()
         {
@@ -411,7 +411,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 연동회원의 포인트 환불신청내역을 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetRefundHistory
+         * - https://developers.popbill.com/reference/accountcheck/dotnetcore/api/point#GetRefundHistory
          */
         public IActionResult GetRefundHistory()
         {
@@ -436,7 +436,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 포인트 환불에 대한 상세정보 1건을 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetRefundInfo
+         * - https://developers.popbill.com/reference/accountcheck/dotnetcore/api/point#GetRefundInfo
          */
         public IActionResult GetRefundInfo()
         {
@@ -457,7 +457,7 @@ namespace AccountCheckExample.Controllers
 
         /*
          * 환불 가능한 포인트를 확인합니다. (보너스 포인트는 환불가능포인트에서 제외됩니다.)
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetRefundableBalance
+         * - https://developers.popbill.com/reference/accountcheck/dotnetcore/Service.QuitMember
          */
         public IActionResult GetRefundableBalance()
         {

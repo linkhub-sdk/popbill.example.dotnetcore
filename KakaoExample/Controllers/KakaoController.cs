@@ -14,7 +14,6 @@ namespace KakaoExample.Controllers
         {
             // 카카오톡 서비스 객체 생성
             _kakaoService = KKOinstance.kakaoService;
-
         }
 
         // 팝빌 연동회원 사업자번호 (하이픈 '-' 없이 10자리)
@@ -155,7 +154,7 @@ namespace KakaoExample.Controllers
             {
                 var templateInfo = _kakaoService.GetATSTemplate(corpNum, templateCdoe);
                 return View("GetATSTemplate", templateInfo);
-             }
+            }
             catch (PopbillException pe)
             {
                 return View("Exception", pe);
@@ -314,7 +313,7 @@ namespace KakaoExample.Controllers
                 receiverInfo.altmsg = "대체문자 내용입니다" + i;
 
                 // 파트너 지정키, 수신자 구분용 메모
-                receiverInfo.interOPRefKey = "20200805-"+i;
+                receiverInfo.interOPRefKey = "20200805-" + i;
 
                 receivers.Add(receiverInfo);
             }
@@ -768,7 +767,8 @@ namespace KakaoExample.Controllers
             try
             {
                 var receiptNum = _kakaoService.SendFMS(corpNum, plusFriendID, senderNum, receiverNum, receiverName,
-                    content, altContent, buttons, altSendType, adsYN, sndDT, imageURL, filePath, requestNum, altSubject);
+                    content, altContent, buttons, altSendType, adsYN, sndDT, imageURL, filePath, requestNum, userID,
+                    altSubject);
                 return View("ReceiptNum", receiptNum);
             }
             catch (PopbillException pe)
@@ -1006,7 +1006,7 @@ namespace KakaoExample.Controllers
          */
         public IActionResult CancelReservebyRCV()
         {
-          // 카카오톡 예약전송 접수시 팝빌로부터 반환 받은 접수번호
+            // 카카오톡 예약전송 접수시 팝빌로부터 반환 받은 접수번호
             string receiptNum = "";
 
             // 카카오톡 예약전송 접수시 팝빌로 요청한 수신번호
@@ -1177,9 +1177,6 @@ namespace KakaoExample.Controllers
             }
         }
 
-
-
-
         #endregion
 
         #region 포인트관리
@@ -1227,7 +1224,6 @@ namespace KakaoExample.Controllers
          */
         public IActionResult GetPaymentURL()
         {
-
             try
             {
                 var result = _kakaoService.GetPaymentURL(corpNum, userID);
@@ -1246,7 +1242,6 @@ namespace KakaoExample.Controllers
          */
         public IActionResult GetUseHistoryURL()
         {
-
             try
             {
                 var result = _kakaoService.GetUseHistoryURL(corpNum, userID);

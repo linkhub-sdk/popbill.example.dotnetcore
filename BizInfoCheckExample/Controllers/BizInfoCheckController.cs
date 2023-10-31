@@ -98,7 +98,6 @@ namespace BizInfoCheckExample.Controllers
          */
         public IActionResult GetPaymentURL()
         {
-
             try
             {
                 var result = _bizinfoCheckService.GetPaymentURL(corpNum, userID);
@@ -117,7 +116,6 @@ namespace BizInfoCheckExample.Controllers
          */
         public IActionResult GetUseHistoryURL()
         {
-
             try
             {
                 var result = _bizinfoCheckService.GetUseHistoryURL(corpNum, userID);
@@ -202,7 +200,7 @@ namespace BizInfoCheckExample.Controllers
             }
         }
 
-                /*
+        /*
          * 연동회원 포인트를 환불 신청합니다.
          * - https://developers.popbill.com/reference/bizinfocheck/dotnetcore/api/point#Refund
          */
@@ -211,21 +209,21 @@ namespace BizInfoCheckExample.Controllers
             try
             {
                 var refundForm = new RefundForm();
-                
+
                 // 담당자명
-                refundForm.contactName= "담당자명";
+                refundForm.contactName = "담당자명";
 
                 // 담당자 연락처
-                refundForm.tel="01077777777";
+                refundForm.tel = "01077777777";
 
                 // 환불 신청 포인트
                 refundForm.requestPoint = "10";
 
                 // 은행명
-                refundForm.accountBank ="국민";
+                refundForm.accountBank = "국민";
 
                 // 계좌번호
-                refundForm.accountNum ="123123123-123" ;
+                refundForm.accountNum = "123123123-123";
 
                 // 예금주명
                 refundForm.accountName = "예금주명";
@@ -727,6 +725,7 @@ namespace BizInfoCheckExample.Controllers
                 return View("Exception", pe);
             }
         }
+
         #endregion
     }
 }
