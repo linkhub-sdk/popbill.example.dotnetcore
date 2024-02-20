@@ -181,10 +181,10 @@ namespace CashbillExample.Controllers
                 // 문서번호, 최대 24자리, 영문, 숫자 '-', '_'를 조합하여 사업자별로 중복되지 않도록 구성
                 cashbill.mgtKey = submitID + "-" + i;
 
-                // [취소거래시 필수] 원본 현금영수증 국세청승인번호
+                // [취소거래시 필수] 당초 승인 현금영수증 국세청승인번호
                 cashbill.orgConfirmNum = "";
 
-                // [취소거래시 필수] 원본 현금영수증 거래일자
+                // [취소거래시 필수] 당초 승인 현금영수증 거래일자
                 cashbill.orgTradeDate = "";
 
                 // 문서형태, { 승인거래, 취소거래 } 중 기재
@@ -332,10 +332,10 @@ namespace CashbillExample.Controllers
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20220527-002";
 
-            // 원본 현금영수증 국세청승인번호
+            // 당초 승인 현금영수증 국세청승인번호
             string orgConfirmNum = "TB0000015";
 
-            // 원본현금영수증 거래일자 (날짜형식yyyyMMdd)
+            // 당초 승인 현금영수증 거래일자 (날짜형식yyyyMMdd)
             string orgTradeDate = "20220501";
 
             try
@@ -361,10 +361,10 @@ namespace CashbillExample.Controllers
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20220527-003";
 
-            // 원본 현금영수증 국세청승인번호
+            // 당초 승인 현금영수증 국세청승인번호
             string orgConfirmNum = "TB0000104";
 
-            // 원본현금영수증 거래일자 (날짜형식yyyyMMdd)
+            // 당초 승인 현금영수증 거래일자 (날짜형식yyyyMMdd)
             string orgTradeDate = "20221108";
 
             // 발행 안내문자 전송여부
