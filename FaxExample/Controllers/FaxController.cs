@@ -862,7 +862,7 @@ namespace FaxExample.Controllers
             {
                 var paymentHistory = _faxService.GetSettleResult(corpNum, settleCode);
 
-                return View("PaymentHistoryResult", paymentHistory);
+                return View("PaymentHistory", paymentHistory);
             }
             catch (PopbillException pe)
             {

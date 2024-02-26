@@ -698,7 +698,7 @@ namespace HTTaxinvoiceExample.Controllers
             {
                 var paymentHistory = _htTaxinvoiceService.GetSettleResult(corpNum, settleCode);
 
-                return View("PaymentHistoryResult", paymentHistory);
+                return View("PaymentHistory", paymentHistory);
             }
             catch (PopbillException pe)
             {

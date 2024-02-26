@@ -1925,7 +1925,7 @@ namespace StatementExample.Controllers
             {
                 var paymentHistory = _statementService.GetSettleResult(corpNum, settleCode);
 
-                return View("PaymentHistoryResult", paymentHistory);
+                return View("PaymentHistory", paymentHistory);
             }
             catch (PopbillException pe)
             {

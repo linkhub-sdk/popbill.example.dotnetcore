@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewData["Title"] = "PaymentHistory";
+}
+<div id="content">
+    <p class="heading1">Response</p>
+    <br />
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>productType (결제 내용) : @Model.productType</li>
+            <li>productName (결제 상품명) : @Model.productName</li>
+            <li>settleType (결제유형) : @Model.settleType</li>
+            <li>settlerName (담당자명) : @Model.settlerName</li>
+            <li>settlerEmail (담당자메일) : @Model.settlerEmail</li>
+            <li>settleCost (결제금액) : @Model.settleCost</li>
+            <li>settlePoint (충전포인트) : @Model.settlePoint</li>
+            <li>settleState (결제상태) : @Model.settleState</li>
+            <li>regDT (등록일시) : @Model.regDT</li>
+            <li>stateDT (상태일시) : @Model.stateDT</li>
+        </ul>
+    </fieldset>
+</div>

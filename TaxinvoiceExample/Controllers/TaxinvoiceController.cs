@@ -2715,7 +2715,7 @@ namespace TaxinvoiceExample.Controllers
                 refundForm.tel="01077777777";
 
                 // 환불 신청 포인트
-                refundForm.requestPoint = "10";
+                refundForm.requestPoint = "1";
 
                 // 은행명
                 refundForm.accountBank ="국민";
@@ -2780,13 +2780,44 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetSettleResult()
         {
             // 정산코드
-            var settleCode = "202301130000000026";
+            var settleCode = "202402260000000025";
 
             try
             {
                 var paymentHistory = _taxinvoiceService.GetSettleResult(corpNum, settleCode);
 
-                return View("PaymentHistoryResult", paymentHistory);
+                return View("PaymentHistory", paymentHistory);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+        
+        /*
+         * 연동회원의 포인트 결제내역을 확인합니다.
+         * - https://developers.popbill.com/reference/taxinvoice/dotnetcore/api/point#GetPaymentHistory
+         */
+        public IActionResult GetPaymentHistory()
+        {
+            // 조회 기간의 시작일자 (형식 : yyyyMMdd)
+            var SDate = "20240202";
+
+            // 조회 기간의 종료일자 (형식 : yyyyMMdd)
+            var EDate = "20240301";
+
+            // 목록 페이지번호 (기본값 1)
+            var Page = 1;
+
+            // 페이지당 표시할 목록 개수 (기본값 500, 최대 1,000)
+            var PerPage = 100;
+
+            try
+            {
+                var paymentHistoryResult = _taxinvoiceService.GetPaymentHistory(corpNum, SDate, EDate,
+                    Page, PerPage);
+
+                return View("PaymentHistoryResult", paymentHistoryResult);
             }
             catch (PopbillException pe)
             {
@@ -2801,10 +2832,10 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetUseHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20240102";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20240131";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;
@@ -2824,37 +2855,6 @@ namespace TaxinvoiceExample.Controllers
                     PerPage, Order);
 
                 return View("UseHistoryResult", useHistoryResult);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
-
-        /*
-         * 연동회원의 포인트 결제내역을 확인합니다.
-         * - https://developers.popbill.com/reference/taxinvoice/dotnetcore/api/point#GetPaymentHistory
-         */
-        public IActionResult GetPaymentHistory()
-        {
-            // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
-
-            // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
-
-            // 목록 페이지번호 (기본값 1)
-            var Page = 1;
-
-            // 페이지당 표시할 목록 개수 (기본값 500, 최대 1,000)
-            var PerPage = 100;
-
-            try
-            {
-                var paymentHistoryResult = _taxinvoiceService.GetPaymentHistory(corpNum, SDate, EDate,
-                    Page, PerPage);
-
-                return View("PaymentHistoryResult", paymentHistoryResult);
             }
             catch (PopbillException pe)
             {

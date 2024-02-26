@@ -314,7 +314,7 @@ namespace ClosedownExample.Controllers
             {
                 var paymentHistory = _closedownService.GetSettleResult(corpNum, settleCode);
 
-                return View("PaymentHistoryResult", paymentHistory);
+                return View("PaymentHistory", paymentHistory);
             }
             catch (PopbillException pe)
             {

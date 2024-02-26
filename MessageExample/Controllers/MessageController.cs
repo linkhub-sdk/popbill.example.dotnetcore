@@ -1302,7 +1302,7 @@ namespace MessageExample.Controllers
             {
                 var paymentHistory = _messageService.GetSettleResult(corpNum, settleCode);
 
-                return View("PaymentHistoryResult", paymentHistory);
+                return View("PaymentHistory", paymentHistory);
             }
             catch (PopbillException pe)
             {

@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "RefundHistory";
+}
+<div id="content">
+    <p class="heading1">Response</p>
+    <br />
+    <fieldset class="fieldset1">
+        <legend>@ViewData["Title"]</legend>
+        <ul>
+            <li>reqDT (신청일시) : @Model.reqDT</li>
+            <li>requestPoint (환불 신청포인트) : @Model.requestPoint</li>
+            <li>accountBank (환불계좌 은행명) : @Model.accountBank</li>
+            <li>accountNum (환불계좌번호) : @Model.accountNum</li>
+            <li>accountName (환불계좌 예금주명) : @Model.accountName</li>
+            <li>state (상태) : @Model.state</li>
+            <li>reason (환불사유) : @Model.reason</li>
+        </ul>
+    </fieldset>
+</div>
