@@ -114,7 +114,7 @@ namespace MessageExample.Controllers
             string contents = "단문 문자 메시지 내용. 90byte 초과시 삭제되어 전송";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고성 메시지 여부 ( true , false 중 택 1)
@@ -175,7 +175,7 @@ namespace MessageExample.Controllers
             }
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고성 메시지 여부 ( true , false 중 택 1)
@@ -235,7 +235,7 @@ namespace MessageExample.Controllers
             }
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고성 메시지 여부 ( true , false 중 택 1)
@@ -286,7 +286,7 @@ namespace MessageExample.Controllers
             string contents = "장문 문자 메시지 내용. 최대 2000byte 초과된 내용은 삭제되어 전송.";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고성 메시지 여부 ( true , false 중 택 1)
@@ -350,7 +350,7 @@ namespace MessageExample.Controllers
             }
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고성 메시지 여부 ( true , false 중 택 1)
@@ -414,7 +414,7 @@ namespace MessageExample.Controllers
             }
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고성 메시지 여부 ( true , false 중 택 1)
@@ -469,7 +469,7 @@ namespace MessageExample.Controllers
             string filePath = "C:\\popbill.example.dotnetcore\\MessageExample\\wwwroot\\images\\image.jpg";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송sssssss
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고성 메시지 여부 ( true , false 중 택 1)
@@ -537,7 +537,7 @@ namespace MessageExample.Controllers
             string filePath = "C:\\popbill.example.dotnetcore\\MessageExample\\wwwroot\\images\\image.jpg";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고성 메시지 여부 ( true , false 중 택 1)
@@ -605,7 +605,7 @@ namespace MessageExample.Controllers
             string filePath = "C:\\popbill.example.dotnetcore\\MessageExample\\wwwroot\\images\\image.jpg";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고성 메시지 여부 ( true , false 중 택 1)
@@ -655,7 +655,7 @@ namespace MessageExample.Controllers
             string contents = "단문/장문 문자 메시지 내용. 메시지 내용의 길이(90byte)에 따라 SMS/LMS(단문/장문)를 자동인식하여 전송됨";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고성 메시지 여부 ( true , false 중 택 1)
@@ -719,7 +719,7 @@ namespace MessageExample.Controllers
             }
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고성 메시지 여부 ( true , false 중 택 1)
@@ -782,7 +782,7 @@ namespace MessageExample.Controllers
             }
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고성 메시지 여부 ( true , false 중 택 1)

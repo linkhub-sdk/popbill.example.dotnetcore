@@ -119,7 +119,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고팩스 전송여부 , true / false 중 택 1
@@ -183,7 +183,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 광고팩스 전송여부 , true / false 중 택 1
@@ -237,7 +237,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 재전송 팩스의 전송요청번호
@@ -301,7 +301,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
 
@@ -351,7 +351,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 재전송 팩스의 전송요청번호
@@ -415,7 +415,7 @@ namespace FaxExample.Controllers
             string title = "팩스 제목";
 
             // 예약전송일시(yyyyMMddHHmmss), null인 경우 즉시전송
-            // ex) DateTime sndDT = new DateTime(20181230120000);
+            // ex) DateTime sndDT = new DateTime(2025,01,01,12,00,00);
             DateTime? sndDT = null;
 
             // 재전송 팩스의 전송요청번호
