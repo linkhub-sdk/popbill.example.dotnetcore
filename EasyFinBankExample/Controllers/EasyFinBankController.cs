@@ -844,7 +844,7 @@ namespace EasyFinBankExample.Controllers
             try
             {
                 var response = _easyFinBankService.GetRefundInfo(corpNum, refundCode);
-                return View("Response", response);
+                return View("RefundHistory", response);
             }
             catch (PopbillException pe)
             {

@@ -975,7 +975,7 @@ namespace FaxExample.Controllers
             try
             {
                 var response = _faxService.GetRefundInfo(corpNum, refundCode);
-                return View("Response", response);
+                return View("RefundHistory", response);
             }
             catch (PopbillException pe)
             {

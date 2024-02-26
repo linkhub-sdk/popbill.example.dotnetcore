@@ -811,7 +811,7 @@ namespace HTTaxinvoiceExample.Controllers
             try
             {
                 var response = _htTaxinvoiceService.GetRefundInfo(corpNum, refundCode);
-                return View("Response", response);
+                return View("RefundHistory", response);
             }
             catch (PopbillException pe)
             {

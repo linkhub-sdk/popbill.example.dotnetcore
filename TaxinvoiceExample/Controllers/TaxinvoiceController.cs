@@ -2899,7 +2899,7 @@ namespace TaxinvoiceExample.Controllers
             try
             {
                 var response = _taxinvoiceService.GetRefundInfo(corpNum, refundCode);
-                return View("Response", response);
+                return View("RefundHistory", response);
             }
             catch (PopbillException pe)
             {

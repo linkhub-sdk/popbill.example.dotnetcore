@@ -401,7 +401,7 @@ namespace BizInfoCheckExample.Controllers
             try
             {
                 var response = _bizinfoCheckService.GetRefundInfo(corpNum, refundCode);
-                return View("Response", response);
+                return View("RefundHistory", response);
             }
             catch (PopbillException pe)
             {

@@ -427,7 +427,7 @@ namespace ClosedownExample.Controllers
             try
             {
                 var response = _closedownService.GetRefundInfo(corpNum, refundCode);
-                return View("Response", response);
+                return View("RefundHistory", response);
             }
             catch (PopbillException pe)
             {

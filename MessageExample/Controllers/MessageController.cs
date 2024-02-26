@@ -1415,7 +1415,7 @@ namespace MessageExample.Controllers
             try
             {
                 var response = _messageService.GetRefundInfo(corpNum, refundCode);
-                return View("Response", response);
+                return View("RefundHistory", response);
             }
             catch (PopbillException pe)
             {

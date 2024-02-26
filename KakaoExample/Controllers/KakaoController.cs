@@ -1546,7 +1546,24 @@ namespace KakaoExample.Controllers
             try
             {
                 var response = _kakaoService.GetRefundInfo(corpNum, refundCode);
-                return View("Response", response);
+                return View("RefundHistory", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
+         * 환불 가능한 포인트를 확인합니다. (보너스 포인트는 환불가능포인트에서 제외됩니다.)
+         * - https://developers.popbill.com/reference/kakaotalk/dotnetcore/point#GetRefundableBalance
+         */
+        public IActionResult GetRefundableBalance()
+        {
+            try
+            {
+                var refundableBalance = _kakaoService.GetRefundableBalance(corpNum);
+                return View("RefundableBalance", refundableBalance);
             }
             catch (PopbillException pe)
             {
