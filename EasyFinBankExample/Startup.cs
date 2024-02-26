@@ -1,4 +1,19 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿/*
+업데이트 일자 : 2024-02-26
+연동 기술지원 연락처 : 1600 - 9854
+연동 기술지원 이메일 : code @linkhubcorp.com
+
+1) API Key 변경 (연동신청 시 메일로 전달된 정보)
+- LinkID : 링크허브에서 발급한 링크아이디.
+- SecretKey : 링크허브에서 발급한 비밀키.
+
+2) SDK 환경설정 옵션 설정
+- IsTest : 연동환경 설정, true-테스트, false-운영(Production), (기본값: true)
+- IPRestrictOnOff : 인증토큰 IP 검증 설정, ture-사용, false-미사용, (기본값: true)
+- UseStaticIP : 통신 고정 IP, true-사용, false-미사용, (기본값: false)
+- UseLocalTimeYN : 로컬시스템 시간 사용여부, true-사용, false-미사용, (기본값: true)
+*/
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,8 +21,9 @@ using Popbill.EasyFin;
 
 public class EasyFinBankInstance
 {
-    // 파트너 신청 후 메일로 발급받은 링크아이디(LinkID)와 비밀키(SecretKey)값 으로 변경하시기 바랍니다.
+    // 링크아이디
     private string linkID = "TESTER";
+    // 비밀키
     private string secretKey = "SwWxqU+0TErBXy/9TVjIPEnI0VTUMMSQZtJf3Ed8q3I=";
 
     public EasyFinBankService easyFinBankService;
@@ -17,16 +33,16 @@ public class EasyFinBankInstance
         // 계좌조회 서비스 객체 초기화
         easyFinBankService = new EasyFinBankService(linkID, secretKey);
 
-        // 연동환경 설정값, 개발용(true), 상업용(false)
+        // 연동환경 설정, true-테스트, false-운영(Production), (기본값: true)
         easyFinBankService.IsTest = true;
 
-        // 인증토큰의 IP제한기능 사용여부, 권장(true)
+        // 인증토큰 IP 검증 설정, ture-사용, false-미사용, (기본값: true)
         easyFinBankService.IPRestrictOnOff = true;
 
-        // 팝빌 API 서비스 고정 IP 사용여부, true-사용, false-미사용, 기본값(false)
+        // 통신 고정 IP, true-사용, false-미사용, (기본값: false)
         easyFinBankService.UseStaticIP = false;
 
-        // 로컬 시스템시간 사용 여부, true(사용) - 기본값, fasle(미사용)
+        // 로컬시스템 시간 사용여부, true-사용, false-미사용, (기본값: true)
         easyFinBankService.UseLocalTimeYN = true;
     }
 }

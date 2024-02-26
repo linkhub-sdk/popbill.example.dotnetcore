@@ -1,3 +1,11 @@
+/*
+ * 팝빌 전자명세서 API .NET Core SDK Example
+ * .NET Core 연동 튜토리얼 안내 : https://developers.popbill.com/guide/statement/dotnetcore/getting-started/tutorial
+ * 
+ * 업데이트 일자 : 2024-02-26
+ * 연동 기술지원 연락처 : 1600 - 9854
+ * 연동 기술지원 이메일 : code @linkhubcorp.com
+*/
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;

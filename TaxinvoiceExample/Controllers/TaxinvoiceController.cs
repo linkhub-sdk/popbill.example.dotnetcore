@@ -1,3 +1,17 @@
+/*
+ * 팝빌 전자세금계산서 API .NET Core SDK Example
+ * .NET Core 연동 튜토리얼 안내 : https://developers.popbill.com/guide/taxinvoice/dotnetcore/getting-started/tutorial
+ * 
+ * 업데이트 일자 : 2024-02-26
+ * 연동 기술지원 연락처 : 1600 - 9854
+ * 연동 기술지원 이메일 : code @linkhubcorp.com
+ * 
+ * <테스트 연동개발 준비사항>
+ * 1) 전자세금계산서 인증서 등록
+ *   - 전자세금계산서 발행을 위해 공인인증서를 등록합니다.
+ *   - 팝빌사이트 로그인 > [전자세금계산서] > [환경설정] > [공인인증서 관리]
+ *   - 공인인증서 등록 팝업 URL (GetTaxCertURL API)을 이용하여 등록
+*/
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
