@@ -520,7 +520,7 @@ namespace KakaoExample.Controllers
                 t = "WL", // 버튼 유형, WL-웹링크, AL-앱링크, MD-메시지 전달, BK-봇키워드
                 u1 = "http://www.popbill.com", // [앱링크] iOS, [웹링크] Mobile
                 u2 = "http://test.popbill.com", // [앱링크] Android, [웹링크] PC URL
-                tg = "" // 웹링크 브라우저, null - 카카오톡 인앱 브라우저 , "out" - 기본 브라우저
+                tg = "out" // 웹링크 브라우저, null - 카카오톡 인앱 브라우저 , "out" - 기본 브라우저
             };
             buttons.Add(btnInfo);
 
@@ -606,7 +606,7 @@ namespace KakaoExample.Controllers
                 t = "WL", // 버튼 유형, WL-웹링크, AL-앱링크, MD-메시지 전달, BK-봇키워드
                 u1 = "http://www.popbill.com", // [앱링크] iOS, [웹링크] Mobile
                 u2 = "http://test.popbill.com", // [앱링크] Android, [웹링크] PC URL
-                tg = "" // 웹링크 브라우저, null - 카카오톡 인앱 브라우저 , "out" - 기본 브라우저
+                tg = "out" // 웹링크 브라우저, null - 카카오톡 인앱 브라우저 , "out" - 기본 브라우저
             };
             buttons.Add(btnInfo);
 
@@ -684,7 +684,7 @@ namespace KakaoExample.Controllers
                 t = "WL", // 버튼 유형, WL-웹링크, AL-앱링크, MD-메시지 전달, BK-봇키워드
                 u1 = "http://www.popbill.com", // [앱링크] iOS, [웹링크] Mobile
                 u2 = "http://test.popbill.com", // [앱링크] Android, [웹링크] PC URL
-                tg = "" // 웹링크 브라우저, null - 카카오톡 인앱 브라우저 , "out" - 기본 브라우저
+                tg = "out" // 웹링크 브라우저, null - 카카오톡 인앱 브라우저 , "out" - 기본 브라우저
             };
             buttons.Add(btnInfo);
 
@@ -759,7 +759,7 @@ namespace KakaoExample.Controllers
                 t = "WL", // 버튼 유형, WL-웹링크, AL-앱링크, MD-메시지 전달, BK-봇키워드
                 u1 = "http://www.popbill.com", // [앱링크] iOS, [웹링크] Mobile
                 u2 = "http://test.popbill.com", // [앱링크] Android, [웹링크] PC URL
-                tg = "" // 웹링크 브라우저, null - 카카오톡 인앱 브라우저 , "out" - 기본 브라우저
+                tg = "out" // 웹링크 브라우저, null - 카카오톡 인앱 브라우저 , "out" - 기본 브라우저
             };
             buttons.Add(btnInfo);
 
@@ -856,7 +856,7 @@ namespace KakaoExample.Controllers
                 t = "WL", // 버튼 유형, WL-웹링크, AL-앱링크, MD-메시지 전달, BK-봇키워드
                 u1 = "http://www.popbill.com", // [앱링크] iOS, [웹링크] Mobile
                 u2 = "http://test.popbill.com", // [앱링크] Android, [웹링크] PC URL
-                tg = "" // 웹링크 브라우저, null - 카카오톡 인앱 브라우저 , "out" - 기본 브라우저
+                tg = "out" // 웹링크 브라우저, null - 카카오톡 인앱 브라우저 , "out" - 기본 브라우저
             };
             buttons.Add(btnInfo);
 
@@ -944,7 +944,7 @@ namespace KakaoExample.Controllers
                 t = "WL", // 버튼 유형, WL-웹링크, AL-앱링크, MD-메시지 전달, BK-봇키워드
                 u1 = "http://www.popbill.com", // [앱링크] iOS, [웹링크] Mobile
                 u2 = "http://test.popbill.com", // [앱링크] Android, [웹링크] PC URL
-                tg = "" // 웹링크 브라우저, null - 카카오톡 인앱 브라우저 , "out" - 기본 브라우저
+                tg = "out" // 웹링크 브라우저, null - 카카오톡 인앱 브라우저 , "out" - 기본 브라우저
             };
             buttons.Add(btnInfo);
 
