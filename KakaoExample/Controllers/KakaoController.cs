@@ -271,7 +271,7 @@ namespace KakaoExample.Controllers
             btnInfo.u1 = "https://www.popbill.com";
             // 버튼링크2 [앱링크] Android / [웹링크] PC URL
             btnInfo.u2 = "http://test.popbill.com";
-            // 웹링크 브라우저 (null - 카카오톡 인앱 브라우저 / "out" - 기본 브라우저)
+            // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
             btnInfo.tg = "out";
             buttons.Add(btnInfo);
             */
@@ -357,8 +357,8 @@ namespace KakaoExample.Controllers
             List<KakaoButton> buttons = null;
 
 
-            // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
-            /*
+			// 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
+			/*
             List<KakaoButton> buttons = new List<KakaoButton>();
 
             KakaoButton btnInfo = new KakaoButton();
@@ -370,13 +370,13 @@ namespace KakaoExample.Controllers
             btnInfo.u1 = "https://www.popbill.com";
             // 버튼링크2 [앱링크] Android / [웹링크] PC URL
             btnInfo.u2 = "http://test.popbill.com";
-            // 웹링크 브라우저 (null - 카카오톡 인앱 브라우저 / "out" - 기본 브라우저)
+            // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
             btnInfo.tg = "out";
             buttons.Add(btnInfo);
             */
 
-            try
-            {
+			try
+			{
                 var receiptNum = _kakaoService.SendATS(corpNum, templateCode, senderNum, receivers, altSendType, sndDT,
                     requestNum, userID, buttons);
                 return View("ReceiptNum", receiptNum);
@@ -467,7 +467,7 @@ namespace KakaoExample.Controllers
             btnInfo.u1 = "https://www.popbill.com";
             // 버튼링크2 [앱링크] Android / [웹링크] PC URL
             btnInfo.u2 = "http://test.popbill.com";
-            // 웹링크 브라우저 (null - 카카오톡 인앱 브라우저 / "out" - 기본 브라우저)
+            // 디바이스 기본 브라우저 사용 (공백(기본값) : 카카오톡 인앱 브라우저 사용)
             btnInfo.tg = "out";
             buttons.Add(btnInfo);
             */
