@@ -2,7 +2,7 @@
  * 팝빌 홈택스 현금영수증 API .NET Core SDK Example
  * .NET Core 연동 튜토리얼 안내 : https://developers.popbill.com/guide/htcashbill/dotnetcore/getting-started/tutorial
  * 
- * 업데이트 일자 : 2024-02-26
+ * 업데이트 일자 : 2024-10-31
  * 연동 기술지원 연락처 : 1600 - 9854
  * 연동 기술지원 이메일 : code@linkhubcorp.com
  * 
