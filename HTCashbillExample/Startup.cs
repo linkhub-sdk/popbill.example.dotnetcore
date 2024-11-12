@@ -1,5 +1,5 @@
 ﻿/*
-업데이트 일자 : 2024-10-31
+업데이트 일자 : 2024-11-12
 연동 기술지원 연락처 : 1600 - 9854
 연동 기술지원 이메일 : code@linkhubcorp.com
 
@@ -31,7 +31,7 @@ public class HTCashbillInstance
 
     public HTCashbillInstance()
     {
-        // 홈택스연동(현금영수증) 서비스 객체 초기화
+        // 홈택스수집(현금영수증) 서비스 객체 초기화
         htCashbillService = new HTCashbillService(linkID, secretKey);
 
         // 연동환경 설정, true-테스트, false-운영(Production), (기본값: true)

@@ -1,8 +1,8 @@
 /*
- * 팝빌 휴폐업조회 API .NET Core SDK Example
+ * 팝빌 사업자등록상태조회 (휴폐업조회) API .NET Core SDK Example
  * .NET Core 연동 튜토리얼 안내 : https://developers.popbill.com/guide/closedown/dotnetcore/getting-started/tutorial
  * 
- * 업데이트 일자 : 2024-10-31
+ * 업데이트 일자 : 2024-11-12
  * 연동 기술지원 연락처 : 1600 - 9854
  * 연동 기술지원 이메일 : code@linkhubcorp.com
 */
@@ -19,7 +19,7 @@ namespace ClosedownExample.Controllers
 
         public ClosedownController(ClosedownInstance CDinstance)
         {
-            // 휴폐업조회 서비스 객체 생성
+            // 사업자등록상태조회 (휴폐업조회) 서비스 객체 생성
             _closedownService = CDinstance.closedownService;
         }
 
@@ -30,7 +30,7 @@ namespace ClosedownExample.Controllers
         string userID = "testkorea";
 
         /*
-         * 휴폐업조회 Index page (Closedown/Index.cshtml)
+         * 사업자등록상태조회 (휴폐업조회) Index page (Closedown/Index.cshtml)
          */
         public IActionResult Index()
         {
@@ -38,10 +38,10 @@ namespace ClosedownExample.Controllers
         }
 
 
-        #region 휴폐업조회
+        #region 사업자등록상태조회 (휴폐업조회)
 
         /*
-         * 사업자번호 1건에 대한 휴폐업정보를 확인합니다.
+         * 사업자번호 1건에 대한 사업자등록상태(휴폐업조회)를 확인합니다.
          * - https://developers.popbill.com/reference/closedown/dotnetcore/api/check#CheckCorpNum
          */
         public IActionResult CheckCorpNum()
@@ -61,7 +61,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 다수건의 사업자번호에 대한 휴폐업정보를 확인합니다. (최대 1,000건)
+         * 다수건의 사업자번호에 대한 사업자등록상태 (휴폐업조회) 를 확인합니다. (최대 1,000건)
          * - https://developers.popbill.com/reference/closedown/dotnetcore/api/check#CheckCorpNums
          */
         public IActionResult CheckCorpNums()
@@ -201,7 +201,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 휴폐업 조회시 과금되는 포인트 단가를 확인합니다.
+         * 사업자등록상태 (휴폐업조회) 조회시 과금되는 포인트 단가를 확인합니다.
          * - https://developers.popbill.com/reference/closedown/dotnetcore/api/point#GetUnitCost
          */
         public IActionResult GetUnitCost()
@@ -218,7 +218,7 @@ namespace ClosedownExample.Controllers
         }
 
         /*
-         * 휴폐업조회 API 서비스 과금정보를 확인합니다.
+         * 사업자등록상태조회 (휴폐업조회) API 서비스 과금정보를 확인합니다.
          * - https://developers.popbill.com/reference/closedown/dotnetcore/api/point#GetChargeInfo
          */
         public IActionResult GetChargeInfo()
