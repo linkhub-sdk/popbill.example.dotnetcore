@@ -5,7 +5,7 @@
 
 
 #### install .NET CLI
-    $ dotnet add package Popbill --version 1.57.0
+    $ dotnet add package Popbill --version 1.57.5
 
 
 연동 API 목차 및 연동가이드
@@ -13,9 +13,9 @@
 * 전자세금계산서 API 연동가이드
 * 현금영수증 API
 * 전자명세서 API
-* 홈택스(전자세금계산서) 연동 API
-* 홈택스(현금영수증) 연동 API
-* 휴폐업조회 API
+* 홈택스수집 전자세금계산서 API
+* 홈택스수집 현금영수증 API
+* 사업자등록상태조회 (휴폐업조회) API
 * 기업정보조회 API
 * 계좌조회 API
 * 예금주조회 API
