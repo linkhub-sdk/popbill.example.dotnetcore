@@ -2,7 +2,7 @@
  * 팝빌 팩스 API .NET Core SDK Example
  * .NET Core 연동 튜토리얼 안내 : https://developers.popbill.com/guide/fax/dotnetcore/getting-started/tutorial
  * 
- * 업데이트 일자 : 2024-10-30
+ * 업데이트 일자 : 2025-01-23
  * 연동 기술지원 연락처 : 1600 - 9854
  * 연동 기술지원 이메일 : code@linkhubcorp.com
  * 
@@ -541,10 +541,10 @@ namespace FaxExample.Controllers
         {
             // 최대 검색기간 : 6개월 이내
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20220501";
+            string SDate = "20241201";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20220531";
+            string EDate = "20241231";
 
             // 전송상태 배열 ("1" , "2" , "3" , "4" 중 선택, 다중 선택 가능)
             // └ 1 = 대기 , 2 = 성공 , 3 = 실패 , 4 = 취소
@@ -555,9 +555,9 @@ namespace FaxExample.Controllers
             State[2] = "3";
             State[3] = "4";
 
-            // 예약여부 (false , true 중 택 1)
-            // └ false = 전체조회, true = 예약전송건 조회
-            // - 미입력시 기본값 false 처리
+            // 예약여부 (null, false , true 중 택 1)
+            // └ null = 전체조회, false = 즉시전송건 조회, true = 예약전송건 조회
+            // - 미입력 시 전체조회
             bool ReserveYN = false;
 
             // 개인조회 여부 (false , true 중 택 1)

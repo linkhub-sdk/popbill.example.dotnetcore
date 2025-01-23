@@ -5,7 +5,7 @@
 
 
 #### install .NET CLI
-    $ dotnet add package Popbill --version 1.57.5
+    $ dotnet add package Popbill --version 1.57.6
 
 
 연동 API 목차 및 연동가이드
