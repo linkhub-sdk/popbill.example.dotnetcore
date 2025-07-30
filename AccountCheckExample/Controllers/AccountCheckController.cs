@@ -78,12 +78,12 @@ namespace AccountCheckExample.Controllers
                 // 계좌번호
                 string accountNumber = "";
 
-                // 등록번호 유형, P-개인, B-사업자
+                // 실명번호 유형, P-개인, B-사업자
                 string identityNumType = "P";
 
-                // 등록번호
-                // └ 등록번호 유형 값이 "B"인 경우 사업자번호(10 자리) 입력
-                // └ 등록번호 유형 값이 "P"인 경우 생년월일(6 자리) 입력 (형식 : YYMMDD)
+                // 실명번호
+                // └ 실명번호 유형 값이 "B"인 경우 사업자번호(10 자리) 입력
+                // └ 실명번호 유형 값이 "P"인 경우 생년월일(6 자리) 입력 (형식 : YYMMDD)
                 // 하이픈 '-' 제외하고 입력
                 string identityNum = "";
 
@@ -538,7 +538,7 @@ namespace AccountCheckExample.Controllers
             // 아이디, 6자이상 50자 미만
             joinInfo.ID = "userid_20181212";
 
-            //// 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
+            // 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
             joinInfo.Password = "asdfasdf123!@#";
 
             // 사업자번호 "-" 제외
@@ -562,10 +562,10 @@ namespace AccountCheckExample.Controllers
             // 담당자 성명 (최대 100자)
             joinInfo.ContactName = "담당자명";
 
-            // 담당자 이메일주소 (최대 100자)
+            // 담당자 메일 (최대 100자)
             joinInfo.ContactEmail = "";
 
-            // 담당자 연락처 (최대 20자)
+            // 담당자 휴대폰 (최대 20자)
             joinInfo.ContactTEL = "";
 
             try
@@ -657,22 +657,22 @@ namespace AccountCheckExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 담당자 아이디, 6자 이상 50자 미만
+            // 아이디, 6자 이상 50자 미만
             contactInfo.id = "testkorea20250730_01";
 
-            //// 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
+            // 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
             contactInfo.Password = "asdfasdf123!@#";
 
             // 담당자명 (최대 100자)
             contactInfo.personName = "코어담당자";
 
-            // 담당자 연락처 (최대 20자)
+            // 담당자 휴대폰 (최대 20자)
             contactInfo.tel = "01012341234";
 
-            // 담당자 이메일 (최대 100자)
+            // 담당자 메일 (최대 100자)
             contactInfo.email = "test@test.com";
 
-            // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
+            // 권한, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
 
 
@@ -752,19 +752,19 @@ namespace AccountCheckExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 담당자 아이디
+            // 아이디
             contactInfo.id = "testkorea";
 
-            // 담당자명 (최대 100자)
+            // 담당자 성명 (최대 100자)
             contactInfo.personName = "코어담당자";
 
-            // 담당자 연락처 (최대 20자)
+            // 담당자 휴대폰 (최대 20자)
             contactInfo.tel = "";
 
-            // 담당자 이메일 (최대 10자)
+            // 담당자 메일 (최대 10자)
             contactInfo.email = "";
 
-            // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
+            // 권한 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
 
             try
