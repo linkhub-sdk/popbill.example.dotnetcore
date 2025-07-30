@@ -2009,29 +2009,6 @@ namespace TaxinvoiceExample.Controllers
             }
         }
 
-        /*
-         * 세금계산서 1건을 구버전 양식으로 인쇄하기 위한 페이지의 팝업 URL을 반환하며, 페이지내에서 인쇄 설정값을 "공급자" / "공급받는자" / "공급자+공급받는자"용 중 하나로 지정할 수 있습니다..
-         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/reference/taxinvoice/dotnetcore/api/view#GetOldPrintURL
-         */
-        public IActionResult GetOldPrintURL()
-        {
-            // 세금계산서유형, SELL(매출), BUY(매입), TRUSTEE(위수탁)
-            MgtKeyType mgtKeyType = MgtKeyType.SELL;
-
-            // 세금계산서 문서번호
-            string mgtKey = "20220527-002";
-
-            try
-            {
-                var result = _taxinvoiceService.GetOldPrintURL(corpNum, mgtKeyType, mgtKey, userID);
-                return View("Result", result);
-            }
-            catch (PopbillException pe)
-            {
-                return View("Exception", pe);
-            }
-        }
 
         /*
          * "공급받는자" 용 세금계산서 1건을 인쇄하기 위한 페이지의 팝업 URL을 반환합니다.
