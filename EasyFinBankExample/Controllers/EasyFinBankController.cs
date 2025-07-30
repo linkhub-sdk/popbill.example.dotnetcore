@@ -646,7 +646,7 @@ namespace EasyFinBankExample.Controllers
                 refundForm.contactName= "담당자명";
 
                 // 담당자 연락처
-                refundForm.tel="01077777777";
+                refundForm.tel="01000000000";
 
                 // 환불 신청 포인트
                 refundForm.requestPoint = "10";
@@ -941,10 +941,10 @@ namespace EasyFinBankExample.Controllers
             // 담당자 성명 (최대 100자)
             joinInfo.ContactName = "담당자명";
 
-            // 담당자 이메일주소 (최대 100자)
+            // 담당자 메일 (최대 100자)
             joinInfo.ContactEmail = "";
 
-            // 담당자 연락처 (최대 20자)
+            // 담당자 휴대폰 (최대 20자)
             joinInfo.ContactTEL = "";
 
             try
@@ -1035,7 +1035,7 @@ namespace EasyFinBankExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 담당자 아이디, 6자 이상 50자 미만
+            // 아이디, 6자 이상 50자 미만
             contactInfo.id = "testkorea_20181212";
 
             // 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
@@ -1044,13 +1044,13 @@ namespace EasyFinBankExample.Controllers
             // 담당자명 (최대 100자)
             contactInfo.personName = "코어담당자";
 
-            // 담당자 연락처 (최대 20자)
+            // 담당자 휴대폰 (최대 20자)
             contactInfo.tel = "";
 
-            // 담당자 이메일 (최대 100자)
+            // 담당자 메일 (최대 100자)
             contactInfo.email = "";
 
-            // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
+            // 권한, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
 
             try
@@ -1129,19 +1129,19 @@ namespace EasyFinBankExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 담당자 아이디
+            // 아이디
             contactInfo.id = "testkorea";
 
-            // 담당자명 (최대 100자)
+            // 담당자 성명 (최대 100자)
             contactInfo.personName = "코어담당자";
 
-            // 담당자 연락처 (최대 20자)
+            // 담당자 휴대폰 (최대 20자)
             contactInfo.tel = "";
 
-            // 담당자 이메일 (최대 10자)
+            // 담당자 메일 (최대 10자)
             contactInfo.email = "";
 
-            // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
+            // 권한, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
 
             try
