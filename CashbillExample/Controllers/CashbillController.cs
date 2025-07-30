@@ -77,6 +77,10 @@ namespace CashbillExample.Controllers
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             cashbill.mgtKey = "20220527-001";
 
+            // 거래일시, 날짜(yyyyMMddHHmmss)
+            // 당일, 전일만 가능 미입력시 기본값 발행일시 처리
+            cashbill.tradeDT = "";
+
             // 문서형태, 승인거래 기재
             cashbill.tradeType = "승인거래";
 
@@ -119,13 +123,14 @@ namespace CashbillExample.Controllers
 
             // 가맹점 전화번호
             cashbill.franchiseTEL = "";
+
             // 식별번호, 거래구분에 따라 작성
             // └ 소득공제용 - 주민등록/휴대폰/카드번호(현금영수증 카드)/자진발급용 번호(010-000-1234) 기재가능
             // └ 지출증빙용 - 사업자번호/주민등록/휴대폰/카드번호(현금영수증 카드) 기재가능
             // └ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
             cashbill.identityNum = "0100001234";
 
-            // 주문자명
+            // 구매자 성명
             cashbill.customerName = "주문자명";
 
             // 주문상품명
@@ -134,24 +139,17 @@ namespace CashbillExample.Controllers
             // 주문번호
             cashbill.orderNumber = "주문번호";
 
-            // 주문자 이메일
+            // 구매자 이메일
             // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
             // 실제 거래처의 메일주소가 기재되지 않도록 주의
             cashbill.email = "";
 
-            // 주문자 휴대폰
+            // 구매자 휴대폰
             // - {smssendYN} 의 값이 true 인 경우 아래 휴대폰번호로 안내 문자 전송
             cashbill.hp = "";
 
-            // 주문자 팩스번호
-            cashbill.fax = "";
-
             // 발행시 알림문자 전송여부
             cashbill.smssendYN = false;
-
-            // 거래일시, 날짜(yyyyMMddHHmmss)
-            // 당일, 전일만 가능 미입력시 기본값 발행일시 처리
-            cashbill.tradeDT = "";
 
             // 현금영수증 발행 메모
             string memo = "현금영수증 즉시발행 메모";
@@ -194,6 +192,10 @@ namespace CashbillExample.Controllers
 
                 // [취소거래시 필수] 당초 승인 현금영수증 거래일자
                 cashbill.orgTradeDate = "";
+
+                // 거래일시, 날짜(yyyyMMddHHmmss)
+                // 당일, 전일만 가능 미입력시 기본값 발행일시 처리
+                cashbill.tradeDT = "";
 
                 // 문서형태, { 승인거래, 취소거래 } 중 기재
                 cashbill.tradeType = "승인거래";
@@ -243,7 +245,7 @@ namespace CashbillExample.Controllers
                 // └ 주민등록번호 13자리, 휴대폰번호 10~11자리, 카드번호 13~19자리, 사업자번호 10자리 입력 가능
                 cashbill.identityNum = "0100001234";
 
-                // 주문자명
+                // 구매자 성명
                 cashbill.customerName = "주문자명";
 
                 // 주문상품명
@@ -252,24 +254,17 @@ namespace CashbillExample.Controllers
                 // 주문번호
                 cashbill.orderNumber = "주문번호";
 
-                // 주문자 이메일
+                // 구매자 메일
                 // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
                 // 실제 거래처의 메일주소가 기재되지 않도록 주의
                 cashbill.email = "";
 
-                // 주문자 휴대폰
+                // 구매자 휴대폰
                 // - {smssendYN} 의 값이 true 인 경우 아래 휴대폰번호로 안내 문자 전송
                 cashbill.hp = "";
 
-                // 주문자 팩스번호
-                cashbill.fax = "";
-
                 // 발행시 알림문자 전송여부
                 cashbill.smssendYN = false;
-
-                // 거래일시, 날짜(yyyyMMddHHmmss)
-                // 당일, 전일만 가능 미입력시 기본값 발행일시 처리
-                cashbill.tradeDT = "";
 
                 cashbillList.Add(cashbill);
             }

@@ -8,10 +8,11 @@
     <fieldset class="fieldset1">
         <legend>@ViewData["Title"]</legend>
         <ul>
-            <li> itemKey (팝빌번호) : @Model.itemKey</li>
+            <li> itemKey (팝빌 식별번호) : @Model.itemKey</li>
             <li> mgtKey (문서번호) : @Model.mgtKey</li>
             <li> tradeDate (거래일자) : @Model.tradeDate</li>
             <li> tradeDT (거래일시) : @Model.tradeDT</li>
+
             <li> tradeType (문서형태) : @Model.tradeType</li>
             <li> tradeUsage (거래구분) : @Model.tradeUsage</li>
             <li> tradeOpt (거래유형) : @Model.tradeOpt</li>
@@ -20,23 +21,26 @@
             <li> supplyCost (공급가액) : @Model.supplyCost</li>
             <li> tax (부가세) : @Model.tax</li>
             <li> serviceFee (봉사료) : @Model.serviceFee</li>
+
             <li> issueDT (발행일시) : @Model.issueDT</li>
             <li> regDT (등록일시) : @Model.regDT</li>
             <li> stateCode (상태코드) : @Model.stateCode</li>
             <li> stateDT (상태변경일시) : @Model.stateDT</li>
+
             <li> identityNum (식별번호) : @Model.identityNum</li>
             <li> itemName (주문상품명) : @Model.itemName</li>
             <li> orderNumber (주문번호) : @Model.orderNumber</li>
-            <li> customerName (주문자명) : @Model.customerName</li>
-            <li> hp (주문자 휴대폰) : @Model.hp</li>
-            <li> email (주문자 이메일) : @Model.email</li>
+            <li> customerName (구매자 성명) : @Model.customerName</li>
+            <li> hp (구매자 휴대폰) : @Model.hp</li>
+            <li> email (구매자 메일) : @Model.email</li>
+
             <li> confirmNum (국세청승인번호) : @Model.confirmNum</li>
-            <li> orgConfirmNum (당초 승인 현금영수증 국세청승인번호) : @Model.orgConfirmNum</li>
-            <li> orgTradeDate (당초 승인 현금영수증 거래일자) : @Model.orgTradeDate</li>
+            <li> orgConfirmNum (당초 국세청승인번호) : @Model.orgConfirmNum</li>
+            <li> orgTradeDate (당초 거래일자) : @Model.orgTradeDate</li>
             <li> ntssendDT (국세청 전송일시) : @Model.ntssendDT</li>
             <li> ntsresultDT (국세청 처리결과 수신일시) : @Model.ntsresultDT</li>
-            <li> ntsresultCode (국세청 처리결과 상태코드) : @Model.ntsresultCode</li>
-            <li> ntsresultMessage (국세청 처리결과 메시지) : @Model.ntsresultMessage</li>
+            <li> ntsresultCode (국세청 결과코드) : @Model.ntsresultCode</li>
+            <li> ntsresultMessage (국세청 결과메시지) : @Model.ntsresultMessage</li>
             <li> printYN (인쇄여부) : @Model.printYN</li>
             <li> interOPYN (연동문서여부) : @Model.interOPYN</li>
         </ul>
