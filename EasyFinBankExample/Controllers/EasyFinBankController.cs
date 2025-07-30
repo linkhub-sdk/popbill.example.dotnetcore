@@ -8,6 +8,7 @@
 */
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
+using Popbill.Closedown;
 using Popbill.EasyFin;
 
 namespace EasyFinBankExample.Controllers
@@ -45,9 +46,6 @@ namespace EasyFinBankExample.Controllers
             EasyFinBankAccountForm info = new EasyFinBankAccountForm();
 
             // 기관코드
-            // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
-            // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
-            // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
             info.BankCode = "";
 
             // 계좌번호, 하이픈('-') 제외
@@ -106,9 +104,6 @@ namespace EasyFinBankExample.Controllers
             UpdateEasyFinBankAccountForm info = new UpdateEasyFinBankAccountForm();
 
             // 기관코드
-            // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
-            // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
-            // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
             string BankCode = "";
 
             // 계좌번호, 하이픈('-') 제외
@@ -152,9 +147,6 @@ namespace EasyFinBankExample.Controllers
         public IActionResult GetBankAccountInfo()
         {
             // 기관코드
-            // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
-            // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
-            // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
             string BankCode = "";
 
             // 계좌번호, 하이픈('-') 제외
@@ -214,19 +206,14 @@ namespace EasyFinBankExample.Controllers
         public IActionResult CloseBankAccount()
         {
             // 기관코드
-            // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
-            // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
-            // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
             string BankCode = "";
 
             // 계좌번호, 하이픈('-') 제외
             string AccountNumber = "";
 
-            // 해지유형, "일반", "중도" 중 택 1
+            // 해지유형, "일반"
             // 일반(일반해지) – 이용중인 정액제 기간 만료 후 해지
-            // 중도(중도해지) – 해지 요청일 기준으로 정지되고 팝빌 담당자가 승인시 해지
-            // └ 중도일 경우, 정액제 잔여기간은 일할로 계산되어 포인트 환불 (무료 이용기간 중 해지하면 전액 환불)
-            string CloseType = "중도";
+            string CloseType = "일반";
 
 
             try
@@ -249,9 +236,6 @@ namespace EasyFinBankExample.Controllers
         public IActionResult RevokeCloseBankAccount()
         {
             // 기관코드
-            // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
-            // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
-            // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
             string BankCode = "";
 
             // 계좌번호, 하이픈('-') 제외
@@ -278,9 +262,6 @@ namespace EasyFinBankExample.Controllers
         public IActionResult DeleteBankAccount()
         {
             // 기관코드
-            // 산업은행-0002 / 기업은행-0003 / 국민은행-0004 /수협은행-0007 / 농협은행-0011 / 우리은행-0020
-            // SC은행-0023 / 대구은행-0031 / 부산은행-0032 / 광주은행-0034 / 제주은행-0035 / 전북은행-0037
-            // 경남은행-0039 / 새마을금고-0045 / 신협은행-0048 / 우체국-0071 / KEB하나은행-0081 / 신한은행-0088 /씨티은행-0027
             string BankCode = "";
 
             // 계좌번호, 하이픈('-') 제외
@@ -482,7 +463,7 @@ namespace EasyFinBankExample.Controllers
         /*
          * 계좌조회 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetFlatRatePopUpURL
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetFlatRatePopUpURL
          */
         public IActionResult GetFlatRatePopUpURL()
         {
@@ -499,7 +480,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 계좌조회 정액제 서비스 상태를 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetFlatRateState
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetFlatRateState
          */
         public IActionResult GetFlatRateState()
         {
@@ -522,7 +503,7 @@ namespace EasyFinBankExample.Controllers
         /*
          * 연동회원의 잔여포인트를 확인합니다.
          * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetBalance
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetBalance
          */
         public IActionResult GetBalance()
         {
@@ -540,7 +521,7 @@ namespace EasyFinBankExample.Controllers
         /*
          * 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetChargeURL
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetChargeURL
          */
         public IActionResult GetChargeURL()
         {
@@ -559,7 +540,7 @@ namespace EasyFinBankExample.Controllers
         /*
         * 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
         * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-        * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetPaymentURL
+        * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetPaymentURL
         */
         public IActionResult GetPaymentURL()
         {
@@ -578,7 +559,7 @@ namespace EasyFinBankExample.Controllers
         /*
          * 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetUseHistoryURL
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetUseHistoryURL
          */
         public IActionResult GetUseHistoryURL()
         {
@@ -598,7 +579,7 @@ namespace EasyFinBankExample.Controllers
         /*
          * 파트너의 잔여포인트를 확인합니다.
          * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetPartnerBalance
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
         {
@@ -616,7 +597,7 @@ namespace EasyFinBankExample.Controllers
         /*
          * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetPartnerURL
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
         {
@@ -636,7 +617,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 팝빌 계좌조회 API 서비스 과금정보를 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetChargeInfo
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetChargeInfo
          */
         public IActionResult GetChargeInfo()
         {
@@ -653,7 +634,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 연동회원 포인트를 환불 신청합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#Refund
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#Refund
          */
         public IActionResult Refund()
         {
@@ -693,7 +674,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 연동회원 포인트를 환불 신청합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#PaymentRequest
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#PaymentRequest
          */
         public IActionResult PaymentRequest()
         {
@@ -728,7 +709,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 연동회원 포인트 무통장 입금신청내역 1건을 확인합니다.
-         *  - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetSettleResult
+         *  - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetSettleResult
          */
         public IActionResult GetSettleResult()
         {
@@ -749,7 +730,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 연동회원의 포인트 사용내역을 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetUseHistory
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetUseHistory
          */
         public IActionResult GetUseHistory()
         {
@@ -786,7 +767,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 연동회원의 포인트 결제내역을 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetPaymentHistory
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetPaymentHistory
          */
         public IActionResult GetPaymentHistory()
         {
@@ -817,7 +798,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 연동회원의 포인트 환불신청내역을 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetRefundHistory
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetRefundHistory
          */
         public IActionResult GetRefundHistory()
         {
@@ -842,7 +823,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 포인트 환불에 대한 상세정보 1건을 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetRefundInfo
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetRefundInfo
          */
         public IActionResult GetRefundInfo()
         {
@@ -863,7 +844,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 환불 가능한 포인트를 확인합니다. (보너스 포인트는 환불가능포인트에서 제외됩니다.)
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/point#GetRefundableBalance
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/point#GetRefundableBalance
          */
         public IActionResult GetRefundableBalance()
         {
@@ -884,7 +865,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/member#CheckIsMember
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/member#CheckIsMember
          */
         public IActionResult CheckIsMember()
         {
@@ -904,7 +885,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 사용하고자 하는 아이디의 중복여부를 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/member#CheckID
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/member#CheckID
          */
         public IActionResult CheckID()
         {
@@ -924,7 +905,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 사용자를 연동회원으로 가입처리합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/member#JoinMember
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/member#JoinMember
          */
         public IActionResult JoinMember()
         {
@@ -980,7 +961,7 @@ namespace EasyFinBankExample.Controllers
         /*
          * 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/member#GetAccessURL
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/member#GetAccessURL
          */
         public IActionResult GetAccessURL()
         {
@@ -997,7 +978,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 연동회원의 회사정보를 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/member#GetCorpInfo
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/member#GetCorpInfo
          */
         public IActionResult GetCorpInfo()
         {
@@ -1014,7 +995,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 연동회원의 회사정보를 수정합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/member#UpdateCorpInfo
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/member#UpdateCorpInfo
          */
         public IActionResult UpdateCorpInfo()
         {
@@ -1048,7 +1029,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/member#RegistContact
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/member#RegistContact
          */
         public IActionResult RegistContact()
         {
@@ -1084,8 +1065,28 @@ namespace EasyFinBankExample.Controllers
         }
 
         /*
+         * 연동회원 담당자를 삭제합니다.
+         * - https://developers.popbill.com/reference/accountcheck/dotnetcore/common-api/member#DeleteContact
+         */
+        public IActionResult DeleteContact()
+        {
+            // 삭제할 담당자 아이디
+            string targetUserID = "test";
+
+            try
+            {
+                var response = _easyFinBankService.DeleteContact(corpNum, targetUserID, userID);
+                return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/member#GetContactInfo
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/member#GetContactInfo
          */
         public IActionResult GetContactInfo()
         {
@@ -1105,7 +1106,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/member#ListContact
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/member#ListContact
          */
         public IActionResult ListContact()
         {
@@ -1122,7 +1123,7 @@ namespace EasyFinBankExample.Controllers
 
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/member#UpdateContact
+         * - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/member#UpdateContact
          */
         public IActionResult UpdateContact()
         {
@@ -1158,7 +1159,7 @@ namespace EasyFinBankExample.Controllers
          *  - 회원탈퇴 신청과 동시에 팝빌의 모든 서비스 이용이 불가하며, 관리자를 포함한 모든 담당자 계정도 일괄탈퇴 됩니다.
          *  - 회원탈퇴로 삭제된 데이터는 복원이 불가능합니다.
          *  - 관리자 계정만 사용 가능합니다.
-         *  - https://developers.popbill.com/reference/easyfinbank/dotnetcore/api/member#QuitMember
+         *  - https://developers.popbill.com/reference/easyfinbank/dotnetcore/common-api/member#QuitMember
          */
         public IActionResult QuitMember()
         {

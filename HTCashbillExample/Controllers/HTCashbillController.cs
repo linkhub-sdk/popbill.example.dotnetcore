@@ -14,6 +14,7 @@
 */
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
+using Popbill.Fax;
 using Popbill.HomeTax;
 
 
@@ -328,7 +329,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 홈택스수집 정액제 서비스 신청 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetFlatRatePopUpURL
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetFlatRatePopUpURL
          */
         public IActionResult GetFlatRatePopUpURL()
         {
@@ -345,7 +346,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 홈택스수집 정액제 서비스 상태를 확인합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetFlatRateState
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetFlatRateState
          */
         public IActionResult GetFlatRateState()
         {
@@ -363,7 +364,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 연동회원의 잔여포인트를 확인합니다.
          * - 과금방식이 파트너과금인 경우 파트너 잔여포인트 확인(GetPartnerBalance API) 함수를 통해 확인하시기 바랍니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetBalance
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetBalance
          */
         public IActionResult GetBalance()
         {
@@ -381,7 +382,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 연동회원 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetChargeURL
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetChargeURL
          */
         public IActionResult GetChargeURL()
         {
@@ -399,7 +400,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 연동회원 포인트 결제내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetPaymentURL
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetPaymentURL
          */
         public IActionResult GetPaymentURL()
         {
@@ -418,7 +419,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 연동회원 포인트 사용내역 확인을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetUseHistoryURL
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetUseHistoryURL
          */
         public IActionResult GetUseHistoryURL()
         {
@@ -437,7 +438,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 파트너의 잔여포인트를 확인합니다.
          * - 과금방식이 연동과금인 경우 연동회원 잔여포인트 확인(GetBalance API) 함수를 이용하시기 바랍니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetPartnerBalance
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetPartnerBalance
          */
         public IActionResult GetPartnerBalance()
         {
@@ -455,7 +456,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 파트너 포인트 충전을 위한 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetPartnerURL
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetPartnerURL
          */
         public IActionResult GetPartnerURL()
         {
@@ -475,7 +476,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 팝빌 홈택스수집(현금) API 서비스 과금정보를 확인합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetChargeInfo
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetChargeInfo
          */
         public IActionResult GetChargeInfo()
         {
@@ -492,7 +493,7 @@ namespace HTCashbillExample.Controllers
 
                 /*
          * 연동회원 포인트를 환불 신청합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#Refund
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#Refund
          */
         public IActionResult Refund()
         {
@@ -532,7 +533,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원 포인트를 환불 신청합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#PaymentRequest
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#PaymentRequest
          */
         public IActionResult PaymentRequest()
         {
@@ -567,7 +568,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원 포인트 무통장 입금신청내역 1건을 확인합니다.
-         *  - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetSettleResult
+         *  - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetSettleResult
          */
         public IActionResult GetSettleResult()
         {
@@ -588,7 +589,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원의 포인트 사용내역을 확인합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetUseHistory
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetUseHistory
          */
         public IActionResult GetUseHistory()
         {
@@ -625,7 +626,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원의 포인트 결제내역을 확인합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetPaymentHistory
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetPaymentHistory
          */
         public IActionResult GetPaymentHistory()
         {
@@ -656,7 +657,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원의 포인트 환불신청내역을 확인합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetRefundHistory
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetRefundHistory
          */
         public IActionResult GetRefundHistory()
         {
@@ -681,7 +682,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 포인트 환불에 대한 상세정보 1건을 확인합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetRefundInfo
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetRefundInfo
          */
         public IActionResult GetRefundInfo()
         {
@@ -702,7 +703,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 환불 가능한 포인트를 확인합니다. (보너스 포인트는 환불가능포인트에서 제외됩니다.)
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/point#GetRefundableBalance
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/point#GetRefundableBalance
          */
         public IActionResult GetRefundableBalance()
         {
@@ -722,7 +723,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 사업자번호를 조회하여 연동회원 가입여부를 확인합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/member#CheckIsMember
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/member#CheckIsMember
          */
         public IActionResult CheckIsMember()
         {
@@ -742,7 +743,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 사용하고자 하는 아이디의 중복여부를 확인합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/member#CheckID
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/member#CheckID
          */
         public IActionResult CheckID()
         {
@@ -762,7 +763,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 사용자를 연동회원으로 가입처리합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/member#JoinMember
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/member#JoinMember
          */
         public IActionResult JoinMember()
         {
@@ -818,7 +819,7 @@ namespace HTCashbillExample.Controllers
         /*
          * 팝빌 사이트에 로그인 상태로 접근할 수 있는 페이지의 팝업 URL을 반환합니다.
          * - 반환되는 URL은 보안 정책상 30초 동안 유효하며, 시간을 초과한 후에는 해당 URL을 통한 페이지 접근이 불가합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/member#GetAccessURL
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/member#GetAccessURL
          */
         public IActionResult GetAccessURL()
         {
@@ -836,7 +837,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원의 회사정보를 확인합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/member#GetCorpInfo
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/member#GetCorpInfo
          */
         public IActionResult GetCorpInfo()
         {
@@ -853,7 +854,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원의 회사정보를 수정합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/member#UpdateCorpInfo
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/member#UpdateCorpInfo
          */
         public IActionResult UpdateCorpInfo()
         {
@@ -887,7 +888,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원 사업자번호에 담당자(팝빌 로그인 계정)를 추가합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/member#RegistContact
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/member#RegistContact
          */
         public IActionResult RegistContact()
         {
@@ -923,8 +924,28 @@ namespace HTCashbillExample.Controllers
         }
 
         /*
+         * 연동회원 담당자를 삭제합니다.
+         * - https://developers.popbill.com/reference/accountcheck/dotnetcore/common-api/member#DeleteContact
+         */
+        public IActionResult DeleteContact()
+        {
+            // 삭제할 담당자 아이디
+            string targetUserID = "test";
+
+            try
+            {
+                var response = _htCashbillService.DeleteContact(corpNum, targetUserID, userID);
+                return View("Response", response);
+            }
+            catch (PopbillException pe)
+            {
+                return View("Exception", pe);
+            }
+        }
+
+        /*
         * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보을 확인합니다.
-        * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/member#GetContactInfo
+        * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/member#GetContactInfo
         */
         public IActionResult GetContactInfo()
         {
@@ -944,7 +965,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 목록을 확인합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/member#ListContact
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/member#ListContact
          */
         public IActionResult ListContact()
         {
@@ -961,7 +982,7 @@ namespace HTCashbillExample.Controllers
 
         /*
          * 연동회원 사업자번호에 등록된 담당자(팝빌 로그인 계정) 정보를 수정합니다.
-         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/member#UpdateContact
+         * - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/member#UpdateContact
          */
         public IActionResult UpdateContact()
         {
@@ -998,7 +1019,7 @@ namespace HTCashbillExample.Controllers
          *  - 회원탈퇴 신청과 동시에 팝빌의 모든 서비스 이용이 불가하며, 관리자를 포함한 모든 담당자 계정도 일괄탈퇴 됩니다.
          *  - 회원탈퇴로 삭제된 데이터는 복원이 불가능합니다.
          *  - 관리자 계정만 사용 가능합니다.
-         *  - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/member#QuitMember
+         *  - https://developers.popbill.com/reference/htcashbill/dotnetcore/common-api/member#QuitMember
          */
         public IActionResult QuitMember()
         {
