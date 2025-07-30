@@ -86,7 +86,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20220527";
+            taxinvoice.writeDate = "20250731";
 
             // 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -282,7 +282,7 @@ namespace TaxinvoiceExample.Controllers
             TaxinvoiceDetail detail = new TaxinvoiceDetail();
 
             detail.serialNum = 1; // 일련번호; 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자
+            detail.purchaseDT = "20250731"; // 거래일자
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -296,7 +296,7 @@ namespace TaxinvoiceExample.Controllers
             detail = new TaxinvoiceDetail();
 
             detail.serialNum = 2; // 일련번호; 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자
+            detail.purchaseDT = "20250731"; // 거래일자
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -389,7 +389,7 @@ namespace TaxinvoiceExample.Controllers
                 Taxinvoice taxinvoice = new Taxinvoice();
 
                 // 기재상 작성일자, 날짜형식(yyyyMMdd)
-                taxinvoice.writeDate = "20220527";
+                taxinvoice.writeDate = "20250731";
 
                 // 과금방향, {정과금, 역과금}중 선택
                 // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -572,7 +572,7 @@ namespace TaxinvoiceExample.Controllers
                 TaxinvoiceDetail detail = new TaxinvoiceDetail();
 
                 detail.serialNum = 1; // 일련번호; 1부터 순차기재
-                detail.purchaseDT = "20220527"; // 거래일자
+                detail.purchaseDT = "20250731"; // 거래일자
                 detail.itemName = "품목명"; // 품목명
                 detail.spec = "규격"; // 규격
                 detail.qty = "1"; // 수량
@@ -586,7 +586,7 @@ namespace TaxinvoiceExample.Controllers
                 detail = new TaxinvoiceDetail();
 
                 detail.serialNum = 2; // 일련번호; 1부터 순차기재
-                detail.purchaseDT = "20220527"; // 거래일자
+                detail.purchaseDT = "20250731"; // 거래일자
                 detail.itemName = "품목명"; // 품목명
                 detail.spec = "규격"; // 규격
                 detail.qty = "1"; // 수량
@@ -649,7 +649,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20220527";
+            taxinvoice.writeDate = "20250731";
 
             // 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -842,7 +842,7 @@ namespace TaxinvoiceExample.Controllers
             TaxinvoiceDetail detail = new TaxinvoiceDetail();
 
             detail.serialNum = 1; // 일련번호; 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자
+            detail.purchaseDT = "20250731"; // 거래일자
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -856,7 +856,7 @@ namespace TaxinvoiceExample.Controllers
             detail = new TaxinvoiceDetail();
 
             detail.serialNum = 2; // 일련번호; 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자
+            detail.purchaseDT = "20250731"; // 거래일자
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -931,7 +931,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20220527";
+            taxinvoice.writeDate = "20250731";
 
             // 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -1127,7 +1127,7 @@ namespace TaxinvoiceExample.Controllers
             TaxinvoiceDetail detail = new TaxinvoiceDetail();
 
             detail.serialNum = 1; // 일련번호; 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자
+            detail.purchaseDT = "20250731"; // 거래일자
             detail.itemName = "품목명(수정)"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -1141,7 +1141,7 @@ namespace TaxinvoiceExample.Controllers
             detail = new TaxinvoiceDetail();
 
             detail.serialNum = 2; // 일련번호; 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자
+            detail.purchaseDT = "20250731"; // 거래일자
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -1272,7 +1272,7 @@ namespace TaxinvoiceExample.Controllers
             Taxinvoice taxinvoice = new Taxinvoice();
 
             // 기재상 작성일자, 날짜형식(yyyyMMdd)
-            taxinvoice.writeDate = "20220527";
+            taxinvoice.writeDate = "20250731";
 
             // 과금방향, {정과금, 역과금}중 선택
             // - 정과금(공급자과금), 역과금(공급받는자과금)
@@ -1468,7 +1468,7 @@ namespace TaxinvoiceExample.Controllers
             TaxinvoiceDetail detail = new TaxinvoiceDetail();
 
             detail.serialNum = 1; // 일련번호; 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자
+            detail.purchaseDT = "20250731"; // 거래일자
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -1482,7 +1482,7 @@ namespace TaxinvoiceExample.Controllers
             detail = new TaxinvoiceDetail();
 
             detail.serialNum = 2; // 일련번호; 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자
+            detail.purchaseDT = "20250731"; // 거래일자
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -1758,10 +1758,10 @@ namespace TaxinvoiceExample.Controllers
             string DType = "W";
 
             // 시작일자, 날자형식(yyyyMMdd)
-            string SDate = "20220501";
+            string SDate = "20250701";
 
             // 종료일자, 날자형식(yyyyMMdd)
-            string EDate = "20220531";
+            string EDate = "20250731";
 
             // 세금계산서 상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
             // - 미입력시 전체조회
@@ -2793,10 +2793,10 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetPaymentHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20240202";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20240301";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;
@@ -2824,10 +2824,10 @@ namespace TaxinvoiceExample.Controllers
         public IActionResult GetUseHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20240102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20240131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;

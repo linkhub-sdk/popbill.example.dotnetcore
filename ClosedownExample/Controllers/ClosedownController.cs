@@ -337,10 +337,10 @@ namespace ClosedownExample.Controllers
         public IActionResult GetUseHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;
@@ -374,10 +374,10 @@ namespace ClosedownExample.Controllers
         public IActionResult GetPaymentHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;

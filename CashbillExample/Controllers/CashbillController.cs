@@ -151,7 +151,7 @@ namespace CashbillExample.Controllers
 
             // 거래일시, 날짜(yyyyMMddHHmmss)
             // 당일, 전일만 가능 미입력시 기본값 발행일시 처리
-            cashbill.tradeDT = "20221108000000";
+            cashbill.tradeDT = "";
 
             // 현금영수증 발행 메모
             string memo = "현금영수증 즉시발행 메모";
@@ -269,7 +269,7 @@ namespace CashbillExample.Controllers
 
                 // 거래일시, 날짜(yyyyMMddHHmmss)
                 // 당일, 전일만 가능 미입력시 기본값 발행일시 처리
-                cashbill.tradeDT = "20221108000000";
+                cashbill.tradeDT = "";
 
                 cashbillList.Add(cashbill);
             }
@@ -404,7 +404,7 @@ namespace CashbillExample.Controllers
 
             // 거래일시, 날짜(yyyyMMddHHmmss)
             // 당일, 전일만 가능 미입력시 기본값 발행일시 처리
-            string tradeDT = "20221108000000";
+            string tradeDT = "";
 
             try
             {
@@ -495,10 +495,10 @@ namespace CashbillExample.Controllers
             string DType = "T";
 
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20220501";
+            string SDate = "20250701";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20220531";
+            string EDate = "20250731";
 
             // 상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
             // - 미입력시 전체조회
@@ -1138,10 +1138,10 @@ namespace CashbillExample.Controllers
         public IActionResult GetUseHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;
@@ -1175,10 +1175,10 @@ namespace CashbillExample.Controllers
         public IActionResult GetPaymentHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;

@@ -77,7 +77,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20220527";
+            statement.writeDate = "20250731";
 
             // {영수, 청구, 없음} 중 기재
             statement.purposeType = "영수";
@@ -228,7 +228,7 @@ namespace StatementExample.Controllers
             StatementDetail detail = new StatementDetail();
 
             detail.serialNum = 1; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20250731"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -247,7 +247,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail();
 
             detail.serialNum = 2; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20250731"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -301,7 +301,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20220527";
+            statement.writeDate = "20250731";
 
             // {영수, 청구} 중 기재
             statement.purposeType = "영수";
@@ -453,7 +453,7 @@ namespace StatementExample.Controllers
             StatementDetail detail = new StatementDetail();
 
             detail.serialNum = 1; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20250731"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -472,7 +472,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail();
 
             detail.serialNum = 2; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20250731"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -526,7 +526,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20220527";
+            statement.writeDate = "20250731";
 
             // {영수, 청구} 중 기재
             statement.purposeType = "영수";
@@ -672,7 +672,7 @@ namespace StatementExample.Controllers
             StatementDetail detail = new StatementDetail();
 
             detail.serialNum = 1; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20250731"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명(수정)"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -691,7 +691,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail();
 
             detail.serialNum = 2; // 일련번호 1부터 순차기재
-            detail.purchaseDT = "20220527"; // 거래일자 작성형식 yyyyMMdd
+            detail.purchaseDT = "20250731"; // 거래일자 작성형식 yyyyMMdd
             detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
@@ -893,10 +893,10 @@ namespace StatementExample.Controllers
             string DType = "W";
 
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20220501";
+            string SDate = "20250701";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20220531";
+            string EDate = "20250731";
 
             // 전자명세서 상태코드 배열 (2,3번째 자리에 와일드카드(*) 사용 가능)
             // - 미입력시 전체조회
@@ -1366,7 +1366,7 @@ namespace StatementExample.Controllers
             Statement statement = new Statement();
 
             // 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20220527";
+            statement.writeDate = "20250731";
 
             // {영수, 청구} 중 기재
             statement.purposeType = "영수";
@@ -1518,7 +1518,7 @@ namespace StatementExample.Controllers
             StatementDetail detail = new StatementDetail
             {
                 serialNum = 1, // 일련번호 1부터 순차기재
-                purchaseDT = "20220527", // 거래일자 작성형식 yyyyMMdd
+                purchaseDT = "20250731", // 거래일자 작성형식 yyyyMMdd
                 itemName = "품목명", // 품목명
                 spec = "규격", // 규격
                 qty = "1", // 수량
@@ -1537,7 +1537,7 @@ namespace StatementExample.Controllers
             detail = new StatementDetail
             {
                 serialNum = 2, // 일련번호 1부터 순차기재
-                purchaseDT = "20220527", // 거래일자 작성형식 yyyyMMdd
+                purchaseDT = "20250731", // 거래일자 작성형식 yyyyMMdd
                 itemName = "품목명", // 품목명
                 spec = "규격", // 규격
                 qty = "1", // 수량
@@ -1949,10 +1949,10 @@ namespace StatementExample.Controllers
         public IActionResult GetUseHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;
@@ -1986,10 +1986,10 @@ namespace StatementExample.Controllers
         public IActionResult GetPaymentHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;

@@ -1132,10 +1132,10 @@ namespace KakaoExample.Controllers
         {
             // 최대 검색기한 : 6개월 이내
             // 시작일자, 날자형식(yyyyMMdd)
-            string SDate = "20220501";
+            string SDate = "20250701";
 
             // 종료일자, 날자형식(yyyyMMdd)
-            string EDate = "20220531";
+            string EDate = "20250731";
 
             // 전송상태 배열 ("0" , "1" , "2" , "3" , "4" , "5" 중 선택, 다중 선택 가능)
             // └ 0 = 전송대기 , 1 = 전송중 , 2 = 전송성공 , 3 = 대체문자 전송 , 4 = 전송실패 , 5 = 전송취소
@@ -1469,10 +1469,10 @@ namespace KakaoExample.Controllers
         public IActionResult GetUseHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;
@@ -1506,10 +1506,10 @@ namespace KakaoExample.Controllers
         public IActionResult GetPaymentHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;

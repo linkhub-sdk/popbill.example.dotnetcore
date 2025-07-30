@@ -542,10 +542,10 @@ namespace FaxExample.Controllers
         {
             // 최대 검색기간 : 6개월 이내
             // 시작일자, 날짜형식(yyyyMMdd)
-            string SDate = "20241201";
+            string SDate = "20250701";
 
             // 종료일자, 날짜형식(yyyyMMdd)
-            string EDate = "20241231";
+            string EDate = "20250731";
 
             // 전송상태 배열 ("1" , "2" , "3" , "4" 중 선택, 다중 선택 가능)
             // └ 1 = 대기 , 2 = 성공 , 3 = 실패 , 4 = 취소
@@ -891,10 +891,10 @@ namespace FaxExample.Controllers
         public IActionResult GetUseHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;
@@ -928,10 +928,10 @@ namespace FaxExample.Controllers
         public IActionResult GetPaymentHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;

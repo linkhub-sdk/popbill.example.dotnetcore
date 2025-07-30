@@ -57,10 +57,10 @@ namespace HTCashbillExample.Controllers
             KeyType keyType = KeyType.SELL;
 
             // 시작일자, 표시형식(yyyyMMdd)
-            string SDate = "20220501";
+            string SDate = "20250701";
 
             // 종료일자, 표시형식(yyyyMMdd)
-            string EDate = "20220527";
+            string EDate = "20250731";
 
             try
             {
@@ -594,10 +594,10 @@ namespace HTCashbillExample.Controllers
         public IActionResult GetUseHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;
@@ -631,10 +631,10 @@ namespace HTCashbillExample.Controllers
         public IActionResult GetPaymentHistory()
         {
             // 조회 기간의 시작일자 (형식 : yyyyMMdd)
-            var SDate = "20230102";
+            var SDate = "20250701";
 
             // 조회 기간의 종료일자 (형식 : yyyyMMdd)
-            var EDate = "20230131";
+            var EDate = "20250731";
 
             // 목록 페이지번호 (기본값 1)
             var Page = 1;
