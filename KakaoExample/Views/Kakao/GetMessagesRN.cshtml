@@ -38,7 +38,7 @@
                                 <li> t (버튼유형) : @btns.t</li>
                                 <li> u1 (버튼링크1) : @btns.u1</li>
                                 <li> u2 (버튼링크2) : @btns.u2</li>
-                                <li> tg (웹링크 브라우저) : @btns.tg</li>
+                                <li> tg (아웃링크) : @btns.tg</li>
                             </ul>
                         </fieldset>
                     }
@@ -53,9 +53,9 @@
                     <fieldset class="fieldset3">
                         <legend> 개별 전송 내역 [ @i / @Model.msgs.Count ]</legend>
                         <ul>
-                            <li> state (전송상태 코드) : @msgs.state</li>
+                            <li> state (상태코드) : @msgs.state</li>
                             <li> sendDT (전송일시) : @msgs.sendDT</li>
-                            <li> result (전송결과 코드) : @msgs.result</li>
+                            <li> result (카카오 결과코드) : @msgs.result</li>
                             <li> resultDT (전송결과 수신일시) : @msgs.resultDT</li>
                             <li> contentType (카카오톡 유형) : @msgs.contentType</li>
                             <li> receiveNum (수신번호) : @msgs.receiveNum</li>
@@ -65,7 +65,7 @@
                             <li> altContent (대체문자 내용) : @msgs.altContent</li>
                             <li> altContentType (대체문자 전송유형) : @msgs.altContentType</li>
                             <li> altSendDT (대체문자 전송일시) : @msgs.altSendDT</li>
-                            <li> altResult (대체문자 전송결과 코드) : @msgs.altResult</li>
+                            <li> altResult (대체문자 통신사 결과코드) : @msgs.altResult</li>
                             <li> altResultDT (대체문자 전송결과 수신일시) : @msgs.altResultDT</li>
                             <li> receiptNum (접수번호) : @msgs.receiptNum</li>
                             <li> requestNum (요청번호) : @msgs.requestNum</li>

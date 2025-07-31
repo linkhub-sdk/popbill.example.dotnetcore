@@ -8,14 +8,14 @@
  * 
  * <테스트 연동개발 준비사항>
  * 1) 발신번호 사전등록을 합니다. (등록방법은 사이트/API 두가지 방식이 있습니다.)
- *   - 1. 팝빌 사이트 로그인 > [문자/팩스] > [문자] > [발신번호 사전등록] 메뉴에서 등록
+ *   - 1. 팝빌 사이트 로그인 > [카카오톡] > [발신번호 사전등록] 메뉴에서 등록
  *   - 2. getSenderNumberMgtURL API를 통해 반환된 URL을 이용하여 발신번호 등록
  * 2) 비즈니스 채널 등록 및 알림톡 템플릿을 신청합니다.
  *   - 1. 비즈니스 채널 등록 (등록방법은 사이트/API 두가지 방식이 있습니다.)
- *      └ 팝빌 사이트 로그인 [문자/팩스] > [카카오톡] > [카카오톡 관리] > '카카오톡 채널 관리' 메뉴에서 등록
+ *      └ 팝빌 사이트 로그인 > [카카오톡] > [카카오톡 관리] > '카카오톡 채널 관리' 메뉴에서 등록
  *      └ GetPlusFriendMgtURL API 를 통해 반환된 URL을 이용하여 등록
  *   - 2. 알림톡 템플릿 신청 (등록방법은 사이트/API 두가지 방식이 있습니다.)
- *      └ 팝빌 사이트 로그인 [문자/팩스] > [카카오톡] > [카카오톡 관리] > '알림톡 템플릿 관리' 메뉴에서 등록
+ *      └ 팝빌 사이트 로그인 > [카카오톡] > [카카오톡 관리] > '알림톡 템플릿 관리' 메뉴에서 등록
  *      └ GetATSTemplateMgtURL API 를 통해 URL을 이용하여 등록
 */
 using Microsoft.AspNetCore.Mvc;
@@ -1674,10 +1674,10 @@ namespace KakaoExample.Controllers
             // 담당자 성명 (최대 100자)
             joinInfo.ContactName = "담당자명";
 
-            // 담당자 이메일주소 (최대 100자)
+            // 담당자 메일 (최대 100자)
             joinInfo.ContactEmail = "";
 
-            // 담당자 연락처 (최대 20자)
+            // 담당자 휴대폰 (최대 20자)
             joinInfo.ContactTEL = "";
 
             try
@@ -1768,7 +1768,7 @@ namespace KakaoExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 담당자 아이디, 6자 이상 50자 미만
+            // 아이디, 6자 이상 50자 미만
             contactInfo.id = "testkorea_20181212";
 
             // 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
@@ -1777,13 +1777,13 @@ namespace KakaoExample.Controllers
             // 담당자명 (최대 100자)
             contactInfo.personName = "코어담당자";
 
-            // 담당자 연락처 (최대 20자)
+            // 담당자 휴대폰 (최대 20자)
             contactInfo.tel = "";
 
-            // 담당자 이메일 (최대 100자)
+            // 담당자 메일 (최대 100자)
             contactInfo.email = "";
 
-            // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
+            // 권한, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
 
             try
@@ -1862,19 +1862,19 @@ namespace KakaoExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 담당자 아이디
+            // 아이디
             contactInfo.id = "testkorea";
 
-            // 담당자명 (최대 100자)
+            // 담당자 성명 (최대 100자)
             contactInfo.personName = "코어담당자";
 
-            // 담당자 연락처 (최대 20자)
+            // 담당자 휴대폰 (최대 20자)
             contactInfo.tel = "";
 
-            // 담당자 이메일 (최대 100자)
+            // 담당자 메일 (최대 100자)
             contactInfo.email = "";
 
-            // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
+            // 권한, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
 
             try
