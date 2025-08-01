@@ -8,22 +8,26 @@
     <fieldset class="fieldset1">
         <legend>@ViewData["Title"]</legend>
         <ul>
-            <li> itemCode (문서종류코드) : @Model.itemCode</li>
+            <li> itemCode (전자면세서 문서 유형) : @Model.itemCode</li>
             <li> itemKey (팝빌번호) : @Model.itemKey</li>
-            <li> invoiceNum (팝빌승인번호) : @Model.invoiceNum</li>
+            <li> invoiceNum (팝빌 승인번호) : @Model.invoiceNum</li>
             <li> mgtKey (문서번호) : @Model.mgtKey</li>
-            <li> taxType (세금형태) : @Model.taxType</li>
+            <li> taxType (과세형태) : @Model.taxType</li>
             <li> writeDate (작성일자) : @Model.writeDate</li>
             <li> regDT (임시저장일시) : @Model.regDT</li>
+
             <li> senderCorpName (발신자 상호) : @Model.senderCorpName</li>
             <li> senderCorpNum (발신자 사업자등록번호) : @Model.senderCorpNum</li>
             <li> senderPrintYN (발신자 인쇄여부) : @Model.senderPrintYN</li>
+
             <li> receiverCorpName (수신자 상호): @Model.receiverCorpName</li>
             <li> receiverCorpNum (수신자 사업자등록번호) : @Model.receiverCorpNum</li>
             <li> receiverPrintYN (수신자 인쇄여부) : @Model.receiverPrintYN</li>
+
             <li> supplyCostTotal (공급가액 합계) : @Model.supplyCostTotal</li>
             <li> taxTotal (세액 합계) : @Model.taxTotal</li>
             <li> purposeType (영수/청구) : @Model.purposeType</li>
+
             <li> issueDT (발행일시) : @Model.issueDT</li>
             <li> stateCode (상태코드) : @Model.stateCode</li>
             <li> stateDT (상태 변경일시) : @Model.stateDT</li>

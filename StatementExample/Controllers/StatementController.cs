@@ -76,23 +76,40 @@ namespace StatementExample.Controllers
             // 전자명세서 정보 객체
             Statement statement = new Statement();
 
-            // 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20250731";
-
-            // {영수, 청구, 없음} 중 기재
-            statement.purposeType = "영수";
-
-            // 과세형태, {과세, 영세, 면세} 중 기재
-            statement.taxType = "과세";
-
-            // 맞춤양식코드, 기본값을 공백('')으로 처리하면 기본양식으로 처리.
-            statement.formCode = "";
-
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             statement.itemCode = 121;
 
             // 문서번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
             statement.mgtKey = "20220527-001";
+
+            // 맞춤양식코드, 기본값을 공백('')으로 처리하면 기본양식으로 처리.
+            statement.formCode = "";
+
+            // 기재상 작성일자 날짜형식(yyyyMMdd)
+            statement.writeDate = "20250731";
+
+            // 과세형태, {과세, 영세, 면세} 중 기재
+            statement.taxType = "과세";
+
+            // {영수, 청구, 없음} 중 기재
+            statement.purposeType = "영수";
+
+            // 기재상 일련번호 항목
+            statement.serialNum = "123";
+
+            // 공급가액 합계
+            statement.supplyCostTotal = "200000";
+
+            // 세액 합계
+            statement.taxTotal = "20000";
+
+            // 합계금액
+            statement.totalAmount = "220000";
+
+            // 기재상 비고 항목
+            statement.remark1 = "비고1";
+            statement.remark2 = "비고2";
+            statement.remark3 = "비고3";
 
 
             /**************************************************************************
@@ -113,9 +130,6 @@ namespace StatementExample.Controllers
 
             // 발신자 주소
             statement.senderAddr = "발신자 주소";
-
-            // 발신자 종목
-            statement.senderBizClass = "발신자 종목";
 
             // 발신자 업태
             statement.senderBizType = "발신자 업태";
@@ -157,9 +171,6 @@ namespace StatementExample.Controllers
             // 수신자 주소
             statement.receiverAddr = "수신자 주소";
 
-            // 수신자 종목
-            statement.receiverBizClass = "수신자 종목";
-
             // 수신자 업태
             statement.receiverBizType = "수신자 업태";
 
@@ -178,7 +189,7 @@ namespace StatementExample.Controllers
             // 수신자 휴대전화
             statement.receiverHP = "";
 
-            // 수신자 이메일주소
+            // 수신자 메일주소
             // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
             // 실제 거래처의 메일주소가 기재되지 않도록 주의
             statement.receiverEmail = "";
@@ -186,27 +197,6 @@ namespace StatementExample.Controllers
             // 수신자 팩스번호
             statement.receiverFAX = "";
 
-
-            /**************************************************************************
-             *                           전자명세서 기재항목                               *
-             **************************************************************************/
-
-            // 공급가액 합계
-            statement.supplyCostTotal = "200000";
-
-            // 세액 합계
-            statement.taxTotal = "20000";
-
-            // 합계금액
-            statement.totalAmount = "220000";
-
-            // 기재상 일련번호 항목
-            statement.serialNum = "123";
-
-            // 기재상 비고 항목
-            statement.remark1 = "비고1";
-            statement.remark2 = "비고2";
-            statement.remark3 = "비고3";
 
             // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
             // └ true = 첨부 , false = 미첨부(기본값)
@@ -221,6 +211,18 @@ namespace StatementExample.Controllers
             // 문자 자동전송 여부 (true / false 중 택 1)
             // └ true = 전송 , false = 미전송(기본값)
             statement.smssendYN = false;
+
+
+            /************************************************************
+             * 전자명세서 추가속성
+             * [https://developers.popbill.com/guide/statement/dotnetcore/introduction/statement-form#propertybag-table]
+             ************************************************************/
+            statement.propertyBag = new propertyBag();
+
+            statement.propertyBag.Add("Balance", "15000"); // 전잔액
+            statement.propertyBag.Add("Deposit", "5000"); // 입금액
+            statement.propertyBag.Add("CBalance", "20000"); // 현잔액
+
 
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
@@ -263,15 +265,6 @@ namespace StatementExample.Controllers
 
             statement.detailList.Add(detail);
 
-            /************************************************************
-             * 전자명세서 추가속성
-             * [https://developers.popbill.com/guide/statement/dotnetcore/introduction/statement-form#propertybag-table]
-             ************************************************************/
-            statement.propertyBag = new propertyBag();
-
-            statement.propertyBag.Add("Balance", "15000"); // 전잔액
-            statement.propertyBag.Add("Deposit", "5000"); // 입금액
-            statement.propertyBag.Add("CBalance", "20000"); // 현잔액
 
             // 즉시발행
             string memo = "즉시발행 메모";
@@ -300,23 +293,40 @@ namespace StatementExample.Controllers
             // 전자명세서 정보 객체
             Statement statement = new Statement();
 
-            // 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20250731";
-
-            // {영수, 청구} 중 기재
-            statement.purposeType = "영수";
-
-            // 과세형태, {과세, 영세, 면세} 중 기재
-            statement.taxType = "과세";
-
-            // 맞춤양식코드, 기본값을 공백('')으로 처리하면 기본양식으로 처리.
-            statement.formCode = "";
-
             // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
             statement.itemCode = 121;
 
             // 문서번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20220527-002";
+            statement.mgtKey = "20220527-001";
+
+            // 맞춤양식코드, 기본값을 공백('')으로 처리하면 기본양식으로 처리.
+            statement.formCode = "";
+
+            // 기재상 작성일자 날짜형식(yyyyMMdd)
+            statement.writeDate = "20250731";
+
+            // 과세형태, {과세, 영세, 면세} 중 기재
+            statement.taxType = "과세";
+
+            // {영수, 청구, 없음} 중 기재
+            statement.purposeType = "영수";
+
+            // 기재상 일련번호 항목
+            statement.serialNum = "123";
+
+            // 공급가액 합계
+            statement.supplyCostTotal = "200000";
+
+            // 세액 합계
+            statement.taxTotal = "20000";
+
+            // 합계금액
+            statement.totalAmount = "220000";
+
+            // 기재상 비고 항목
+            statement.remark1 = "비고1";
+            statement.remark2 = "비고2";
+            statement.remark3 = "비고3";
 
 
             /**************************************************************************
@@ -337,9 +347,6 @@ namespace StatementExample.Controllers
 
             // 발신자 주소
             statement.senderAddr = "발신자 주소";
-
-            // 발신자 종목
-            statement.senderBizClass = "발신자 종목";
 
             // 발신자 업태
             statement.senderBizType = "발신자 업태";
@@ -365,7 +372,6 @@ namespace StatementExample.Controllers
             // 발신자 팩스번호
             statement.senderFAX = "";
 
-
             /**************************************************************************
              *                               수신자 정보                                 *
              **************************************************************************/
@@ -381,9 +387,6 @@ namespace StatementExample.Controllers
 
             // 수신자 주소
             statement.receiverAddr = "수신자 주소";
-
-            // 수신자 종목
-            statement.receiverBizClass = "수신자 종목";
 
             // 수신자 업태
             statement.receiverBizType = "수신자 업태";
@@ -403,7 +406,7 @@ namespace StatementExample.Controllers
             // 수신자 휴대전화
             statement.receiverHP = "";
 
-            // 수신자 이메일주소
+            // 수신자 메일주소
             // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
             // 실제 거래처의 메일주소가 기재되지 않도록 주의
             statement.receiverEmail = "";
@@ -411,27 +414,6 @@ namespace StatementExample.Controllers
             // 수신자 팩스번호
             statement.receiverFAX = "";
 
-
-            /**************************************************************************
-             *                           전자명세서 기재항목                               *
-             **************************************************************************/
-
-            // 공급가액 합계
-            statement.supplyCostTotal = "200000";
-
-            // 세액 합계
-            statement.taxTotal = "20000";
-
-            // 합계금액
-            statement.totalAmount = "220000";
-
-            // 기재상 일련번호 항목
-            statement.serialNum = "123";
-
-            // 기재상 비고 항목
-            statement.remark1 = "비고1";
-            statement.remark2 = "비고2";
-            statement.remark3 = "비고3";
 
             // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
             // └ true = 첨부 , false = 미첨부(기본값)
@@ -446,6 +428,18 @@ namespace StatementExample.Controllers
             // 문자 자동전송 여부 (true / false 중 택 1)
             // └ true = 전송 , false = 미전송(기본값)
             statement.smssendYN = false;
+
+
+            /************************************************************
+             * 전자명세서 추가속성
+             * [https://developers.popbill.com/guide/statement/dotnetcore/introduction/statement-form#propertybag-table]
+             ************************************************************/
+            statement.propertyBag = new propertyBag();
+
+            statement.propertyBag.Add("Balance", "15000"); // 전잔액
+            statement.propertyBag.Add("Deposit", "5000"); // 입금액
+            statement.propertyBag.Add("CBalance", "20000"); // 현잔액
+
 
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
@@ -487,16 +481,6 @@ namespace StatementExample.Controllers
             detail.spare5 = "spare5";
 
             statement.detailList.Add(detail);
-
-            /************************************************************
-             * 전자명세서 추가속성
-             * [https://developers.popbill.com/guide/statement/dotnetcore/introduction/statement-form#propertybag-table]
-             ************************************************************/
-            statement.propertyBag = new propertyBag();
-
-            statement.propertyBag.Add("Balance", "15000"); // 전잔액
-            statement.propertyBag.Add("Deposit", "5000"); // 입금액
-            statement.propertyBag.Add("CBalance", "20000"); // 현잔액
 
             try
             {
@@ -525,17 +509,40 @@ namespace StatementExample.Controllers
             // 전자명세서 정보 객체
             Statement statement = new Statement();
 
+            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
+            statement.itemCode = 121;
+
+            // 문서번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
+            statement.mgtKey = "20220527-002";
+
+            // 맞춤양식코드, 기본값을 공백('')으로 처리하면 기본양식으로 처리.
+            statement.formCode = "";
+
             // 기재상 작성일자 날짜형식(yyyyMMdd)
             statement.writeDate = "20250731";
-
-            // {영수, 청구} 중 기재
-            statement.purposeType = "영수";
 
             // 과세형태, {과세, 영세, 면세} 중 기재
             statement.taxType = "과세";
 
-            // 맞춤양식코드, 기본값을 공백('')으로 처리하면 기본양식으로 처리.
-            statement.formCode = "";
+            // {영수, 청구, 없음} 중 기재
+            statement.purposeType = "영수";
+
+            // 기재상 일련번호 항목
+            statement.serialNum = "123";
+
+            // 공급가액 합계
+            statement.supplyCostTotal = "200000";
+
+            // 세액 합계
+            statement.taxTotal = "20000";
+
+            // 합계금액
+            statement.totalAmount = "220000";
+
+            // 기재상 비고 항목
+            statement.remark1 = "비고1";
+            statement.remark2 = "비고2";
+            statement.remark3 = "비고3";
 
 
             /**************************************************************************
@@ -556,9 +563,6 @@ namespace StatementExample.Controllers
 
             // 발신자 주소
             statement.senderAddr = "발신자 주소";
-
-            // 발신자 종목
-            statement.senderBizClass = "발신자 종목";
 
             // 발신자 업태
             statement.senderBizType = "발신자 업태";
@@ -584,7 +588,6 @@ namespace StatementExample.Controllers
             // 발신자 팩스번호
             statement.senderFAX = "";
 
-
             /**************************************************************************
              *                               수신자 정보                                 *
              **************************************************************************/
@@ -600,9 +603,6 @@ namespace StatementExample.Controllers
 
             // 수신자 주소
             statement.receiverAddr = "수신자 주소";
-
-            // 수신자 종목
-            statement.receiverBizClass = "수신자 종목";
 
             // 수신자 업태
             statement.receiverBizType = "수신자 업태";
@@ -622,7 +622,7 @@ namespace StatementExample.Controllers
             // 수신자 휴대전화
             statement.receiverHP = "";
 
-            // 수신자 이메일주소
+            // 수신자 메일주소
             // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
             // 실제 거래처의 메일주소가 기재되지 않도록 주의
             statement.receiverEmail = "";
@@ -630,27 +630,6 @@ namespace StatementExample.Controllers
             // 수신자 팩스번호
             statement.receiverFAX = "";
 
-
-            /**************************************************************************
-             *                           전자명세서 기재항목                               *
-             **************************************************************************/
-
-            // 공급가액 합계
-            statement.supplyCostTotal = "200000";
-
-            // 세액 합계
-            statement.taxTotal = "20000";
-
-            // 합계금액
-            statement.totalAmount = "220000";
-
-            // 기재상 일련번호 항목
-            statement.serialNum = "123";
-
-            // 기재상 비고 항목
-            statement.remark1 = "비고1";
-            statement.remark2 = "비고2";
-            statement.remark3 = "비고3";
 
             // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
             // └ true = 첨부 , false = 미첨부(기본값)
@@ -666,6 +645,18 @@ namespace StatementExample.Controllers
             // └ true = 전송 , false = 미전송(기본값)
             statement.smssendYN = false;
 
+
+            /************************************************************
+             * 전자명세서 추가속성
+             * [https://developers.popbill.com/guide/statement/dotnetcore/introduction/statement-form#propertybag-table]
+             ************************************************************/
+            statement.propertyBag = new propertyBag();
+
+            statement.propertyBag.Add("Balance", "15000"); // 전잔액
+            statement.propertyBag.Add("Deposit", "5000"); // 입금액
+            statement.propertyBag.Add("CBalance", "20000"); // 현잔액
+
+
             // 상세항목(품목) 정보 객체
             statement.detailList = new List<StatementDetail>();
 
@@ -673,7 +664,7 @@ namespace StatementExample.Controllers
 
             detail.serialNum = 1; // 일련번호 1부터 순차기재
             detail.purchaseDT = "20250731"; // 거래일자 작성형식 yyyyMMdd
-            detail.itemName = "품목명(수정)"; // 품목명
+            detail.itemName = "품목명"; // 품목명
             detail.spec = "규격"; // 규격
             detail.qty = "1"; // 수량
             detail.unitCost = "100000"; // 단가
@@ -707,15 +698,6 @@ namespace StatementExample.Controllers
 
             statement.detailList.Add(detail);
 
-            /************************************************************
-             * 전자명세서 추가속성
-             * [https://developers.popbill.com/guide/statement/dotnetcore/introduction/statement-form#propertybag-table]
-             ************************************************************/
-            statement.propertyBag = new propertyBag();
-
-            statement.propertyBag.Add("Balance", "15000"); // 전잔액
-            statement.propertyBag.Add("Deposit", "5000"); // 입금액
-            statement.propertyBag.Add("CBalance", "20000"); // 현잔액
             try
             {
                 var response = _statementService.Update(corpNum, itemCode, mgtKey, statement);
@@ -1220,7 +1202,7 @@ namespace StatementExample.Controllers
             // 1~24자리 영문,숫자,'-','_' 조합 구성
             string mgtKey = "20220527-002";
 
-            // 파일아이디, 첨부파일 목록(GetFiles API) 의 응답항목 중 파일아이디(AttachedFile) 값
+            // 파일 식별번호, 첨부파일 목록(GetFiles API) 의 응답항목 중 파일 식별번호(AttachedFile) 값
             string fileID = "";
 
             try
@@ -1354,10 +1336,6 @@ namespace StatementExample.Controllers
 
         /*
          * 전자명세서를 팩스로 전송하는 함수로, 팝빌에 데이터를 저장하는 과정이 없습니다.
-         * - 팝빌 사이트 [문자·팩스] > [팩스] > [전송내역] 메뉴에서 전송결과를 확인 할 수 있습니다.
-         * - 함수 호출시 포인트가 과금됩니다.
-         * - 팩스 발행 요청시 작성한 문서번호는 팩스전송 파일명으로 사용됩니다.
-         * - 팩스 전송결과를 확인하기 위해서는 선팩스 전송 요청 시 반환받은 접수번호를 이용하여 팩스 API의 전송결과 확인 (GetFaxResult) API를 이용하면 됩니다.
          * - https://developers.popbill.com/reference/statement/dotnetcore/api/etc#FAXSend
          */
         public IActionResult FAXSend()
@@ -1365,23 +1343,40 @@ namespace StatementExample.Controllers
             // 전자명세서 정보 객체
             Statement statement = new Statement();
 
-            // 기재상 작성일자 날짜형식(yyyyMMdd)
-            statement.writeDate = "20250731";
+            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서), 124(발주서), 125(입금표), 126(영수증)
+            statement.itemCode = 121;
 
-            // {영수, 청구} 중 기재
-            statement.purposeType = "영수";
-
-            // 과세형태, {과세, 영세, 면세} 중 기재
-            statement.taxType = "과세";
+            // 문서번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
+            statement.mgtKey = "20220527-001";
 
             // 맞춤양식코드, 기본값을 공백('')으로 처리하면 기본양식으로 처리.
             statement.formCode = "";
 
-            // 명세서 코드 - 121(거래명세서), 122(청구서), 123(견적서) 124(발주서), 125(입금표), 126(영수증)
-            statement.itemCode = 121;
+            // 기재상 작성일자 날짜형식(yyyyMMdd)
+            statement.writeDate = "20250731";
 
-            // 문서번호, 1~24자리 숫자, 영문, '-', '_' 조합으로 사업자별로 중복되지 않도록 구성
-            statement.mgtKey = "20220527-002";
+            // 과세형태, {과세, 영세, 면세} 중 기재
+            statement.taxType = "과세";
+
+            // {영수, 청구, 없음} 중 기재
+            statement.purposeType = "영수";
+
+            // 기재상 일련번호 항목
+            statement.serialNum = "123";
+
+            // 공급가액 합계
+            statement.supplyCostTotal = "200000";
+
+            // 세액 합계
+            statement.taxTotal = "20000";
+
+            // 합계금액
+            statement.totalAmount = "220000";
+
+            // 기재상 비고 항목
+            statement.remark1 = "비고1";
+            statement.remark2 = "비고2";
+            statement.remark3 = "비고3";
 
 
             /**************************************************************************
@@ -1402,9 +1397,6 @@ namespace StatementExample.Controllers
 
             // 발신자 주소
             statement.senderAddr = "발신자 주소";
-
-            // 발신자 종목
-            statement.senderBizClass = "발신자 종목";
 
             // 발신자 업태
             statement.senderBizType = "발신자 업태";
@@ -1430,7 +1422,6 @@ namespace StatementExample.Controllers
             // 발신자 팩스번호
             statement.senderFAX = "";
 
-
             /**************************************************************************
              *                               수신자 정보                                 *
              **************************************************************************/
@@ -1446,9 +1437,6 @@ namespace StatementExample.Controllers
 
             // 수신자 주소
             statement.receiverAddr = "수신자 주소";
-
-            // 수신자 종목
-            statement.receiverBizClass = "수신자 종목";
 
             // 수신자 업태
             statement.receiverBizType = "수신자 업태";
@@ -1468,7 +1456,7 @@ namespace StatementExample.Controllers
             // 수신자 휴대전화
             statement.receiverHP = "";
 
-            // 수신자 이메일주소
+            // 수신자 메일주소
             // 팝빌 개발환경에서 테스트하는 경우에도 안내 메일이 전송되므로,
             // 실제 거래처의 메일주소가 기재되지 않도록 주의
             statement.receiverEmail = "";
@@ -1476,27 +1464,6 @@ namespace StatementExample.Controllers
             // 수신자 팩스번호
             statement.receiverFAX = "";
 
-
-            /**************************************************************************
-             *                           전자명세서 기재항목                               *
-             **************************************************************************/
-
-            // 공급가액 합계
-            statement.supplyCostTotal = "200000";
-
-            // 세액 합계
-            statement.taxTotal = "20000";
-
-            // 합계금액
-            statement.totalAmount = "220000";
-
-            // 기재상 일련번호 항목
-            statement.serialNum = "123";
-
-            // 기재상 비고 항목
-            statement.remark1 = "비고1";
-            statement.remark2 = "비고2";
-            statement.remark3 = "비고3";
 
             // 사업자등록증 이미지 첨부여부 (true / false 중 택 1)
             // └ true = 첨부 , false = 미첨부(기본값)
@@ -1512,46 +1479,6 @@ namespace StatementExample.Controllers
             // └ true = 전송 , false = 미전송(기본값)
             statement.smssendYN = false;
 
-            // 상세항목(품목) 정보 객체
-            statement.detailList = new List<StatementDetail>();
-
-            StatementDetail detail = new StatementDetail
-            {
-                serialNum = 1, // 일련번호 1부터 순차기재
-                purchaseDT = "20250731", // 거래일자 작성형식 yyyyMMdd
-                itemName = "품목명", // 품목명
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "100000", // 단가
-                supplyCost = "100000", // 공급가액
-                tax = "10000", // 세액
-                remark = "품목비고", // 비고
-                spare1 = "spare1", // 여분
-                spare2 = "spare2",
-                spare3 = "spare3",
-                spare4 = "spare4",
-                spare5 = "spare5"
-            };
-            statement.detailList.Add(detail);
-
-            detail = new StatementDetail
-            {
-                serialNum = 2, // 일련번호 1부터 순차기재
-                purchaseDT = "20250731", // 거래일자 작성형식 yyyyMMdd
-                itemName = "품목명", // 품목명
-                spec = "규격", // 규격
-                qty = "1", // 수량
-                unitCost = "100000", // 단가
-                supplyCost = "100000", // 공급가액
-                tax = "10000", // 세액
-                remark = "품목비고", // 비고
-                spare1 = "spare1", // 여분
-                spare2 = "spare2",
-                spare3 = "spare3",
-                spare4 = "spare4",
-                spare5 = "spare5"
-            };
-            statement.detailList.Add(detail);
 
             /************************************************************
              * 전자명세서 추가속성
@@ -1562,6 +1489,48 @@ namespace StatementExample.Controllers
             statement.propertyBag.Add("Balance", "15000"); // 전잔액
             statement.propertyBag.Add("Deposit", "5000"); // 입금액
             statement.propertyBag.Add("CBalance", "20000"); // 현잔액
+
+
+            // 상세항목(품목) 정보 객체
+            statement.detailList = new List<StatementDetail>();
+
+            StatementDetail detail = new StatementDetail();
+
+            detail.serialNum = 1; // 일련번호 1부터 순차기재
+            detail.purchaseDT = "20250731"; // 거래일자 작성형식 yyyyMMdd
+            detail.itemName = "품목명"; // 품목명
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "100000"; // 단가
+            detail.supplyCost = "100000"; // 공급가액
+            detail.tax = "10000"; // 세액
+            detail.remark = "품목비고"; // 비고
+            detail.spare1 = "spare1"; // 여분
+            detail.spare2 = "spare2";
+            detail.spare3 = "spare3";
+            detail.spare4 = "spare4";
+            detail.spare5 = "spare5";
+
+            statement.detailList.Add(detail);
+
+            detail = new StatementDetail();
+
+            detail.serialNum = 2; // 일련번호 1부터 순차기재
+            detail.purchaseDT = "20250731"; // 거래일자 작성형식 yyyyMMdd
+            detail.itemName = "품목명"; // 품목명
+            detail.spec = "규격"; // 규격
+            detail.qty = "1"; // 수량
+            detail.unitCost = "100000"; // 단가
+            detail.supplyCost = "100000"; // 공급가액
+            detail.tax = "10000"; // 세액
+            detail.remark = "품목비고"; // 비고
+            detail.spare1 = "spare1"; // 여분
+            detail.spare2 = "spare2";
+            detail.spare3 = "spare3";
+            detail.spare4 = "spare4";
+            detail.spare5 = "spare5";
+
+            statement.detailList.Add(detail);
 
             // 발신번호
             string sendNum = "";
@@ -2154,10 +2123,10 @@ namespace StatementExample.Controllers
             // 담당자 성명 (최대 100자)
             joinInfo.ContactName = "담당자명";
 
-            // 담당자 이메일주소 (최대 100자)
+            // 담당자 메일 (최대 100자)
             joinInfo.ContactEmail = "";
 
-            // 담당자 연락처 (최대 20자)
+            // 담당자 휴대폰 (최대 20자)
             joinInfo.ContactTEL = "";
 
             try
@@ -2230,22 +2199,22 @@ namespace StatementExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 담당자 아이디, 6자 이상 50자 미만
+            // 아이디, 6자 이상 50자 미만
             contactInfo.id = "testkorea_20181212";
 
             // 비밀번호, 8자이상 20자 미만 (영문, 숫자, 특수문자 조합)
             contactInfo.Password = "asdfasdf123!@#";
 
-            // 담당자명 (최대 100자)
+            // 담당자 성명 (최대 100자)
             contactInfo.personName = "코어담당자";
 
             // 담당자 연락처 (최대 20자)
             contactInfo.tel = "";
 
-            // 담당자 이메일 (최대 100자)
+            // 담당자 메일 (최대 100자)
             contactInfo.email = "";
 
-            // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
+            // 권한, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
 
             try
@@ -2324,19 +2293,19 @@ namespace StatementExample.Controllers
         {
             Contact contactInfo = new Contact();
 
-            // 담당자 아이디
+            // 아이디
             contactInfo.id = "testkorea";
 
-            // 담당자명 (최대 100자)
+            // 담당자 성명 (최대 100자)
             contactInfo.personName = "코어담당자";
 
-            // 담당자 연락처 (최대 20자)
+            // 담당자 휴대폰 (최대 20자)
             contactInfo.tel = "";
 
-            // 담당자 이메일 (최대 100자)
+            // 담당자 메일 (최대 100자)
             contactInfo.email = "";
 
-            // 담당자 조회권한 설정, 1(개인권한), 2 (읽기권한), 3 (회사권한)
+            // 권한, 1(개인권한), 2 (읽기권한), 3 (회사권한)
             contactInfo.searchRole = 3;
 
             try

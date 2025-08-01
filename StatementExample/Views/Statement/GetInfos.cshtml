@@ -15,19 +15,22 @@
                 <fieldset class="fieldset2">
                     <legend>전자명세서 상태/요약정보 대량 확인 [ @i / @Model.Count ]</legend>
                     <ul>
-                        <li> itemCode (문서종류코드) : @info.itemCode</li>
+                        <li> itemCode (전자면세서 문서 유형) : @info.itemCode</li>
                         <li> itemKey (팝빌번호) : @info.itemKey</li>
                         <li> invoiceNum (팝빌승인번호) : @info.invoiceNum</li>
                         <li> mgtKey (문서번호) : @info.mgtKey</li>
-                        <li> taxType (세금형태) : @info.taxType</li>
+
+                        <li> taxType (과세형태) : @info.taxType</li>
                         <li> writeDate (작성일자) : @info.writeDate</li>
                         <li> regDT (임시저장일시) : @info.regDT</li>
+
                         <li> senderCorpName (발신자 상호) : @info.senderCorpName</li>
                         <li> senderCorpNum (발신자 사업자등록번호) : @info.senderCorpNum</li>
                         <li> senderPrintYN (발신자 인쇄여부) : @info.senderPrintYN</li>
                         <li> receiverCorpName (수신자 상호): @info.receiverCorpName</li>
                         <li> receiverCorpNum (수신자 사업자등록번호) : @info.receiverCorpNum</li>
                         <li> receiverPrintYN (수신자 인쇄여부) : @info.receiverPrintYN</li>
+
                         <li> supplyCostTotal (공급가액 합계) : @info.supplyCostTotal</li>
                         <li> taxTotal (세액 합계) : @info.taxTotal</li>
                         <li> purposeType (영수/청구) : @info.purposeType</li>

@@ -8,17 +8,18 @@
     <fieldset class="fieldset1">
         <legend>@ViewData["Title"]</legend>
         <ul>
-            <li> itemCode(문서종류코드) : @Model.itemCode</li>
+            <li> itemCode(전자면세서 문서 유형) : @Model.itemCode</li>
             <li> mgtKey(문서번호) : @Model.mgtKey</li>
             <li> invoiceNum(팝빌승인번호) : @Model.invoiceNum</li>
             <li> formCode(맞춤양식 코드) : @Model.formCode</li>
             <li> writeDate(작성일자) : @Model.writeDate</li>
-            <li> taxType(세금형태) : @Model.taxType</li>
+            <li> taxType(과세형태) : @Model.taxType</li>
             <li> purposeType(영수/청구) : @Model.purposeType</li>
             <li> serialNum(일련번호) : @Model.serialNum</li>
-            <li> taxTotal(세액 합계) : @Model.taxTotal</li>
             <li> supplyCostTotal(공급가액 합계) : @Model.supplyCostTotal</li>
+            <li> taxTotal(세액 합계) : @Model.taxTotal</li>
             <li> totalAmount(합계금액) : @Model.totalAmount</li>
+
             <li> remark1(비고1) : @Model.remark1</li>
             <li> remark2(비고2) : @Model.remark2</li>
             <li> remark3(비고3) : @Model.remark3</li>
