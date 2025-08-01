@@ -6,7 +6,6 @@
  * 연동 기술지원 연락처 : 1600 - 9854
  * 연동 기술지원 이메일 : code@linkhubcorp.com
 */
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
 using Popbill.AccountCheck;

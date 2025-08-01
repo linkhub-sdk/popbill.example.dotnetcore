@@ -8,7 +8,6 @@
 */
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
-using Popbill.BizInfoCheck;
 using Popbill.Cashbill;
 using System.Collections.Generic;
 

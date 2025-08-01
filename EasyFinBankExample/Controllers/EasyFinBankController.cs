@@ -8,7 +8,6 @@
 */
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
-using Popbill.Closedown;
 using Popbill.EasyFin;
 
 namespace EasyFinBankExample.Controllers

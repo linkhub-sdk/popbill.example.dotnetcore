@@ -13,7 +13,6 @@
 */
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
-using Popbill.Kakao;
 using Popbill.Message;
 using System;
 using System.Collections.Generic;

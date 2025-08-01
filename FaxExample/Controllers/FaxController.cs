@@ -9,7 +9,6 @@
 */
 using Microsoft.AspNetCore.Mvc;
 using Popbill;
-using Popbill.EasyFin;
 using Popbill.Fax;
 using System;
 using System.Collections.Generic;
