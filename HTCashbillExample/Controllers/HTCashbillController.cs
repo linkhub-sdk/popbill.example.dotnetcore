@@ -2,7 +2,7 @@
  * 팝빌 홈택스 현금영수증 API .NET Core SDK Example
  * .NET Core 연동 튜토리얼 안내 : https://developers.popbill.com/guide/htcashbill/dotnetcore/getting-started/tutorial
  * 
- * 업데이트 일자 : 2025-07-30
+ * 업데이트 일자 : 2025-08-29
  * 연동 기술지원 연락처 : 1600 - 9854
  * 연동 기술지원 이메일 : code@linkhubcorp.com
  * 
@@ -247,21 +247,27 @@ namespace HTCashbillExample.Controllers
             }
         }
 
-        /*
-         * 홈택스수집 인증을 위해 팝빌에 현금영수증 자료조회 부서사용자 계정을 등록합니다.
+		/*
+         * 팝빌에 현금영수증 전용 부서사용자를 등록합니다.
          * - https://developers.popbill.com/reference/htcashbill/dotnetcore/api/cert#RegistDeptUser
          */
-        public IActionResult RegistDeptUser()
+		public IActionResult RegistDeptUser()
         {
-            // 홈택스에서 생성한 현금영수증 부서사용자 아이디
-            string deptUserID = "userid_test";
+			// 부서사용자 아이디
+			string deptUserID = "userid_test";
 
-            // 홈택스에서 생성한 현금영수증 부서사용자 비밀번호
-            string deptUserPWD = "passwd_test";
+			// 부서사용자 비밀번호
+			string deptUserPWD = "passwd_test";
 
-            try
+			// 부서사용자 대표자 주민번호
+			string identityNum = "";
+
+			// 팝빌회원 아이디
+			string userID = "testkorea";
+
+			try
             {
-                var response = _htCashbillService.RegistDeptUser(corpNum, deptUserID, deptUserPWD);
+                var response = _htCashbillService.RegistDeptUser(corpNum, deptUserID, deptUserPWD, identityNum, userID);
                 return View("Response", response);
             }
             catch (PopbillException pe)
