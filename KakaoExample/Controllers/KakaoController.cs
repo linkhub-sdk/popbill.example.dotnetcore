@@ -168,7 +168,7 @@ namespace KakaoExample.Controllers
         public IActionResult GetATSTemplate()
         {
             // 템플릿 코드
-            string templateCdoe = "021010000076";
+            string templateCdoe = "025080000928";
 
             try
             {
