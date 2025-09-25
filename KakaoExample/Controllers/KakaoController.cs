@@ -257,6 +257,8 @@ namespace KakaoExample.Controllers
             // 알림톡 버튼정보를 템플릿 신청시 기재한 버튼정보와 동일하게 전송하는 경우 null 처리.
             List<KakaoButton> buttons = null;
 
+            // 강조표기 타이틀
+            string emphasizeTitle = "";
 
             // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
             /*
@@ -279,7 +281,7 @@ namespace KakaoExample.Controllers
             try
             {
                 var receiptNum = _kakaoService.SendATS(corpNum, templateCode, senderNum, receiverNum, receiverName,
-                    content, altContent, altSendType, sndDT, requestNum, userID, buttons, altSubject);
+                    content, altContent, altSendType, sndDT, requestNum, userID, buttons, altSubject, emphasizeTitle);
                 return View("ReceiptNum", receiptNum);
             }
             catch (PopbillException pe)
@@ -336,6 +338,9 @@ namespace KakaoExample.Controllers
 
                 // 파트너 지정키, 수신자 구분용 메모
                 receiverInfo.interOPRefKey = "20200805-" + i;
+
+                // 강조표기 타이틀
+                receiverInfo.emphasizeTitle = "";
 
                 receivers.Add(receiverInfo);
             }
@@ -453,6 +458,8 @@ namespace KakaoExample.Controllers
             // 알림톡 버튼정보를 템플릿 신청시 기재한 버튼정보와 동일하게 전송하는 경우 null 처리.
             List<KakaoButton> buttons = null;
 
+            // 강조표기 타이틀
+            string emphasizeTitle = "";
 
             // 알림톡 버튼 URL에 #{템플릿변수}를 기재한경우 템플릿변수 영역을 변경하여 버튼정보 구성
             /*
@@ -475,7 +482,7 @@ namespace KakaoExample.Controllers
             try
             {
                 var receiptNum = _kakaoService.SendATS(corpNum, templateCode, senderNum, content, altContent, receivers,
-                    altSendType, sndDT, requestNum, userID, buttons, altSubject);
+                    altSendType, sndDT, requestNum, userID, buttons, altSubject, emphasizeTitle);
                 return View("ReceiptNum", receiptNum);
             }
             catch (PopbillException pe)
